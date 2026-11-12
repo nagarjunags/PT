@@ -1,0 +1,92 @@
+{
+  "slug": "boolean-algebra",
+  "title": "Boolean Algebra",
+  "pages_count": 12,
+  "images": {
+    "3": [
+      {
+        "file": "images/p3_img1_71.jpeg",
+        "width": 178,
+        "height": 155
+      }
+    ],
+    "5": [
+      {
+        "file": "images/p5_img1_94.jpeg",
+        "width": 280,
+        "height": 227
+      }
+    ],
+    "7": [
+      {
+        "file": "images/p7_img1_115.jpeg",
+        "width": 712,
+        "height": 238
+      }
+    ],
+    "9": [
+      {
+        "file": "images/p9_img1_144.jpeg",
+        "width": 313,
+        "height": 286
+      }
+    ],
+    "10": [
+      {
+        "file": "images/p10_img1_155.jpeg",
+        "width": 619,
+        "height": 396
+      }
+    ]
+  },
+  "pages": [
+    {
+      "page": 1,
+      "text": "Keep practising on the ExamGOAL app\nChapter-wise PYQs with solutions, full mock tests and analysis for JEE, NEET, GATE and more.\nGoogle Play\nGET IT ON\nExamGOAL\nP Y Q P D F\nFree \u00b7 With answer key\nGATE ECE \u00b7 DIGITAL CIRCUITS \u00b7 CHAPTER-WISE PYQS\nBoolean Algebra\nGATE ECE Digital Circuits \u00b7 Previous Year Questions with Answer Key\n33\nQUESTIONS\n23\nPAPERS COVERED\n1990 \u2013 2026\nYEARS\nEnglish\nLANGUAGE\nINSIDE THIS PDF\nMarks 1\n14 questions\nMarks 2\n14 questions\nMarks 4\n1 question\nMarks 5\n2 questions\nMarks 10\n2 questions\nAnswer key\nat the end\nPractise online\nEvery question with its full solution,\nfree on questions.examside.com\n1\nSolve\nPrint it, or work through it on\nscreen.\n2\nCheck\nThe answer key is on the last\npages.\n3\nUnderstand\nScan the QR code beside any\nquestion for its full solution.\npdf.questions.examgoal.com\nFree previous year question PDFs for JEE, NEET, GATE and more\n"
+    },
+    {
+      "page": 2,
+      "text": "ExamGOAL\nP Y Q P D F\nMarks 1\n14 questions\nQ1.\nGATE ECE 2024\nFor the Boolean function\n,\nthe essential prime implicants are _________.\n(A)\n,\n(B)\n,\n(C)\n,\n(D)\n,\n,\nOpen solution\nQ2.\nGATE ECE 2022\nSelect the Boolean function(s) equivalent to x + yz, where x, y, and z are Boolean variables, and +\ndenotes logical OR operation.\n(A) x + z + xy\n(B) (x + y) (x + z)\n(C) x + xy + yz\n(D) x + xz + xy\nOpen solution\nQ3.\nGATE ECE 2018\nA function F(A, B, C) defined by three Boolean variables A, B and C when expressed as sum of\nproducts is given by\nF = \nwhere, ,\n, and  are the complements of the respective variables. The product of sums (POS)\nform of the function F is\n(A) F = (A + B + C)(A +  + C)( + B + C)\n(B) F = ( +  + )( + B + )(A +  + )\n(C) F = (A + B + )(A +  + )( + B + )( +  + C)( +  + )\n(D) F = ( +  + C)( + B + C)(A +  + C)(A + B + )(A + B + C)\nOpen solution\nQ4.\nGATE ECE 2014 Set 1\nThe Boolean expression \n simplifies to\n(A) X\n(B) Y\n(C) XY\n(D) X+Y\nOpen solution\nQ5.\nGATE ECE 2014 Set 2\nFor an -variable Boolean function, the maximum number of prime implicants is\n(A) 2(n-1)\n(B) n/2\n(C)\n(D)\nOpen solution\nKeep practising on the ExamGOAL app\nChapter-wise PYQs with solutions, full mock tests and analysis for JEE, NEET, GATE and more.\nGoogle Play\nGET IT ON\nGATE ECE Digital Circuits: Boolean Algebra \u00b7 pdf.questions.examgoal.com\nSolutions: questions.examside.com \u00b7 Page 2 / 12\n"
+    },
+    {
+      "page": 3,
+      "text": "ExamGOAL\nP Y Q P D F\nQ6.\nGATE ECE 2012\nIn the sum of products function \n, the prime implicants are\n(A)\n(B)\n(C)\n(D)\nOpen solution\nQ7.\nGATE ECE 2007\nThe Boolean function Y=AB+CD is to be realized using only 2-input NAND gates. The minimum\nnumber of gates required is\n(A) 2\n(B) 3\n(C) 4\n(D) 5\nOpen solution\nQ8.\nGATE ECE 2006\nThe number of product terms in the minimized sum-of-product expression obtained through the\nfollowing k-map is ( where , \"d\" denotes don't care states)\n(A) 2\n(B) 3\n(C) 4\n(D) 5\nOpen solution\nKeep practising on the ExamGOAL app\nChapter-wise PYQs with solutions, full mock tests and analysis for JEE, NEET, GATE and more.\nGoogle Play\nGET IT ON\nGATE ECE Digital Circuits: Boolean Algebra \u00b7 pdf.questions.examgoal.com\nSolutions: questions.examside.com \u00b7 Page 3 / 12\n"
+    },
+    {
+      "page": 4,
+      "text": "ExamGOAL\nP Y Q P D F\nQ9.\nGATE ECE 2005\nThe Boolean expression for the truth table shown is\nA\nB\nC\nf\n0\n0\n0\n0\n0\n0\n1\n0\n0\n1\n0\n0\n0\n1\n1\n1\n1\n0\n0\n0\n1\n0\n1\n0\n1\n1\n0\n1\n1\n1\n1\n0\n(A) B(A+C)(\n(B)\n(C)\n(A+ )( +C)\n(D)\n(A+C)(\nOpen solution\nQ10.\nGATE ECE 2003\nThe number of distinct Boolean expressions of 4 variables is\n(A) 16\n(B) 256\n(C) 1024\n(D) 65536\nOpen solution\nQ11.\nGATE ECE 1999\nThe Logical expression \n is equivalent to\n(A) y = AB\n(B) y =  B\n(C) y =  + B\n(D) y = A + B\nOpen solution\nQ12.\nGATE ECE 1998\nTwo 2' s complement numbers having sign bits x and y added and the sign bit of the result is z.\nThen, the occurrence of overflow is indicated by the Boolean function.\n(A) xyz\n(B)\n(C)\n z + x y \n(D) xy + yz + zx\nOpen solution\nKeep practising on the ExamGOAL app\nChapter-wise PYQs with solutions, full mock tests and analysis for JEE, NEET, GATE and more.\nGoogle Play\nGET IT ON\nGATE ECE Digital Circuits: Boolean Algebra \u00b7 pdf.questions.examgoal.com\nSolutions: questions.examside.com \u00b7 Page 4 / 12\n"
+    },
+    {
+      "page": 5,
+      "text": "ExamGOAL\nP Y Q P D F\nQ13.\nGATE ECE 1998\nThe K-map for a Boolean function is shown in figure. The number of essential prime implicants for\nthis function is\n(A) 4\n(B) 5\n(C) 6\n(D) 8\nOpen solution\nQ14.\nGATE ECE 1990\nThe number of Boolean functions that can be generated by n variable is equal to:\n(A) 2\n(B)\n(C) 2\n(D) 2\nOpen solution\nMarks 2\n14 questions\nQ15.\nGATE ECE 2026\nConsider the four-variable Boolean function, \n with '  ' as\nMSB and '  ' as LSB. Which of the following expressions is/are the valid form(s) of \n ?\n(A)\n(B)\n(C)\n(D)\nOpen solution\nQ16.\nGATE ECE 2017 Set 1\nWhich one of the following gives the simplified sum of products expression for the Boolean function\n, where \n,\n,\n and \n are minterms corresponding to the inputs ,\nand  with  as the MSB and  as the LSB?\n(A)\n(B)\n(C)\n(D)\nOpen solution\nKeep practising on the ExamGOAL app\nChapter-wise PYQs with solutions, full mock tests and analysis for JEE, NEET, GATE and more.\nGoogle Play\nGET IT ON\nGATE ECE Digital Circuits: Boolean Algebra \u00b7 pdf.questions.examgoal.com\nSolutions: questions.examside.com \u00b7 Page 5 / 12\n"
+    },
+    {
+      "page": 6,
+      "text": "ExamGOAL\nP Y Q P D F\nQ17.\nGATE ECE 2016 Set 3\nFollowing is the K-map of a Boolean function of five variables P, Q, R, S and X. The minimum sum-of-\nproduct (SOP) expression for the function is\nX = 0:\nRS \\ PQ\n00\n01\n11\n10\n00\n0\n0\n0\n0\n01\n1\n0\n0\n1\n11\n1\n0\n0\n1\n10\n0\n0\n0\n0\nX = 1:\nRS \\ PQ\n00\n01\n11\n10\n00\n0\n1\n1\n0\n01\n0\n0\n0\n0\n11\n0\n0\n0\n0\n10\n0\n1\n1\n0\n(A)\n(B)\n(C)\n(D)\nOpen solution\nQ18.\nGATE ECE 2015 Set 1\nThe Boolean expression F(X, Y, Z)= \n converted into the canonical\nproduct of sum (POS) form is\n(A)\n(B)\n(C)\n(D)\nOpen solution\nKeep practising on the ExamGOAL app\nChapter-wise PYQs with solutions, full mock tests and analysis for JEE, NEET, GATE and more.\nGoogle Play\nGET IT ON\nGATE ECE Digital Circuits: Boolean Algebra \u00b7 pdf.questions.examgoal.com\nSolutions: questions.examside.com \u00b7 Page 6 / 12\n"
+    },
+    {
+      "page": 7,
+      "text": "ExamGOAL\nP Y Q P D F\nQ19.\nGATE ECE 2015 Set 2\nA function of Boolean variables \n,\n and  is expressed in terms of the min-terms as\nWhich one of the product of sums given below is equal to the function \n?\n(A)\n(B)\n(C)\n(D)\nOpen solution\nQ20.\nGATE ECE 2014 Set 1\nConsider the Boolean function, \n. Which one of the\nfollowing is the complete set of essential prime implicants?\n(A)\n(B) w, y, xz\n(C)\n(D) y, xz, \nOpen solution\nQ21.\nGATE ECE 2009\nIf \n in the logic equation \n, then\n(A) Y=Z\n(B) Y= \n(C) Z= 1\n(D) Z= 0\nOpen solution\nQ22.\nGATE ECE 2007\nThe Boolean expression Y= \n can be minimized to\n(A) Y = \n(B) Y = \n(C) Y=\n(D) Y= \nOpen solution\nQ23.\nGATE ECE 2006\nThe point p in the following figure is stuck- at-1. The output f will be\n(A)\n(B)\n(C)\n(D) A\nOpen solution\nKeep practising on the ExamGOAL app\nChapter-wise PYQs with solutions, full mock tests and analysis for JEE, NEET, GATE and more.\nGoogle Play\nGET IT ON\nGATE ECE Digital Circuits: Boolean Algebra \u00b7 pdf.questions.examgoal.com\nSolutions: questions.examside.com \u00b7 Page 7 / 12\n"
+    },
+    {
+      "page": 8,
+      "text": "ExamGOAL\nP Y Q P D F\nQ24.\nGATE ECE 2004\nThe Boolean expression AC + B is equivalent to\n(A)\n(B)\n(C) AC+\n(D)\nOpen solution\nQ25.\nGATE ECE 2004\nA Boolean function 'f' of two variables x and y is defined as follows: f(0,0)=f(0,1)=f(1,1)=1;f(1,0)=0\nAssuming complements of x and y are not available, a minimum cost solution for realizing F using\nonly 2-input NOR gates and 2-input OR gates (each having unit cost) would have a total cost\n(A) 1 unit\n(B) 4 unit\n(C) 3 unit\n(D) 2 unit\nOpen solution\nQ26.\nGATE ECE 2003\nIf the functions W, X, Y and Z are as follows\nW= R+\n S\nX = \nY = \nZ = \n(A) W=Z, X=\n(B) W= , X=Y\n(C) W=Z, X=Y\n(D) W=Y= \nOpen solution\nQ27.\nGATE ECE 1999\nThe minimized form of the logical expression (\n(A)\n(B)\n(C)\n(D)\nOpen solution\nQ28.\nGATE ECE 1999\nFor a binary half-subtractor having two inputs A and B, the correct set of Logical expressions for the\noutput D(=Aminus B) and X(=Borrow) are\n(A) D = AB + \n(B)\n(C)\n(D)\nOpen solution\nKeep practising on the ExamGOAL app\nChapter-wise PYQs with solutions, full mock tests and analysis for JEE, NEET, GATE and more.\nGoogle Play\nGET IT ON\nGATE ECE Digital Circuits: Boolean Algebra \u00b7 pdf.questions.examgoal.com\nSolutions: questions.examside.com \u00b7 Page 8 / 12\n"
+    },
+    {
+      "page": 9,
+      "text": "ExamGOAL\nP Y Q P D F\nMarks 4\n1 questions\nQ29.\nGATE ECE 1996\nGiven the Boolean function F in three variables R, S and T as F=\n(a) Express F in the minimum sum-of-products from.\n(b) Express F in the minimum product-of-sums from.\n(c) Assuming that both true and complement froms of the input variables are avialable, draw a\ncicruit to implement F using the minimum number of 2input NAND gates only.\nOpen solution\nMarks 5\n2 questions\nQ30.\nGATE ECE 1999\nIn certain application, four inputs A, B, C, D (both true and complement forms available)are fed to\nlogic circuit, producing an output F which operates a relay. The relay turns on when F(ABCD)=1 for\nthe following states of the inputs (ABCD):'0000', '0010' ,0101',0110','1101' and '1110'. States '1000'\nand '1001' do not occur, and for the remaining states, the relay is off. Minaining states, the relay is\noff. Minimize F with the help of a Karnaugh map and realize it using a minimum number of 3- input\nNAND gates.\nOpen solution\nQ31.\nGATE ECE 1996\nIts is desired to generate the following three Boolean functions. \nBy using an OR gate array as shown in figure where \n are the product terms in one or more of\nthe variables a, , b, , c and .\nOpen solution\nKeep practising on the ExamGOAL app\nChapter-wise PYQs with solutions, full mock tests and analysis for JEE, NEET, GATE and more.\nGoogle Play\nGET IT ON\nGATE ECE Digital Circuits: Boolean Algebra \u00b7 pdf.questions.examgoal.com\nSolutions: questions.examside.com \u00b7 Page 9 / 12\n"
+    },
+    {
+      "page": 10,
+      "text": "ExamGOAL\nP Y Q P D F\nMarks 10\n2 questions\nQ32.\nGATE ECE 1995\nA 'code converter' is to be designed to convert from the BCD(5421) to the normal BCD (8421). The\ninput BCD combinations for each digit are below. A block diagram of the converter is shown in\nfigure.\n(A) draw K-map for outputs, W, X, Y, and Z.\n(B) Obtain minimized expression for the outputs W, X, Y, and Z.\nOpen solution\nQ33.\nGATE ECE 1991\nThe four variable function f is given in terms of min-terms as: f (A B C D ) = \nm\n(2,3,8,10,11,12,14,15 .) Using the K-map minimize the function in the sum of products form. Also,\ngiven the realization using only two-input NAND gates .\nOpen solution\nKeep practising on the ExamGOAL app\nChapter-wise PYQs with solutions, full mock tests and analysis for JEE, NEET, GATE and more.\nGoogle Play\nGET IT ON\nGATE ECE Digital Circuits: Boolean Algebra \u00b7 pdf.questions.examgoal.com\nSolutions: questions.examside.com \u00b7 Page 10 / 12\n"
+    },
+    {
+      "page": 11,
+      "text": "ExamGOAL\nP Y Q P D F\nAnswer Key\nMarks 1\n1. A\n2. B, C\n3. C\n4. A\n5. D\n6. A\n7. B\n8. A\n9. A\n10. D\n11. D\n12. C\n13. A\n14. B\nMarks 2\n15. A, D\n16. B\n17. B\n18. A\n19. B\n20. D\n21. D\n22. D\n23. D\n24. D\n25. D\n26. A\n27. A\n28. C\nMarks 4\n29.\n(a) F =RT+\n(b) F\n=(R+\nMarks 5\n30. F =\nD+BC\n + \n31.\n=\n b\n= ac\n= b\nIF \n= bc then \n= \nIF \n=\n then IF\n =bc\nMarks 10\n32. (b) W= AB+ACD\nX=\nor\nOR\nX=\nY=\nZ=\n33. f = (A, B, C,\nD)=A\nFor numerical answers given as a range, any value within the range is correct. Full solutions: scan the QR code next to each question, or visit\nquestions.examside.com.\nKeep practising on the ExamGOAL app\nChapter-wise PYQs with solutions, full mock tests and analysis for JEE, NEET, GATE and more.\nGoogle Play\nGET IT ON\nGATE ECE Digital Circuits: Boolean Algebra \u00b7 pdf.questions.examgoal.com\nSolutions: questions.examside.com \u00b7 Page 11 / 12\n"
+    },
+    {
+      "page": 12,
+      "text": "Keep practising on the ExamGOAL app\nChapter-wise PYQs with solutions, full mock tests and analysis for JEE, NEET, GATE and more.\nGoogle Play\nGET IT ON\nExamGOAL\nP Y Q P D F\nYour Exam. Our Responsibility.\nFrom first chapter\nto exam day.\nPractise with the questions your exam has already asked, then test yourself\nunder real exam conditions.\nPAST YEAR QUESTIONS\nEvery past paper, chapter-wise.\nPrevious year questions sorted the way you study,\neach with a full solution.\nMOCK TESTS\nMock tests with a real exam feel.\nPractise under the same pressure as the real paper,\non your phone or on the big screen.\nANALYSIS\nKnow your score. Know your rank.\nA full report after every test, so you know exactly\nwhere you stand.\nPRACTICE\nSolve. Check. Understand.\nLearn from every question, not just the ones you get\nright.\nChapter-wise and year-wise\nWeightage and topic tags on every chapter\nYour progress on each one, at a glance\nTimed sections, just like exam day\nMark questions for review and come back\nYour percentile among everyone who took it\nPredicted real-exam percentile and All India Rank\nSubject breakdown and time analysis\nInstant answers as you practise\nStep-by-step explanations\nSee how everyone else answered\nNCERT Exemplar\nWith full solutions\nExam syllabus\nSubject and chapter-wise\nBookmarks\nOrganised in groups\nYour notes\nOn any question\nExamGOAL: Exam Preparation App\nOne app for every exam. Free trial for new users, on Android and the web.\nGoogle Play\nScan to get the app\nGET IT ON\nwww.examgoal.com\nPractice and mock tests\nquestions.examside.com\nFree solutions\npdf.questions.examgoal.com\nFree PYQ PDFs\n"
+    }
+  ]
+}

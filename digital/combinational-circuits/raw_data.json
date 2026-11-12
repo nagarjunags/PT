@@ -1,0 +1,341 @@
+{
+  "slug": "combinational-circuits",
+  "title": "Combinational Circuits",
+  "pages_count": 25,
+  "images": {
+    "2": [
+      {
+        "file": "images/p2_img1_54.png",
+        "width": 800,
+        "height": 909
+      },
+      {
+        "file": "images/p2_img2_57.png",
+        "width": 800,
+        "height": 694
+      }
+    ],
+    "3": [
+      {
+        "file": "images/p3_img1_69.png",
+        "width": 800,
+        "height": 621
+      },
+      {
+        "file": "images/p3_img2_71.png",
+        "width": 800,
+        "height": 408
+      }
+    ],
+    "4": [
+      {
+        "file": "images/p4_img1_81.png",
+        "width": 800,
+        "height": 747
+      },
+      {
+        "file": "images/p4_img2_83.jpeg",
+        "width": 248,
+        "height": 154
+      }
+    ],
+    "5": [
+      {
+        "file": "images/p5_img1_92.png",
+        "width": 800,
+        "height": 805
+      },
+      {
+        "file": "images/p5_img2_94.png",
+        "width": 800,
+        "height": 330
+      }
+    ],
+    "6": [
+      {
+        "file": "images/p6_img1_106.png",
+        "width": 800,
+        "height": 415
+      },
+      {
+        "file": "images/p6_img2_108.jpeg",
+        "width": 643,
+        "height": 301
+      }
+    ],
+    "7": [
+      {
+        "file": "images/p7_img1_121.jpeg",
+        "width": 606,
+        "height": 292
+      },
+      {
+        "file": "images/p7_img2_122.jpeg",
+        "width": 482,
+        "height": 348
+      }
+    ],
+    "8": [
+      {
+        "file": "images/p8_img1_133.png",
+        "width": 800,
+        "height": 541
+      }
+    ],
+    "9": [
+      {
+        "file": "images/p9_img1_145.png",
+        "width": 800,
+        "height": 833
+      },
+      {
+        "file": "images/p9_img2_147.png",
+        "width": 800,
+        "height": 334
+      }
+    ],
+    "10": [
+      {
+        "file": "images/p10_img1_157.png",
+        "width": 800,
+        "height": 692
+      },
+      {
+        "file": "images/p10_img2_159.png",
+        "width": 800,
+        "height": 677
+      }
+    ],
+    "11": [
+      {
+        "file": "images/p11_img1_169.png",
+        "width": 800,
+        "height": 431
+      },
+      {
+        "file": "images/p11_img2_171.png",
+        "width": 800,
+        "height": 770
+      }
+    ],
+    "12": [
+      {
+        "file": "images/p12_img1_181.png",
+        "width": 800,
+        "height": 483
+      },
+      {
+        "file": "images/p12_img2_183.png",
+        "width": 800,
+        "height": 450
+      }
+    ],
+    "13": [
+      {
+        "file": "images/p13_img1_193.png",
+        "width": 800,
+        "height": 528
+      }
+    ],
+    "14": [
+      {
+        "file": "images/p14_img1_201.png",
+        "width": 800,
+        "height": 908
+      },
+      {
+        "file": "images/p14_img2_203.png",
+        "width": 800,
+        "height": 891
+      },
+      {
+        "file": "images/p14_img3_205.png",
+        "width": 800,
+        "height": 959
+      },
+      {
+        "file": "images/p14_img4_207.png",
+        "width": 800,
+        "height": 941
+      }
+    ],
+    "15": [
+      {
+        "file": "images/p15_img1_215.png",
+        "width": 800,
+        "height": 831
+      },
+      {
+        "file": "images/p15_img2_217.jpeg",
+        "width": 439,
+        "height": 155
+      }
+    ],
+    "16": [
+      {
+        "file": "images/p16_img1_226.png",
+        "width": 800,
+        "height": 458
+      }
+    ],
+    "17": [
+      {
+        "file": "images/p17_img1_237.png",
+        "width": 800,
+        "height": 145
+      }
+    ],
+    "18": [
+      {
+        "file": "images/p18_img1_245.png",
+        "width": 800,
+        "height": 145
+      }
+    ],
+    "19": [
+      {
+        "file": "images/p19_img1_253.png",
+        "width": 800,
+        "height": 569
+      },
+      {
+        "file": "images/p19_img2_255.png",
+        "width": 800,
+        "height": 386
+      }
+    ],
+    "20": [
+      {
+        "file": "images/p20_img1_265.jpeg",
+        "width": 516,
+        "height": 246
+      },
+      {
+        "file": "images/p20_img2_266.jpeg",
+        "width": 576,
+        "height": 258
+      }
+    ],
+    "21": [
+      {
+        "file": "images/p21_img1_277.jpeg",
+        "width": 466,
+        "height": 223
+      },
+      {
+        "file": "images/p21_img2_279.jpeg",
+        "width": 539,
+        "height": 135
+      }
+    ],
+    "23": [
+      {
+        "file": "images/p23_img1_307.jpeg",
+        "width": 649,
+        "height": 467
+      }
+    ]
+  },
+  "pages": [
+    {
+      "page": 1,
+      "text": "Keep practising on the ExamGOAL app\nChapter-wise PYQs with solutions, full mock tests and analysis for JEE, NEET, GATE and more.\nGoogle Play\nGET IT ON\nExamGOAL\nP Y Q P D F\nFree \u00b7 With answer key\nGATE ECE \u00b7 DIGITAL CIRCUITS \u00b7 CHAPTER-WISE PYQS\nCombinational Circuits\nGATE ECE Digital Circuits \u00b7 Previous Year Questions with Answer Key\n48\nQUESTIONS\n36\nPAPERS COVERED\n1987 \u2013 2026\nYEARS\nEnglish\nLANGUAGE\nINSIDE THIS PDF\nMarks 1\n17 questions\nMarks 2\n25 questions\nMarks 5\n1 question\nMarks 8\n1 question\nMarks 10\n4 questions\nAnswer key\nat the end\nPractise online\nEvery question with its full solution,\nfree on questions.examside.com\n1\nSolve\nPrint it, or work through it on\nscreen.\n2\nCheck\nThe answer key is on the last\npages.\n3\nUnderstand\nScan the QR code beside any\nquestion for its full solution.\npdf.questions.examgoal.com\nFree previous year question PDFs for JEE, NEET, GATE and more\n"
+    },
+    {
+      "page": 2,
+      "text": "ExamGOAL\nP Y Q P D F\nMarks 1\n17 questions\nQ1.\nGATE ECE 2025\nA full adder and an XOR gate are used to design a digital circuit with inputs \n, and , and output\n, as shown below. The input  is connected to the carry-in input of the full adder.\nIf the input  is set to logic ' 1 ', then the circuit functions as __________ with \n and  as inputs.\n(A) an adder\n(B) a subtractor\n(C) a multiplier\n(D) a binary to Gray code converter\nOpen solution\nQ2.\nGATE ECE 2023\nIn the circuit shown below, P and Q are the inputs. The logical function realized by the circuit shown\nbelow is\n(A) Y = PQ\n(B) Y = P + Q\n(C) Y = \n(D) Y = \nOpen solution\nKeep practising on the ExamGOAL app\nChapter-wise PYQs with solutions, full mock tests and analysis for JEE, NEET, GATE and more.\nGoogle Play\nGET IT ON\nGATE ECE Digital Circuits: Combinational Circuits \u00b7 pdf.questions.examgoal.com\nSolutions: questions.examside.com \u00b7 Page 2 / 25\n"
+    },
+    {
+      "page": 3,
+      "text": "ExamGOAL\nP Y Q P D F\nQ3.\nGATE ECE 2022\nConsider the 2-bit multiplexer (MUX) shown in the figure. For OUTPUT to be the XOR of C and D, the\nvalues for A0, A1, A2 and A3 are ___________.\n(A) A0 = 0, A1 = 0, A2 = 1, A3 = 1\n(B) A0 = 1, A1 = 0, A2 = 1, A3 = 0\n(C) A0 = 0, A1 = 1, A2 = 1, A3 = 0\n(D) A0 = 1, A1 = 1, A2 = 0, A3 = 0\nOpen solution\nQ4.\nGATE ECE 2021\nThe propagation delays of the XOR gate, AND gate and multiplexer (MUX) in the circuit shown in the\nfigure are \n and 1 ns respectively.\nIf all the inputs \n and  are applied simultaneously and held constant, the maximum\npropagation delay of the circuit is\n(A) 3 ns\n(B) 6 ns\n(C) 5 ns\n(D) 7 ns\nOpen solution\nKeep practising on the ExamGOAL app\nChapter-wise PYQs with solutions, full mock tests and analysis for JEE, NEET, GATE and more.\nGoogle Play\nGET IT ON\nGATE ECE Digital Circuits: Combinational Circuits \u00b7 pdf.questions.examgoal.com\nSolutions: questions.examside.com \u00b7 Page 3 / 25\n"
+    },
+    {
+      "page": 4,
+      "text": "ExamGOAL\nP Y Q P D F\nQ5.\nGATE ECE 2020\nThe figure below shows a multiplexer where \n and \n are the select lines, \n to \n are the input data\nlines, \n is the enable line, and \n is the output.  is\n(A)\n(B)\n(C)\n(D)\nOpen solution\nQ6.\nGATE ECE 2017 Set 2\nConsider the circuit shown in the figure.\nThe Boolean expression F implemented by the circuit is\n(A)\n(B)\n(C)\n(D)\nOpen solution\nKeep practising on the ExamGOAL app\nChapter-wise PYQs with solutions, full mock tests and analysis for JEE, NEET, GATE and more.\nGoogle Play\nGET IT ON\nGATE ECE Digital Circuits: Combinational Circuits \u00b7 pdf.questions.examgoal.com\nSolutions: questions.examside.com \u00b7 Page 4 / 25\n"
+    },
+    {
+      "page": 5,
+      "text": "ExamGOAL\nP Y Q P D F\nQ7.\nGATE ECE 2016 Set 2\nA 4:1 multiplexer is to be used for generating the output carry of a full adder. A and B are the bits to\nbe added while \n is the input carry and \n is the output carry. A and B are to be used as the\nselect bits with A being the more significant select bit.\nWhich one of the following statements correctly describes the choice of signals to be connected to\nthe inputs \n,\n,\n and \n so that the output is \n?\n(A)\n,\n,\n and \n(B)\n,\n,\n and \n(C)\n,\n,\n and \n(D)\n,\n,\n and \nOpen solution\nQ8.\nGATE ECE 2014 Set 3\nConsider the multiplexer based logic circuit shown in the figure.\nWhich one of the following Boolean functions is realized by the circuit?\n(A) F = \n(B) F = \n(C) F = \n(D) F = \nOpen solution\nQ9.\nGATE ECE 2014 Set 2\nIn a half-subtractor circuit with X and Y as inputs, the Borrow (M) and Difference (N = X - Y) are given\nby\n(A)\n(B)\n(C)\n(D)\nOpen solution\nKeep practising on the ExamGOAL app\nChapter-wise PYQs with solutions, full mock tests and analysis for JEE, NEET, GATE and more.\nGoogle Play\nGET IT ON\nGATE ECE Digital Circuits: Combinational Circuits \u00b7 pdf.questions.examgoal.com\nSolutions: questions.examside.com \u00b7 Page 5 / 25\n"
+    },
+    {
+      "page": 6,
+      "text": "ExamGOAL\nP Y Q P D F\nQ10.\nGATE ECE 2012\nThe output Y of a 2-bit comparator is logic 1 whenever the 2-bit input A is greater than the 2-bit input\nB. The number of combinations for which the output is logic 1, is\n(A) 4\n(B) 6\n(C) 8\n(D) 10\nOpen solution\nQ11.\nGATE ECE 2011\nThe logic function implemented by the circuit below is (ground implies a logic \"0\")\n(A) F= AND (P, Q)\n(B) F= OR (P, Q)\n(C) F= XNOR (P, Q)\n(D) F= XOR (P, Q)\nOpen solution\nQ12.\nGATE ECE 2005\nThe Boolean function f implemented in the figure using two input multiplexers is\n(A)\n(B)\n(C)\n(D)\nOpen solution\nQ13.\nGATE ECE 2003\nWithout any additional circuitry, an 8:1 MUX can be used to obtain\n(A) some but not all Boolean functions of 3 variables\n(B) all functions of 3 variables but none of 4 variables\n(C) all functions of 3 variables and some but not all of 4 variables\n(D) all functions of 4 variables and some but not all of 4 variables\nOpen solution\nKeep practising on the ExamGOAL app\nChapter-wise PYQs with solutions, full mock tests and analysis for JEE, NEET, GATE and more.\nGoogle Play\nGET IT ON\nGATE ECE Digital Circuits: Combinational Circuits \u00b7 pdf.questions.examgoal.com\nSolutions: questions.examside.com \u00b7 Page 6 / 25\n"
+    },
+    {
+      "page": 7,
+      "text": "ExamGOAL\nP Y Q P D F\nQ14.\nGATE ECE 1997\nA 2-bit binary multiplier can be implemented using\n(A) 2 input AND gates only.\n(B) 2 number of 2-input XOR gates and 6 number of 2-input AND gates.\n(C) Two 2-input NOR gates and one XNOR gate.\n(D) XOR gates and shift registers.\nOpen solution\nQ15.\nGATE ECE 1995\nThe output of the circuit shown in figure is equal to\n(A) 0\n(B) 1\n(C)\n(D)\nOpen solution\nQ16.\nGATE ECE 1992\nThe logic realized by the circuit shown in figure is\n(A) F = A  C\n(B) F = A  C\n(C) F = B  C\n(D) F = B  C\nOpen solution\nKeep practising on the ExamGOAL app\nChapter-wise PYQs with solutions, full mock tests and analysis for JEE, NEET, GATE and more.\nGoogle Play\nGET IT ON\nGATE ECE Digital Circuits: Combinational Circuits \u00b7 pdf.questions.examgoal.com\nSolutions: questions.examside.com \u00b7 Page 7 / 25\n"
+    },
+    {
+      "page": 8,
+      "text": "ExamGOAL\nP Y Q P D F\nQ17.\nGATE ECE 1990\nThe minimum function that can detect a \"divisible by 3\" 8421 BCD code digit (representation is D8\nD4 D2 D1) is given by:\n(A)\n(B)\n(C)\n(D)\nOpen solution\nMarks 2\n25 questions\nQ18.\nGATE ECE 2026\nA Boolean function, \n with  as MSB and  as LSB is realized by \n multiplexer (MUX) with\nselect lines, \n and \n ( \n is MSB, \n is LSB) and inputs, \n as shown in the Figure.\nWhich of the following options is the correct expression of \n ?\n(A)\n(B)\n(C)\n(D)\nOpen solution\nQ19.\nGATE ECE 2024\nA 4-bit priority encoder has inputs \n and \n in descending order of priority. The two-bit\noutput \n is generated as 00, 01, 10, and 11 corresponding to inputs \n and \n,\nrespectively. The Boolean expression of the output bit  is _______.\n(A)\n(B)\n(C)\n(D)\nOpen solution\nKeep practising on the ExamGOAL app\nChapter-wise PYQs with solutions, full mock tests and analysis for JEE, NEET, GATE and more.\nGoogle Play\nGET IT ON\nGATE ECE Digital Circuits: Combinational Circuits \u00b7 pdf.questions.examgoal.com\nSolutions: questions.examside.com \u00b7 Page 8 / 25\n"
+    },
+    {
+      "page": 9,
+      "text": "ExamGOAL\nP Y Q P D F\nQ20.\nGATE ECE 2024\nThe propagation delay of the 2 x 1 MUX shown in the circuit is 10 ns. Consider the propagation\ndelay of the inverter as 0 ns.\nIf S is set to 1 then the output Y is _______.\n(A) a square wave of frequency 100 MHz\n(B) a square wave of frequency 50 MHz\n(C) constant at 0\n(D) constant at 1\nOpen solution\nQ21.\nGATE ECE 2018\nA four-variable Boolean function is realized using \n multiplexers as shown in the figure.\nThe minimized expression for \n is\n(A)\n(B)\n(C)\n(D)\nOpen solution\nKeep practising on the ExamGOAL app\nChapter-wise PYQs with solutions, full mock tests and analysis for JEE, NEET, GATE and more.\nGoogle Play\nGET IT ON\nGATE ECE Digital Circuits: Combinational Circuits \u00b7 pdf.questions.examgoal.com\nSolutions: questions.examside.com \u00b7 Page 9 / 25\n"
+    },
+    {
+      "page": 10,
+      "text": "ExamGOAL\nP Y Q P D F\nQ22.\nGATE ECE 2017 Set 2\nA programmable logic array (PLA) is shown in the figure.\nThe Boolean function  implemented is\n(A)\n(B)\n(C)\n(D)\nOpen solution\nQ23.\nGATE ECE 2017 Set 2\nFigure I shows a 4-bit ripple carry adder realized using full adders and Figure II shows the circuit of a\nfull-adder (FA). The propagation delay of the XOR, AND and OR gates in Figure II are 20 ns, 15 ns and\n10 ns, respectively. Assume all the inputs to the 4-bit adder are initially reset to 0.\nAt \n, the inputs to the 4-bit adder are changed to \n,\n and\n. The output of the ripple carry adder will be stable at  (in ns) = ________\nOpen solution\nKeep practising on the ExamGOAL app\nChapter-wise PYQs with solutions, full mock tests and analysis for JEE, NEET, GATE and more.\nGoogle Play\nGET IT ON\nGATE ECE Digital Circuits: Combinational Circuits \u00b7 pdf.questions.examgoal.com\nSolutions: questions.examside.com \u00b7 Page 10 / 25\n"
+    },
+    {
+      "page": 11,
+      "text": "ExamGOAL\nP Y Q P D F\nQ24.\nGATE ECE 2016 Set 1\nIdentify the circuit below.\n(A) Binary to Gray code converter\n(B) Binary to XS3 converter\n(C) Gray to Binary converter\n(D) XS3 to Binary converter\nOpen solution\nQ25.\nGATE ECE 2016 Set 1\nThe functionality implemented by the circuit below is\n(A) 2-to-1 multiplexer\n(B) 4-to-1 multiplexer\n(C) 7-to-1 multiplexer\n(D) 6-to-1 multiplexer\nOpen solution\nKeep practising on the ExamGOAL app\nChapter-wise PYQs with solutions, full mock tests and analysis for JEE, NEET, GATE and more.\nGoogle Play\nGET IT ON\nGATE ECE Digital Circuits: Combinational Circuits \u00b7 pdf.questions.examgoal.com\nSolutions: questions.examside.com \u00b7 Page 11 / 25\n"
+    },
+    {
+      "page": 12,
+      "text": "ExamGOAL\nP Y Q P D F\nQ26.\nGATE ECE 2016 Set 3\nFor the circuit shown in the figure, the delays of NOR gates, multiplexers and inverters are 2 ns, 1.5\nns and 1 ns, respectively. If all the inputs P, Q, R, S and T are applied at the same time instant, the\nmaximum propagation delay (in ns) of the circuit is __________\nOpen solution\nQ27.\nGATE ECE 2015 Set 2\nA 1-to-8 demultiplexer with data input \n, address inputs \n,\n,\n (with \n as the LSB) and \n to\n as the eight demultiplexed outputs, is to be designed using two 2-to-4 decoders (with enable\ninput  and address inputs \n and \n) as shown in the figure. \n,\n,\n and \n are to be\nconnected to P, Q, R and S, but not necessarily in this order. The respective input connections to P, Q,\nR, and S terminals should be\n(A)\n(B)\n(C)\n(D)\nOpen solution\nKeep practising on the ExamGOAL app\nChapter-wise PYQs with solutions, full mock tests and analysis for JEE, NEET, GATE and more.\nGoogle Play\nGET IT ON\nGATE ECE Digital Circuits: Combinational Circuits \u00b7 pdf.questions.examgoal.com\nSolutions: questions.examside.com \u00b7 Page 12 / 25\n"
+    },
+    {
+      "page": 13,
+      "text": "ExamGOAL\nP Y Q P D F\nQ28.\nGATE ECE 2014 Set 3\nIn the circuit shown, \n and  are MSBs of the control inputs. The output  is given by\n(A)\n(B)\n(C)\n(D)\nOpen solution\nKeep practising on the ExamGOAL app\nChapter-wise PYQs with solutions, full mock tests and analysis for JEE, NEET, GATE and more.\nGoogle Play\nGET IT ON\nGATE ECE Digital Circuits: Combinational Circuits \u00b7 pdf.questions.examgoal.com\nSolutions: questions.examside.com \u00b7 Page 13 / 25\n"
+    },
+    {
+      "page": 14,
+      "text": "ExamGOAL\nP Y Q P D F\nQ29.\nGATE ECE 2014 Set 3\nIf \n and  are inputs and the Difference (\n) and the Borrow ( ) are the outputs, which\none of the following diagrams implements a half-subtractor?\n(A)\n(B)\n(C)\n(D)\nOpen solution\nKeep practising on the ExamGOAL app\nChapter-wise PYQs with solutions, full mock tests and analysis for JEE, NEET, GATE and more.\nGoogle Play\nGET IT ON\nGATE ECE Digital Circuits: Combinational Circuits \u00b7 pdf.questions.examgoal.com\nSolutions: questions.examside.com \u00b7 Page 14 / 25\n"
+    },
+    {
+      "page": 15,
+      "text": "ExamGOAL\nP Y Q P D F\nQ30.\nGATE ECE 2014 Set 4\nAn 8-to-1 multiplexer is used to implement a logical function  as shown in the figure. The output \nis given by\n(A) Y= A\n(B)\n(C)\n(D)\nOpen solution\nQ31.\nGATE ECE 2014 Set 4\nA 16-bit ripple carry adder is realized using 16 identical full adders (FA) as shown in the figure. The\ncarry-propagation delay of each FA is 12 ns and the sum-propagation delay of each FA is 15 ns. The\nworst case delay (in ns) of this 16-bit adder will be_______________.\nOpen solution\nKeep practising on the ExamGOAL app\nChapter-wise PYQs with solutions, full mock tests and analysis for JEE, NEET, GATE and more.\nGoogle Play\nGET IT ON\nGATE ECE Digital Circuits: Combinational Circuits \u00b7 pdf.questions.examgoal.com\nSolutions: questions.examside.com \u00b7 Page 15 / 25\n"
+    },
+    {
+      "page": 16,
+      "text": "ExamGOAL\nP Y Q P D F\nQ32.\nGATE ECE 2010\nThe Boolean function realized by the logic circuit shown is\n(A) F=\u2211m(0,1,3,5,9,10,14)\n(B) F=\u2211m(2,3,5,7,8,12,13)\n(C) F=\u2211m(1,2,4,5,11,14,15)\n(D) F=\u2211m(2,3,5,7,8,9,12)\nOpen solution\nQ33.\nGATE ECE 2009\nWhat are the minimum number of 2-to 1 multiplexers required to generate a 2-input AND gate and a\n2-input EX-OR gate?\n(A) 1 and 2\n(B) 1 and 3\n(C) 1 and 1\n(D) 2 and 2\nOpen solution\nKeep practising on the ExamGOAL app\nChapter-wise PYQs with solutions, full mock tests and analysis for JEE, NEET, GATE and more.\nGoogle Play\nGET IT ON\nGATE ECE Digital Circuits: Combinational Circuits \u00b7 pdf.questions.examgoal.com\nSolutions: questions.examside.com \u00b7 Page 16 / 25\n"
+    },
+    {
+      "page": 17,
+      "text": "ExamGOAL\nP Y Q P D F\nQ34.\nGATE ECE 2009\nTwo products are sold from a vending machine, which has two push buttons \n and \n. When a\nbutton is pressed, the price of the corresponding product is displayed in a 7-segment display.\nIf no buttons are pressed, '0' is displayed, signifying 'Rs. 0'.\nIf only \n is pressed, '2' is displayed, signifying 'Rs. 2'.\nIf only \n is pressed, '5' is displayed, signifying 'Rs. 5'.\nIf both \n and \n are pressed, 'E' is displayed, signifying 'Error'.\nThe names of the segments in the 7-segment display, and the glow of the display for '0', '2', '5' and\n'E', are shown below.\nConsider\n(i) push button pressed/not pressed is equivalent to logic 1/0 respectively,\n(ii) a segment glowing/not glowing in the display is equivalent to logic 1/0 respectively.\nIf segments a to g are considered as functions of \n and \n, then which of the following is correct?\n(A)\n(B)\n(C)\n(D)\nOpen solution\nKeep practising on the ExamGOAL app\nChapter-wise PYQs with solutions, full mock tests and analysis for JEE, NEET, GATE and more.\nGoogle Play\nGET IT ON\nGATE ECE Digital Circuits: Combinational Circuits \u00b7 pdf.questions.examgoal.com\nSolutions: questions.examside.com \u00b7 Page 17 / 25\n"
+    },
+    {
+      "page": 18,
+      "text": "ExamGOAL\nP Y Q P D F\nQ35.\nGATE ECE 2009\nTwo products are sold from a vending machine, which has two push buttons \n and \n. When a\nbutton is pressed, the price of the corresponding product is displayed in a 7-segment display.\nIf no buttons are pressed, '0' is displayed, signifying 'Rs. 0'.\nIf only \n is pressed, '2' is displayed, signifying 'Rs. 2'.\nIf only \n is pressed, '5' is displayed, signifying 'Rs. 5'.\nIf both \n and \n are pressed, 'E' is displayed, signifying 'Error'.\nThe names of the segments in the 7-segment display, and the glow of the display for '0', '2', '5' and\n'E', are shown below.\nConsider\n(i) push button pressed/not pressed is equivalent to logic 1/0 respectively,\n(ii) a segment glowing/not glowing in the display is equivalent to logic 1/0 respectively.\nWhat are the minimum numbers of NOT gates and 2-input OR gates required to design the logic of\nthe driver for this 7-segment display?\n(A) 3 NOT and 4 OR\n(B) 2 NOT and 4 OR\n(C) 1 NOT and 3 OR\n(D) 2 NOT and 3 OR\nOpen solution\nKeep practising on the ExamGOAL app\nChapter-wise PYQs with solutions, full mock tests and analysis for JEE, NEET, GATE and more.\nGoogle Play\nGET IT ON\nGATE ECE Digital Circuits: Combinational Circuits \u00b7 pdf.questions.examgoal.com\nSolutions: questions.examside.com \u00b7 Page 18 / 25\n"
+    },
+    {
+      "page": 19,
+      "text": "ExamGOAL\nP Y Q P D F\nQ36.\nGATE ECE 2008\nFor the circuit shown in the following figure, \n\u2013\n are inputs to the 4 : 1 multiplexer. R (MSB) and S\nare control bits.\nThe output Z can be represented by\n(A)\n(B)\n(C)\n(D)\nOpen solution\nQ37.\nGATE ECE 2007\nIn the following circuit, \n is given by\n(A)\n(B)\n(C)\n(D)\nOpen solution\nKeep practising on the ExamGOAL app\nChapter-wise PYQs with solutions, full mock tests and analysis for JEE, NEET, GATE and more.\nGoogle Play\nGET IT ON\nGATE ECE Digital Circuits: Combinational Circuits \u00b7 pdf.questions.examgoal.com\nSolutions: questions.examside.com \u00b7 Page 19 / 25\n"
+    },
+    {
+      "page": 20,
+      "text": "ExamGOAL\nP Y Q P D F\nQ38.\nGATE ECE 2004\nThe minimum number of 2 to 1 multiplexers required to realize a 4 to 1 mutliplexer is\n(A) 1\n(B) 2\n(C) 3\n(D) 4\nOpen solution\nQ39.\nGATE ECE 2003\nThe circuit shown in figure converts\n(A) BCD to binary code\n(B) Binary to excess \u2013 3 code\n(C) Excess \u2013 3 to Gray code\n(D) Gray to Binary code.\nOpen solution\nQ40.\nGATE ECE 2003\nThe circuit shown in figure has 4 boxes each described by inputs P, Q, R and outputs Y, Z with\nY = \nz= \nThe circuit acts as a\n(A) 4 bit adder giving P + Q\n(B) 4 bit subtractor-giving P - Q\n(C) 4 bit subtractor-giving Q - P\n(D) 4 bit adder giving P + Q + R\nOpen solution\nKeep practising on the ExamGOAL app\nChapter-wise PYQs with solutions, full mock tests and analysis for JEE, NEET, GATE and more.\nGoogle Play\nGET IT ON\nGATE ECE Digital Circuits: Combinational Circuits \u00b7 pdf.questions.examgoal.com\nSolutions: questions.examside.com \u00b7 Page 20 / 25\n"
+    },
+    {
+      "page": 21,
+      "text": "ExamGOAL\nP Y Q P D F\nQ41.\nGATE ECE 2001\nIn the TTL circuit in Figure 2.11, \n to \n are select lines and \n to \n are input lines. \n and \n are\nLSBs. The output Y is\n(A) indeterminate\n(B) A \u2295 B\n(C)\n(D)\nOpen solution\nQ42.\nGATE ECE 1999\nFor a binary half-sub-tractor having two inputs A and B, the correct set of logical expressions for the\noutputs D (=A minus B) and X (=borrow) are\n(A)\n(B)\n(C)\n(D)\nOpen solution\nMarks 5\n1 questions\nQ43.\nGATE ECE 2002\nThe inputs to a digital circuit shown in Figure 9(a) are the external signals A, B and C.\n( \n and are not available). The +5V power supply (logic 1) and the ground (logic 0) are also\navailable. The output of the circuit is X = \n(a) Write down the output function in its canonical SOP and POS forms.\n(b) Implement the circuit using only two 2:1 multiplexers shown in the Figure where S is the data-\nselect line, \n and \n are the input data lines and Y is the output lines. The function table for the\nmultiplexer is given in table\nOpen solution\nKeep practising on the ExamGOAL app\nChapter-wise PYQs with solutions, full mock tests and analysis for JEE, NEET, GATE and more.\nGoogle Play\nGET IT ON\nGATE ECE Digital Circuits: Combinational Circuits \u00b7 pdf.questions.examgoal.com\nSolutions: questions.examside.com \u00b7 Page 21 / 25\n"
+    },
+    {
+      "page": 22,
+      "text": "ExamGOAL\nP Y Q P D F\nMarks 8\n1 questions\nQ44.\nGATE ECE 1987\nThe circuit diagram of a 2 bit A to D converter is shown in figure below. The combinational logic is to\nbe disigned to provide a natural binary representation using \n and \n for the analog input \n.\n is\nto be the most significant bit.\nExamSIDE.com\nR\nR\nR\nR\nC2\nC1\nC0\nD1\nD0\nCombinational \nLOGIC\n+Vcc\nV1\n-\n+\n-\n+\n-\n+\n(a) Draw the Karnaugh maps for \n and \n in terms of \n,\n and \n(b) Obtain the minimal sum of products expressions for \n and \n.\n(c) Realize the logic for \n and \n using 2- input NAND gates only.\n(d) Find the resolution of the Ato D converter.\nOpen solution\nMarks 10\n4 questions\nQ45.\nGATE ECE 1995\nA ROM is to be used to implement the Boolean functions given below:\n(a) What is the minimum size of the ROM required?\n(b) Determine the data in each location of the ROM.\nOpen solution\nQ46.\nGATE ECE 1994\nA Boolean function, F , given as sum of product (SOP) terms as F= \nm(3,4,5,6) with A,B, and C as\ninputs. The function, F, can be expressed on the Karnaugh's map shown below.\n(1) What will be the minimized SOP expression for F?\n(2) Implement this function on an 8 : 1 MUX.\nOpen solution\nKeep practising on the ExamGOAL app\nChapter-wise PYQs with solutions, full mock tests and analysis for JEE, NEET, GATE and more.\nGoogle Play\nGET IT ON\nGATE ECE Digital Circuits: Combinational Circuits \u00b7 pdf.questions.examgoal.com\nSolutions: questions.examside.com \u00b7 Page 22 / 25\n"
+    },
+    {
+      "page": 23,
+      "text": "ExamGOAL\nP Y Q P D F\nQ47.\nGATE ECE 1993\nSignals A,B,C,D and \n are available. Using a single 8 - to - 1 multiplexer and no other gate,\nimplement the Boolean function.\nOpen solution\nQ48.\nGATE ECE 1989\nA chemical reactor has three sensors indicating the following conditions:-\n(1) Pressure (P) is low or high'\n(2) Temperature (T) is low or high' and\n(3) Liquid level (L) is low or high.\nits has two controls - Heater (H) which is either on or off and inlet value (V) which is open or close.\nThe controls are operated as per Table.\n(a) Using the convertion High =1, Low = 0, On=1, Off=0, Open=1 and Closed=0, draw the Karnaugh\nmaps for H and V.\n(b) Obtain the minimal product of sums expressions for H and V.\n(c) Realize the logic for H and V using two 4-input multiplexers with T and L as control inputs. Used\nT as MSB.\nOpen solution\nKeep practising on the ExamGOAL app\nChapter-wise PYQs with solutions, full mock tests and analysis for JEE, NEET, GATE and more.\nGoogle Play\nGET IT ON\nGATE ECE Digital Circuits: Combinational Circuits \u00b7 pdf.questions.examgoal.com\nSolutions: questions.examside.com \u00b7 Page 23 / 25\n"
+    },
+    {
+      "page": 24,
+      "text": "ExamGOAL\nP Y Q P D F\nAnswer Key\nMarks 1\n1. B\n2. A\n3. C\n4. B\n5. D\n6. B\n7. A\n8. D\n9. C\n10. B\n11. D\n12. A\n13. C\n14. B\n15. D\n16. B\n17. B\nMarks 2\n18. C\n19. B\n20. B\n21. C\n22. C\n23. 50\n24. Scan QR\n25. B\n26. 6\n27. D\n28. C\n29. A\n30. C\n31. 194.9 to 195.1\n32. D\n33. A\n34. B\n35. D\n36. A\n37. A\n38. C\n39. D\n40. B\n41. B\n42. C\nMarks 5\n43. a) X=\nMarks 8\n44. (b) \n=\n=\n(d) Resolution =\nMarks 10\n45. a)Size of ROM=48\n46. 1)\n47. Solve it.\n48. (b)\nFor numerical answers given as a range, any value within the range is correct. Full solutions: scan the QR code next to each question, or visit\nquestions.examside.com.\nKeep practising on the ExamGOAL app\nChapter-wise PYQs with solutions, full mock tests and analysis for JEE, NEET, GATE and more.\nGoogle Play\nGET IT ON\nGATE ECE Digital Circuits: Combinational Circuits \u00b7 pdf.questions.examgoal.com\nSolutions: questions.examside.com \u00b7 Page 24 / 25\n"
+    },
+    {
+      "page": 25,
+      "text": "Keep practising on the ExamGOAL app\nChapter-wise PYQs with solutions, full mock tests and analysis for JEE, NEET, GATE and more.\nGoogle Play\nGET IT ON\nExamGOAL\nP Y Q P D F\nYour Exam. Our Responsibility.\nFrom first chapter\nto exam day.\nPractise with the questions your exam has already asked, then test yourself\nunder real exam conditions.\nPAST YEAR QUESTIONS\nEvery past paper, chapter-wise.\nPrevious year questions sorted the way you study,\neach with a full solution.\nMOCK TESTS\nMock tests with a real exam feel.\nPractise under the same pressure as the real paper,\non your phone or on the big screen.\nANALYSIS\nKnow your score. Know your rank.\nA full report after every test, so you know exactly\nwhere you stand.\nPRACTICE\nSolve. Check. Understand.\nLearn from every question, not just the ones you get\nright.\nChapter-wise and year-wise\nWeightage and topic tags on every chapter\nYour progress on each one, at a glance\nTimed sections, just like exam day\nMark questions for review and come back\nYour percentile among everyone who took it\nPredicted real-exam percentile and All India Rank\nSubject breakdown and time analysis\nInstant answers as you practise\nStep-by-step explanations\nSee how everyone else answered\nNCERT Exemplar\nWith full solutions\nExam syllabus\nSubject and chapter-wise\nBookmarks\nOrganised in groups\nYour notes\nOn any question\nExamGOAL: Exam Preparation App\nOne app for every exam. Free trial for new users, on Android and the web.\nGoogle Play\nScan to get the app\nGET IT ON\nwww.examgoal.com\nPractice and mock tests\nquestions.examside.com\nFree solutions\npdf.questions.examgoal.com\nFree PYQ PDFs\n"
+    }
+  ]
+}

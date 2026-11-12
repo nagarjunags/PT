@@ -1,0 +1,172 @@
+{
+  "slug": "logic-families",
+  "title": "Logic Families",
+  "pages_count": 14,
+  "images": {
+    "2": [
+      {
+        "file": "images/p2_img1_55.png",
+        "width": 800,
+        "height": 676
+      }
+    ],
+    "3": [
+      {
+        "file": "images/p3_img1_67.png",
+        "width": 800,
+        "height": 995
+      },
+      {
+        "file": "images/p3_img2_69.png",
+        "width": 800,
+        "height": 643
+      }
+    ],
+    "4": [
+      {
+        "file": "images/p4_img1_79.png",
+        "width": 800,
+        "height": 740
+      },
+      {
+        "file": "images/p4_img2_81.jpeg",
+        "width": 387,
+        "height": 407
+      }
+    ],
+    "5": [
+      {
+        "file": "images/p5_img1_93.jpeg",
+        "width": 277,
+        "height": 201
+      },
+      {
+        "file": "images/p5_img2_94.jpeg",
+        "width": 156,
+        "height": 218
+      }
+    ],
+    "6": [
+      {
+        "file": "images/p6_img1_103.jpeg",
+        "width": 300,
+        "height": 122
+      }
+    ],
+    "7": [
+      {
+        "file": "images/p7_img1_118.jpeg",
+        "width": 199,
+        "height": 199
+      }
+    ],
+    "8": [
+      {
+        "file": "images/p8_img1_129.jpeg",
+        "width": 328,
+        "height": 234
+      },
+      {
+        "file": "images/p8_img2_130.jpeg",
+        "width": 439,
+        "height": 233
+      }
+    ],
+    "9": [
+      {
+        "file": "images/p9_img1_141.jpeg",
+        "width": 261,
+        "height": 291
+      },
+      {
+        "file": "images/p9_img2_142.jpeg",
+        "width": 448,
+        "height": 339
+      }
+    ],
+    "10": [
+      {
+        "file": "images/p10_img1_155.png",
+        "width": 800,
+        "height": 619
+      }
+    ],
+    "11": [
+      {
+        "file": "images/p11_img1_165.png",
+        "width": 800,
+        "height": 451
+      },
+      {
+        "file": "images/p11_img2_167.png",
+        "width": 800,
+        "height": 800
+      }
+    ],
+    "12": [
+      {
+        "file": "images/p12_img1_177.jpeg",
+        "width": 475,
+        "height": 116
+      }
+    ]
+  },
+  "pages": [
+    {
+      "page": 1,
+      "text": "Keep practising on the ExamGOAL app\nChapter-wise PYQs with solutions, full mock tests and analysis for JEE, NEET, GATE and more.\nGoogle Play\nGET IT ON\nExamGOAL\nP Y Q P D F\nFree \u00b7 With answer key\nGATE ECE \u00b7 DIGITAL CIRCUITS \u00b7 CHAPTER-WISE PYQS\nLogic Families\nGATE ECE Digital Circuits \u00b7 Previous Year Questions with Answer Key\n32\nQUESTIONS\n21\nPAPERS COVERED\n1987 \u2013 2022\nYEARS\nEnglish\nLANGUAGE\nINSIDE THIS PDF\nMarks 1\n25 questions\nMarks 2\n6 questions\nMarks 8\n1 question\nAnswer key\nat the end\nPractise online\nEvery question with its full solution,\nfree on questions.examside.com\n1\nSolve\nPrint it, or work through it on\nscreen.\n2\nCheck\nThe answer key is on the last\npages.\n3\nUnderstand\nScan the QR code beside any\nquestion for its full solution.\npdf.questions.examgoal.com\nFree previous year question PDFs for JEE, NEET, GATE and more\n"
+    },
+    {
+      "page": 2,
+      "text": "ExamGOAL\nP Y Q P D F\nMarks 1\n25 questions\nQ1.\nGATE ECE 2022\nSelect the correct statement(s) regarding CMOS implementation of NOT gates.\n(A) Noise Margin High (NMH) is always equal to the Noise Margin Low (NML), irrespective of the\nsizing of transistors.\n(B) Dynamic power consumption during switching is zero.\n(C) For a logical high input under steady state, the nMOSFET is in the linear regime of operation.\n(D) Mobility of electrons never influences the switching speed of the NOT gate.\nOpen solution\nQ2.\nGATE ECE 2019\nIn the circuit shown, what are the values of F for EN = 0 and EN = 1, respectively?\n(A) 0 and D\n(B) Hi-Z and D\n(C) 0 and 1\n(D) Hi-Z and \nOpen solution\nKeep practising on the ExamGOAL app\nChapter-wise PYQs with solutions, full mock tests and analysis for JEE, NEET, GATE and more.\nGoogle Play\nGET IT ON\nGATE ECE Digital Circuits: Logic Families \u00b7 pdf.questions.examgoal.com\nSolutions: questions.examside.com \u00b7 Page 2 / 14\n"
+    },
+    {
+      "page": 3,
+      "text": "ExamGOAL\nP Y Q P D F\nQ3.\nGATE ECE 2019\nIn the circuit shown, A and B are the inputs and F is the output. What is the functionality of the\ncircuit?\n(A) Latch\n(B) XNOR\n(C) SRAM Cell\n(D) XOR\nOpen solution\nQ4.\nGATE ECE 2018\nThe logic function \n realized by the given circuit is\n(A) NOR\n(B) AND\n(C) NAND\n(D) XOR\nOpen solution\nKeep practising on the ExamGOAL app\nChapter-wise PYQs with solutions, full mock tests and analysis for JEE, NEET, GATE and more.\nGoogle Play\nGET IT ON\nGATE ECE Digital Circuits: Logic Families \u00b7 pdf.questions.examgoal.com\nSolutions: questions.examside.com \u00b7 Page 3 / 14\n"
+    },
+    {
+      "page": 4,
+      "text": "ExamGOAL\nP Y Q P D F\nQ5.\nGATE ECE 2016 Set 3\nThe logic functionality realized by the circuit shown below is\n(A) OR\n(B) XOR\n(C) NAND\n(D) AND\nOpen solution\nQ6.\nGATE ECE 2014 Set 4\nThe output (Y) of the circuit shown in the figure is\n(A)\n(B)\n(C)\n(D)\nOpen solution\nQ7.\nGATE ECE 2009\nThe full forms of the abbreviations TTL and CMOS in reference to logic families are\n(A) Triple Transistor Logic and Chip Metal Oxide Semiconductor\n(B) Tristate Transistor Logic and Chip Metal Oxide Semiconductor\n(C) Transistor Transistor Logic and Complementary Metal Oxide Semiconductor\n(D) Tristate Transistor Logic and Complementary Metal Oxide Silicon\nOpen solution\nKeep practising on the ExamGOAL app\nChapter-wise PYQs with solutions, full mock tests and analysis for JEE, NEET, GATE and more.\nGoogle Play\nGET IT ON\nGATE ECE Digital Circuits: Logic Families \u00b7 pdf.questions.examgoal.com\nSolutions: questions.examside.com \u00b7 Page 4 / 14\n"
+    },
+    {
+      "page": 5,
+      "text": "ExamGOAL\nP Y Q P D F\nQ8.\nGATE ECE 2005\nThe transistors used in a portion of the TTL gate shown in figure have \u03b2=100. the base-emitter\nvoltage of is 0.7V for a transistor in active region and 0.75V for a transistor in saturation . If the sink\ncurrent I=1mA and the output is at logic 0, then the current \n I will be equal to\n(A) 0.65 mA\n(B) 0.70 mA\n(C) 0.75 mA\n(D) 1.00 mA\nOpen solution\nQ9.\nGATE ECE 2005\nBoth transistors T1 and T2 in figure have a threshold voltage of 1 Volt. The device parameters \nand \n of \n and \n are, respectively, 36 \u00b5A/\n and 9 \u00b5A/\n. The output voltage \n is\n(A) 1V\n(B) 2V\n(C) 3V\n(D) 4V\nOpen solution\nKeep practising on the ExamGOAL app\nChapter-wise PYQs with solutions, full mock tests and analysis for JEE, NEET, GATE and more.\nGoogle Play\nGET IT ON\nGATE ECE Digital Circuits: Logic Families \u00b7 pdf.questions.examgoal.com\nSolutions: questions.examside.com \u00b7 Page 5 / 14\n"
+    },
+    {
+      "page": 6,
+      "text": "ExamGOAL\nP Y Q P D F\nQ10.\nGATE ECE 2004\nFigure shows the internal schematic of a TTL AND-OR-Invert (AOI) gate. For the inputs shown in\nFigure, the output Y is\n(A) 0\n(B) 1V\n(C) AB\n(D)\nOpen solution\nQ11.\nGATE ECE 2003\nThe output of the 74 series of TTL gates is taken from a BJT in\n(A) Totem pole and common collector configuration\n(B) either totem pole or open collector configuration\n(C) common base configuration\n(D) common collector configuration\nOpen solution\nQ12.\nGATE ECE 1999\nA Darlington Emitter follower circuit is sometimes used in the output stage of a TTL gate in order to\n(A) increase its \n(B) Reduce its \n(C) Increase its speed of operation.\n(D) Reduce power Dissipation.\nOpen solution\nQ13.\nGATE ECE 1999\nCommercially available ECL gates use two ground lines and one negative supply in order to\n(A) reduce power dissipation\n(B) increase fan-out\n(C) reduce loading effect\n(D) eliminate the effect of power line glitches or the biasing circuit.\nOpen solution\nQ14.\nGATE ECE 1998\nThe noise margin of a TTL gate is about\n(A) 0.2V\n(B) 0.4V\n(C) 0.6V\n(D) 0.8V\nOpen solution\nKeep practising on the ExamGOAL app\nChapter-wise PYQs with solutions, full mock tests and analysis for JEE, NEET, GATE and more.\nGoogle Play\nGET IT ON\nGATE ECE Digital Circuits: Logic Families \u00b7 pdf.questions.examgoal.com\nSolutions: questions.examside.com \u00b7 Page 6 / 14\n"
+    },
+    {
+      "page": 7,
+      "text": "ExamGOAL\nP Y Q P D F\nQ15.\nGATE ECE 1998\nThe threshold voltage for each transistor in Fig.2.5, is 2V. For this circuit to work as an inverter, Vi\nmust take the values\n(A) -5 V and 0 V\n(B) -5 V and 5 V\n(C) -0 V and 3 V\n(D) 3 V and 5 V\nOpen solution\nQ16.\nGATE ECE 1997\nIn standard TTL the 'totem pole' stage refers to\n(A) the multi-emitteer input stage\n(B) the phase splitter\n(C) the output buffer\n(D) open collector output stage\nOpen solution\nQ17.\nGATE ECE 1997\nThe inverter 74AL SO4 has the following specifications:\n 0.4mA, \n max = 8mA, \n max = A , \n=0.1mA. The fan out based on the\nabove will be\n(A) 10\n(B) 20\n(C) 60\n(D) 100\nOpen solution\nKeep practising on the ExamGOAL app\nChapter-wise PYQs with solutions, full mock tests and analysis for JEE, NEET, GATE and more.\nGoogle Play\nGET IT ON\nGATE ECE Digital Circuits: Logic Families \u00b7 pdf.questions.examgoal.com\nSolutions: questions.examside.com \u00b7 Page 7 / 14\n"
+    },
+    {
+      "page": 8,
+      "text": "ExamGOAL\nP Y Q P D F\nQ18.\nGATE ECE 1997\nFor the NMOS logic gate shown in figure, the logic function implemented is\n(A)\n(B)\n(C)\n(D)\nOpen solution\nQ19.\nGATE ECE 1997\nThe gate delay of an NMOS inverter is dominated by charge time rather than discharge time\nbecause\n(A) the driver transistor has a larger threshold voltage than the load transistor.\n(B) the driver transistor has larger leakage currents compared to the load transistor.\n(C) the load transistor has a smaller W/L ratio compared to the driver transistor\n(D) none of the above\nOpen solution\nQ20.\nGATE ECE 1992\nThe figure shows the circuit of a gate in the Resistor Transistor Logic (RTL) family. The circuit\nrepresents a\n(A) NAND\n(B) AND\n(C) NOR\n(D) OR\nOpen solution\nKeep practising on the ExamGOAL app\nChapter-wise PYQs with solutions, full mock tests and analysis for JEE, NEET, GATE and more.\nGoogle Play\nGET IT ON\nGATE ECE Digital Circuits: Logic Families \u00b7 pdf.questions.examgoal.com\nSolutions: questions.examside.com \u00b7 Page 8 / 14\n"
+    },
+    {
+      "page": 9,
+      "text": "ExamGOAL\nP Y Q P D F\nQ21.\nGATE ECE 1991\nThe CMOS equivalent of the following n MOS gate (figure) is ________ (draw the circuit ).\nOpen solution\nQ22.\nGATE ECE 1991\nIn figure, the Boolean expression for the output in terms of inputs A, B and C when the clock \u2018CK\u2019 is\nhigh, is given by _______.\nOpen solution\nQ23.\nGATE ECE 1989\nAmong the digital IC-families-ECL, TTL and CMOS:\n(A) ECL has the least propagation delay\n(B) TTL has the largest fan-out\n(C) CMOS has the biggest noise margin\n(D) TTL has the lowest power consumption\nOpen solution\nQ24.\nGATE ECE 1989\nA logic family has threshold voltage \n= 2V, minimum guaranteed output high voltage \n= 4V,\nminimum accepted input high voltage \n = 3V, maximum guaranteed output low voltage \n = 1V,\nand maximum accepted input low voltage N \n =1.5V. Its noise margin is\n(A) 2V\n(B) 1V\n(C) 1.5V\n(D) 0.5V\nOpen solution\nKeep practising on the ExamGOAL app\nChapter-wise PYQs with solutions, full mock tests and analysis for JEE, NEET, GATE and more.\nGoogle Play\nGET IT ON\nGATE ECE Digital Circuits: Logic Families \u00b7 pdf.questions.examgoal.com\nSolutions: questions.examside.com \u00b7 Page 9 / 14\n"
+    },
+    {
+      "page": 10,
+      "text": "ExamGOAL\nP Y Q P D F\nQ25.\nGATE ECE 1987\nFill in the blanks of the statements below concerning the following Logic Families:\nStandard TTL (74XX), Low power TTL(74LXX) Low power schottky TTL(74LSXX), schottky TTL(74\nSXXX), Emitter coupled Logic (ECL), CMOS\n(a) Among the TTL Families, ________ family requires considerably less power than the standard TTL\n(74XX) and also has com parable proparation delay.\n(b) Only the _______ family can operate over a wide range of power supply voltages.\nOpen solution\nMarks 2\n6 questions\nQ26.\nGATE ECE 2013\nIn the circuit shown below, \n has negligible collector-to-emitter saturation voltage and the diode\ndrops negligible voltage across it under forward bias. If \n is +5 V, X and Y are digital signals with 0\nV as logic 0 and \n as logic 1, then the Boolean expression for Z is\n(A) XY\n(B)\n(C)\n(D)\nOpen solution\nKeep practising on the ExamGOAL app\nChapter-wise PYQs with solutions, full mock tests and analysis for JEE, NEET, GATE and more.\nGoogle Play\nGET IT ON\nGATE ECE Digital Circuits: Logic Families \u00b7 pdf.questions.examgoal.com\nSolutions: questions.examside.com \u00b7 Page 10 / 14\n"
+    },
+    {
+      "page": 11,
+      "text": "ExamGOAL\nP Y Q P D F\nQ27.\nGATE ECE 2008\nThe logic function implemented by the following circuit at the terminal OUT is\n(A) P NOR Q\n(B) P NAND Q\n(C) P OR Q\n(D) P AND Q\nOpen solution\nQ28.\nGATE ECE 2007\nThe circuit diagram of a standard TTL NOT gate is shown in the figure. When \n V, the modes\nof operation of the transistors will be\n(A)\n: reverse active; \n: normal active; \n: saturation; \n: cut-off\n(B)\n: reverse active; \n: saturation; \n: saturation; \n: cut-off\n(C)\n: normal active; \n: cut-off; \n: cut-off; \n: saturation\n(D)\n: saturation; \n: saturation; \n: saturation; \n: normal active\nOpen solution\nKeep practising on the ExamGOAL app\nChapter-wise PYQs with solutions, full mock tests and analysis for JEE, NEET, GATE and more.\nGoogle Play\nGET IT ON\nGATE ECE Digital Circuits: Logic Families \u00b7 pdf.questions.examgoal.com\nSolutions: questions.examside.com \u00b7 Page 11 / 14\n"
+    },
+    {
+      "page": 12,
+      "text": "ExamGOAL\nP Y Q P D F\nQ29.\nGATE ECE 2003\nThe DTL, TTL, ECL and CMOS families of digital ICs are compared in the following 4 columns\nThe correct column is\n(A) P\n(B) Q\n(C) R\n(D) S\nOpen solution\nQ30.\nGATE ECE 1994\nIn the output stage of a standard TTL, we have a diode between the emitter of the pull up transistor\nand the collector of the pull-down transistor. The purpose of this diode is to isolate the output node\nfrom the power supply \n.\n(A) TRUE\n(B) FALSE\nOpen solution\nQ31.\nGATE ECE 1987\nGiven that for a logic family,\n is the minimum output high-level voltage\n is the minimum output low-level voltage\n is the minimum output high-level voltage and\n is the minimum output low-level voltage.\nThe correct relationship is:\n(A)\n>\n>\n>\n(B)\n > \n>\n>\n(C)\n>\n>\n>\n(D)\n > \n>\n>\nOpen solution\nMarks 8\n1 questions\nQ32.\nGATE ECE 1988\nImplement the function \n using two open collector TTL 2-input NAND gates.\nOpen solution\nKeep practising on the ExamGOAL app\nChapter-wise PYQs with solutions, full mock tests and analysis for JEE, NEET, GATE and more.\nGoogle Play\nGET IT ON\nGATE ECE Digital Circuits: Logic Families \u00b7 pdf.questions.examgoal.com\nSolutions: questions.examside.com \u00b7 Page 12 / 14\n"
+    },
+    {
+      "page": 13,
+      "text": "ExamGOAL\nP Y Q P D F\nAnswer Key\nMarks 1\n1. C\n2. B\n3. B\n4. D\n5. D\n6. A\n7. C\n8. C\n9. C\n10. A\n11. B\n12. C\n13. D\n14. B\n15. A\n16. C\n17. B\n18. C\n19. C\n20. D\n21.\n22. C(A+B)\n23. A, C\n24. D\n25. (a) 74LS (a) CMOS\nMarks 2\n26. B\n27. D\n28. B\n29. B\n30. B\n31. B\nMarks 8\n32. Solve It.\nFor numerical answers given as a range, any value within the range is correct. Full solutions: scan the QR code next to each question, or visit\nquestions.examside.com.\nKeep practising on the ExamGOAL app\nChapter-wise PYQs with solutions, full mock tests and analysis for JEE, NEET, GATE and more.\nGoogle Play\nGET IT ON\nGATE ECE Digital Circuits: Logic Families \u00b7 pdf.questions.examgoal.com\nSolutions: questions.examside.com \u00b7 Page 13 / 14\n"
+    },
+    {
+      "page": 14,
+      "text": "Keep practising on the ExamGOAL app\nChapter-wise PYQs with solutions, full mock tests and analysis for JEE, NEET, GATE and more.\nGoogle Play\nGET IT ON\nExamGOAL\nP Y Q P D F\nYour Exam. Our Responsibility.\nFrom first chapter\nto exam day.\nPractise with the questions your exam has already asked, then test yourself\nunder real exam conditions.\nPAST YEAR QUESTIONS\nEvery past paper, chapter-wise.\nPrevious year questions sorted the way you study,\neach with a full solution.\nMOCK TESTS\nMock tests with a real exam feel.\nPractise under the same pressure as the real paper,\non your phone or on the big screen.\nANALYSIS\nKnow your score. Know your rank.\nA full report after every test, so you know exactly\nwhere you stand.\nPRACTICE\nSolve. Check. Understand.\nLearn from every question, not just the ones you get\nright.\nChapter-wise and year-wise\nWeightage and topic tags on every chapter\nYour progress on each one, at a glance\nTimed sections, just like exam day\nMark questions for review and come back\nYour percentile among everyone who took it\nPredicted real-exam percentile and All India Rank\nSubject breakdown and time analysis\nInstant answers as you practise\nStep-by-step explanations\nSee how everyone else answered\nNCERT Exemplar\nWith full solutions\nExam syllabus\nSubject and chapter-wise\nBookmarks\nOrganised in groups\nYour notes\nOn any question\nExamGOAL: Exam Preparation App\nOne app for every exam. Free trial for new users, on Android and the web.\nGoogle Play\nScan to get the app\nGET IT ON\nwww.examgoal.com\nPractice and mock tests\nquestions.examside.com\nFree solutions\npdf.questions.examgoal.com\nFree PYQ PDFs\n"
+    }
+  ]
+}

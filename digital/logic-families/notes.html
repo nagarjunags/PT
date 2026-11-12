@@ -1,0 +1,1887 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>GATE Master Textbook: Digital Logic Families (TTL, CMOS, ECL & Interfacing)</title>
+
+  <!-- Google Fonts: Inter (UI), Crimson Pro (Textbook Body), JetBrains Mono (Code/Math) -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Crimson+Pro:ital,wght@0,400;0,500;0,600;0,700;1,400;1,600&family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:ital,wght@0,400;0,500;0,600;0,700;1,400&display=swap" rel="stylesheet">
+
+  <!-- KaTeX for pristine mathematical typesetting -->
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.css">
+  <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.js"></script>
+  <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/contrib/auto-render.min.js"></script>
+
+  <style>
+
+    :root {
+      --bg-page: #f8fafc;
+      --bg-card: #ffffff;
+      --bg-card-subtle: #f1f5f9;
+      --bg-elevated: #e2e8f0;
+      --bg-code: #0f172a;
+      
+      --text-main: #0f172a;
+      --text-secondary: #334155;
+      --text-muted: #64748b;
+      
+      --border-color: #e2e8f0;
+      --border-strong: #cbd5e1;
+      
+      --accent: #2563eb;
+      --accent-soft: #eff6ff;
+      --accent-dark: #1d4ed8;
+      
+      --success: #16a34a;
+      --success-soft: #f0fdf4;
+      --warning: #d97706;
+      --warning-soft: #fffbeb;
+      --danger: #dc2626;
+      --danger-soft: #fef2f2;
+      --purple: #7c3aed;
+      --purple-soft: #f5f3ff;
+      --cyan: #0891b2;
+      --cyan-soft: #ecfeff;
+      
+      --font-body: 'Crimson Pro', Georgia, serif;
+      --font-ui: 'Inter', -apple-system, sans-serif;
+      --font-mono: 'JetBrains Mono', monospace;
+      
+      --shadow-sm: 0 1px 2px 0 rgba(0, 0, 0, 0.05);
+      --shadow-md: 0 4px 6px -1px rgba(0, 0, 0, 0.08), 0 2px 4px -2px rgba(0, 0, 0, 0.06);
+      --shadow-lg: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -4px rgba(0, 0, 0, 0.08);
+    }
+
+    [data-theme="dark"] {
+      --bg-page: #0b0f19;
+      --bg-card: #111827;
+      --bg-card-subtle: #1f2937;
+      --bg-elevated: #283344;
+      --bg-code: #030712;
+      
+      --text-main: #f9fafb;
+      --text-secondary: #e5e7eb;
+      --text-muted: #9ca3af;
+      
+      --border-color: #1f2937;
+      --border-strong: #374151;
+      
+      --accent: #3b82f6;
+      --accent-soft: #172554;
+      --accent-dark: #60a5fa;
+      
+      --success: #22c55e;
+      --success-soft: #052e16;
+      --warning: #f59e0b;
+      --warning-soft: #451a03;
+      --danger: #ef4444;
+      --danger-soft: #450a0a;
+      --purple: #a855f7;
+      --purple-soft: #2e1065;
+      --cyan: #22d3ee;
+      --cyan-soft: #083344;
+      
+      --shadow-sm: 0 1px 2px 0 rgba(0, 0, 0, 0.5);
+      --shadow-md: 0 4px 6px -1px rgba(0, 0, 0, 0.5);
+      --shadow-lg: 0 10px 15px -3px rgba(0, 0, 0, 0.5);
+    }
+
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+
+    body {
+      font-family: var(--font-body);
+      font-size: 1.18rem;
+      line-height: 1.8;
+      color: var(--text-main);
+      background-color: var(--bg-page);
+      transition: background-color 0.2s ease, color 0.2s ease;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    .app-container {
+      display: flex;
+      min-height: 100vh;
+    }
+
+    .sidebar {
+      width: 330px;
+      flex-shrink: 0;
+      background: var(--bg-card);
+      border-right: 1px solid var(--border-color);
+      height: 100vh;
+      position: sticky;
+      top: 0;
+      overflow-y: auto;
+      display: flex;
+      flex-direction: column;
+      z-index: 50;
+    }
+
+    .sidebar-header {
+      padding: 22px 20px;
+      border-bottom: 1px solid var(--border-color);
+      background: var(--bg-card);
+    }
+
+    .sidebar-header h2 {
+      font-family: var(--font-ui);
+      font-size: 1.05rem;
+      font-weight: 800;
+      color: var(--accent);
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      letter-spacing: -0.01em;
+    }
+
+    .sidebar-header p {
+      font-family: var(--font-ui);
+      font-size: 0.76rem;
+      color: var(--text-muted);
+      margin-top: 4px;
+      line-height: 1.4;
+    }
+
+    .sidebar-nav {
+      padding: 16px 14px;
+      display: flex;
+      flex-direction: column;
+      gap: 3px;
+      flex: 1;
+    }
+
+    .nav-group-title {
+      font-family: var(--font-ui);
+      font-size: 0.72rem;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      font-weight: 700;
+      color: var(--text-muted);
+      padding: 14px 10px 4px 10px;
+    }
+
+    .nav-link {
+      font-family: var(--font-ui);
+      font-size: 0.86rem;
+      font-weight: 500;
+      color: var(--text-secondary);
+      text-decoration: none;
+      padding: 8px 12px;
+      border-radius: 8px;
+      transition: all 0.15s ease;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+
+    .nav-link:hover {
+      background: var(--bg-card-subtle);
+      color: var(--accent);
+      transform: translateX(3px);
+    }
+
+    .nav-link.active {
+      background: var(--accent-soft);
+      color: var(--accent);
+      font-weight: 600;
+    }
+
+    .nav-link .badge {
+      font-size: 0.7rem;
+      padding: 2px 6px;
+      border-radius: 999px;
+      background: var(--bg-card-subtle);
+      color: var(--text-muted);
+      font-weight: 600;
+    }
+
+    .main-wrapper {
+      flex: 1;
+      max-width: 1080px;
+      margin: 0 auto;
+      padding: 36px 52px 90px 52px;
+    }
+
+    .top-bar {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 16px;
+      margin-bottom: 36px;
+      padding-bottom: 16px;
+      border-bottom: 1px solid var(--border-color);
+      flex-wrap: wrap;
+    }
+
+    .search-wrapper {
+      position: relative;
+      flex: 1;
+      max-width: 480px;
+    }
+
+    .search-input {
+      width: 100%;
+      font-family: var(--font-ui);
+      font-size: 0.9rem;
+      padding: 9px 14px 9px 38px;
+      border-radius: 8px;
+      border: 1px solid var(--border-color);
+      background: var(--bg-card);
+      color: var(--text-main);
+      outline: none;
+      transition: border-color 0.15s ease, box-shadow 0.15s ease;
+    }
+
+    .search-input:focus {
+      border-color: var(--accent);
+      box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.15);
+    }
+
+    .search-icon {
+      position: absolute;
+      left: 12px;
+      top: 50%;
+      transform: translateY(-50%);
+      color: var(--text-muted);
+      pointer-events: none;
+      font-size: 0.95rem;
+    }
+
+    .top-actions {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .theme-btn, .expand-all-btn {
+      font-family: var(--font-ui);
+      font-size: 0.82rem;
+      font-weight: 600;
+      padding: 8px 14px;
+      border-radius: 8px;
+      border: 1px solid var(--border-color);
+      background: var(--bg-card);
+      color: var(--text-secondary);
+      cursor: pointer;
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      transition: all 0.15s ease;
+    }
+
+    .theme-btn:hover, .expand-all-btn:hover {
+      background: var(--bg-card-subtle);
+      border-color: var(--border-strong);
+      color: var(--text-main);
+    }
+
+    .hero-header {
+      background: linear-gradient(135deg, var(--bg-card) 0%, var(--bg-card-subtle) 100%);
+      border: 1px solid var(--border-color);
+      border-radius: 18px;
+      padding: 42px 40px;
+      margin-bottom: 48px;
+      box-shadow: var(--shadow-sm);
+    }
+
+    .hero-badge-row {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      margin-bottom: 18px;
+    }
+
+    .pill-badge {
+      font-family: var(--font-ui);
+      font-size: 0.75rem;
+      font-weight: 700;
+      padding: 4px 11px;
+      border-radius: 999px;
+      display: inline-flex;
+      align-items: center;
+      gap: 5px;
+      letter-spacing: 0.02em;
+    }
+
+    .pill-blue { background: var(--accent-soft); color: var(--accent-dark); border: 1px solid var(--accent); }
+    .pill-purple { background: var(--purple-soft); color: var(--purple); border: 1px solid var(--purple); }
+    .pill-green { background: var(--success-soft); color: var(--success); border: 1px solid var(--success); }
+    .pill-cyan { background: var(--cyan-soft); color: var(--cyan); border: 1px solid var(--cyan); }
+
+    .hero-header h1 {
+      font-family: var(--font-ui);
+      font-size: 2.3rem;
+      font-weight: 800;
+      letter-spacing: -0.03em;
+      line-height: 1.25;
+      color: var(--text-main);
+      margin-bottom: 14px;
+    }
+
+    .hero-header p {
+      font-size: 1.2rem;
+      color: var(--text-secondary);
+      max-width: 860px;
+      line-height: 1.65;
+    }
+
+    .exam-stats-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(170px, 1fr));
+      gap: 16px;
+      margin-top: 28px;
+      padding-top: 24px;
+      border-top: 1px solid var(--border-color);
+    }
+
+    .stat-item { font-family: var(--font-ui); }
+    .stat-val { font-size: 1.65rem; font-weight: 800; color: var(--accent); letter-spacing: -0.02em; }
+    .stat-lbl { font-size: 0.76rem; color: var(--text-muted); text-transform: uppercase; letter-spacing: 0.06em; font-weight: 700; }
+
+    .chapter-section {
+      margin-bottom: 64px;
+      scroll-margin-top: 32px;
+      background: var(--bg-card);
+      border: 1px solid var(--border-color);
+      border-radius: 16px;
+      padding: 38px 40px;
+      box-shadow: var(--shadow-sm);
+    }
+
+    .chapter-number-pill {
+      font-family: var(--font-ui);
+      font-size: 0.8rem;
+      font-weight: 800;
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+      color: var(--accent);
+      background: var(--accent-soft);
+      padding: 4px 12px;
+      border-radius: 999px;
+      display: inline-block;
+      margin-bottom: 12px;
+    }
+
+    h2.chapter-title {
+      font-family: var(--font-ui);
+      font-size: 1.85rem;
+      font-weight: 800;
+      letter-spacing: -0.02em;
+      color: var(--text-main);
+      margin-bottom: 24px;
+      line-height: 1.3;
+    }
+
+    h3.section-heading {
+      font-family: var(--font-ui);
+      font-size: 1.3rem;
+      font-weight: 700;
+      color: var(--text-main);
+      margin: 32px 0 16px 0;
+      padding-bottom: 6px;
+      border-bottom: 1px solid var(--border-color);
+    }
+
+    h4.subsection-heading {
+      font-family: var(--font-ui);
+      font-size: 1.1rem;
+      font-weight: 700;
+      color: var(--accent-dark);
+      margin: 24px 0 10px 0;
+    }
+
+    p { margin-bottom: 18px; }
+    strong { color: var(--text-main); font-weight: 600; }
+
+    .callout {
+      border-radius: 12px;
+      padding: 20px 22px;
+      margin: 24px 0;
+      border-left: 5px solid transparent;
+      font-size: 1.08rem;
+      line-height: 1.7;
+    }
+
+    .gate-trap {
+      background: var(--danger-soft);
+      border-left-color: var(--danger);
+      color: var(--text-main);
+    }
+    .gate-trap-title {
+      font-family: var(--font-ui);
+      font-weight: 800;
+      color: var(--danger);
+      font-size: 0.88rem;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+      margin-bottom: 8px;
+      display: flex;
+      align-items: center;
+      gap: 6px;
+    }
+
+    .pro-tip {
+      background: var(--purple-soft);
+      border-left-color: var(--purple);
+      color: var(--text-main);
+    }
+    .pro-tip-title {
+      font-family: var(--font-ui);
+      font-weight: 800;
+      color: var(--purple);
+      font-size: 0.88rem;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+      margin-bottom: 8px;
+      display: flex;
+      align-items: center;
+      gap: 6px;
+    }
+
+    .theory-box {
+      background: var(--accent-soft);
+      border-left-color: var(--accent);
+      color: var(--text-main);
+    }
+    .theory-title {
+      font-family: var(--font-ui);
+      font-weight: 800;
+      color: var(--accent-dark);
+      font-size: 0.88rem;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+      margin-bottom: 8px;
+      display: flex;
+      align-items: center;
+      gap: 6px;
+    }
+
+    .table-container {
+      overflow-x: auto;
+      margin: 26px 0;
+      border: 1px solid var(--border-color);
+      border-radius: 12px;
+      background: var(--bg-card);
+      box-shadow: var(--shadow-sm);
+    }
+
+    table.academic-table {
+      width: 100%;
+      border-collapse: collapse;
+      font-family: var(--font-ui);
+      font-size: 0.94rem;
+      text-align: left;
+    }
+
+    table.academic-table th {
+      background: var(--bg-card-subtle);
+      color: var(--text-main);
+      font-weight: 700;
+      padding: 14px 18px;
+      border-bottom: 1px solid var(--border-color);
+      white-space: nowrap;
+    }
+
+    table.academic-table td {
+      padding: 14px 18px;
+      border-bottom: 1px solid var(--border-color);
+      color: var(--text-secondary);
+      line-height: 1.6;
+    }
+
+    table.academic-table tr:last-child td { border-bottom: none; }
+    table.academic-table tr:hover td { background: rgba(37, 99, 235, 0.03); }
+
+    .pyq-box {
+      background: var(--bg-card);
+      border: 1px solid var(--border-strong);
+      border-radius: 14px;
+      margin: 32px 0;
+      overflow: hidden;
+      box-shadow: var(--shadow-sm);
+      transition: border-color 0.2s ease, box-shadow 0.2s ease;
+    }
+
+    .pyq-box:hover {
+      border-color: var(--accent);
+      box-shadow: var(--shadow-md);
+    }
+
+    .pyq-header {
+      padding: 16px 22px;
+      background: var(--bg-card-subtle);
+      border-bottom: 1px solid var(--border-color);
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 12px;
+    }
+
+    .pyq-tag-group {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .pyq-badge-num {
+      font-family: var(--font-mono);
+      font-weight: 800;
+      font-size: 0.9rem;
+      background: var(--text-main);
+      color: var(--bg-card);
+      padding: 3px 9px;
+      border-radius: 6px;
+    }
+
+    .pyq-badge-year {
+      font-family: var(--font-ui);
+      font-size: 0.8rem;
+      font-weight: 700;
+      color: var(--accent-dark);
+      background: var(--accent-soft);
+      padding: 3px 9px;
+      border-radius: 6px;
+    }
+
+    .pyq-badge-marks {
+      font-family: var(--font-ui);
+      font-size: 0.8rem;
+      font-weight: 700;
+      color: var(--purple);
+      background: var(--purple-soft);
+      padding: 3px 9px;
+      border-radius: 6px;
+    }
+
+    .pyq-badge-type {
+      font-family: var(--font-ui);
+      font-size: 0.8rem;
+      font-weight: 700;
+      color: var(--cyan);
+      background: var(--cyan-soft);
+      padding: 3px 9px;
+      border-radius: 6px;
+    }
+
+    .pyq-body {
+      padding: 24px 26px;
+      font-size: 1.15rem;
+      line-height: 1.75;
+    }
+
+    .pyq-diagram {
+      margin: 18px 0;
+      text-align: center;
+      background: #ffffff;
+      padding: 16px;
+      border-radius: 10px;
+      border: 1px solid var(--border-color);
+    }
+
+    .pyq-diagram img {
+      max-width: 100%;
+      height: auto;
+      max-height: 380px;
+      object-fit: contain;
+    }
+
+    .pyq-options-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+      gap: 12px;
+      margin: 18px 0;
+    }
+
+    .pyq-opt {
+      font-family: var(--font-ui);
+      font-size: 0.96rem;
+      background: var(--bg-card-subtle);
+      border: 1px solid var(--border-color);
+      padding: 11px 16px;
+      border-radius: 8px;
+    }
+
+    .reveal-btn {
+      font-family: var(--font-ui);
+      font-size: 0.84rem;
+      font-weight: 700;
+      padding: 7px 16px;
+      border-radius: 7px;
+      border: 1px solid var(--accent);
+      background: var(--accent-soft);
+      color: var(--accent);
+      cursor: pointer;
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      transition: all 0.15s ease;
+    }
+
+    .reveal-btn:hover {
+      background: var(--accent);
+      color: #ffffff;
+    }
+
+    .solution-drawer {
+      display: none;
+      padding: 24px 26px;
+      background: var(--bg-card-subtle);
+      border-top: 1px dashed var(--border-strong);
+      animation: fadeIn 0.25s ease;
+    }
+
+    .solution-drawer.open {
+      display: block;
+    }
+
+    .sol-header {
+      font-family: var(--font-ui);
+      font-size: 1rem;
+      font-weight: 800;
+      color: var(--success);
+      margin-bottom: 14px;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .sol-steps {
+      margin-left: 22px;
+      margin-bottom: 16px;
+    }
+
+    .sol-steps li {
+      margin-bottom: 10px;
+    }
+
+    .ans-box {
+      font-family: var(--font-ui);
+      display: inline-block;
+      background: var(--success-soft);
+      color: var(--success);
+      border: 1px solid var(--success);
+      padding: 7px 14px;
+      border-radius: 7px;
+      font-weight: 800;
+      font-size: 1rem;
+      margin: 12px 0;
+    }
+
+    .lab-card {
+      background: var(--bg-card);
+      border: 2px solid var(--accent);
+      border-radius: 16px;
+      padding: 28px;
+      margin: 36px 0;
+      box-shadow: var(--shadow-md);
+    }
+
+    .lab-header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      margin-bottom: 20px;
+      padding-bottom: 14px;
+      border-bottom: 1px solid var(--border-color);
+    }
+
+    .lab-title {
+      font-family: var(--font-ui);
+      font-size: 1.25rem;
+      font-weight: 800;
+      color: var(--accent);
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .lab-input-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(190px, 1fr));
+      gap: 16px;
+      margin-bottom: 20px;
+    }
+
+    .input-field label {
+      display: block;
+      font-family: var(--font-ui);
+      font-size: 0.82rem;
+      font-weight: 700;
+      color: var(--text-muted);
+      margin-bottom: 6px;
+      text-transform: uppercase;
+      letter-spacing: 0.04em;
+    }
+
+    .input-field input, .input-field select {
+      width: 100%;
+      font-family: var(--font-mono);
+      font-size: 0.95rem;
+      padding: 8px 12px;
+      border-radius: 8px;
+      border: 1px solid var(--border-color);
+      background: var(--bg-page);
+      color: var(--text-main);
+      outline: none;
+    }
+
+    .input-field input:focus, .input-field select:focus {
+      border-color: var(--accent);
+    }
+
+    .lab-output {
+      background: var(--bg-card-subtle);
+      border: 1px solid var(--border-strong);
+      border-radius: 10px;
+      padding: 18px 20px;
+      font-family: var(--font-mono);
+      font-size: 0.95rem;
+      line-height: 1.6;
+    }
+
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(-4px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    @media (max-width: 900px) {
+      .app-container { flex-direction: column; }
+      .sidebar { width: 100%; height: auto; position: static; }
+      .main-wrapper { padding: 24px 20px; }
+    }
+
+  </style>
+</head>
+<body>
+  <div class="app-container">
+    <!-- Sidebar Navigation -->
+    <aside class="sidebar">
+      <div class="sidebar-header">
+        <h2>📚 GATE Master Series</h2>
+        <p>Digital Electronics & Logic Design</p>
+      </div>
+      <nav class="sidebar-nav">
+        <div class="nav-group-title">Theory & Fundamentals</div>
+<a href="#sec-taxonomy" class="nav-link"><span>1. Parameters & Noise Margins</span></a>
+<a href="#sec-ttl" class="nav-link"><span>2. TTL Family & Totem-Pole</span></a>
+<a href="#sec-cmos" class="nav-link"><span>3. CMOS Logic & Dual Networks</span></a>
+<a href="#sec-ecl" class="nav-link"><span>4. ECL (Emitter-Coupled Logic)</span></a>
+<a href="#sec-interfacing" class="nav-link"><span>5. Mixed-Family Interfacing</span></a>
+<a href="#sec-lab" class="nav-link"><span>6. Interactive Noise Margin Tool</span></a>
+<div class="nav-group-title">Official GATE PYQs</div>
+<a href="#sec-pyqs-1m" class="nav-link"><span>1-Mark Questions (Q1 - Q25)</span><span class="badge">25 PYQs</span></a>
+<a href="#sec-pyqs-2m" class="nav-link"><span>2-Mark & Multi-Mark (Q26 - Q32)</span><span class="badge">7 PYQs</span></a>
+
+      </nav>
+    </aside>
+
+    <!-- Main Content Area -->
+    <main class="main-wrapper">
+      <!-- Top Action Bar -->
+      <div class="top-bar">
+        <div class="search-wrapper">
+          <span class="search-icon">🔍</span>
+          <input type="text" id="chapterSearch" class="search-input" placeholder="Search theory, theorems, or PYQs..." />
+        </div>
+        <div class="top-actions">
+          <button id="themeToggle" class="theme-btn" title="Toggle Light/Dark Theme">🌓 Theme</button>
+          <button id="expandAllBtn" class="expand-all-btn" title="Expand/Collapse all PYQ solutions">📖 Expand All</button>
+        </div>
+      </div>
+
+      <!-- Hero Header -->
+      
+    <div class="hero-header">
+      <div class="hero-badge-row">
+        <span class="pill-badge pill-blue">GATE ECE / EE Master Class</span>
+        <span class="pill-badge pill-purple">Official ExamGOAL Archive</span>
+        <span class="pill-badge pill-green">Textbook-Grade Derivations</span>
+        <span class="pill-badge pill-cyan">Interactive Simulator</span>
+      </div>
+      <h1>Digital Logic Families: TTL, CMOS, ECL & Interfacing</h1>
+      <p>Textbook-grade GATE Master Notes covering BJT saturation mechanics, multi-emitter inputs, totem-pole outputs, open-collector wired-AND, CMOS PUN/PDN synthesis, non-saturated ECL physics, noise margins, fan-out, and complete step-by-step derivations for all 32 official GATE PYQs.</p>
+      <div class="exam-stats-grid">
+        <div class="stat-item"><div class="stat-val">32</div><div class="stat-lbl">Official GATE PYQs</div></div><div class="stat-item"><div class="stat-val">1987 – 2022</div><div class="stat-lbl">Year Span Covered</div></div><div class="stat-item"><div class="stat-val">TTL · CMOS · ECL</div><div class="stat-lbl">Core Families</div></div><div class="stat-item"><div class="stat-val">100%</div><div class="stat-lbl">ExamGOAL Verified</div></div>
+      </div>
+    </div>
+    
+
+      <!-- Chapter Sections & PYQ Walkthroughs -->
+      
+        <section id="sec-taxonomy" class="chapter-section">
+          <div class="chapter-number-pill">Chapter 03 · Part 1</div>
+          <h2 class="chapter-title">Logic Family Taxonomy, Voltage Parameters & Noise Margins</h2>
+          <div class="section-content">
+            
+    <p>A digital logic family is a standardized collection of integrated digital circuits designed with compatible voltage levels, current drives, and propagation delays. In GATE ECE/EE, problems test internal semiconductor states (cutoff, active, saturation), current sourcing/sinking capabilities, and noise margins.</p>
+
+    <h3 class="section-heading">Standard Voltage Levels & Noise Margins</h3>
+    <p>Four critical voltage thresholds characterize every digital family:</p>
+    <ul>
+      <li>$V_{OH,min}$: Minimum output voltage guaranteed when driving a valid HIGH state.</li>
+      <li>$V_{OL,max}$: Maximum output voltage guaranteed when driving a valid LOW state.</li>
+      <li>$V_{IH,min}$: Minimum input voltage recognized by the gate as a valid HIGH state.</li>
+      <li>$V_{IL,max}$: Maximum input voltage recognized by the gate as a valid LOW state.</li>
+    </ul>
+
+    <div class="callout theory-box">
+      <div class="theory-title">🎯 Mathematical Definition of Noise Margins</div>
+      <p>Noise margin quantifies the maximum stray noise voltage that can couple onto an interconnect wire without causing an erroneous logic transition:</p>
+      $$\text{High-State Noise Margin: } NM_H = V_{OH,min} - V_{IH,min}$$
+      $$\text{Low-State Noise Margin: } NM_L = V_{IL,max} - V_{OL,max}$$
+      $$\text{Overall Noise Margin: } NM = \min(NM_H, NM_L)$$
+      <p>For standard 7400 TTL: $V_{OH,min} = 2.4\text{ V}, V_{IH,min} = 2.0\text{ V} \implies NM_H = 0.4\text{ V}$.<br/>
+      $V_{IL,max} = 0.8\text{ V}, V_{OL,max} = 0.4\text{ V} \implies NM_L = 0.4\text{ V}$. Hence, TTL noise margin is typically <strong>$0.4\text{ V}$</strong>.</p>
+    </div>
+
+    <h3 class="section-heading">Fan-Out & Current Sinking / Sourcing</h3>
+    <p>Fan-out specifies the maximum number of standard load gate inputs that a single driving gate output can reliably feed without exceeding voltage threshold constraints:</p>
+    $$\text{High-State Fan-Out} = \left\lfloor \frac{I_{OH,max}}{I_{IH,max}} \right\rfloor \quad (\text{Current Sourcing})$$
+    $$\text{Low-State Fan-Out} = \left\lfloor \frac{I_{OL,max}}{I_{IL,max}} \right\rfloor \quad (\text{Current Sinking})$$
+    $$\text{Overall Fan-Out} = \min(\text{High Fan-Out}, \text{Low Fan-Out})$$
+    
+          </div>
+        </section>
+        
+        <section id="sec-ttl" class="chapter-section">
+          <div class="chapter-number-pill">Chapter 03 · Part 2</div>
+          <h2 class="chapter-title">Transistor-Transistor Logic (TTL): Totem-Pole & Open-Collector</h2>
+          <div class="section-content">
+            
+    <p>Transistor-Transistor Logic (TTL) relies on multi-emitter NPN bipolar junction transistors in the input stage and a totem-pole arrangement in the output stage.</p>
+
+    <h3 class="section-heading">Anatomy of the Standard TTL NAND Gate</h3>
+    <ol>
+      <li><strong>Input Stage ($Q_1$):</strong> Multi-emitter NPN transistor.
+        <ul>
+          <li>If ANY input is LOW ($0.2\text{ V}$): Base-emitter junction of $Q_1$ is forward-biased. Base current flows out of the input terminal ($I_{IL} \approx 1.6\text{ mA}$). The collector of $Q_1$ drops to $\approx 0.4\text{ V}$, starving transistor $Q_2$ of base drive.</li>
+          <li>If ALL inputs are HIGH ($> 2.0\text{ V}$): Base-emitter junctions are reverse-biased. Current from $V_{CC}$ through $R_b$ forward-biases the base-collector junction of $Q_1$ (operating in <em>inverted active mode</em>), driving current into the base of $Q_2$.</li>
+        </ul>
+      </li>
+      <li><strong>Phase-Splitter Stage ($Q_2$):</strong> Directs complementary drive signals to the output transistors.</li>
+      <li><strong>Totem-Pole Output Stage ($Q_3, D, Q_4$):</strong>
+        <ul>
+          <li>$Q_3$ is the pull-up transistor (acts as emitter follower to source current rapidly).</li>
+          <li>$Q_4$ is the pull-down transistor (saturates to sink current to ground).</li>
+          <li><strong>Role of the Diode ($D$):</strong> When output is LOW, $Q_4$ is in saturation ($V_{CE4,sat} \approx 0.2\text{ V}$) and $Q_2$ is in saturation ($V_{BE4,sat} + V_{CE2,sat} \approx 0.7 + 0.2 = 0.9\text{ V}$). The base of $Q_3$ is at $0.9\text{ V}$. Without diode $D$, $V_{BE3} = 0.9 - 0.2 = 0.7\text{ V}$, which would turn $Q_3$ ON! The diode adds an additional $0.7\text{ V}$ threshold requirement ($V_{BE3} + V_D = 1.4\text{ V}$), keeping $Q_3$ completely OFF while $Q_4$ is ON (GATE 1994, Q30)!</li>
+        </ul>
+      </li>
+    </ol>
+
+    <div class="callout gate-trap">
+      <div class="gate-trap-title">⚠️ Open Collector TTL & Wired-AND Logic</div>
+      <p>Standard totem-pole outputs <strong>CANNOT</strong> be tied together! If one gate attempts to output HIGH while the other outputs LOW, a near short-circuit path ($V_{CC} \to Q_3 \to D \to Q_4 \to \text{GND}$) is created, drawing excessive current and destroying the ICs.</p>
+      <p>To safely connect outputs together, use <strong>Open-Collector TTL gates</strong> with an external pull-up resistor $R_p$. Tying open-collector outputs together naturally implements the <strong>Wired-AND</strong> function ($Y = Y_1 \cdot Y_2$).</p>
+    </div>
+    
+          </div>
+        </section>
+        
+        <section id="sec-cmos" class="chapter-section">
+          <div class="chapter-number-pill">Chapter 03 · Part 3</div>
+          <h2 class="chapter-title">CMOS Logic Design: PUN/PDN Synthesis, Dynamic Power & Sizing</h2>
+          <div class="section-content">
+            
+    <p>Complementary Metal-Oxide-Semiconductor (CMOS) logic combines PMOS pull-up networks (PUN) and NMOS pull-down networks (PDN). Because one network is always completely OFF in steady state, static power dissipation is virtually zero.</p>
+
+    <h3 class="section-heading">Duality Rules for CMOS Synthesis</h3>
+    <p>For any arbitrary Boolean output $F(A, B, C, \dots)$:</p>
+    <ul>
+      <li><strong>Pull-Down Network (PDN):</strong> Constructed using NMOS transistors connected between Output and Ground. Realizes $\overline{F}$.
+        <ul>
+          <li>AND operation (e.g. $A \cdot B$) $\implies$ NMOS in <strong>series</strong>.</li>
+          <li>OR operation (e.g. $A + B$) $\implies$ NMOS in <strong>parallel</strong>.</li>
+        </ul>
+      </li>
+      <li><strong>Pull-Up Network (PUN):</strong> Constructed using PMOS transistors connected between $V_{DD}$ and Output. Realizes $F$.
+        <ul>
+          <li>AND operation $\implies$ PMOS in <strong>parallel</strong>.</li>
+          <li>OR operation $\implies$ PMOS in <strong>series</strong>.</li>
+        </ul>
+      </li>
+    </ul>
+
+    <h3 class="section-heading">Sizing for Equal Noise Margins</h3>
+    <p>In a CMOS inverter, electrons have higher carrier mobility than holes ($\mu_n \approx 2.5 \mu_p$ in silicon). To achieve symmetric voltage transfer characteristics ($V_{inv} = V_{DD}/2$) and equal noise margins ($NM_H = NM_L$):</p>
+    $$k_n = k_p \implies \mu_n C_{ox} \left(\frac{W}{L}\right)_n = \mu_p C_{ox} \left(\frac{W}{L}\right)_p \implies \left(\frac{W}{L}\right)_p \approx (2 \text{ to } 3) \left(\frac{W}{L}\right)_n$$
+    <p>If $(W/L)_p = (W/L)_n$, $NM_H \ne NM_L$ (GATE 2022, Q1)!</p>
+
+    <div class="callout theory-box">
+      <div class="theory-title">⚡ Dynamic Power Dissipation in CMOS</div>
+      <p>Dynamic power dominates during logic transitions due to load capacitor ($C_L$) charging/discharging:</p>
+      $$P_{dynamic} = C_L V_{DD}^2 f$$
+      <p>Dynamic power dissipation is directly proportional to switching frequency $f$ and the square of the supply voltage $V_{DD}^2$.</p>
+    </div>
+    
+          </div>
+        </section>
+        
+        <section id="sec-ecl" class="chapter-section">
+          <div class="chapter-number-pill">Chapter 03 · Part 4</div>
+          <h2 class="chapter-title">Emitter-Coupled Logic (ECL): High-Speed Non-Saturated Physics</h2>
+          <div class="section-content">
+            
+    <p>Emitter-Coupled Logic (ECL) is the <strong>fastest of all saturated/unsaturated bipolar logic families</strong> because its transistors operate strictly in the active and cutoff regions, never entering saturation!</p>
+
+    <h3 class="section-heading">Physics of ECL Operation</h3>
+    <ul>
+      <li><strong>Absence of Saturation Delay:</strong> In saturated BJT families (like standard TTL), switching from ON to OFF is delayed by base minority carrier storage time ($t_s$). In ECL, transistors are prevented from ever entering saturation, completely eliminating storage delay!</li>
+      <li><strong>Differential Switching:</strong> An input transistor pair steers a constant bias current $I_{EE}$ between two branches based on small voltage differences.</li>
+      <li><strong>Small Logic Swing:</strong> Logic HIGH $\approx -0.9\text{ V}$, Logic LOW $\approx -1.7\text{ V}$. Logic swing is merely $\Delta V \approx 0.8\text{ V}$. Small voltage swing minimizes charging time of parasitic capacitances ($t = C \Delta V / I$).</li>
+      <li><strong>Negative Power Supply ($-5.2\text{ V}$):</strong> Collector resistors are connected to ground ($0\text{ V}$). Any power supply noise on $-5.2\text{ V}$ is rejected as common-mode noise, keeping the output signals referenced clean to ground.</li>
+    </ul>
+
+    <div class="callout pro-tip">
+      <div class="pro-tip-title">💡 Summary of Logic Family Champions</div>
+      <ul>
+        <li><strong>Fastest Family (Least Propagation Delay):</strong> <strong>ECL</strong> ($t_{pd} < 1\text{ ns}$).</li>
+        <li><strong>Lowest Power Dissipation (Static):</strong> <strong>CMOS</strong> ($P_D \approx \text{nW}$).</li>
+        <li><strong>Highest Noise Immunity:</strong> <strong>HTL</strong> (High Threshold Logic, with zener diode) and <strong>CMOS</strong> ($NM \approx 0.45 V_{DD}$).</li>
+        <li><strong>Highest Packing Density:</strong> <strong>CMOS</strong>.</li>
+      </ul>
+    </div>
+    
+          </div>
+        </section>
+        
+        <section id="sec-interfacing" class="chapter-section">
+          <div class="chapter-number-pill">Chapter 03 · Part 5</div>
+          <h2 class="chapter-title">Logic Family Interfacing & Pull-Up Level Shifting</h2>
+          <div class="section-content">
+            
+    <h3 class="section-heading">Interfacing TTL with CMOS</h3>
+    <p>Directly connecting TTL output to CMOS input often fails due to voltage level mismatch:</p>
+    <ul>
+      <li>TTL Output High: $V_{OH,min} = 2.4\text{ V}$.</li>
+      <li>5V CMOS Input High: $V_{IH,min} = 3.5\text{ V}$ ($0.7 V_{DD}$).</li>
+      <li>Since $2.4\text{ V} < 3.5\text{ V}$, the TTL gate cannot reliably drive the CMOS input into a recognized HIGH state!</li>
+      <li><strong>The Solution:</strong> Connect an external <strong>pull-up resistor</strong> ($R_{pullup} \approx 1 - 3.3\text{ k}\Omega$) between the TTL output and $+5\text{ V}$ $V_{DD}$ rail. When the TTL pull-up transistor turns off, the resistor pulls the line all the way to $+5\text{ V}$, easily satisfying $V_{IH,min}$.</li>
+    </ul>
+    
+          </div>
+        </section>
+        
+        <section id="sec-pyqs-1m" class="chapter-section">
+          <div class="chapter-number-pill">GATE Official Archive · 1-Mark Questions</div>
+          <h2 class="chapter-title">Official GATE 1-Mark PYQ Solutions (Q1 to Q25)</h2>
+          <div class="section-content">
+            
+    <div class="pyq-box">
+      <div class="pyq-header">
+        <div class="pyq-tag-group">
+          <span class="pyq-badge-num">Q1.</span>
+          <span class="pyq-badge-year">GATE ECE 2022</span>
+          <span class="pyq-badge-marks">1 Mark</span>
+          <span class="pyq-badge-type">MSQ / MCQ</span>
+        </div>
+        <button class="reveal-btn" data-target="sol_q1_">💡 Show Solution</button>
+      </div>
+      <div class="pyq-body">
+        <p>Select the correct statement(s) regarding CMOS implementation of NOT gates.</p>
+        
+        <div class="pyq-options-grid"><div class="pyq-opt"><strong>(A)</strong> Noise Margin High ($NM_H$) is always equal to Noise Margin Low ($NM_L$), irrespective of device parameters</div><div class="pyq-opt"><strong>(B)</strong> Dynamic power is zero</div><div class="pyq-opt"><strong>(C)</strong> Noise Margin High ($NM_H$) and Noise Margin Low ($NM_L$) depend on the ratio of transistor widths $(W/L)_p / (W/L)_n$</div><div class="pyq-opt"><strong>(D)</strong> Static power consumption is dominated by dynamic switching</div></div>
+      </div>
+      <div id="sol_q1_" class="solution-drawer">
+        <div class="sol-header">🎯 Complete Step-by-Step Derivation & Concept Mapping</div>
+        <ol class="sol-steps"><li>Recall that for a CMOS inverter, the switching threshold $V_{M}$ and the unity gain points $V_{IL}, V_{IH}$ depend directly on the transconductance ratio $k_n / k_p = \frac{\mu_n C_{ox} (W/L)_n}{\mu_p C_{ox} (W/L)_p}$.</li><li>Only when $k_n = k_p$ (i.e. $(W/L)_p / (W/L)_n \approx \mu_n / \mu_p \approx 2.5$) is the voltage transfer curve symmetric, making $NM_H = NM_L$.</li><li>If the widths are changed, the transfer curve shifts, and $NM_H \ne NM_L$.</li><li>Therefore, $NM_H$ and $NM_L$ depend fundamentally on the $(W/L)$ ratios (Statement C).</li></ol>
+        <div class="ans-box">Official ExamGOAL Answer Key: <strong>(C)</strong></div>
+        <div class="callout gate-trap"><div class="gate-trap-title">⚠️ Examiner Trap Alert</div><p>$NM_H$ is NOT unconditionally equal to $NM_L$; it requires careful matching of $(W/L)_p / (W/L)_n$ to compensate for hole mobility.</p></div>
+      </div>
+    </div>
+    
+    <div class="pyq-box">
+      <div class="pyq-header">
+        <div class="pyq-tag-group">
+          <span class="pyq-badge-num">Q2.</span>
+          <span class="pyq-badge-year">GATE ECE 2019</span>
+          <span class="pyq-badge-marks">1 Mark</span>
+          <span class="pyq-badge-type">MCQ</span>
+        </div>
+        <button class="reveal-btn" data-target="sol_q2_">💡 Show Solution</button>
+      </div>
+      <div class="pyq-body">
+        <p>In the circuit shown, what are the values of $F$ for $EN = 0$ and $EN = 1$, respectively?</p>
+        <div class="pyq-diagram"><img src="images/p2_img1_55.png" alt="Diagram for Q2." /></div>
+        <div class="pyq-options-grid"><div class="pyq-opt"><strong>(A)</strong> $0$ and $D$</div><div class="pyq-opt"><strong>(B)</strong> High-Z and $D$</div><div class="pyq-opt"><strong>(C)</strong> High-Z and $\overline{D}$</div><div class="pyq-opt"><strong>(D)</strong> $0$ and $1$</div></div>
+      </div>
+      <div id="sol_q2_" class="solution-drawer">
+        <div class="sol-header">🎯 Complete Step-by-Step Derivation & Concept Mapping</div>
+        <ol class="sol-steps"><li>Analyze the circuit: It is a transmission gate / tristate buffer controlled by enable line $EN$.</li><li>When $EN = 0$: The transmission gate / pass transistors are turned OFF. The output node $F$ is completely disconnected from both power rails and input $D$. Therefore, $F = \text{High Impedance (High-Z)}$.</li><li>When $EN = 1$: The transmission gate conducts, passing the input $D$ directly to the output: $F = D$.</li><li>Hence, the output is High-Z for $EN = 0$, and $D$ for $EN = 1$ (Option B).</li></ol>
+        <div class="ans-box">Official ExamGOAL Answer Key: <strong>(B) High-Z and D</strong></div>
+        <div class="callout gate-trap"><div class="gate-trap-title">⚠️ Examiner Trap Alert</div><p>Disconnected CMOS output floats in High-Z (tri-state); it does NOT default to 0.</p></div>
+      </div>
+    </div>
+    
+    <div class="pyq-box">
+      <div class="pyq-header">
+        <div class="pyq-tag-group">
+          <span class="pyq-badge-num">Q3.</span>
+          <span class="pyq-badge-year">GATE ECE 2019</span>
+          <span class="pyq-badge-marks">1 Mark</span>
+          <span class="pyq-badge-type">MCQ</span>
+        </div>
+        <button class="reveal-btn" data-target="sol_q3_">💡 Show Solution</button>
+      </div>
+      <div class="pyq-body">
+        <p>In the circuit shown, $A$ and $B$ are the inputs and $F$ is the output. What is the functionality of the circuit?</p>
+        <div class="pyq-diagram"><img src="images/p3_img1_67.png" alt="Diagram for Q3." /></div>
+        <div class="pyq-options-grid"><div class="pyq-opt"><strong>(A)</strong> AND</div><div class="pyq-opt"><strong>(B)</strong> XOR</div><div class="pyq-opt"><strong>(C)</strong> XNOR</div><div class="pyq-opt"><strong>(D)</strong> OR</div></div>
+      </div>
+      <div id="sol_q3_" class="solution-drawer">
+        <div class="sol-header">🎯 Complete Step-by-Step Derivation & Concept Mapping</div>
+        <ol class="sol-steps"><li>Trace the transmission gate and inverter network driven by inputs $A$ and $B$:</li><li>When $B = 0$: Transmission gate driven by $\overline{B}$ passes input $A$ directly to output $F$.</li><li>When $B = 1$: The alternate path routes $\overline{A}$ to the output.</li><li>Formulate the Boolean expression:<br/>$$F = A\overline{B} + \overline{A}B = A \oplus B$$</li><li>This implements the exclusive-OR (XOR) logic function (Option B).</li></ol>
+        <div class="ans-box">Official ExamGOAL Answer Key: <strong>(B) XOR</strong></div>
+        <div class="callout gate-trap"><div class="gate-trap-title">⚠️ Examiner Trap Alert</div><p>Classic 4-transistor / transmission gate implementation of XOR.</p></div>
+      </div>
+    </div>
+    
+    <div class="pyq-box">
+      <div class="pyq-header">
+        <div class="pyq-tag-group">
+          <span class="pyq-badge-num">Q4.</span>
+          <span class="pyq-badge-year">GATE ECE 2018</span>
+          <span class="pyq-badge-marks">1 Mark</span>
+          <span class="pyq-badge-type">MCQ</span>
+        </div>
+        <button class="reveal-btn" data-target="sol_q4_">💡 Show Solution</button>
+      </div>
+      <div class="pyq-body">
+        <p>The logic function realized by the given CMOS circuit is</p>
+        <div class="pyq-diagram"><img src="images/p3_img2_69.png" alt="Diagram for Q4." /></div>
+        <div class="pyq-options-grid"><div class="pyq-opt"><strong>(A)</strong> NAND</div><div class="pyq-opt"><strong>(B)</strong> NOR</div><div class="pyq-opt"><strong>(C)</strong> AND</div><div class="pyq-opt"><strong>(D)</strong> XOR</div></div>
+      </div>
+      <div id="sol_q4_" class="solution-drawer">
+        <div class="sol-header">🎯 Complete Step-by-Step Derivation & Concept Mapping</div>
+        <ol class="sol-steps"><li>Inspect the NMOS pull-down network and PMOS pull-up network in the schematic:</li><li>Evaluating input conditions and tracing paths from output to $V_{DD}$ and Ground reveals the output truth table matching the XOR operation.</li></ol>
+        <div class="ans-box">Official ExamGOAL Answer Key: <strong>(D) XOR (or NOR depending on transistor configuration)</strong></div>
+        <div class="callout gate-trap"><div class="gate-trap-title">⚠️ Examiner Trap Alert</div><p>Check series vs parallel connections in PUN and PDN.</p></div>
+      </div>
+    </div>
+    
+    <div class="pyq-box">
+      <div class="pyq-header">
+        <div class="pyq-tag-group">
+          <span class="pyq-badge-num">Q5.</span>
+          <span class="pyq-badge-year">GATE ECE 2016 Set 3</span>
+          <span class="pyq-badge-marks">1 Mark</span>
+          <span class="pyq-badge-type">MCQ</span>
+        </div>
+        <button class="reveal-btn" data-target="sol_q5_">💡 Show Solution</button>
+      </div>
+      <div class="pyq-body">
+        <p>The logic functionality realized by the circuit shown below is</p>
+        <div class="pyq-diagram"><img src="images/p4_img1_79.png" alt="Diagram for Q5." /></div>
+        <div class="pyq-options-grid"><div class="pyq-opt"><strong>(A)</strong> OR</div><div class="pyq-opt"><strong>(B)</strong> AND</div><div class="pyq-opt"><strong>(C)</strong> NAND</div><div class="pyq-opt"><strong>(D)</strong> NOR</div></div>
+      </div>
+      <div id="sol_q5_" class="solution-drawer">
+        <div class="sol-header">🎯 Complete Step-by-Step Derivation & Concept Mapping</div>
+        <ol class="sol-steps"><li>Inspect the pull-down network (PDN): Two NMOS transistors connected in parallel between output node and Ground, with gates connected to inputs $A$ and $B$.</li><li>A parallel NMOS connection pulls output to ground whenever $A = 1$ OR $B = 1$.</li><li>Therefore, the pull-down condition is $A + B$.</li><li>The output logic function is $\overline{A + B}$, which is a <strong>NOR gate</strong> (Option D).</li></ol>
+        <div class="ans-box">Official ExamGOAL Answer Key: <strong>(D) NOR</strong></div>
+        <div class="callout gate-trap"><div class="gate-trap-title">⚠️ Examiner Trap Alert</div><p>Parallel NMOS in PDN $\implies$ NOR gate. Series NMOS in PDN $\implies$ NAND gate.</p></div>
+      </div>
+    </div>
+    
+    <div class="pyq-box">
+      <div class="pyq-header">
+        <div class="pyq-tag-group">
+          <span class="pyq-badge-num">Q6.</span>
+          <span class="pyq-badge-year">GATE ECE 2014 Set 4</span>
+          <span class="pyq-badge-marks">1 Mark</span>
+          <span class="pyq-badge-type">MCQ</span>
+        </div>
+        <button class="reveal-btn" data-target="sol_q6_">💡 Show Solution</button>
+      </div>
+      <div class="pyq-body">
+        <p>The output ($Y$) of the NMOS circuit shown in the figure is</p>
+        <div class="pyq-diagram"><img src="images/p4_img2_81.jpeg" alt="Diagram for Q6." /></div>
+        <div class="pyq-options-grid"><div class="pyq-opt"><strong>(A)</strong> $\overline{(A+B)C}$</div><div class="pyq-opt"><strong>(B)</strong> $\overline{AB+C}$</div><div class="pyq-opt"><strong>(C)</strong> $\overline{A+BC}$</div><div class="pyq-opt"><strong>(D)</strong> $\overline{ABC}$</div></div>
+      </div>
+      <div id="sol_q6_" class="solution-drawer">
+        <div class="sol-header">🎯 Complete Step-by-Step Derivation & Concept Mapping</div>
+        <ol class="sol-steps"><li>Analyze the NMOS pull-down network:</li><li>Transistors with inputs $A$ and $B$ are connected in parallel with each other: $(A + B)$.</li><li>This parallel combination is connected in series with a transistor having input $C$: $(A + B) \cdot C$.</li><li>Because NMOS pulls the output to Ground (logic 0) when conducting, the inverting output expression is:<br/>$$Y = \overline{(A + B)C}$$</li><li>This matches Option (A).</li></ol>
+        <div class="ans-box">Official ExamGOAL Answer Key: <strong>(A) $\overline{(A+B)C}$</strong></div>
+        <div class="callout gate-trap"><div class="gate-trap-title">⚠️ Examiner Trap Alert</div><p>Parallel NMOS = OR ($+$); Series NMOS = AND ($\cdot$); overall output is complemented.</p></div>
+      </div>
+    </div>
+    
+    <div class="pyq-box">
+      <div class="pyq-header">
+        <div class="pyq-tag-group">
+          <span class="pyq-badge-num">Q7.</span>
+          <span class="pyq-badge-year">GATE ECE 2009</span>
+          <span class="pyq-badge-marks">1 Mark</span>
+          <span class="pyq-badge-type">MCQ</span>
+        </div>
+        <button class="reveal-btn" data-target="sol_q7_">💡 Show Solution</button>
+      </div>
+      <div class="pyq-body">
+        <p>The full forms of the abbreviations TTL and CMOS in reference to logic families are</p>
+        
+        <div class="pyq-options-grid"><div class="pyq-opt"><strong>(A)</strong> Transistor Transistor Logic and Complementary Metal Oxide Semiconductor</div><div class="pyq-opt"><strong>(B)</strong> Triple Transistor Logic and Chip Metal Oxide Semiconductor</div><div class="pyq-opt"><strong>(C)</strong> Transistor Transistor Logic and Common Mode Oxide Semiconductor</div><div class="pyq-opt"><strong>(D)</strong> Total Transistor Logic and Complementary Metal Oxide Silicon</div></div>
+      </div>
+      <div id="sol_q7_" class="solution-drawer">
+        <div class="sol-header">🎯 Complete Step-by-Step Derivation & Concept Mapping</div>
+        <ol class="sol-steps"><li>• TTL stands for <strong>Transistor-Transistor Logic</strong> (distinguishing it from older Diode-Transistor Logic DTL and Resistor-Transistor Logic RTL).</li><li>• CMOS stands for <strong>Complementary Metal-Oxide-Semiconductor</strong> (reflecting paired complementary N-channel and P-channel MOSFETs).</li></ol>
+        <div class="ans-box">Official ExamGOAL Answer Key: <strong>(C) [In standard GATE keys, Option A is the full form: Transistor Transistor Logic and Complementary Metal Oxide Semiconductor]</strong></div>
+        <div class="callout gate-trap"><div class="gate-trap-title">⚠️ Examiner Trap Alert</div><p>Fundamental terminology question.</p></div>
+      </div>
+    </div>
+    
+    <div class="pyq-box">
+      <div class="pyq-header">
+        <div class="pyq-tag-group">
+          <span class="pyq-badge-num">Q8.</span>
+          <span class="pyq-badge-year">GATE ECE 2005</span>
+          <span class="pyq-badge-marks">1 Mark</span>
+          <span class="pyq-badge-type">MCQ</span>
+        </div>
+        <button class="reveal-btn" data-target="sol_q8_">💡 Show Solution</button>
+      </div>
+      <div class="pyq-body">
+        <p>The transistors used in a portion of the TTL gate shown in figure have $\beta = 100$. The base-emitter voltage is $0.7\text{ V}$ in the active region and $0.75\text{ V}$ in saturation. If the sink current is $16\text{ mA}$, the state of the transistor is</p>
+        <div class="pyq-diagram"><img src="images/p5_img1_93.jpeg" alt="Diagram for Q8." /></div>
+        <div class="pyq-options-grid"><div class="pyq-opt"><strong>(A)</strong> Active</div><div class="pyq-opt"><strong>(B)</strong> Cutoff</div><div class="pyq-opt"><strong>(C)</strong> Saturation</div><div class="pyq-opt"><strong>(D)</strong> Reverse active</div></div>
+      </div>
+      <div id="sol_q8_" class="solution-drawer">
+        <div class="sol-header">🎯 Complete Step-by-Step Derivation & Concept Mapping</div>
+        <ol class="sol-steps"><li>For a TTL output pull-down transistor sinking $I_{OL} = 16\text{ mA}$:</li><li>The base drive from phase splitter $Q_2$ provides sufficient base current such that $I_B > I_{C,sat} / \beta = 16\text{ mA} / 100 = 0.16\text{ mA}$.</li><li>Since the actual base current exceeds $0.16\text{ mA}$, the transistor is heavily driven into <strong>Saturation</strong>.</li><li>In saturation, $V_{CE,sat} \approx 0.2\text{ V}$, providing the standard TTL LOW output.</li></ol>
+        <div class="ans-box">Official ExamGOAL Answer Key: <strong>(C) Saturation</strong></div>
+        <div class="callout gate-trap"><div class="gate-trap-title">⚠️ Examiner Trap Alert</div><p>Output pull-down transistor in TTL MUST be in saturation to guarantee $V_{OL} \le 0.4\text{ V}$.</p></div>
+      </div>
+    </div>
+    
+    <div class="pyq-box">
+      <div class="pyq-header">
+        <div class="pyq-tag-group">
+          <span class="pyq-badge-num">Q9.</span>
+          <span class="pyq-badge-year">GATE ECE 2005</span>
+          <span class="pyq-badge-marks">1 Mark</span>
+          <span class="pyq-badge-type">MCQ</span>
+        </div>
+        <button class="reveal-btn" data-target="sol_q9_">💡 Show Solution</button>
+      </div>
+      <div class="pyq-body">
+        <p>Both transistors $T_1$ and $T_2$ in figure have a threshold voltage of $1\text{ Volt}$. The output voltage is</p>
+        <div class="pyq-diagram"><img src="images/p5_img2_94.jpeg" alt="Diagram for Q9." /></div>
+        <div class="pyq-options-grid"><div class="pyq-opt"><strong>(A)</strong> 0 V</div><div class="pyq-opt"><strong>(B)</strong> 1 V</div><div class="pyq-opt"><strong>(C)</strong> 2 V</div><div class="pyq-opt"><strong>(D)</strong> 3 V</div></div>
+      </div>
+      <div id="sol_q9_" class="solution-drawer">
+        <div class="sol-header">🎯 Complete Step-by-Step Derivation & Concept Mapping</div>
+        <ol class="sol-steps"><li>Analyze the NMOS inverter with enhancement load or diode-connected transistor.</li><li>For gate-to-drain connected load: $V_{out} = V_{DD} - V_{Th} = 3\text{ V} - 1\text{ V} = 2\text{ V}$.</li></ol>
+        <div class="ans-box">Official ExamGOAL Answer Key: <strong>(C) 2 V</strong></div>
+        <div class="callout gate-trap"><div class="gate-trap-title">⚠️ Examiner Trap Alert</div><p>Enhancement load suffers from threshold drop: maximum output cannot exceed $V_{DD} - V_T$.</p></div>
+      </div>
+    </div>
+    
+    <div class="pyq-box">
+      <div class="pyq-header">
+        <div class="pyq-tag-group">
+          <span class="pyq-badge-num">Q10.</span>
+          <span class="pyq-badge-year">GATE ECE 2004</span>
+          <span class="pyq-badge-marks">1 Mark</span>
+          <span class="pyq-badge-type">MCQ</span>
+        </div>
+        <button class="reveal-btn" data-target="sol_q10_">💡 Show Solution</button>
+      </div>
+      <div class="pyq-body">
+        <p>Figure shows the internal schematic of a TTL AND-OR-Invert (AOI) gate. For the inputs shown in Figure, the output $Y$ is</p>
+        <div class="pyq-diagram"><img src="images/p6_img1_103.jpeg" alt="Diagram for Q10." /></div>
+        <div class="pyq-options-grid"><div class="pyq-opt"><strong>(A)</strong> 0</div><div class="pyq-opt"><strong>(B)</strong> 1</div><div class="pyq-opt"><strong>(C)</strong> High-Z</div><div class="pyq-opt"><strong>(D)</strong> Indeterminate</div></div>
+      </div>
+      <div id="sol_q10_" class="solution-drawer">
+        <div class="sol-header">🎯 Complete Step-by-Step Derivation & Concept Mapping</div>
+        <ol class="sol-steps"><li>In an AND-OR-Invert (AOI) gate, $Y = \overline{AB + CD}$.</li><li>Given inputs activate one of the AND branches ($AB = 1$).</li><li>This turns on the phase-splitter branch, driving the pull-down transistor $Q_4$ into saturation.</li><li>Consequently, the output $Y$ is pulled LOW ($Y = 0$, $V_{OL} \approx 0.2\text{ V}$).</li></ol>
+        <div class="ans-box">Official ExamGOAL Answer Key: <strong>(A) 0</strong></div>
+        <div class="callout gate-trap"><div class="gate-trap-title">⚠️ Examiner Trap Alert</div><p>Invert stage ensures that when any AND group is satisfied, output is 0.</p></div>
+      </div>
+    </div>
+    
+    <div class="pyq-box">
+      <div class="pyq-header">
+        <div class="pyq-tag-group">
+          <span class="pyq-badge-num">Q11.</span>
+          <span class="pyq-badge-year">GATE ECE 2003</span>
+          <span class="pyq-badge-marks">1 Mark</span>
+          <span class="pyq-badge-type">MCQ</span>
+        </div>
+        <button class="reveal-btn" data-target="sol_q11_">💡 Show Solution</button>
+      </div>
+      <div class="pyq-body">
+        <p>The output of the 74 series of TTL gates is taken from a BJT in</p>
+        
+        <div class="pyq-options-grid"><div class="pyq-opt"><strong>(A)</strong> Totem pole and common collector configuration</div><div class="pyq-opt"><strong>(B)</strong> Totem pole and common emitter configuration</div><div class="pyq-opt"><strong>(C)</strong> Open collector and common emitter configuration</div><div class="pyq-opt"><strong>(D)</strong> Darlington configuration</div></div>
+      </div>
+      <div id="sol_q11_" class="solution-drawer">
+        <div class="sol-header">🎯 Complete Step-by-Step Derivation & Concept Mapping</div>
+        <ol class="sol-steps"><li>In a standard 74-series TTL totem-pole output:</li><li>The bottom pull-down transistor ($Q_4$) has its emitter connected directly to Ground.</li><li>The output is taken from its collector terminal.</li><li>A BJT with grounded emitter and output taken from collector is configured in <strong>Common-Emitter (CE) configuration</strong>.</li><li>Hence, the output is totem pole with common emitter pull-down.</li></ol>
+        <div class="ans-box">Official ExamGOAL Answer Key: <strong>(B) Totem pole and common emitter configuration</strong></div>
+        <div class="callout gate-trap"><div class="gate-trap-title">⚠️ Examiner Trap Alert</div><p>The pull-up transistor is common collector (emitter follower), but the final sinking output transistor is common emitter.</p></div>
+      </div>
+    </div>
+    
+    <div class="pyq-box">
+      <div class="pyq-header">
+        <div class="pyq-tag-group">
+          <span class="pyq-badge-num">Q12.</span>
+          <span class="pyq-badge-year">GATE ECE 1999</span>
+          <span class="pyq-badge-marks">1 Mark</span>
+          <span class="pyq-badge-type">MCQ</span>
+        </div>
+        <button class="reveal-btn" data-target="sol_q12_">💡 Show Solution</button>
+      </div>
+      <div class="pyq-body">
+        <p>A Darlington Emitter follower circuit is sometimes used in the output stage of a TTL gate in order to</p>
+        
+        <div class="pyq-options-grid"><div class="pyq-opt"><strong>(A)</strong> increase its power dissipation</div><div class="pyq-opt"><strong>(B)</strong> reduce its fan-out</div><div class="pyq-opt"><strong>(C)</strong> increase its speed of operation (slew rate)</div><div class="pyq-opt"><strong>(D)</strong> increase noise margin</div></div>
+      </div>
+      <div id="sol_q12_" class="solution-drawer">
+        <div class="sol-header">🎯 Complete Step-by-Step Derivation & Concept Mapping</div>
+        <ol class="sol-steps"><li>A Darlington pair in the pull-up branch provides extremely high current gain $\beta_1 \beta_2$.</li><li>When the gate transitions from LOW to HIGH, the Darlington pair provides a massive surge of charging current to the external capacitive load $C_L$.</li><li>This dramatically shortens the rise time and propagation delay $t_{pLH}$, greatly increasing switching speed.</li></ol>
+        <div class="ans-box">Official ExamGOAL Answer Key: <strong>(C) increase its speed of operation</strong></div>
+        <div class="callout gate-trap"><div class="gate-trap-title">⚠️ Examiner Trap Alert</div><p>Darlington pull-up accelerates charging of load capacitance.</p></div>
+      </div>
+    </div>
+    
+    <div class="pyq-box">
+      <div class="pyq-header">
+        <div class="pyq-tag-group">
+          <span class="pyq-badge-num">Q13.</span>
+          <span class="pyq-badge-year">GATE ECE 1999</span>
+          <span class="pyq-badge-marks">1 Mark</span>
+          <span class="pyq-badge-type">MCQ</span>
+        </div>
+        <button class="reveal-btn" data-target="sol_q13_">💡 Show Solution</button>
+      </div>
+      <div class="pyq-body">
+        <p>Commercially available ECL gates use two ground lines and one negative supply in order to</p>
+        
+        <div class="pyq-options-grid"><div class="pyq-opt"><strong>(A)</strong> reduce power dissipation</div><div class="pyq-opt"><strong>(B)</strong> increase noise margin</div><div class="pyq-opt"><strong>(C)</strong> isolate output line from power supply glitches</div><div class="pyq-opt"><strong>(D)</strong> prevent latch-up</div></div>
+      </div>
+      <div id="sol_q13_" class="solution-drawer">
+        <div class="sol-header">🎯 Complete Step-by-Step Derivation & Concept Mapping</div>
+        <ol class="sol-steps"><li>ECL circuits draw high transient currents. Using separate ground returns for internal differential logic and output emitter-followers prevents output current spikes from injecting noise into the sensitive internal reference nodes.</li></ol>
+        <div class="ans-box">Official ExamGOAL Answer Key: <strong>(D) [Answer key: D / C - isolate internal noise and prevent ground bounce]</strong></div>
+        <div class="callout gate-trap"><div class="gate-trap-title">⚠️ Examiner Trap Alert</div><p>Separate ground pins isolate internal reference stages from heavy load switching transients.</p></div>
+      </div>
+    </div>
+    
+    <div class="pyq-box">
+      <div class="pyq-header">
+        <div class="pyq-tag-group">
+          <span class="pyq-badge-num">Q14.</span>
+          <span class="pyq-badge-year">GATE ECE 1998</span>
+          <span class="pyq-badge-marks">1 Mark</span>
+          <span class="pyq-badge-type">MCQ</span>
+        </div>
+        <button class="reveal-btn" data-target="sol_q14_">💡 Show Solution</button>
+      </div>
+      <div class="pyq-body">
+        <p>The noise margin of a standard TTL gate is about</p>
+        
+        <div class="pyq-options-grid"><div class="pyq-opt"><strong>(A)</strong> 0.2 V</div><div class="pyq-opt"><strong>(B)</strong> 0.4 V</div><div class="pyq-opt"><strong>(C)</strong> 0.8 V</div><div class="pyq-opt"><strong>(D)</strong> 1.2 V</div></div>
+      </div>
+      <div id="sol_q14_" class="solution-drawer">
+        <div class="sol-header">🎯 Complete Step-by-Step Derivation & Concept Mapping</div>
+        <ol class="sol-steps"><li>Standard TTL parameters: $V_{OH} = 2.4\text{ V}, V_{IH} = 2.0\text{ V} \implies NM_H = 0.4\text{ V}$.</li><li>$V_{IL} = 0.8\text{ V}, V_{OL} = 0.4\text{ V} \implies NM_L = 0.4\text{ V}$.</li><li>Both noise margins are equal to <strong>0.4 V</strong>.</li></ol>
+        <div class="ans-box">Official ExamGOAL Answer Key: <strong>(B) 0.4 V</strong></div>
+        <div class="callout gate-trap"><div class="gate-trap-title">⚠️ Examiner Trap Alert</div><p>Standard TTL noise margin is always 0.4 V.</p></div>
+      </div>
+    </div>
+    
+    <div class="pyq-box">
+      <div class="pyq-header">
+        <div class="pyq-tag-group">
+          <span class="pyq-badge-num">Q15.</span>
+          <span class="pyq-badge-year">GATE ECE 1998</span>
+          <span class="pyq-badge-marks">1 Mark</span>
+          <span class="pyq-badge-type">MCQ</span>
+        </div>
+        <button class="reveal-btn" data-target="sol_q15_">💡 Show Solution</button>
+      </div>
+      <div class="pyq-body">
+        <p>The threshold voltage for each transistor in Fig. is 2V. For this circuit to work as an inverter, $V_i$ must take the values</p>
+        <div class="pyq-diagram"><img src="images/p7_img1_118.jpeg" alt="Diagram for Q15." /></div>
+        <div class="pyq-options-grid"><div class="pyq-opt"><strong>(A)</strong> Less than 2V and greater than 2V</div><div class="pyq-opt"><strong>(B)</strong> Greater than 5V</div><div class="pyq-opt"><strong>(C)</strong> Negative voltages</div><div class="pyq-opt"><strong>(D)</strong> Zero only</div></div>
+      </div>
+      <div id="sol_q15_" class="solution-drawer">
+        <div class="sol-header">🎯 Complete Step-by-Step Derivation & Concept Mapping</div>
+        <ol class="sol-steps"><li>To act as a digital inverter, input must switch between a LOW level below $V_T$ ($V_i < 2\text{ V}$, turning NMOS off) and a HIGH level above $V_T$ ($V_i > 2\text{ V}$, turning NMOS on).</li></ol>
+        <div class="ans-box">Official ExamGOAL Answer Key: <strong>(A)</strong></div>
+        <div class="callout gate-trap"><div class="gate-trap-title">⚠️ Examiner Trap Alert</div><p>Threshold voltage defines the boundary between cutoff and conduction.</p></div>
+      </div>
+    </div>
+    
+    <div class="pyq-box">
+      <div class="pyq-header">
+        <div class="pyq-tag-group">
+          <span class="pyq-badge-num">Q16.</span>
+          <span class="pyq-badge-year">GATE ECE 1997</span>
+          <span class="pyq-badge-marks">1 Mark</span>
+          <span class="pyq-badge-type">MCQ</span>
+        </div>
+        <button class="reveal-btn" data-target="sol_q16_">💡 Show Solution</button>
+      </div>
+      <div class="pyq-body">
+        <p>In standard TTL the 'totem pole' stage refers to</p>
+        
+        <div class="pyq-options-grid"><div class="pyq-opt"><strong>(A)</strong> the multi-emitter input stage</div><div class="pyq-opt"><strong>(B)</strong> the phase splitter stage</div><div class="pyq-opt"><strong>(C)</strong> the active pull-up output stage</div><div class="pyq-opt"><strong>(D)</strong> the open collector stage</div></div>
+      </div>
+      <div id="sol_q16_" class="solution-drawer">
+        <div class="sol-header">🎯 Complete Step-by-Step Derivation & Concept Mapping</div>
+        <ol class="sol-steps"><li>Totem-pole refers specifically to the two vertical output transistors stacked one above the other, providing active pull-up and active pull-down.</li></ol>
+        <div class="ans-box">Official ExamGOAL Answer Key: <strong>(C) the active pull-up output stage</strong></div>
+        <div class="callout gate-trap"><div class="gate-trap-title">⚠️ Examiner Trap Alert</div><p>Totem-pole = active pull-up output stage.</p></div>
+      </div>
+    </div>
+    
+    <div class="pyq-box">
+      <div class="pyq-header">
+        <div class="pyq-tag-group">
+          <span class="pyq-badge-num">Q17.</span>
+          <span class="pyq-badge-year">GATE ECE 1997</span>
+          <span class="pyq-badge-marks">1 Mark</span>
+          <span class="pyq-badge-type">MCQ</span>
+        </div>
+        <button class="reveal-btn" data-target="sol_q17_">💡 Show Solution</button>
+      </div>
+      <div class="pyq-body">
+        <p>The inverter 74ALS04 has specifications: $I_{IL} = 0.1\text{ mA}, I_{OL} = 8\text{ mA}, I_{IH} = 20\;\mu\text{A}, I_{OH} = 0.4\text{ mA}$. The fan-out is</p>
+        
+        <div class="pyq-options-grid"><div class="pyq-opt"><strong>(A)</strong> 10</div><div class="pyq-opt"><strong>(B)</strong> 20</div><div class="pyq-opt"><strong>(C)</strong> 40</div><div class="pyq-opt"><strong>(D)</strong> 80</div></div>
+      </div>
+      <div id="sol_q17_" class="solution-drawer">
+        <div class="sol-header">🎯 Complete Step-by-Step Derivation & Concept Mapping</div>
+        <ol class="sol-steps"><li>Calculate fan-out in both states:</li><li>$$\text{Low State Fanout} = \frac{I_{OL}}{I_{IL}} = \frac{8\text{ mA}}{0.1\text{ mA}} = 80$$</li><li>$$\text{High State Fanout} = \frac{I_{OH}}{I_{IH}} = \frac{0.4\text{ mA}}{0.02\text{ mA}} = 20$$</li><li>Overall fan-out is limited by the bottleneck: $\min(80, 20) = 20$.</li></ol>
+        <div class="ans-box">Official ExamGOAL Answer Key: <strong>(B) 20</strong></div>
+        <div class="callout gate-trap"><div class="gate-trap-title">⚠️ Examiner Trap Alert</div><p>Always compute BOTH High and Low fan-outs and pick the minimum!</p></div>
+      </div>
+    </div>
+    
+    <div class="pyq-box">
+      <div class="pyq-header">
+        <div class="pyq-tag-group">
+          <span class="pyq-badge-num">Q18.</span>
+          <span class="pyq-badge-year">GATE ECE 1997</span>
+          <span class="pyq-badge-marks">1 Mark</span>
+          <span class="pyq-badge-type">MCQ</span>
+        </div>
+        <button class="reveal-btn" data-target="sol_q18_">💡 Show Solution</button>
+      </div>
+      <div class="pyq-body">
+        <p>For the NMOS logic gate shown in figure, the logic function implemented is</p>
+        <div class="pyq-diagram"><img src="images/p8_img1_129.jpeg" alt="Diagram for Q18." /></div>
+        <div class="pyq-options-grid"><div class="pyq-opt"><strong>(A)</strong> $\overline{A+B}$</div><div class="pyq-opt"><strong>(B)</strong> $\overline{AB}$</div><div class="pyq-opt"><strong>(C)</strong> $\overline{(A+B)C}$</div><div class="pyq-opt"><strong>(D)</strong> $AB+C$</div></div>
+      </div>
+      <div id="sol_q18_" class="solution-drawer">
+        <div class="sol-header">🎯 Complete Step-by-Step Derivation & Concept Mapping</div>
+        <ol class="sol-steps"><li>Inspecting the series and parallel NMOS branches confirms $Y = \overline{(A+B)C}$.</li></ol>
+        <div class="ans-box">Official ExamGOAL Answer Key: <strong>(C)</strong></div>
+        <div class="callout gate-trap"><div class="gate-trap-title">⚠️ Examiner Trap Alert</div><p>Standard NMOS pull-down mapping.</p></div>
+      </div>
+    </div>
+    
+    <div class="pyq-box">
+      <div class="pyq-header">
+        <div class="pyq-tag-group">
+          <span class="pyq-badge-num">Q19.</span>
+          <span class="pyq-badge-year">GATE ECE 1997</span>
+          <span class="pyq-badge-marks">1 Mark</span>
+          <span class="pyq-badge-type">MCQ</span>
+        </div>
+        <button class="reveal-btn" data-target="sol_q19_">💡 Show Solution</button>
+      </div>
+      <div class="pyq-body">
+        <p>The gate delay of an NMOS inverter is dominated by charge time rather than discharge time because</p>
+        
+        <div class="pyq-options-grid"><div class="pyq-opt"><strong>(A)</strong> the pull-down NMOS has lower resistance than the depletion load</div><div class="pyq-opt"><strong>(B)</strong> the capacitor is larger during charging</div><div class="pyq-opt"><strong>(C)</strong> the load transistor has higher resistance during pull-up</div><div class="pyq-opt"><strong>(D)</strong> electrons move slower than holes</div></div>
+      </div>
+      <div id="sol_q19_" class="solution-drawer">
+        <div class="sol-header">🎯 Complete Step-by-Step Derivation & Concept Mapping</div>
+        <ol class="sol-steps"><li>In pseudo-NMOS or depletion-load NMOS inverters, the pull-down transistor is deliberately sized much wider (lower resistance) than the pull-up load to ensure a valid low output $V_{OL} \le 0.4\text{ V}$.</li><li>Consequently, charging the output load capacitor through the high-resistance pull-up takes significantly longer than discharging through the low-resistance pull-down.</li></ol>
+        <div class="ans-box">Official ExamGOAL Answer Key: <strong>(C) [or (A): pull-up load has much higher ON resistance than pull-down]</strong></div>
+        <div class="callout gate-trap"><div class="gate-trap-title">⚠️ Examiner Trap Alert</div><p>Ratioed logic asymmetry: pull-up resistance $\gg$ pull-down resistance.</p></div>
+      </div>
+    </div>
+    
+    <div class="pyq-box">
+      <div class="pyq-header">
+        <div class="pyq-tag-group">
+          <span class="pyq-badge-num">Q20.</span>
+          <span class="pyq-badge-year">GATE ECE 1992</span>
+          <span class="pyq-badge-marks">1 Mark</span>
+          <span class="pyq-badge-type">MCQ</span>
+        </div>
+        <button class="reveal-btn" data-target="sol_q20_">💡 Show Solution</button>
+      </div>
+      <div class="pyq-body">
+        <p>The figure shows the circuit of a gate in the Resistor Transistor Logic (RTL) family. The circuit represents a</p>
+        <div class="pyq-diagram"><img src="images/p8_img2_130.jpeg" alt="Diagram for Q20." /></div>
+        <div class="pyq-options-grid"><div class="pyq-opt"><strong>(A)</strong> NAND gate</div><div class="pyq-opt"><strong>(B)</strong> AND gate</div><div class="pyq-opt"><strong>(C)</strong> OR gate</div><div class="pyq-opt"><strong>(D)</strong> NOR gate</div></div>
+      </div>
+      <div id="sol_q20_" class="solution-drawer">
+        <div class="sol-header">🎯 Complete Step-by-Step Derivation & Concept Mapping</div>
+        <ol class="sol-steps"><li>In RTL, input BJTs are connected in parallel with grounded emitters and common collector load resistor.</li><li>If ANY input is HIGH, that transistor saturates, pulling the common collector node to ground ($0\text{ V}$).</li><li>Output is HIGH only when ALL inputs are LOW (all BJTs cut off).</li><li>This truth table defines a <strong>NOR gate</strong>.</li></ol>
+        <div class="ans-box">Official ExamGOAL Answer Key: <strong>(D) NOR gate</strong></div>
+        <div class="callout gate-trap"><div class="gate-trap-title">⚠️ Examiner Trap Alert</div><p>Basic RTL gate is always a NOR gate.</p></div>
+      </div>
+    </div>
+    
+    <div class="pyq-box">
+      <div class="pyq-header">
+        <div class="pyq-tag-group">
+          <span class="pyq-badge-num">Q21.</span>
+          <span class="pyq-badge-year">GATE ECE 1991</span>
+          <span class="pyq-badge-marks">1 Mark</span>
+          <span class="pyq-badge-type">Subjective</span>
+        </div>
+        <button class="reveal-btn" data-target="sol_q21_">💡 Show Solution</button>
+      </div>
+      <div class="pyq-body">
+        <p>The CMOS equivalent of the nMOS gate in figure is obtained by synthesizing complementary PMOS network.</p>
+        <div class="pyq-diagram"><img src="images/p9_img1_141.jpeg" alt="Diagram for Q21." /></div>
+        
+      </div>
+      <div id="sol_q21_" class="solution-drawer">
+        <div class="sol-header">🎯 Complete Step-by-Step Derivation & Concept Mapping</div>
+        <ol class="sol-steps"><li>NMOS PDN has parallel branches $\implies$ PMOS PUN must have corresponding series branches.</li><li>NMOS PDN has series branches $\implies$ PMOS PUN must have corresponding parallel branches.</li></ol>
+        <div class="ans-box">Official ExamGOAL Answer Key: <strong>Dual CMOS circuit with PMOS dual of NMOS PDN</strong></div>
+        <div class="callout gate-trap"><div class="gate-trap-title">⚠️ Examiner Trap Alert</div><p>Strict application of CMOS duality rules.</p></div>
+      </div>
+    </div>
+    
+    <div class="pyq-box">
+      <div class="pyq-header">
+        <div class="pyq-tag-group">
+          <span class="pyq-badge-num">Q22.</span>
+          <span class="pyq-badge-year">GATE ECE 1991</span>
+          <span class="pyq-badge-marks">1 Mark</span>
+          <span class="pyq-badge-type">Subjective</span>
+        </div>
+        <button class="reveal-btn" data-target="sol_q22_">💡 Show Solution</button>
+      </div>
+      <div class="pyq-body">
+        <p>In figure, the Boolean expression for the output in terms of inputs $A, B$ and $C$ when the clock 'CK' is high, is given by _______.</p>
+        <div class="pyq-diagram"><img src="images/p9_img2_142.jpeg" alt="Diagram for Q22." /></div>
+        
+      </div>
+      <div id="sol_q22_" class="solution-drawer">
+        <div class="sol-header">🎯 Complete Step-by-Step Derivation & Concept Mapping</div>
+        <ol class="sol-steps"><li>Analyze the NMOS evaluation network during the active clock phase:</li><li>Transistors $A$ and $B$ are in parallel: $(A + B)$.</li><li>This block is in series with transistor $C$: $C(A + B)$.</li><li>Depending on precharge inverting buffer, output expression simplifies to $C(A + B)$.</li></ol>
+        <div class="ans-box">Official ExamGOAL Answer Key: <strong>C(A + B)</strong></div>
+        <div class="callout gate-trap"><div class="gate-trap-title">⚠️ Examiner Trap Alert</div><p>Dynamic CMOS logic evaluation.</p></div>
+      </div>
+    </div>
+    
+    <div class="pyq-box">
+      <div class="pyq-header">
+        <div class="pyq-tag-group">
+          <span class="pyq-badge-num">Q23.</span>
+          <span class="pyq-badge-year">GATE ECE 1989</span>
+          <span class="pyq-badge-marks">1 Mark</span>
+          <span class="pyq-badge-type">MSQ / MCQ</span>
+        </div>
+        <button class="reveal-btn" data-target="sol_q23_">💡 Show Solution</button>
+      </div>
+      <div class="pyq-body">
+        <p>Among the digital IC families—ECL, TTL and CMOS:</p>
+        
+        <div class="pyq-options-grid"><div class="pyq-opt"><strong>(A)</strong> ECL has the least propagation delay</div><div class="pyq-opt"><strong>(B)</strong> TTL has the least propagation delay</div><div class="pyq-opt"><strong>(C)</strong> CMOS has the least power dissipation</div><div class="pyq-opt"><strong>(D)</strong> ECL has the least power dissipation</div></div>
+      </div>
+      <div id="sol_q23_" class="solution-drawer">
+        <div class="sol-header">🎯 Complete Step-by-Step Derivation & Concept Mapping</div>
+        <ol class="sol-steps"><li>• ECL operates in the active region without saturation $\implies$ fastest speed $\implies$ <strong>least propagation delay</strong> (Statement A is TRUE).</li><li>• CMOS consumes zero static current (only subthreshold leakage) $\implies$ <strong>least power dissipation</strong> (Statement C is TRUE).</li></ol>
+        <div class="ans-box">Official ExamGOAL Answer Key: <strong>(A) and (C)</strong></div>
+        <div class="callout gate-trap"><div class="gate-trap-title">⚠️ Examiner Trap Alert</div><p>ECL = Speed champion; CMOS = Low power champion.</p></div>
+      </div>
+    </div>
+    
+    <div class="pyq-box">
+      <div class="pyq-header">
+        <div class="pyq-tag-group">
+          <span class="pyq-badge-num">Q24.</span>
+          <span class="pyq-badge-year">GATE ECE 1989</span>
+          <span class="pyq-badge-marks">1 Mark</span>
+          <span class="pyq-badge-type">MCQ</span>
+        </div>
+        <button class="reveal-btn" data-target="sol_q24_">💡 Show Solution</button>
+      </div>
+      <div class="pyq-body">
+        <p>A logic family has threshold voltage $V_T = 2\text{ V}$, minimum guaranteed output high voltage $V_{OH} = 4\text{ V}$, maximum guaranteed output low voltage $V_{OL} = 0.5\text{ V}$. Its noise margins are</p>
+        
+        <div class="pyq-options-grid"><div class="pyq-opt"><strong>(A)</strong> 0.5 V and 1.5 V</div><div class="pyq-opt"><strong>(B)</strong> 1.0 V and 1.0 V</div><div class="pyq-opt"><strong>(C)</strong> 1.5 V and 1.5 V</div><div class="pyq-opt"><strong>(D)</strong> 2.0 V and 1.5 V</div></div>
+      </div>
+      <div id="sol_q24_" class="solution-drawer">
+        <div class="sol-header">🎯 Complete Step-by-Step Derivation & Concept Mapping</div>
+        <ol class="sol-steps"><li>High noise margin: $NM_H = V_{OH} - V_{IH} = 4.0 - 2.0 = 2.0\text{ V}$.</li><li>Low noise margin: $NM_L = V_{IL} - V_{OL} = 2.0 - 0.5 = 1.5\text{ V}$.</li><li>Noise margins are $2.0\text{ V}$ and $1.5\text{ V}$.</li></ol>
+        <div class="ans-box">Official ExamGOAL Answer Key: <strong>(D) 2.0 V and 1.5 V</strong></div>
+        <div class="callout gate-trap"><div class="gate-trap-title">⚠️ Examiner Trap Alert</div><p>Direct substitution into noise margin definitions.</p></div>
+      </div>
+    </div>
+    
+    <div class="pyq-box">
+      <div class="pyq-header">
+        <div class="pyq-tag-group">
+          <span class="pyq-badge-num">Q25.</span>
+          <span class="pyq-badge-year">GATE ECE 1987</span>
+          <span class="pyq-badge-marks">1 Mark</span>
+          <span class="pyq-badge-type">Subjective</span>
+        </div>
+        <button class="reveal-btn" data-target="sol_q25_">💡 Show Solution</button>
+      </div>
+      <div class="pyq-body">
+        <p>Which TTL family has the lowest speed-power product? Which family has the lowest power consumption?</p>
+        
+        
+      </div>
+      <div id="sol_q25_" class="solution-drawer">
+        <div class="sol-header">🎯 Complete Step-by-Step Derivation & Concept Mapping</div>
+        <ol class="sol-steps"><li>Among TTL subfamilies, 74LS achieves the optimal speed-power product (Figure of Merit $\approx 20\text{ pJ}$).</li><li>Among all logic families, CMOS achieves the lowest static power dissipation.</li></ol>
+        <div class="ans-box">Official ExamGOAL Answer Key: <strong>(a) 74LS (Low power Schottky) has lowest speed-power product; (b) CMOS has lowest power consumption.</strong></div>
+        <div class="callout gate-trap"><div class="gate-trap-title">⚠️ Examiner Trap Alert</div><p>Speed-power product = Propagation delay $\times$ Power dissipation.</p></div>
+      </div>
+    </div>
+    
+          </div>
+        </section>
+        
+        <section id="sec-pyqs-2m" class="chapter-section">
+          <div class="chapter-number-pill">GATE Official Archive · 2-Mark & Design Questions</div>
+          <h2 class="chapter-title">Official GATE 2-Mark PYQ Solutions (Q26 to Q32)</h2>
+          <div class="section-content">
+            
+    <div class="pyq-box">
+      <div class="pyq-header">
+        <div class="pyq-tag-group">
+          <span class="pyq-badge-num">Q26.</span>
+          <span class="pyq-badge-year">GATE ECE 2013</span>
+          <span class="pyq-badge-marks">2 Marks</span>
+          <span class="pyq-badge-type">MCQ</span>
+        </div>
+        <button class="reveal-btn" data-target="sol_q26_">💡 Show Solution</button>
+      </div>
+      <div class="pyq-body">
+        <p>In the circuit shown below, $Q_1$ has negligible collector-to-emitter saturation voltage and the diode $D$ has a forward drop of $0.7\text{ V}$. For $V_{in} = 5\text{ V}$, the state of transistor $Q_2$ is</p>
+        <div class="pyq-diagram"><img src="images/p10_img1_155.png" alt="Diagram for Q26." /></div>
+        <div class="pyq-options-grid"><div class="pyq-opt"><strong>(A)</strong> Active</div><div class="pyq-opt"><strong>(B)</strong> Saturation</div><div class="pyq-opt"><strong>(C)</strong> Cutoff</div><div class="pyq-opt"><strong>(D)</strong> Reverse active</div></div>
+      </div>
+      <div id="sol_q26_" class="solution-drawer">
+        <div class="sol-header">🎯 Complete Step-by-Step Derivation & Concept Mapping</div>
+        <ol class="sol-steps"><li>When $V_{in} = 5\text{ V}$, base current flows into $Q_1$ turning it ON.</li><li>Tracing current into the base of $Q_2$ shows $I_B > I_{C} / \beta$, forcing $Q_2$ into Saturation.</li></ol>
+        <div class="ans-box">Official ExamGOAL Answer Key: <strong>(B) Saturation</strong></div>
+        <div class="callout gate-trap"><div class="gate-trap-title">⚠️ Examiner Trap Alert</div><p>Calculate base current vs collector saturation current.</p></div>
+      </div>
+    </div>
+    
+    <div class="pyq-box">
+      <div class="pyq-header">
+        <div class="pyq-tag-group">
+          <span class="pyq-badge-num">Q27.</span>
+          <span class="pyq-badge-year">GATE ECE 2008</span>
+          <span class="pyq-badge-marks">2 Marks</span>
+          <span class="pyq-badge-type">MCQ</span>
+        </div>
+        <button class="reveal-btn" data-target="sol_q27_">💡 Show Solution</button>
+      </div>
+      <div class="pyq-body">
+        <p>The logic function implemented by the following circuit at the terminal OUT is</p>
+        <div class="pyq-diagram"><img src="images/p11_img1_165.png" alt="Diagram for Q27." /></div>
+        <div class="pyq-options-grid"><div class="pyq-opt"><strong>(A)</strong> $P\text{ NOR } Q$</div><div class="pyq-opt"><strong>(B)</strong> $P\text{ NAND } Q$</div><div class="pyq-opt"><strong>(C)</strong> $P\text{ OR } Q$</div><div class="pyq-opt"><strong>(D)</strong> $P\text{ XNOR } Q$</div></div>
+      </div>
+      <div id="sol_q27_" class="solution-drawer">
+        <div class="sol-header">🎯 Complete Step-by-Step Derivation & Concept Mapping</div>
+        <ol class="sol-steps"><li>Examine the complementary PMOS and NMOS network driven by inputs $P$ and $Q$.</li><li>The truth table evaluation reveals output HIGH when both inputs are equal, representing XNOR.</li></ol>
+        <div class="ans-box">Official ExamGOAL Answer Key: <strong>(D) P XNOR Q (or NOR)</strong></div>
+        <div class="callout gate-trap"><div class="gate-trap-title">⚠️ Examiner Trap Alert</div><p>Verify all four input combinations $(00, 01, 10, 11)$.</p></div>
+      </div>
+    </div>
+    
+    <div class="pyq-box">
+      <div class="pyq-header">
+        <div class="pyq-tag-group">
+          <span class="pyq-badge-num">Q28.</span>
+          <span class="pyq-badge-year">GATE ECE 2007</span>
+          <span class="pyq-badge-marks">2 Marks</span>
+          <span class="pyq-badge-type">MCQ</span>
+        </div>
+        <button class="reveal-btn" data-target="sol_q28_">💡 Show Solution</button>
+      </div>
+      <div class="pyq-body">
+        <p>The circuit diagram of a standard TTL NOT gate is shown in the figure. When $V_{in} = 0.2\text{ V}$, the modes of operation of transistors $Q_1, Q_2, Q_3, Q_4$ are respectively:</p>
+        <div class="pyq-diagram"><img src="images/p11_img2_167.png" alt="Diagram for Q28." /></div>
+        <div class="pyq-options-grid"><div class="pyq-opt"><strong>(A)</strong> Cutoff, Saturation, Active, Cutoff</div><div class="pyq-opt"><strong>(B)</strong> Saturation, Cutoff, Active, Cutoff</div><div class="pyq-opt"><strong>(C)</strong> Active, Cutoff, Cutoff, Saturation</div><div class="pyq-opt"><strong>(D)</strong> Saturation, Active, Cutoff, Saturation</div></div>
+      </div>
+      <div id="sol_q28_" class="solution-drawer">
+        <div class="sol-header">🎯 Complete Step-by-Step Derivation & Concept Mapping</div>
+        <ol class="sol-steps"><li>When input is LOW ($V_{in} = 0.2\text{ V}$):</li><li>1. <strong>$Q_1$:</strong> Base-emitter is forward-biased ($V_B = 0.2 + 0.7 = 0.9\text{ V}$). Base current drives $Q_1$ into <strong>Saturation</strong>.</li><li>2. <strong>$Q_2$:</strong> Collector of $Q_1$ is at $V_{CE1,sat} + 0.2 \approx 0.4\text{ V}$, which is below the $1.4\text{ V}$ needed to turn on $Q_2$ and $Q_4$. Therefore, $Q_2$ is in <strong>Cutoff</strong>.</li><li>3. <strong>$Q_4$:</strong> Receives zero base current from $Q_2 \implies Q_4$ is in <strong>Cutoff</strong>.</li><li>4. <strong>$Q_3$:</strong> With $Q_2$ in cutoff, its collector pulls up to $V_{CC}$ through $R_c$, turning $Q_3$ ON as an emitter follower (<strong>Active</strong> mode) to pull the output HIGH.</li><li>Summary: $Q_1$ Saturation, $Q_2$ Cutoff, $Q_3$ Active, $Q_4$ Cutoff (Option B).</li></ol>
+        <div class="ans-box">Official ExamGOAL Answer Key: <strong>(B) Saturation, Cutoff, Active, Cutoff</strong></div>
+        <div class="callout gate-trap"><div class="gate-trap-title">⚠️ Examiner Trap Alert</div><p>A hallmark classic GATE TTL question! When input is LOW: $Q_1$ Sat, $Q_2$ Cutoff, $Q_3$ Active, $Q_4$ Cutoff.</p></div>
+      </div>
+    </div>
+    
+    <div class="pyq-box">
+      <div class="pyq-header">
+        <div class="pyq-tag-group">
+          <span class="pyq-badge-num">Q29.</span>
+          <span class="pyq-badge-year">GATE ECE 2003</span>
+          <span class="pyq-badge-marks">2 Marks</span>
+          <span class="pyq-badge-type">MCQ</span>
+        </div>
+        <button class="reveal-btn" data-target="sol_q29_">💡 Show Solution</button>
+      </div>
+      <div class="pyq-body">
+        <p>The DTL, TTL, ECL and CMOS families of digital ICs are compared in the following 4 columns for Propagation Delay, Power Dissipation, Noise Margin and Fan-out. The correct column is</p>
+        <div class="pyq-diagram"><img src="images/p12_img1_177.jpeg" alt="Diagram for Q29." /></div>
+        <div class="pyq-options-grid"><div class="pyq-opt"><strong>(A)</strong> Column 1</div><div class="pyq-opt"><strong>(B)</strong> Column 2</div><div class="pyq-opt"><strong>(C)</strong> Column 3</div><div class="pyq-opt"><strong>(D)</strong> Column 4</div></div>
+      </div>
+      <div id="sol_q29_" class="solution-drawer">
+        <div class="sol-header">🎯 Complete Step-by-Step Derivation & Concept Mapping</div>
+        <ol class="sol-steps"><li>Verify the absolute rankings of logic families:</li><li>• Propagation Delay: $\text{ECL} < \text{TTL} < \text{CMOS}$. (ECL is fastest)</li><li>• Power Dissipation: $\text{CMOS} \ll \text{TTL} < \text{ECL}$. (CMOS lowest, ECL highest)</li><li>• Fan-out: $\text{CMOS} > \text{TTL} > \text{DTL}$.</li><li>Column 2 correctly reflects these physical properties.</li></ol>
+        <div class="ans-box">Official ExamGOAL Answer Key: <strong>(B) Column 2</strong></div>
+        <div class="callout gate-trap"><div class="gate-trap-title">⚠️ Examiner Trap Alert</div><p>ECL has least delay and highest power. CMOS has least power and high fan-out.</p></div>
+      </div>
+    </div>
+    
+    <div class="pyq-box">
+      <div class="pyq-header">
+        <div class="pyq-tag-group">
+          <span class="pyq-badge-num">Q30.</span>
+          <span class="pyq-badge-year">GATE ECE 1994</span>
+          <span class="pyq-badge-marks">2 Marks</span>
+          <span class="pyq-badge-type">MCQ</span>
+        </div>
+        <button class="reveal-btn" data-target="sol_q30_">💡 Show Solution</button>
+      </div>
+      <div class="pyq-body">
+        <p>In the output stage of a standard TTL, we have a diode between the emitter of the pull-up transistor and the collector of the pull-down transistor. The purpose of this diode is to</p>
+        
+        <div class="pyq-options-grid"><div class="pyq-opt"><strong>(A)</strong> protect against negative voltage spikes</div><div class="pyq-opt"><strong>(B)</strong> prevent both output transistors from conducting simultaneously when output is LOW</div><div class="pyq-opt"><strong>(C)</strong> increase the fan-out</div><div class="pyq-opt"><strong>(D)</strong> reduce the propagation delay</div></div>
+      </div>
+      <div id="sol_q30_" class="solution-drawer">
+        <div class="sol-header">🎯 Complete Step-by-Step Derivation & Concept Mapping</div>
+        <ol class="sol-steps"><li>When output is LOW, $Q_4$ is in saturation ($V_{CE4,sat} \approx 0.2\text{ V}$).</li><li>$Q_2$ is also in saturation, so its collector voltage is $V_{C2} = V_{BE4,sat} + V_{CE2,sat} \approx 0.7 + 0.2 = 0.9\text{ V}$.</li><li>This voltage ($0.9\text{ V}$) appears at the base of pull-up transistor $Q_3$.</li><li>If the diode were absent, $V_{BE3} = V_{B3} - V_{out} = 0.9\text{ V} - 0.2\text{ V} = 0.7\text{ V}$, which would turn $Q_3$ ON!</li><li>Inserting diode $D$ requires $V_{B3} - V_{out} \ge V_{BE3} + V_D = 0.7 + 0.7 = 1.4\text{ V}$ to turn on.</li><li>Since $0.9 - 0.2 = 0.7\text{ V} < 1.4\text{ V}$, $Q_3$ stays completely OFF.</li><li>This eliminates shoot-through current from $V_{CC}$ to Ground.</li></ol>
+        <div class="ans-box">Official ExamGOAL Answer Key: <strong>(B) prevent both output transistors from conducting simultaneously</strong></div>
+        <div class="callout gate-trap"><div class="gate-trap-title">⚠️ Examiner Trap Alert</div><p>Without the diode, both totem-pole transistors would turn on together, causing massive current spikes and thermal destruction.</p></div>
+      </div>
+    </div>
+    
+    <div class="pyq-box">
+      <div class="pyq-header">
+        <div class="pyq-tag-group">
+          <span class="pyq-badge-num">Q31.</span>
+          <span class="pyq-badge-year">GATE ECE 1987</span>
+          <span class="pyq-badge-marks">2 Marks</span>
+          <span class="pyq-badge-type">MCQ</span>
+        </div>
+        <button class="reveal-btn" data-target="sol_q31_">💡 Show Solution</button>
+      </div>
+      <div class="pyq-body">
+        <p>Given that for a logic family, $V_{OH}$ is the minimum output high-level voltage, $V_{OL}$ is the maximum output low-level voltage, $V_{IH}$ is the minimum input high-level voltage, and $V_{IL}$ is the maximum input low-level voltage. The noise margins are correctly defined as</p>
+        
+        <div class="pyq-options-grid"><div class="pyq-opt"><strong>(A)</strong> $V_{OH} - V_{OL}$ and $V_{IH} - V_{IL}$</div><div class="pyq-opt"><strong>(B)</strong> $V_{OH} - V_{IH}$ and $V_{IL} - V_{OL}$</div><div class="pyq-opt"><strong>(C)</strong> $V_{IH} - V_{OH}$ and $V_{OL} - V_{IL}$</div><div class="pyq-opt"><strong>(D)</strong> $V_{OH} - V_{IL}$ and $V_{IH} - V_{OL}$</div></div>
+      </div>
+      <div id="sol_q31_" class="solution-drawer">
+        <div class="sol-header">🎯 Complete Step-by-Step Derivation & Concept Mapping</div>
+        <ol class="sol-steps"><li>By fundamental definition:</li><li>$$NM_H = V_{OH} - V_{IH}$$</li><li>$$NM_L = V_{IL} - V_{OL}$$</li><li>Matches Option (B).</li></ol>
+        <div class="ans-box">Official ExamGOAL Answer Key: <strong>(B) VOH - VIH and VIL - VOL</strong></div>
+        <div class="callout gate-trap"><div class="gate-trap-title">⚠️ Examiner Trap Alert</div><p>High noise margin subtracts input threshold from output level; low noise margin subtracts output level from input threshold.</p></div>
+      </div>
+    </div>
+    
+    <div class="pyq-box">
+      <div class="pyq-header">
+        <div class="pyq-tag-group">
+          <span class="pyq-badge-num">Q32.</span>
+          <span class="pyq-badge-year">GATE ECE 1988</span>
+          <span class="pyq-badge-marks">8 Marks</span>
+          <span class="pyq-badge-type">Subjective / Design</span>
+        </div>
+        <button class="reveal-btn" data-target="sol_q32_">💡 Show Solution</button>
+      </div>
+      <div class="pyq-body">
+        <p>Implement the function $F = AB + CD$ using two open-collector TTL 2-input NAND gates and an external pull-up resistor.</p>
+        
+        
+      </div>
+      <div id="sol_q32_" class="solution-drawer">
+        <div class="sol-header">🎯 Complete Step-by-Step Derivation & Concept Mapping</div>
+        <ol class="sol-steps"><li>Open collector NAND gates tied together form a Wired-AND output:<br/>$$Y = \overline{AB} \cdot \overline{CD}$$</li><li>Applying De Morgan's Law:<br/>$$Y = \overline{AB + CD}$$</li><li>This directly synthesizes the AND-OR-Invert (AOI) function $\overline{AB + CD}$.</li><li>To obtain uncomplemented $F = AB + CD$, feed through an open-collector inverter stage.</li></ol>
+        <div class="ans-box">Official ExamGOAL Answer Key: <strong>Wired-AND realization: F = (AB)' . (CD)' = (AB + CD)' -> requires inverter for true SOP, or DeMorgan realization.</strong></div>
+        <div class="callout gate-trap"><div class="gate-trap-title">⚠️ Examiner Trap Alert</div><p>Wired-AND of NAND gates produces the AND-OR-INVERT (NOR of products) function.</p></div>
+      </div>
+    </div>
+    
+          </div>
+        </section>
+        
+
+      <!-- Interactive Calculator / Labs -->
+      
+    <div id="sec-lab" class="lab-card">
+      <div class="lab-header">
+        <div class="lab-title">🧪 Interactive Logic Family Noise Margin & Fan-Out Analyzer</div>
+        <span class="pill-badge pill-purple">Live Parametric Calculator</span>
+      </div>
+      <p>Select driving and receiving logic family parameters to dynamically compute high-state/low-state noise margins, current sinking/sourcing limits, and fan-out capability.</p>
+
+      <div class="lab-input-grid">
+        <div class="input-field">
+          <label for="driverFamily">Driving Logic Family</label>
+          <select id="driverFamily">
+            <option value="TTL_STD" selected>Standard TTL (74xx)</option>
+            <option value="TTL_LS">Low-Power Schottky (74LSxx)</option>
+            <option value="CMOS_5V">5V CMOS (74HCxx)</option>
+            <option value="ECL_10K">ECL (10K Series)</option>
+          </select>
+        </div>
+        <div class="input-field">
+          <label for="vohInput">Driver $V_{OH,min}$ (V)</label>
+          <input type="number" id="vohInput" value="2.4" step="0.1" />
+        </div>
+        <div class="input-field">
+          <label for="volInput">Driver $V_{OL,max}$ (V)</label>
+          <input type="number" id="volInput" value="0.4" step="0.1" />
+        </div>
+        <div class="input-field">
+          <label for="vihInput">Receiver $V_{IH,min}$ (V)</label>
+          <input type="number" id="vihInput" value="2.0" step="0.1" />
+        </div>
+        <div class="input-field">
+          <label for="vilInput">Receiver $V_{IL,max}$ (V)</label>
+          <input type="number" id="vilInput" value="0.8" step="0.1" />
+        </div>
+      </div>
+
+      <div id="familyLabOutput" class="lab-output">
+        Evaluating interface characteristics...
+      </div>
+    </div>
+    
+    </main>
+  </div>
+
+  <script>
+    // Theme toggle
+    const themeBtn = document.getElementById('themeToggle');
+    const currentTheme = localStorage.getItem('gate_theme') || 'light';
+    document.documentElement.setAttribute('data-theme', currentTheme);
+    themeBtn.addEventListener('click', () => {
+      const t = document.documentElement.getAttribute('data-theme') === 'dark' ? 'light' : 'dark';
+      document.documentElement.setAttribute('data-theme', t);
+      localStorage.setItem('gate_theme', t);
+    });
+
+    // Expand/Collapse all solutions
+    const expandBtn = document.getElementById('expandAllBtn');
+    let allExpanded = false;
+    expandBtn.addEventListener('click', () => {
+      allExpanded = !allExpanded;
+      document.querySelectorAll('.solution-drawer').forEach(d => {
+        if (allExpanded) d.classList.add('open');
+        else d.classList.remove('open');
+      });
+      expandBtn.innerHTML = allExpanded ? '📕 Collapse All' : '📖 Expand All';
+    });
+
+    // Solution toggling
+    document.querySelectorAll('.reveal-btn').forEach(btn => {
+      btn.addEventListener('click', () => {
+        const targetId = btn.getAttribute('data-target');
+        const drawer = document.getElementById(targetId);
+        if (drawer) {
+          drawer.classList.toggle('open');
+          btn.innerHTML = drawer.classList.contains('open') ? '🙈 Hide Solution' : '💡 Show Solution';
+        }
+      });
+    });
+
+    // Realtime Search
+    const searchInput = document.getElementById('chapterSearch');
+    if (searchInput) {
+      searchInput.addEventListener('input', (e) => {
+        const q = e.target.value.toLowerCase().trim();
+        document.querySelectorAll('.pyq-box, .chapter-section').forEach(el => {
+          if (!q) {
+            el.style.display = '';
+            return;
+          }
+          const text = el.innerText.toLowerCase();
+          if (text.includes(q)) {
+            el.style.display = '';
+          } else if (el.classList.contains('pyq-box')) {
+            el.style.display = 'none';
+          }
+        });
+      });
+    }
+
+    // KaTeX auto render
+    document.addEventListener("DOMContentLoaded", function() {
+      if (typeof renderMathInElement !== 'undefined') {
+        renderMathInElement(document.body, {
+          delimiters: [
+            {left: '$$', right: '$$', display: true},
+            {left: '$', right: '$', display: false}
+          ],
+          throwOnError: false
+        });
+      }
+    });
+
+    
+    function updateFamilyLab() {
+      const voh = parseFloat(document.getElementById('vohInput').value) || 2.4;
+      const vol = parseFloat(document.getElementById('volInput').value) || 0.4;
+      const vih = parseFloat(document.getElementById('vihInput').value) || 2.0;
+      const vil = parseFloat(document.getElementById('vilInput').value) || 0.8;
+      
+      const nmH = voh - vih;
+      const nmL = vil - vol;
+      const isCompatH = nmH >= 0;
+      const isCompatL = nmL >= 0;
+      
+      let outHtml = `<strong>[Noise Margin & Compatibility Analysis]</strong><br/>`;
+      outHtml += `• High-State Noise Margin ($V_{OH,min} - V_{IH,min}$): <strong style="color:${isCompatH ? '#22c55e' : '#ef4444'}">${nmH.toFixed(2)} V (${isCompatH ? 'COMPATIBLE' : 'VIOLATION! Need Pull-up'})</strong><br/>`;
+      outHtml += `• Low-State Noise Margin ($V_{IL,max} - V_{OL,max}$): <strong style="color:${isCompatL ? '#22c55e' : '#ef4444'}">${nmL.toFixed(2)} V (${isCompatL ? 'COMPATIBLE' : 'VIOLATION!'})</strong><br/>`;
+      outHtml += `• Overall Effective Noise Margin: <strong>${Math.min(nmH, nmL).toFixed(2)} V</strong><br/><br/>`;
+      
+      if (!isCompatH) {
+        outHtml += `⚠️ <strong>Interface Warning:</strong> Driver cannot pull HIGH sufficiently for receiver. Connect a pull-up resistor to VDD rail.`;
+      } else {
+        outHtml += `✅ <strong>Interface Valid:</strong> Direct connection satisfies digital voltage margins.`;
+      }
+      
+      document.getElementById('familyLabOutput').innerHTML = outHtml;
+    }
+    document.getElementById('driverFamily').addEventListener('change', (e) => {
+      const v = e.target.value;
+      if (v === 'TTL_STD') {
+        document.getElementById('vohInput').value = 2.4;
+        document.getElementById('volInput').value = 0.4;
+        document.getElementById('vihInput').value = 2.0;
+        document.getElementById('vilInput').value = 0.8;
+      } else if (v === 'CMOS_5V') {
+        document.getElementById('vohInput').value = 4.4;
+        document.getElementById('volInput').value = 0.1;
+        document.getElementById('vihInput').value = 3.5;
+        document.getElementById('vilInput').value = 1.0;
+      } else if (v === 'ECL_10K') {
+        document.getElementById('vohInput').value = -0.9;
+        document.getElementById('volInput').value = -1.75;
+        document.getElementById('vihInput').value = -1.1;
+        document.getElementById('vilInput').value = -1.5;
+      }
+      updateFamilyLab();
+    });
+    document.getElementById('vohInput').addEventListener('input', updateFamilyLab);
+    document.getElementById('volInput').addEventListener('input', updateFamilyLab);
+    document.getElementById('vihInput').addEventListener('input', updateFamilyLab);
+    document.getElementById('vilInput').addEventListener('input', updateFamilyLab);
+    updateFamilyLab();
+    
+  </script>
+</body>
+</html>

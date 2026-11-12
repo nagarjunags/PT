@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>User Guide</title>
+  <style>
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+      background: #0f172a;
+      color: #e2e8f0;
+      line-height: 1.6;
+      padding: 40px;
+      max-width: 800px;
+    }
+    h1 { font-size: 28px; margin-bottom: 12px; color: #f8fafc; }
+    h2 { font-size: 20px; margin-top: 28px; margin-bottom: 10px; color: #38bdf8; }
+    p { margin-bottom: 16px; color: #94a3b8; }
+    ul { margin-left: 20px; margin-bottom: 20px; color: #cbd5e1; }
+    li { margin-bottom: 8px; }
+    code {
+      background: #1e293b;
+      padding: 2px 6px;
+      border-radius: 4px;
+      color: #f472b6;
+      font-family: ui-monospace, SFMono-Regular, Menlo, monospace;
+      font-size: 13px;
+    }
+    .tip-box {
+      background: rgba(56, 189, 248, 0.1);
+      border-left: 4px solid #38bdf8;
+      padding: 14px 18px;
+      border-radius: 0 8px 8px 0;
+      margin: 20px 0;
+    }
+  </style>
+</head>
+<body>
+  <h1>Quick Guide: Standalone HTML Hierarchy</h1>
+  <p>You can organize any number of folders and HTML files inside this project directory.</p>
+  
+  <div class="tip-box">
+    <strong>How it works:</strong> The main <code>index.html</code> explorer reads your folders, automatically builds a hierarchical navigation tree, and previews each file inside an interactive viewer.
+  </div>
+
+  <h2>Adding New Files</h2>
+  <ul>
+    <li>Create any subfolder, e.g. <code>prototypes/mobile/</code> or <code>experiments/v1/</code></li>
+    <li>Place any standalone HTML file inside it</li>
+    <li>Click <strong>Select Folder</strong> in the navigation bar, drag the folder in, or run <code>python3 scan.py</code> to update the catalog!</li>
+  </ul>
+</body>
+</html>

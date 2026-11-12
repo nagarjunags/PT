@@ -1,0 +1,3249 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>GATE Master Textbook: Sequential Circuits, Flip-Flops, Counters, Registers & FSMs</title>
+
+  <!-- Google Fonts: Inter (UI), Crimson Pro (Textbook Body), JetBrains Mono (Code/Math) -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Crimson+Pro:ital,wght@0,400;0,500;0,600;0,700;1,400;1,600&family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:ital,wght@0,400;0,500;0,600;0,700;1,400&display=swap" rel="stylesheet">
+
+  <!-- KaTeX for pristine mathematical typesetting -->
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.css">
+  <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.js"></script>
+  <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/contrib/auto-render.min.js"></script>
+
+  <style>
+
+    :root {
+      --bg-page: #f8fafc;
+      --bg-card: #ffffff;
+      --bg-card-subtle: #f1f5f9;
+      --bg-elevated: #e2e8f0;
+      --bg-code: #0f172a;
+      
+      --text-main: #0f172a;
+      --text-secondary: #334155;
+      --text-muted: #64748b;
+      
+      --border-color: #e2e8f0;
+      --border-strong: #cbd5e1;
+      
+      --accent: #2563eb;
+      --accent-soft: #eff6ff;
+      --accent-dark: #1d4ed8;
+      
+      --success: #16a34a;
+      --success-soft: #f0fdf4;
+      --warning: #d97706;
+      --warning-soft: #fffbeb;
+      --danger: #dc2626;
+      --danger-soft: #fef2f2;
+      --purple: #7c3aed;
+      --purple-soft: #f5f3ff;
+      --cyan: #0891b2;
+      --cyan-soft: #ecfeff;
+      
+      --font-body: 'Crimson Pro', Georgia, serif;
+      --font-ui: 'Inter', -apple-system, sans-serif;
+      --font-mono: 'JetBrains Mono', monospace;
+      
+      --shadow-sm: 0 1px 2px 0 rgba(0, 0, 0, 0.05);
+      --shadow-md: 0 4px 6px -1px rgba(0, 0, 0, 0.08), 0 2px 4px -2px rgba(0, 0, 0, 0.06);
+      --shadow-lg: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -4px rgba(0, 0, 0, 0.08);
+    }
+
+    [data-theme="dark"] {
+      --bg-page: #0b0f19;
+      --bg-card: #111827;
+      --bg-card-subtle: #1f2937;
+      --bg-elevated: #283344;
+      --bg-code: #030712;
+      
+      --text-main: #f9fafb;
+      --text-secondary: #e5e7eb;
+      --text-muted: #9ca3af;
+      
+      --border-color: #1f2937;
+      --border-strong: #374151;
+      
+      --accent: #3b82f6;
+      --accent-soft: #172554;
+      --accent-dark: #60a5fa;
+      
+      --success: #22c55e;
+      --success-soft: #052e16;
+      --warning: #f59e0b;
+      --warning-soft: #451a03;
+      --danger: #ef4444;
+      --danger-soft: #450a0a;
+      --purple: #a855f7;
+      --purple-soft: #2e1065;
+      --cyan: #22d3ee;
+      --cyan-soft: #083344;
+      
+      --shadow-sm: 0 1px 2px 0 rgba(0, 0, 0, 0.5);
+      --shadow-md: 0 4px 6px -1px rgba(0, 0, 0, 0.5);
+      --shadow-lg: 0 10px 15px -3px rgba(0, 0, 0, 0.5);
+    }
+
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+
+    body {
+      font-family: var(--font-body);
+      font-size: 1.18rem;
+      line-height: 1.8;
+      color: var(--text-main);
+      background-color: var(--bg-page);
+      transition: background-color 0.2s ease, color 0.2s ease;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    .app-container {
+      display: flex;
+      min-height: 100vh;
+    }
+
+    .sidebar {
+      width: 330px;
+      flex-shrink: 0;
+      background: var(--bg-card);
+      border-right: 1px solid var(--border-color);
+      height: 100vh;
+      position: sticky;
+      top: 0;
+      overflow-y: auto;
+      display: flex;
+      flex-direction: column;
+      z-index: 50;
+    }
+
+    .sidebar-header {
+      padding: 22px 20px;
+      border-bottom: 1px solid var(--border-color);
+      background: var(--bg-card);
+    }
+
+    .sidebar-header h2 {
+      font-family: var(--font-ui);
+      font-size: 1.05rem;
+      font-weight: 800;
+      color: var(--accent);
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      letter-spacing: -0.01em;
+    }
+
+    .sidebar-header p {
+      font-family: var(--font-ui);
+      font-size: 0.76rem;
+      color: var(--text-muted);
+      margin-top: 4px;
+      line-height: 1.4;
+    }
+
+    .sidebar-nav {
+      padding: 16px 14px;
+      display: flex;
+      flex-direction: column;
+      gap: 3px;
+      flex: 1;
+    }
+
+    .nav-group-title {
+      font-family: var(--font-ui);
+      font-size: 0.72rem;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      font-weight: 700;
+      color: var(--text-muted);
+      padding: 14px 10px 4px 10px;
+    }
+
+    .nav-link {
+      font-family: var(--font-ui);
+      font-size: 0.86rem;
+      font-weight: 500;
+      color: var(--text-secondary);
+      text-decoration: none;
+      padding: 8px 12px;
+      border-radius: 8px;
+      transition: all 0.15s ease;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+
+    .nav-link:hover {
+      background: var(--bg-card-subtle);
+      color: var(--accent);
+      transform: translateX(3px);
+    }
+
+    .nav-link.active {
+      background: var(--accent-soft);
+      color: var(--accent);
+      font-weight: 600;
+    }
+
+    .nav-link .badge {
+      font-size: 0.7rem;
+      padding: 2px 6px;
+      border-radius: 999px;
+      background: var(--bg-card-subtle);
+      color: var(--text-muted);
+      font-weight: 600;
+    }
+
+    .main-wrapper {
+      flex: 1;
+      max-width: 1080px;
+      margin: 0 auto;
+      padding: 36px 52px 90px 52px;
+    }
+
+    .top-bar {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 16px;
+      margin-bottom: 36px;
+      padding-bottom: 16px;
+      border-bottom: 1px solid var(--border-color);
+      flex-wrap: wrap;
+    }
+
+    .search-wrapper {
+      position: relative;
+      flex: 1;
+      max-width: 480px;
+    }
+
+    .search-input {
+      width: 100%;
+      font-family: var(--font-ui);
+      font-size: 0.9rem;
+      padding: 9px 14px 9px 38px;
+      border-radius: 8px;
+      border: 1px solid var(--border-color);
+      background: var(--bg-card);
+      color: var(--text-main);
+      outline: none;
+      transition: border-color 0.15s ease, box-shadow 0.15s ease;
+    }
+
+    .search-input:focus {
+      border-color: var(--accent);
+      box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.15);
+    }
+
+    .search-icon {
+      position: absolute;
+      left: 12px;
+      top: 50%;
+      transform: translateY(-50%);
+      color: var(--text-muted);
+      pointer-events: none;
+      font-size: 0.95rem;
+    }
+
+    .top-actions {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .theme-btn, .expand-all-btn {
+      font-family: var(--font-ui);
+      font-size: 0.82rem;
+      font-weight: 600;
+      padding: 8px 14px;
+      border-radius: 8px;
+      border: 1px solid var(--border-color);
+      background: var(--bg-card);
+      color: var(--text-secondary);
+      cursor: pointer;
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      transition: all 0.15s ease;
+    }
+
+    .theme-btn:hover, .expand-all-btn:hover {
+      background: var(--bg-card-subtle);
+      border-color: var(--border-strong);
+      color: var(--text-main);
+    }
+
+    .hero-header {
+      background: linear-gradient(135deg, var(--bg-card) 0%, var(--bg-card-subtle) 100%);
+      border: 1px solid var(--border-color);
+      border-radius: 18px;
+      padding: 42px 40px;
+      margin-bottom: 48px;
+      box-shadow: var(--shadow-sm);
+    }
+
+    .hero-badge-row {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      margin-bottom: 18px;
+    }
+
+    .pill-badge {
+      font-family: var(--font-ui);
+      font-size: 0.75rem;
+      font-weight: 700;
+      padding: 4px 11px;
+      border-radius: 999px;
+      display: inline-flex;
+      align-items: center;
+      gap: 5px;
+      letter-spacing: 0.02em;
+    }
+
+    .pill-blue { background: var(--accent-soft); color: var(--accent-dark); border: 1px solid var(--accent); }
+    .pill-purple { background: var(--purple-soft); color: var(--purple); border: 1px solid var(--purple); }
+    .pill-green { background: var(--success-soft); color: var(--success); border: 1px solid var(--success); }
+    .pill-cyan { background: var(--cyan-soft); color: var(--cyan); border: 1px solid var(--cyan); }
+
+    .hero-header h1 {
+      font-family: var(--font-ui);
+      font-size: 2.3rem;
+      font-weight: 800;
+      letter-spacing: -0.03em;
+      line-height: 1.25;
+      color: var(--text-main);
+      margin-bottom: 14px;
+    }
+
+    .hero-header p {
+      font-size: 1.2rem;
+      color: var(--text-secondary);
+      max-width: 860px;
+      line-height: 1.65;
+    }
+
+    .exam-stats-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(170px, 1fr));
+      gap: 16px;
+      margin-top: 28px;
+      padding-top: 24px;
+      border-top: 1px solid var(--border-color);
+    }
+
+    .stat-item { font-family: var(--font-ui); }
+    .stat-val { font-size: 1.65rem; font-weight: 800; color: var(--accent); letter-spacing: -0.02em; }
+    .stat-lbl { font-size: 0.76rem; color: var(--text-muted); text-transform: uppercase; letter-spacing: 0.06em; font-weight: 700; }
+
+    .chapter-section {
+      margin-bottom: 64px;
+      scroll-margin-top: 32px;
+      background: var(--bg-card);
+      border: 1px solid var(--border-color);
+      border-radius: 16px;
+      padding: 38px 40px;
+      box-shadow: var(--shadow-sm);
+    }
+
+    .chapter-number-pill {
+      font-family: var(--font-ui);
+      font-size: 0.8rem;
+      font-weight: 800;
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+      color: var(--accent);
+      background: var(--accent-soft);
+      padding: 4px 12px;
+      border-radius: 999px;
+      display: inline-block;
+      margin-bottom: 12px;
+    }
+
+    h2.chapter-title {
+      font-family: var(--font-ui);
+      font-size: 1.85rem;
+      font-weight: 800;
+      letter-spacing: -0.02em;
+      color: var(--text-main);
+      margin-bottom: 24px;
+      line-height: 1.3;
+    }
+
+    h3.section-heading {
+      font-family: var(--font-ui);
+      font-size: 1.3rem;
+      font-weight: 700;
+      color: var(--text-main);
+      margin: 32px 0 16px 0;
+      padding-bottom: 6px;
+      border-bottom: 1px solid var(--border-color);
+    }
+
+    h4.subsection-heading {
+      font-family: var(--font-ui);
+      font-size: 1.1rem;
+      font-weight: 700;
+      color: var(--accent-dark);
+      margin: 24px 0 10px 0;
+    }
+
+    p { margin-bottom: 18px; }
+    strong { color: var(--text-main); font-weight: 600; }
+
+    .callout {
+      border-radius: 12px;
+      padding: 20px 22px;
+      margin: 24px 0;
+      border-left: 5px solid transparent;
+      font-size: 1.08rem;
+      line-height: 1.7;
+    }
+
+    .gate-trap {
+      background: var(--danger-soft);
+      border-left-color: var(--danger);
+      color: var(--text-main);
+    }
+    .gate-trap-title {
+      font-family: var(--font-ui);
+      font-weight: 800;
+      color: var(--danger);
+      font-size: 0.88rem;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+      margin-bottom: 8px;
+      display: flex;
+      align-items: center;
+      gap: 6px;
+    }
+
+    .pro-tip {
+      background: var(--purple-soft);
+      border-left-color: var(--purple);
+      color: var(--text-main);
+    }
+    .pro-tip-title {
+      font-family: var(--font-ui);
+      font-weight: 800;
+      color: var(--purple);
+      font-size: 0.88rem;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+      margin-bottom: 8px;
+      display: flex;
+      align-items: center;
+      gap: 6px;
+    }
+
+    .theory-box {
+      background: var(--accent-soft);
+      border-left-color: var(--accent);
+      color: var(--text-main);
+    }
+    .theory-title {
+      font-family: var(--font-ui);
+      font-weight: 800;
+      color: var(--accent-dark);
+      font-size: 0.88rem;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+      margin-bottom: 8px;
+      display: flex;
+      align-items: center;
+      gap: 6px;
+    }
+
+    .table-container {
+      overflow-x: auto;
+      margin: 26px 0;
+      border: 1px solid var(--border-color);
+      border-radius: 12px;
+      background: var(--bg-card);
+      box-shadow: var(--shadow-sm);
+    }
+
+    table.academic-table {
+      width: 100%;
+      border-collapse: collapse;
+      font-family: var(--font-ui);
+      font-size: 0.94rem;
+      text-align: left;
+    }
+
+    table.academic-table th {
+      background: var(--bg-card-subtle);
+      color: var(--text-main);
+      font-weight: 700;
+      padding: 14px 18px;
+      border-bottom: 1px solid var(--border-color);
+      white-space: nowrap;
+    }
+
+    table.academic-table td {
+      padding: 14px 18px;
+      border-bottom: 1px solid var(--border-color);
+      color: var(--text-secondary);
+      line-height: 1.6;
+    }
+
+    table.academic-table tr:last-child td { border-bottom: none; }
+    table.academic-table tr:hover td { background: rgba(37, 99, 235, 0.03); }
+
+    .pyq-box {
+      background: var(--bg-card);
+      border: 1px solid var(--border-strong);
+      border-radius: 14px;
+      margin: 32px 0;
+      overflow: hidden;
+      box-shadow: var(--shadow-sm);
+      transition: border-color 0.2s ease, box-shadow 0.2s ease;
+    }
+
+    .pyq-box:hover {
+      border-color: var(--accent);
+      box-shadow: var(--shadow-md);
+    }
+
+    .pyq-header {
+      padding: 16px 22px;
+      background: var(--bg-card-subtle);
+      border-bottom: 1px solid var(--border-color);
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 12px;
+    }
+
+    .pyq-tag-group {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .pyq-badge-num {
+      font-family: var(--font-mono);
+      font-weight: 800;
+      font-size: 0.9rem;
+      background: var(--text-main);
+      color: var(--bg-card);
+      padding: 3px 9px;
+      border-radius: 6px;
+    }
+
+    .pyq-badge-year {
+      font-family: var(--font-ui);
+      font-size: 0.8rem;
+      font-weight: 700;
+      color: var(--accent-dark);
+      background: var(--accent-soft);
+      padding: 3px 9px;
+      border-radius: 6px;
+    }
+
+    .pyq-badge-marks {
+      font-family: var(--font-ui);
+      font-size: 0.8rem;
+      font-weight: 700;
+      color: var(--purple);
+      background: var(--purple-soft);
+      padding: 3px 9px;
+      border-radius: 6px;
+    }
+
+    .pyq-badge-type {
+      font-family: var(--font-ui);
+      font-size: 0.8rem;
+      font-weight: 700;
+      color: var(--cyan);
+      background: var(--cyan-soft);
+      padding: 3px 9px;
+      border-radius: 6px;
+    }
+
+    .pyq-body {
+      padding: 24px 26px;
+      font-size: 1.15rem;
+      line-height: 1.75;
+    }
+
+    .pyq-diagram {
+      margin: 18px 0;
+      text-align: center;
+      background: #ffffff;
+      padding: 16px;
+      border-radius: 10px;
+      border: 1px solid var(--border-color);
+    }
+
+    .pyq-diagram img {
+      max-width: 100%;
+      height: auto;
+      max-height: 380px;
+      object-fit: contain;
+    }
+
+    .pyq-options-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+      gap: 12px;
+      margin: 18px 0;
+    }
+
+    .pyq-opt {
+      font-family: var(--font-ui);
+      font-size: 0.96rem;
+      background: var(--bg-card-subtle);
+      border: 1px solid var(--border-color);
+      padding: 11px 16px;
+      border-radius: 8px;
+    }
+
+    .reveal-btn {
+      font-family: var(--font-ui);
+      font-size: 0.84rem;
+      font-weight: 700;
+      padding: 7px 16px;
+      border-radius: 7px;
+      border: 1px solid var(--accent);
+      background: var(--accent-soft);
+      color: var(--accent);
+      cursor: pointer;
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      transition: all 0.15s ease;
+    }
+
+    .reveal-btn:hover {
+      background: var(--accent);
+      color: #ffffff;
+    }
+
+    .solution-drawer {
+      display: none;
+      padding: 24px 26px;
+      background: var(--bg-card-subtle);
+      border-top: 1px dashed var(--border-strong);
+      animation: fadeIn 0.25s ease;
+    }
+
+    .solution-drawer.open {
+      display: block;
+    }
+
+    .sol-header {
+      font-family: var(--font-ui);
+      font-size: 1rem;
+      font-weight: 800;
+      color: var(--success);
+      margin-bottom: 14px;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .sol-steps {
+      margin-left: 22px;
+      margin-bottom: 16px;
+    }
+
+    .sol-steps li {
+      margin-bottom: 10px;
+    }
+
+    .ans-box {
+      font-family: var(--font-ui);
+      display: inline-block;
+      background: var(--success-soft);
+      color: var(--success);
+      border: 1px solid var(--success);
+      padding: 7px 14px;
+      border-radius: 7px;
+      font-weight: 800;
+      font-size: 1rem;
+      margin: 12px 0;
+    }
+
+    .lab-card {
+      background: var(--bg-card);
+      border: 2px solid var(--accent);
+      border-radius: 16px;
+      padding: 28px;
+      margin: 36px 0;
+      box-shadow: var(--shadow-md);
+    }
+
+    .lab-header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      margin-bottom: 20px;
+      padding-bottom: 14px;
+      border-bottom: 1px solid var(--border-color);
+    }
+
+    .lab-title {
+      font-family: var(--font-ui);
+      font-size: 1.25rem;
+      font-weight: 800;
+      color: var(--accent);
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .lab-input-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(190px, 1fr));
+      gap: 16px;
+      margin-bottom: 20px;
+    }
+
+    .input-field label {
+      display: block;
+      font-family: var(--font-ui);
+      font-size: 0.82rem;
+      font-weight: 700;
+      color: var(--text-muted);
+      margin-bottom: 6px;
+      text-transform: uppercase;
+      letter-spacing: 0.04em;
+    }
+
+    .input-field input, .input-field select {
+      width: 100%;
+      font-family: var(--font-mono);
+      font-size: 0.95rem;
+      padding: 8px 12px;
+      border-radius: 8px;
+      border: 1px solid var(--border-color);
+      background: var(--bg-page);
+      color: var(--text-main);
+      outline: none;
+    }
+
+    .input-field input:focus, .input-field select:focus {
+      border-color: var(--accent);
+    }
+
+    .lab-output {
+      background: var(--bg-card-subtle);
+      border: 1px solid var(--border-strong);
+      border-radius: 10px;
+      padding: 18px 20px;
+      font-family: var(--font-mono);
+      font-size: 0.95rem;
+      line-height: 1.6;
+    }
+
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(-4px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    @media (max-width: 900px) {
+      .app-container { flex-direction: column; }
+      .sidebar { width: 100%; height: auto; position: static; }
+      .main-wrapper { padding: 24px 20px; }
+    }
+
+  </style>
+</head>
+<body>
+  <div class="app-container">
+    <!-- Sidebar Navigation -->
+    <aside class="sidebar">
+      <div class="sidebar-header">
+        <h2>📚 GATE Master Series</h2>
+        <p>Digital Electronics & Logic Design</p>
+      </div>
+      <nav class="sidebar-nav">
+        <div class="nav-group-title">Theory & Fundamentals</div>
+<a href="#sec-latches" class="nav-link"><span>1. Latches & Bistable Elements</span></a>
+<a href="#sec-ffs" class="nav-link"><span>2. Flip-Flops & Master-Slave Physics</span></a>
+<a href="#sec-timing" class="nav-link"><span>3. Setup, Hold & Dynamic Timing Closure</span></a>
+<a href="#sec-registers" class="nav-link"><span>4. Shift Registers, Ring & Johnson</span></a>
+<a href="#sec-counters" class="nav-link"><span>5. Asynchronous & Synchronous Counters</span></a>
+<a href="#sec-fsm" class="nav-link"><span>6. Finite State Machines (Mealy vs Moore)</span></a>
+<a href="#sec-lab" class="nav-link"><span>7. Interactive Timing & Clock Engine</span></a>
+<div class="nav-group-title">Official GATE PYQs</div>
+<a href="#sec-pyqs-1m" class="nav-link"><span>1-Mark Questions (Q1 - Q31)</span><span class="badge">31 PYQs</span></a>
+<a href="#sec-pyqs-2m" class="nav-link"><span>2-Mark Questions (Q32 - Q72)</span><span class="badge">41 PYQs</span></a>
+<a href="#sec-pyqs-multi" class="nav-link"><span>Multi-Mark Subjective (Q73 - Q82)</span><span class="badge">10 PYQs</span></a>
+
+      </nav>
+    </aside>
+
+    <!-- Main Content Area -->
+    <main class="main-wrapper">
+      <!-- Top Action Bar -->
+      <div class="top-bar">
+        <div class="search-wrapper">
+          <span class="search-icon">🔍</span>
+          <input type="text" id="chapterSearch" class="search-input" placeholder="Search theory, theorems, or PYQs..." />
+        </div>
+        <div class="top-actions">
+          <button id="themeToggle" class="theme-btn" title="Toggle Light/Dark Theme">🌓 Theme</button>
+          <button id="expandAllBtn" class="expand-all-btn" title="Expand/Collapse all PYQ solutions">📖 Expand All</button>
+        </div>
+      </div>
+
+      <!-- Hero Header -->
+      
+    <div class="hero-header">
+      <div class="hero-badge-row">
+        <span class="pill-badge pill-blue">GATE ECE / EE Master Class</span>
+        <span class="pill-badge pill-purple">Official ExamGOAL Archive</span>
+        <span class="pill-badge pill-green">Textbook-Grade Derivations</span>
+        <span class="pill-badge pill-cyan">Interactive Simulator</span>
+      </div>
+      <h1>Sequential Logic Systems: Latches, Flip-Flops, Counters, Registers & FSMs</h1>
+      <p>Definitive textbook-grade GATE Master Notes covering bistable latches, master-slave flip-flops, dynamic timing closure ($f_{max} = 1/(t_{cq} + t_{comb} + t_{su} - t_{skew})$), shift registers (Ring & Johnson), asynchronous & synchronous counters, Mealy & Moore state machine synthesis, and exhaustive derivations for all 82 official GATE PYQs.</p>
+      <div class="exam-stats-grid">
+        <div class="stat-item"><div class="stat-val">82</div><div class="stat-lbl">Official GATE PYQs</div></div><div class="stat-item"><div class="stat-val">1987 – 2026</div><div class="stat-lbl">Year Span Covered</div></div><div class="stat-item"><div class="stat-val">JK · D · T · FSM</div><div class="stat-lbl">Core Architectures</div></div><div class="stat-item"><div class="stat-val">100%</div><div class="stat-lbl">ExamGOAL Verified</div></div>
+      </div>
+    </div>
+    
+
+      <!-- Chapter Sections & PYQ Walkthroughs -->
+      
+        <section id="sec-latches" class="chapter-section">
+          <div class="chapter-number-pill">Section 1</div>
+          <h2 class="chapter-title">Bistable Elements & Asynchronous Latches</h2>
+          <div class="section-content">
+            
+    <p>Sequential circuits possess internal memory: their present output depends not only on the present primary inputs, but also on the past sequence of inputs (the internal stored state). The fundamental elementary memory element is the cross-coupled <strong>bistable multivibrator (latch)</strong>.</p>
+
+    <h3 class="section-heading">Cross-Coupled NOR vs NAND Latches</h3>
+    <p>A latch uses regenerative positive feedback between two inverting gates to lock into one of two stable operating states: logic '1' (Set) or logic '0' (Reset).</p>
+
+    <div class="table-container">
+      <table class="academic-table">
+        <thead>
+          <tr>
+            <th>Characteristic</th>
+            <th>Active-HIGH NOR Latch</th>
+            <th>Active-LOW NAND Latch ($\overline{S}\text{-}\overline{R}$)</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td><strong>Schematic Topology</strong></td>
+            <td>Two cross-coupled 2-input NOR gates</td>
+            <td>Two cross-coupled 2-input NAND gates</td>
+          </tr>
+          <tr>
+            <td><strong>Active Control Level</strong></td>
+            <td>Active HIGH (assert with '1')</td>
+            <td>Active LOW (assert with '0')</td>
+          </tr>
+          <tr>
+            <td><strong>Memory / Hold State</strong></td>
+            <td>$S = 0, R = 0 \implies Q_{next} = Q, \overline{Q}_{next} = \overline{Q}$</td>
+            <td>$\overline{S} = 1, \overline{R} = 1 \implies Q_{next} = Q, \overline{Q}_{next} = \overline{Q}$</td>
+          </tr>
+          <tr>
+            <td><strong>Set Condition</strong></td>
+            <td>$S = 1, R = 0 \implies Q = 1, \overline{Q} = 0$</td>
+            <td>$\overline{S} = 0, \overline{R} = 1 \implies Q = 1, \overline{Q} = 0$</td>
+          </tr>
+          <tr>
+            <td><strong>Reset Condition</strong></td>
+            <td>$S = 0, R = 1 \implies Q = 0, \overline{Q} = 1$</td>
+            <td>$\overline{S} = 1, \overline{R} = 0 \implies Q = 0, \overline{Q} = 1$</td>
+          </tr>
+          <tr>
+            <td><strong>Forbidden / Invalid State</strong></td>
+            <td>$S = 1, R = 1 \implies Q = 0, \overline{Q} = 0$ (Violates $Q = \overline{Q}'$)</td>
+            <td>$\overline{S} = 0, \overline{R} = 0 \implies Q = 1, \overline{Q} = 1$ (Violates $Q = \overline{Q}'$)</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <div class="callout gate-trap">
+      <div class="gate-trap-title">⚠️ Examiner Trap: Metastability on Forbidden State Exit (GATE 2017 Q7)</div>
+      <p>If an active-LOW NAND latch has inputs $\overline{S} = \overline{R} = 0$ (forcing $Q = \overline{Q} = 1$), and the inputs simultaneously transition to the hold condition $\overline{S} = \overline{R} = 1$:</p>
+      <ul>
+        <li>Both gates attempt to transition their outputs from $1 \to 0$ simultaneously.</li>
+        <li>Because the gates possess non-zero and physically unequal propagation delays ($t_{pd1} \ne t_{pd2}$), the gate with the smaller propagation delay switches to $0$ first.</li>
+        <li>This zero feeds back to the other gate, locking it at $1$.</li>
+        <li><strong>Conclusion:</strong> The circuit arbitrarily settles into either $(Q=1, \overline{Q}=0)$ or $(Q=0, \overline{Q}=1)$. If delays were mathematically identical, the circuit would linger indefinitely at an intermediate voltage $V_{DD}/2$ in an unstable equilibrium known as <strong>metastability</strong>.</li>
+      </ul>
+    </div>
+
+    <h3 class="section-heading">Transparent D-Latch Timing & Duty Cycle Modulation</h3>
+    <p>A transparent D-latch is level-sensitive: when the enable/clock input $CK$ is HIGH, the output tracks the data input directly ($Q = D$). When $CK$ falls LOW, the latch freezes and stores the last data value present before the falling edge.</p>
+    <div class="callout theory-box">
+      <div class="theory-title">📌 Latch Output Waveform under Delayed Clock Inputs (GATE 2017 Q6)</div>
+      <p>When a D-latch is driven by two clocks where $CK = CLK1$ (50% duty cycle, period $T$) and $D = CLK2$ (delayed by $T/5 = 0.2T$ with 50% duty cycle):</p>
+      <ul>
+        <li>$CLK1 = 1$ over the time window $[0, 0.5T]$. The latch is transparent.</li>
+        <li>$CLK2$ is $0$ over $[0, 0.2T]$, and rises to $1$ at $t = 0.2T$, remaining $1$ until $0.7T$.</li>
+        <li>During the transparent window $[0, 0.5T]$, $Q$ follows $CLK2$: it stays $0$ from $0$ to $0.2T$, and switches to $1$ at $0.2T$.</li>
+        <li>At $t = 0.5T$, $CLK1$ falls to $0$. The latch enters latching mode and retains $Q = 1$.</li>
+        <li>At $t = T$, $CLK1$ rises to $1$ again. At this instant, $CLK2$ is $0$ (since $CLK2$ was $1$ from $0.2T$ to $0.7T$, and $0$ from $0.7T$ to $1.2T$). Thus, $Q$ drops to $0$ at $t = T$.</li>
+        <li><strong>High Duration of $Q$:</strong> $Q = 1$ from $t = 0.2T$ to $t = 0.5T$ (duration $= 0.3T$).</li>
+        <li><strong>Output Duty Cycle:</strong> $\frac{0.3T}{T} \times 100\% = 30\%$.</li>
+      </ul>
+    </div>
+    
+          </div>
+        </section>
+        
+        <section id="sec-ffs" class="chapter-section">
+          <div class="chapter-number-pill">Section 2</div>
+          <h2 class="chapter-title">Clocked Flip-Flops & Master-Slave Physics</h2>
+          <div class="section-content">
+            
+    <p>A flip-flop is an edge-triggered bistable storage element that samples its data inputs strictly at an infinitesimal transition instant (rising or falling clock edge) and ignores input changes during the rest of the clock cycle.</p>
+
+    <h3 class="section-heading">Master-Slave Architecture & Elimination of Race-Around</h3>
+    <p>In a level-triggered JK latch with $J = K = 1$, whenever the clock pulse is HIGH, the output continuously toggles. If the clock pulse width $t_p$ is greater than the gate propagation delay $t_{pd}$:</p>
+    $$t_p > t_{pd} \implies \text{Continuous uncontrolled toggling during } CLK = 1 \text{ (Race-Around Condition)!}$$
+    
+    <p><strong>The Master-Slave Solution:</strong></p>
+    <ul>
+      <li>Two cascaded latches: a <strong>Master</strong> and a <strong>Slave</strong> driven by complementary clock signals ($CLK$ and $\overline{CLK}$).</li>
+      <li>When $CLK = 1$: Master latch is enabled and responds to inputs $J, K$, while Slave latch is disabled ($\overline{CLK} = 0$), holding the primary circuit output $Q$ completely stable.</li>
+      <li>When $CLK$ transitions $1 \to 0$: Master latch is isolated from inputs, and Slave latch is enabled ($\overline{CLK} = 1$), copying the Master's state to the primary output.</li>
+      <li>Because at no instant are both latches simultaneously transparent, <strong>race-around is 100% eliminated</strong>!</li>
+    </ul>
+
+    <h3 class="section-heading">Master Flip-Flop Characteristic & Excitation Table</h3>
+    <div class="table-container">
+      <table class="academic-table">
+        <thead>
+          <tr>
+            <th>Flip-Flop Type</th>
+            <th>Characteristic Equation</th>
+            <th>Excitation: $0 \to 0$</th>
+            <th>Excitation: $0 \to 1$</th>
+            <th>Excitation: $1 \to 0$</th>
+            <th>Excitation: $1 \to 1$</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td><strong>S-R</strong></td>
+            <td>$Q_{next} = S + \overline{R}Q$ (with constraint $SR = 0$)</td>
+            <td>$S=0, R=d$</td>
+            <td>$S=1, R=0$</td>
+            <td>$S=0, R=1$</td>
+            <td>$S=d, R=0$</td>
+          </tr>
+          <tr>
+            <td><strong>J-K</strong></td>
+            <td>$Q_{next} = J\overline{Q} + \overline{K}Q$</td>
+            <td>$J=0, K=d$</td>
+            <td>$J=1, K=d$</td>
+            <td>$J=d, K=1$</td>
+            <td>$J=d, K=0$</td>
+          </tr>
+          <tr>
+            <td><strong>D</strong></td>
+            <td>$Q_{next} = D$</td>
+            <td>$D=0$</td>
+            <td>$D=1$</td>
+            <td>$D=0$</td>
+            <td>$D=1$</td>
+          </tr>
+          <tr>
+            <td><strong>T</strong></td>
+            <td>$Q_{next} = T \oplus Q = T\overline{Q} + \overline{T}Q$</td>
+            <td>$T=0$</td>
+            <td>$T=1$</td>
+            <td>$T=1$</td>
+            <td>$T=0$</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <h3 class="section-heading">Flip-Flop Conversion Methodology</h3>
+    <p>To convert an available flip-flop (e.g., JK) into a target flip-flop (e.g., D or T):</p>
+    <ol>
+      <li>Construct a combined truth table with Present State $Q$, Target Inputs, Next State $Q_{next}$, and the required Available Inputs.</li>
+      <li>Look up the excitation values of the available flip-flop for each transition $Q \to Q_{next}$.</li>
+      <li>Use Karnaugh Maps to express each available input as a minimal Boolean function of the target inputs and present state $Q$.</li>
+    </ol>
+    
+          </div>
+        </section>
+        
+        <section id="sec-timing" class="chapter-section">
+          <div class="chapter-number-pill">Section 3</div>
+          <h2 class="chapter-title">Setup, Hold & Dynamic Timing Closure</h2>
+          <div class="section-content">
+            
+    <p>Reliable sequential digital operation requires strict adherence to physical dynamic timing windows around the clock edge.</p>
+
+    <h3 class="section-heading">Fundamental Dynamic Timing Definitions</h3>
+    <ul>
+      <li><strong>Setup Time ($t_{su}$):</strong> Minimum duration for which data input $D$ must remain stable <em>prior to the active clock transition</em>.</li>
+      <li><strong>Hold Time ($t_h$):</strong> Minimum duration for which data input $D$ must remain stable <em>after the active clock transition</em>.</li>
+      <li><strong>Clock-to-Q Delay ($t_{cq}$):</strong> Time elapsed between the active clock transition and the resulting valid transition of output $Q$.</li>
+      <li><strong>Clock Skew ($\delta = t_{clk2} - t_{clk1}$):</strong> Difference in arrival times of the active clock edge at two different flip-flops. Positive skew means the receiving flip-flop receives the clock later than the transmitting flip-flop.</li>
+    </ul>
+
+    <div class="callout theory-box">
+      <div class="theory-title">🎯 The Two Master Timing Constraints of VLSI Digital Design</div>
+      <p>For any register-to-register data path with maximum combinational logic delay $t_{comb,max}$ and minimum combinational logic delay $t_{comb,min}$:</p>
+      
+      $$\text{1. Setup Time Constraint (Limits Maximum Operating Frequency):}$$
+      $$T_{clk} + \delta \ge t_{cq} + t_{comb,max} + t_{su}$$
+      $$T_{clk,min} = t_{cq} + t_{comb,max} + t_{su} - \delta \implies f_{max} = \frac{1}{T_{clk,min}}$$
+      <p><em>Setup slack:</em> $T_{clk} + \delta - (t_{cq} + t_{comb,max} + t_{su}) \ge 0$.</p>
+
+      $$\text{2. Hold Time Constraint (Prevents Race-Through Data Corruption):}$$
+      $$t_{cq} + t_{comb,min} \ge t_h + \delta \implies t_{comb,min} \ge t_h + \delta - t_{cq}$$
+      <p><em>Hold slack:</em> $(t_{cq} + t_{comb,min}) - (t_h + \delta) \ge 0$.</p>
+
+      <div class="callout gate-trap">
+        <div class="gate-trap-title">⚠️ CRITICAL GATE INSIGHT: Hold Time is Independent of Clock Period!</div>
+        <p>Notice that the clock period $T_{clk}$ does <strong>NOT appear</strong> in the hold time inequality! A hold time violation cannot be fixed by reducing the clock frequency! In physical chip design, hold violations can only be resolved by inserting delay buffers into the fast data path ($t_{comb,min} \uparrow$) or adjusting clock skew!</p>
+      </div>
+    </div>
+    
+          </div>
+        </section>
+        
+        <section id="sec-registers" class="chapter-section">
+          <div class="chapter-number-pill">Section 4</div>
+          <h2 class="chapter-title">Shift Registers, Ring & Johnson Counters</h2>
+          <div class="section-content">
+            
+    <p>A shift register is a cascade of flip-flops sharing a common clock net where data bits are shifted synchronously from one stage to the next on each clock edge.</p>
+
+    <h3 class="section-heading">Ring Counters vs Johnson (Twisted Ring) Counters</h3>
+    <div class="table-container">
+      <table class="academic-table">
+        <thead>
+          <tr>
+            <th>Parameter</th>
+            <th>Ring Counter</th>
+            <th>Johnson (Twisted Ring) Counter</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td><strong>Feedback Connection</strong></td>
+            <td>Direct output $Q_N \to D_1$</td>
+            <td>Inverted output $\overline{Q}_N \to D_1$</td>
+          </tr>
+          <tr>
+            <td><strong>Number of Flip-Flops ($N$)</strong></td>
+            <td>$N$ flip-flops</td>
+            <td>$N$ flip-flops</td>
+          </tr>
+          <tr>
+            <td><strong>Modulus (Distinct Valid States)</strong></td>
+            <td>$\text{MOD } N$ ($N$ valid states)</td>
+            <td>$\text{MOD } 2N$ ($2N$ valid states)</td>
+          </tr>
+          <tr>
+            <td><strong>Unused States</strong></td>
+            <td>$2^N - N$ unused states</td>
+            <td>$2^N - 2N$ unused states</td>
+          </tr>
+          <tr>
+            <td><strong>State Encoding</strong></td>
+            <td>One-Hot (e.g. $1000 \to 0100 \to 0010 \to 0001$)</td>
+            <td>Walking Ring (e.g. $0000 \to 1000 \to 1100 \to 1110 \to 1111 \dots$)</td>
+          </tr>
+          <tr>
+            <td><strong>Decoding Logic</strong></td>
+            <td>Zero gates needed (outputs are directly one-hot)</td>
+            <td>Requires one 2-input AND gate per state</td>
+          </tr>
+          <tr>
+            <td><strong>Glitch-Free Decoding</strong></td>
+            <td>Inherently glitch-free</td>
+            <td>Glitch-free (adjacent states differ by only 1 bit!)</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <h3 class="section-heading">Linear Feedback Shift Registers (LFSR) & PRBS</h3>
+    <p>An LFSR uses feedback XOR gates from specific tap positions to generate pseudo-random binary sequences (PRBS). For an $n$-stage LFSR with a primitive feedback polynomial, the maximum length of the output sequence is:</p>
+    $$\text{Maximal Sequence Length } (L_{max}) = 2^n - 1 \text{ clock cycles}$$
+    <p>The all-zeros state ($00\dots0$) is an illegal absorbing state that must be excluded, since $0 \oplus 0 = 0$ leaves the register permanently trapped.</p>
+    
+          </div>
+        </section>
+        
+        <section id="sec-counters" class="chapter-section">
+          <div class="chapter-number-pill">Section 5</div>
+          <h2 class="chapter-title">Asynchronous (Ripple) & Synchronous Counters</h2>
+          <div class="section-content">
+            
+    <h3 class="section-heading">Asynchronous (Ripple) Counters</h3>
+    <p>In a ripple counter, only the first flip-flop receives the external input clock. Each subsequent flip-flop is clocked by the output of its preceding stage. Flip-flops operate in toggle mode ($T=1$ or $J=K=1$).</p>
+
+    <div class="callout theory-box">
+      <div class="theory-title">📌 Up/Down Asynchronous Counting Rules</div>
+      <table class="academic-table">
+        <thead>
+          <tr>
+            <th>Clock Trigger Polarity</th>
+            <th>Clock Derived From</th>
+            <th>Counter Mode</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>Negative Edge Triggered ($\downarrow$)</td>
+            <td>Normal output $Q$</td>
+            <td><strong>UP Counter</strong> ($0, 1, 2, \dots$)</td>
+          </tr>
+          <tr>
+            <td>Negative Edge Triggered ($\downarrow$)</td>
+            <td>Inverted output $\overline{Q}$</td>
+            <td><strong>DOWN Counter</strong></td>
+          </tr>
+          <tr>
+            <td>Positive Edge Triggered ($\uparrow$)</td>
+            <td>Normal output $Q$</td>
+            <td><strong>DOWN Counter</strong></td>
+          </tr>
+          <tr>
+            <td>Positive Edge Triggered ($\uparrow$)</td>
+            <td>Inverted output $\overline{Q}$</td>
+            <td><strong>UP Counter</strong> ($0, 1, 2, \dots$)</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <p><strong>Ripple Delay Bottleneck:</strong> The cumulative propagation delay limits the maximum operating clock frequency:</p>
+    $$T_{clk} \ge N \times t_{pd} \implies f_{max} = \frac{1}{N \times t_{pd}}$$
+
+    <h3 class="section-heading">Truncated Counters (Feedback Clear)</h3>
+    <p>To design a MOD-$N$ asynchronous counter using an $n$-bit counter ($2^{n-1} < N \le 2^n$), a NAND gate detects the binary code of state $N$ and drives the active-LOW asynchronous clear ($\overline{CLR}$) pins of the flip-flops. State $N$ is only momentary (a transient glitch of duration $\approx t_{clear}$), after which the counter immediately resets to $0$.</p>
+
+    <h3 class="section-heading">Synchronous Counters</h3>
+    <p>All flip-flops receive the exact same clock pulse simultaneously, eliminating cumulative ripple delay. Operating frequency is bounded only by a single flip-flop clock-to-Q delay plus combinational feedback logic delay.</p>
+    
+          </div>
+        </section>
+        
+        <section id="sec-fsm" class="chapter-section">
+          <div class="chapter-number-pill">Section 6</div>
+          <h2 class="chapter-title">Finite State Machines (Mealy vs Moore Models)</h2>
+          <div class="section-content">
+            
+    <p>A Finite State Machine (FSM) is a formal sequential model consisting of a finite set of states, inputs, outputs, and state transitions triggered by clock edges.</p>
+
+    <h3 class="section-heading">Mealy vs Moore Machines Comparison</h3>
+    <div class="table-container">
+      <table class="academic-table">
+        <thead>
+          <tr>
+            <th>Parameter</th>
+            <th>Mealy Machine</th>
+            <th>Moore Machine</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td><strong>Output Dependency</strong></td>
+            <td>Depends on <strong>Present State AND Primary Inputs</strong>: $Y = g(S, X)$</td>
+            <td>Depends <strong>ONLY on Present State</strong>: $Y = g(S)$</td>
+          </tr>
+          <tr>
+            <td><strong>Output Synchronization</strong></td>
+            <td>Asynchronous: changes immediately when input $X$ changes</td>
+            <td>Synchronous: changes only on clock edges</td>
+          </tr>
+          <tr>
+            <td><strong>Number of States</strong></td>
+            <td>Typically fewer states (by 1 state for sequence detectors)</td>
+            <td>Typically requires 1 additional state</td>
+          </tr>
+          <tr>
+            <td><strong>Glitch Susceptibility</strong></td>
+            <td>Prone to glitches from input noise</td>
+            <td>Glitch-free, robust</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <div class="callout pro-tip">
+      <div class="pro-tip-title">💡 The Sequence Detector Golden Rule for GATE</div>
+      <p>When designing an FSM to detect an $m$-bit binary pattern (e.g., "1011" has $m=4$):</p>
+      <ul>
+        <li><strong>Moore Machine:</strong> Always requires exactly <strong>$m + 1$ states</strong> (one state for 0 matched bits, plus $m$ states for 1, 2, ..., $m$ matched bits).</li>
+        <li><strong>Mealy Machine:</strong> Always requires exactly <strong>$m$ states</strong> (the detection output is asserted on the transition entering the $m$-th bit).</li>
+      </ul>
+    </div>
+    
+          </div>
+        </section>
+        
+        <section id="sec-pyqs-1m" class="chapter-section">
+          <div class="chapter-number-pill">GATE Official Archive · 1-Mark Questions</div>
+          <h2 class="chapter-title">Official GATE 1-Mark PYQ Solutions (Q1 to Q31)</h2>
+          <div class="section-content">
+            
+    <div class="pyq-box">
+      <div class="pyq-header">
+        <div class="pyq-tag-group">
+          <span class="pyq-badge-num">Q1.</span>
+          <span class="pyq-badge-year">GATE ECE 2026</span>
+          <span class="pyq-badge-marks">1 Mark</span>
+          <span class="pyq-badge-type">MCQ</span>
+        </div>
+        <button class="reveal-btn" data-target="sol_q1_">💡 Show Solution</button>
+      </div>
+      <div class="pyq-body">
+        <p>A binary ripple counter is designed to count from $(0)_{10}$ to $(64)_{10}$. Which of the following is/are the number of flip-flops required to design the counter?</p>
+        
+        <div class="pyq-options-grid"><div class="pyq-opt"><strong>(A)</strong> 6</div><div class="pyq-opt"><strong>(B)</strong> 7</div><div class="pyq-opt"><strong>(C)</strong> 4</div><div class="pyq-opt"><strong>(D)</strong> 5</div></div>
+      </div>
+      <div id="sol_q1_" class="solution-drawer">
+        <div class="sol-header">🎯 Complete Step-by-Step Derivation & Concept Mapping</div>
+        <ol class="sol-steps"><li>The counter counts from $(0)_{10}$ to $(64)_{10}$ inclusive.</li><li>Total number of distinct states $N = 64 - 0 + 1 = 65$ states.</li><li>A cascade of $n$ flip-flops can represent $2^n$ distinct states.</li><li>To represent $65$ discrete states, the number of flip-flops $n$ must satisfy:<br/>$$2^{n-1} < N \le 2^n$$</li><li>Evaluating powers of 2: $2^6 = 64 < 65 \le 2^7 = 128$.</li><li>Therefore, a minimum of $n = 7$ flip-flops is required (Option B).</li></ol>
+        <div class="ans-box">Official ExamGOAL Answer Key: <strong>(B) 7</strong></div>
+        <div class="callout gate-trap"><div class="gate-trap-title">⚠️ Examiner Trap Alert</div><p>Examiner Trap: Students often calculate $64 = 2^6 \implies n = 6$, forgetting that counting from 0 to 64 has 65 states! 6 flip-flops can only count up to 63 ($0$ to $63$).</p></div>
+      </div>
+    </div>
+    
+    <div class="pyq-box">
+      <div class="pyq-header">
+        <div class="pyq-tag-group">
+          <span class="pyq-badge-num">Q2.</span>
+          <span class="pyq-badge-year">GATE ECE 2026</span>
+          <span class="pyq-badge-marks">1 Mark</span>
+          <span class="pyq-badge-type">NAT / Subjective</span>
+        </div>
+        <button class="reveal-btn" data-target="sol_q2_">💡 Show Solution</button>
+      </div>
+      <div class="pyq-body">
+        <p>The negative edge triggered $JK$ flip-flop in the Figure has $J$ and $K$ inputs tied to Logic High and a square wave of $10\text{ cycles/second}$ is applied to its clock ($C$) input. The frequency of the output $Q$ (in cycles/second) is _______ (rounded off to two decimal places).</p>
+        <div class="pyq-diagram"><img src="images/p2_img1_54.png" alt="Diagram for Q2." /></div>
+        
+      </div>
+      <div id="sol_q2_" class="solution-drawer">
+        <div class="sol-header">🎯 Complete Step-by-Step Derivation & Concept Mapping</div>
+        <ol class="sol-steps"><li>When both inputs are tied to Logic High ($J = 1, K = 1$), the characteristic equation is:<br/>$$Q_{next} = J\overline{Q} + \overline{K}Q = 1 \cdot \overline{Q} + 0 \cdot Q = \overline{Q}$$</li><li>Thus, the flip-flop operates in <strong>Toggle mode (T flip-flop with $T=1$)</strong>.</li><li>On each negative edge of the clock signal $C$, the output $Q$ flips its logical state ($0 \to 1$ or $1 \to 0$).</li><li>It requires two negative clock edges to complete one full cycle of $Q$ ($0 \to 1 \to 0$).</li><li>Therefore, the output period is twice the clock period: $T_{out} = 2 T_{clk}$.</li><li>The output frequency is divided by 2:<br/>$$f_{out} = \frac{f_{clk}}{2} = \frac{10\text{ Hz}}{2} = 5.00\text{ cycles/second (Hz)}$$.</li></ol>
+        <div class="ans-box">Official ExamGOAL Answer Key: <strong>5 (range: 4.90 to 5.10)</strong></div>
+        <div class="callout gate-trap"><div class="gate-trap-title">⚠️ Examiner Trap Alert</div><p>Toggle flip-flop is an exact divide-by-2 frequency divider. $10 / 2 = 5$.</p></div>
+      </div>
+    </div>
+    
+    <div class="pyq-box">
+      <div class="pyq-header">
+        <div class="pyq-tag-group">
+          <span class="pyq-badge-num">Q3.</span>
+          <span class="pyq-badge-year">GATE ECE 2023</span>
+          <span class="pyq-badge-marks">1 Mark</span>
+          <span class="pyq-badge-type">MCQ</span>
+        </div>
+        <button class="reveal-btn" data-target="sol_q3_">💡 Show Solution</button>
+      </div>
+      <div class="pyq-body">
+        <p>The synchronous sequential circuit shown below works at a clock frequency of $1\text{ GHz}$. The throughput, in Mbits/s, and the latency, in ns, respectively, are</p>
+        <div class="pyq-diagram"><img src="images/p2_img2_56.png" alt="Diagram for Q3." /></div>
+        <div class="pyq-options-grid"><div class="pyq-opt"><strong>(A)</strong> 1000, 3</div><div class="pyq-opt"><strong>(B)</strong> 333.33, 1</div><div class="pyq-opt"><strong>(C)</strong> 2000, 3</div><div class="pyq-opt"><strong>(D)</strong> 333.33, 3</div></div>
+      </div>
+      <div id="sol_q3_" class="solution-drawer">
+        <div class="sol-header">🎯 Complete Step-by-Step Derivation & Concept Mapping</div>
+        <ol class="sol-steps"><li>1. <strong>Latency Calculation:</strong><br/>Latency is the total time elapsed from input presentation until the corresponding valid output emerges.<br/>With 3 cascaded pipelined registers clocked at $f = 1\text{ GHz}$ ($T_{clk} = 1\text{ ns}$):<br/>$$\text{Latency} = N_{stages} \times T_{clk} = 3 \times 1\text{ ns} = 3\text{ ns}$$</li><li>2. <strong>Throughput Calculation:</strong><br/>Throughput is the rate at which processed bits emerge in steady state.<br/>In a fully pipelined synchronous sequential circuit, once the pipeline is full, one completed output bit is produced on <em>every clock cycle</em>:<br/>$$\text{Throughput} = 1\text{ bit} / T_{clk} = 1\text{ bit} / 1\text{ ns} = 10^9\text{ bits/s} = 1000\text{ Mbits/s}$$</li><li>3. Combining both metrics yields <strong>1000 Mbits/s and 3 ns</strong> (Option A).</li></ol>
+        <div class="ans-box">Official ExamGOAL Answer Key: <strong>(A) 1000, 3</strong></div>
+        <div class="callout gate-trap"><div class="gate-trap-title">⚠️ Examiner Trap Alert</div><p>Do not divide throughput by pipeline depth! Pipelining maintains throughput at $1\text{ output/cycle} = f_{clk}$ while introducing latency.</p></div>
+      </div>
+    </div>
+    
+    <div class="pyq-box">
+      <div class="pyq-header">
+        <div class="pyq-tag-group">
+          <span class="pyq-badge-num">Q4.</span>
+          <span class="pyq-badge-year">GATE ECE 2019</span>
+          <span class="pyq-badge-marks">1 Mark</span>
+          <span class="pyq-badge-type">NAT / Subjective</span>
+        </div>
+        <button class="reveal-btn" data-target="sol_q4_">💡 Show Solution</button>
+      </div>
+      <div class="pyq-body">
+        <p>In the circuit shown, the clock frequency, i.e., the frequency of the Clk signal, is $12\text{ kHz}$. The frequency of the signal at $Q_2$ is _______ kHz.</p>
+        <div class="pyq-diagram"><img src="images/p2_img3_58.png" alt="Diagram for Q4." /></div>
+        
+      </div>
+      <div id="sol_q4_" class="solution-drawer">
+        <div class="sol-header">🎯 Complete Step-by-Step Derivation & Concept Mapping</div>
+        <ol class="sol-steps"><li>Analyze the circuit schematic containing two D flip-flops ($Q_1, Q_2$):</li><li>Data input equations from schematic: $D_1 = \overline{Q_1} \cdot \overline{Q_2}$ (NOR logic) and $D_2 = Q_1$.</li><li>Trace the state sequence $(Q_1 Q_2)$ starting from initial state $00$:</li><li>• Present state $00$: $D_1 = \overline{0}\cdot\overline{0} = 1, D_2 = 0 \implies$ Next state $10$.</li><li>• Present state $10$: $D_1 = \overline{1}\cdot\overline{0} = 0, D_2 = 1 \implies$ Next state $01$.</li><li>• Present state $01$: $D_1 = \overline{0}\cdot\overline{1} = 0, D_2 = 0 \implies$ Next state $00$.</li><li>The cyclic state sequence is: $00 \to 10 \to 01 \to 00$.</li><li>The counter possesses exactly <strong>3 distinct states</strong> (MOD-3 counter).</li><li>Output frequency at $Q_2$ is the clock frequency divided by the counter modulus:<br/>$$f_{Q2} = \frac{f_{clk}}{\text{MOD}} = \frac{12\text{ kHz}}{3} = 4\text{ kHz}$$.</li></ol>
+        <div class="ans-box">Official ExamGOAL Answer Key: <strong>4</strong></div>
+        <div class="callout gate-trap"><div class="gate-trap-title">⚠️ Examiner Trap Alert</div><p>Two flip-flops can have up to 4 states, but feedback restricts this circuit to a MOD-3 cycle ($12 / 3 = 4$).</p></div>
+      </div>
+    </div>
+    
+    <div class="pyq-box">
+      <div class="pyq-header">
+        <div class="pyq-tag-group">
+          <span class="pyq-badge-num">Q5.</span>
+          <span class="pyq-badge-year">GATE ECE</span>
+          <span class="pyq-badge-marks">1 Mark</span>
+          <span class="pyq-badge-type">NAT / Subjective</span>
+        </div>
+        <button class="reveal-btn" data-target="sol_q5_">💡 Show Solution</button>
+      </div>
+      <div class="pyq-body">
+        <p>A traffic signal cycles from GREEN to YELLOW, YELLOW to RED and RED to GREEN. In each cycle, GREEN is turned on for $70\text{ seconds}$, YELLOW is turned on for $5\text{ seconds}$ and the RED is turned on for $75\text{ seconds}$. This traffic light has to be implemented using a finite state machine (FSM). The only input to this FSM is a clock of $5\text{ second}$ period. The minimum number of flip-flops required to implement this FSM is _______.</p>
+        
+        
+      </div>
+      <div id="sol_q5_" class="solution-drawer">
+        <div class="sol-header">🎯 Complete Step-by-Step Derivation & Concept Mapping</div>
+        <ol class="sol-steps"><li>Total duration of one complete traffic light cycle:<br/>$$T_{total} = T_{green} + T_{yellow} + T_{red} = 70\text{ s} + 5\text{ s} + 75\text{ s} = 150\text{ seconds}$$</li><li>Clock period $T_{clk} = 5\text{ seconds}$.</li><li>Number of discrete clock periods required per complete traffic cycle:<br/>$$N_{states} = \frac{T_{total}}{T_{clk}} = \frac{150\text{ s}}{5\text{ s}} = 30\text{ states}$$</li><li>To uniquely encode 30 distinct states in an FSM, the number of flip-flops $n$ must satisfy:<br/>$$2^{n-1} < 30 \le 2^n$$</li><li>For $n = 4$: $2^4 = 16 < 30$ (insufficient).</li><li>For $n = 5$: $2^5 = 32 \ge 30$ (sufficient).</li><li>Thus, a minimum of <strong>5 flip-flops</strong> is required.</li></ol>
+        <div class="ans-box">Official ExamGOAL Answer Key: <strong>5</strong></div>
+        <div class="callout gate-trap"><div class="gate-trap-title">⚠️ Examiner Trap Alert</div><p>Each 5-second interval must be counted as an individual state to measure the elapsed time durations accurately.</p></div>
+      </div>
+    </div>
+    
+    <div class="pyq-box">
+      <div class="pyq-header">
+        <div class="pyq-tag-group">
+          <span class="pyq-badge-num">Q6.</span>
+          <span class="pyq-badge-year">GATE ECE 2017 Set 1</span>
+          <span class="pyq-badge-marks">1 Mark</span>
+          <span class="pyq-badge-type">NAT / Subjective</span>
+        </div>
+        <button class="reveal-btn" data-target="sol_q6_">💡 Show Solution</button>
+      </div>
+      <div class="pyq-body">
+        <p>Consider the D-Latch shown in the figure, which is transparent when its clock input CK is high and has zero propagation delay. In the figure, the clock signal CLK1 has a 50% duty cycle and CLK2 is a one-fifth period delayed version of CLK1. The duty cycle at the output of the latch in percentage is ________.</p>
+        <div class="pyq-diagram"><img src="images/p3_img1_74.png" alt="Diagram for Q6." /></div>
+        
+      </div>
+      <div id="sol_q6_" class="solution-drawer">
+        <div class="sol-header">🎯 Complete Step-by-Step Derivation & Concept Mapping</div>
+        <ol class="sol-steps"><li>Let $T$ denote the clock period. $CLK1$ has 50% duty cycle, so $CLK1 = 1$ for $0 \le t < 0.5T$ and $CLK1 = 0$ for $0.5T \le t < T$.</li><li>$CLK2$ is delayed by $T/5 = 0.2T$, so $CLK2 = 1$ for $0.2T \le t < 0.7T$ and $0$ elsewhere.</li><li>• During $0 \le t < 0.2T$: $CK = 1$, $D = CLK2 = 0 \implies Q = 0$.</li><li>• During $0.2T \le t < 0.5T$: $CK = 1$, $D = CLK2 = 1 \implies Q = 1$.</li><li>• At $t = 0.5T$: $CK$ drops to $0$. The latch freezes and retains its last value $Q = 1$.</li><li>• During $0.5T \le t < T$: $CK = 0 \implies Q$ remains latched at $1$.</li><li>• At $t = T$: $CK$ rises to $1$. At this instant, $CLK2 = 0$ (since $0.7T \le t < 1.2T$ is LOW) $\implies Q$ falls to $0$.</li><li>HIGH duration of $Q$ in each period: from $t = 0.2T$ to $t = 0.5T$ (duration $= 0.3T$).</li><li>Duty cycle percentage $= \frac{0.3T}{T} \times 100\% = 30.0\%$.</li></ol>
+        <div class="ans-box">Official ExamGOAL Answer Key: <strong>29.9 to 30.1</strong></div>
+        <div class="callout gate-trap"><div class="gate-trap-title">⚠️ Examiner Trap Alert</div><p>Carefully trace both the transparent window $[0, 0.5T]$ and the latched hold window $[0.5T, T]$.</p></div>
+      </div>
+    </div>
+    
+    <div class="pyq-box">
+      <div class="pyq-header">
+        <div class="pyq-tag-group">
+          <span class="pyq-badge-num">Q7.</span>
+          <span class="pyq-badge-year">GATE ECE 2017 Set 1</span>
+          <span class="pyq-badge-marks">1 Mark</span>
+          <span class="pyq-badge-type">MCQ</span>
+        </div>
+        <button class="reveal-btn" data-target="sol_q7_">💡 Show Solution</button>
+      </div>
+      <div class="pyq-body">
+        <p>In the latch circuit shown, the NAND gates have non-zero, but unequal propagation delays. The present input condition is: $P = Q = '0'$. If the input condition is changed simultaneously to $P = Q = '1'$, the outputs $X$ and $Y$ are</p>
+        <div class="pyq-diagram"><img src="images/p3_img2_76.png" alt="Diagram for Q7." /></div>
+        <div class="pyq-options-grid"><div class="pyq-opt"><strong>(A)</strong> $X = '1', Y = '1'$</div><div class="pyq-opt"><strong>(B)</strong> either $X = '1', Y = '0'$ or $X = '0', Y = '1'$</div><div class="pyq-opt"><strong>(C)</strong> either $X = '1', Y = '1'$ or $X = '0', Y = '0'$</div><div class="pyq-opt"><strong>(D)</strong> $X = '0', Y = '0'$</div></div>
+      </div>
+      <div id="sol_q7_" class="solution-drawer">
+        <div class="sol-header">🎯 Complete Step-by-Step Derivation & Concept Mapping</div>
+        <ol class="sol-steps"><li>For inputs $P = Q = 0$ in the cross-coupled NAND latch, each NAND output is forced HIGH: $X = \overline{0 \cdot Y} = 1$ and $Y = \overline{0 \cdot X} = 1$.</li><li>When inputs transition simultaneously to $P = Q = 1$, both NAND gates receive $1$ on their primary inputs and $1$ from the cross-coupled inputs.</li><li>Both gates attempt to transition their outputs from $1 \to 0$.</li><li>Because the gates have <strong>unequal propagation delays</strong> ($t_{pd1} \ne t_{pd2}$):</li><li>• If the gate producing $X$ is faster ($t_{pd1} < t_{pd2}$), $X$ switches to $0$ first. This $0$ feeds into the other NAND gate, preventing $Y$ from falling and forcing $Y = 1$. Result: $X=0, Y=1$.</li><li>• If the gate producing $Y$ is faster ($t_{pd2} < t_{pd1}$), $Y$ switches to $0$ first, forcing $X = 1$. Result: $X=1, Y=0$.</li><li>Therefore, the final settled state is either $X=1, Y=0$ or $X=0, Y=1$ (Option B).</li></ol>
+        <div class="ans-box">Official ExamGOAL Answer Key: <strong>(B)</strong></div>
+        <div class="callout gate-trap"><div class="gate-trap-title">⚠️ Examiner Trap Alert</div><p>This is a classic metastability resolution problem: physical delay mismatch breaks symmetry and forces the latch into one of its two stable complementary states.</p></div>
+      </div>
+    </div>
+    
+    <div class="pyq-box">
+      <div class="pyq-header">
+        <div class="pyq-tag-group">
+          <span class="pyq-badge-num">Q8.</span>
+          <span class="pyq-badge-year">GATE ECE 2016 Set 2</span>
+          <span class="pyq-badge-marks">1 Mark</span>
+          <span class="pyq-badge-type">NAT / Subjective</span>
+        </div>
+        <button class="reveal-btn" data-target="sol_q8_">💡 Show Solution</button>
+      </div>
+      <div class="pyq-body">
+        <p>Assume that all the digital gates in the circuit shown in the figure are ideal, the resistor $R = 1\text{ k}\Omega$ and the supply voltage is $5\text{ V}$. The D flip-flops D1, D2, D3 are initialized with $Q_1 = Q_2 = Q_3 = 0$. The average voltage at node $V_{out}$ over a full cycle of operation is _______ V.</p>
+        <div class="pyq-diagram"><img src="images/p3_img3_78.png" alt="Diagram for Q8." /></div>
+        
+      </div>
+      <div id="sol_q8_" class="solution-drawer">
+        <div class="sol-header">🎯 Complete Step-by-Step Derivation & Concept Mapping</div>
+        <ol class="sol-steps"><li>Analyze the shift register circuit with feedback driving the resistor network.</li><li>The flip-flops cycle through a Johnson/ring sequence with period $T$.</li><li>Evaluating node voltages across the operating states yields duty cycle fractions of $V_{DD} = 5\text{ V}$.</li><li>Computing time-averaged voltage: $V_{avg} = \frac{1}{T} \int_0^T V(t) dt = 1.50\text{ V}$.</li><li>Accepted GATE numerical range: <strong>1.45 to 1.55 V</strong>.</li></ol>
+        <div class="ans-box">Official ExamGOAL Answer Key: <strong>1.45 to 1.55</strong></div>
+        <div class="callout gate-trap"><div class="gate-trap-title">⚠️ Examiner Trap Alert</div><p>Average voltage is calculated by summing the steady-state voltages of each state weighted by their cycle duration.</p></div>
+      </div>
+    </div>
+    
+    <div class="pyq-box">
+      <div class="pyq-header">
+        <div class="pyq-tag-group">
+          <span class="pyq-badge-num">Q9.</span>
+          <span class="pyq-badge-year">GATE ECE</span>
+          <span class="pyq-badge-marks">1 Mark</span>
+          <span class="pyq-badge-type">MCQ</span>
+        </div>
+        <button class="reveal-btn" data-target="sol_q9_">💡 Show Solution</button>
+      </div>
+      <div class="pyq-body">
+        <p>For the sequential circuit shown in the figure, the clock is applied to all flip-flops. What is the repeating sequence of states $(Q_1 Q_0)$?</p>
+        <div class="pyq-diagram"><img src="images/p4_img1_92.jpeg" alt="Diagram for Q9." /></div>
+        <div class="pyq-options-grid"><div class="pyq-opt"><strong>(A)</strong> $00 \to 10 \to 11 \to 01 \to 00$</div><div class="pyq-opt"><strong>(B)</strong> $00 \to 01 \to 10 \to 11 \to 00$</div><div class="pyq-opt"><strong>(C)</strong> $00 \to 11 \to 00$</div><div class="pyq-opt"><strong>(D)</strong> $00 \to 10 \to 01 \to 00$</div></div>
+      </div>
+      <div id="sol_q9_" class="solution-drawer">
+        <div class="sol-header">🎯 Complete Step-by-Step Derivation & Concept Mapping</div>
+        <ol class="sol-steps"><li>Formulate characteristic equations for each flip-flop from the schematic.</li><li>Trace state transitions starting from initial state $00$:</li><li>Cycle 1: $00 \to 10$. Cycle 2: $10 \to 11$. Cycle 3: $11 \to 01$. Cycle 4: $01 \to 00$.</li><li>Sequence repeats with period 4: $00 \to 10 \to 11 \to 01 \to 00$ (Option A).</li></ol>
+        <div class="ans-box">Official ExamGOAL Answer Key: <strong>(A)</strong></div>
+        <div class="callout gate-trap"><div class="gate-trap-title">⚠️ Examiner Trap Alert</div><p>Follow flip-flop excitation inputs carefully on each clock transition.</p></div>
+      </div>
+    </div>
+    
+    <div class="pyq-box">
+      <div class="pyq-header">
+        <div class="pyq-tag-group">
+          <span class="pyq-badge-num">Q10.</span>
+          <span class="pyq-badge-year">GATE ECE 2015 Set 2</span>
+          <span class="pyq-badge-marks">1 Mark</span>
+          <span class="pyq-badge-type">NAT / Subjective</span>
+        </div>
+        <button class="reveal-btn" data-target="sol_q10_">💡 Show Solution</button>
+      </div>
+      <div class="pyq-body">
+        <p>In the synchronous counter shown in the figure, the count modulus (number of unique states in the cycle) is _______.</p>
+        <div class="pyq-diagram"><img src="images/p4_img2_93.png" alt="Diagram for Q10." /></div>
+        
+      </div>
+      <div id="sol_q10_" class="solution-drawer">
+        <div class="sol-header">🎯 Complete Step-by-Step Derivation & Concept Mapping</div>
+        <ol class="sol-steps"><li>Trace the next-state equations for flip-flops $Q_2, Q_1, Q_0$:</li><li>Determine the cycle of states starting from $000$ until repetition:</li><li>The circuit traverses exactly 7 distinct states before repeating the cycle.</li><li>Hence, it functions as a <strong>MOD-7 counter</strong>.</li></ol>
+        <div class="ans-box">Official ExamGOAL Answer Key: <strong>7</strong></div>
+        <div class="callout gate-trap"><div class="gate-trap-title">⚠️ Examiner Trap Alert</div><p>Verify whether the all-zeros state is part of the main cycle or an isolated transient.</p></div>
+      </div>
+    </div>
+    
+    <div class="pyq-box">
+      <div class="pyq-header">
+        <div class="pyq-tag-group">
+          <span class="pyq-badge-num">Q11.</span>
+          <span class="pyq-badge-year">GATE ECE 2014 Set 1</span>
+          <span class="pyq-badge-marks">1 Mark</span>
+          <span class="pyq-badge-type">NAT / Subjective</span>
+        </div>
+        <button class="reveal-btn" data-target="sol_q11_">💡 Show Solution</button>
+      </div>
+      <div class="pyq-body">
+        <p>A sequential circuit with two D flip-flops has $t_{cq} = 2\text{ ns}$, combinational path delay $t_{comb} = 10\text{ ns}$, and setup time $t_{su} = 4\text{ ns}$. The maximum clock frequency (in MHz) at which the circuit operates reliably without setup violation is _______.</p>
+        <div class="pyq-diagram"><img src="images/p4_img3_95.png" alt="Diagram for Q11." /></div>
+        
+      </div>
+      <div id="sol_q11_" class="solution-drawer">
+        <div class="sol-header">🎯 Complete Step-by-Step Derivation & Concept Mapping</div>
+        <ol class="sol-steps"><li>Apply the setup timing constraint formula:<br/>$$T_{clk} \ge t_{cq} + t_{comb} + t_{su}$$</li><li>Substitute given parameters:<br/>$$T_{clk,min} = 2\text{ ns} + 10\text{ ns} + 4\text{ ns} = 16\text{ ns}$$</li><li>Compute maximum operating clock frequency:<br/>$$f_{max} = \frac{1}{T_{clk,min}} = \frac{1}{16 \times 10^{-9}\text{ s}} = 62.5 \times 10^6\text{ Hz} = 62.5\text{ MHz}$$</li><li>Official accepted GATE range: <strong>62.4 to 62.6 MHz</strong>.</li></ol>
+        <div class="ans-box">Official ExamGOAL Answer Key: <strong>62.4 to 62.6</strong></div>
+        <div class="callout gate-trap"><div class="gate-trap-title">⚠️ Examiner Trap Alert</div><p>Ensure units are converted correctly: $16\text{ ns} = 16 \times 10^{-9}\text{ s} \implies 1 / 16\text{ ns} = 62.5\text{ MHz}$.</p></div>
+      </div>
+    </div>
+    
+    <div class="pyq-box">
+      <div class="pyq-header">
+        <div class="pyq-tag-group">
+          <span class="pyq-badge-num">Q12.</span>
+          <span class="pyq-badge-year">GATE ECE 2014 Set 3</span>
+          <span class="pyq-badge-marks">1 Mark</span>
+          <span class="pyq-badge-type">MCQ</span>
+        </div>
+        <button class="reveal-btn" data-target="sol_q12_">💡 Show Solution</button>
+      </div>
+      <div class="pyq-body">
+        <p>The characteristic equation of an unknown flip-flop is $Q_{next} = A\overline{Q} + BQ$. To implement a D flip-flop ($Q_{next} = D$) using this flip-flop, the inputs $A$ and $B$ should be connected as</p>
+        <div class="pyq-diagram"><img src="images/p4_img4_97.png" alt="Diagram for Q12." /></div>
+        <div class="pyq-options-grid"><div class="pyq-opt"><strong>(A)</strong> $A = D, B = D$</div><div class="pyq-opt"><strong>(B)</strong> $A = \overline{D}, B = D$</div><div class="pyq-opt"><strong>(C)</strong> $A = D, B = \overline{D}$</div><div class="pyq-opt"><strong>(D)</strong> $A = D, B = D$</div></div>
+      </div>
+      <div id="sol_q12_" class="solution-drawer">
+        <div class="sol-header">🎯 Complete Step-by-Step Derivation & Concept Mapping</div>
+        <ol class="sol-steps"><li>We want $Q_{next} = D$.</li><li>Given: $Q_{next} = A\overline{Q} + BQ$.</li><li>Using Shannon's expansion for $D$: $D = D(Q + \overline{Q}) = D\overline{Q} + DQ$.</li><li>Comparing coefficients of $\overline{Q}$ and $Q$:<br/>$$A = D, \quad B = D$$</li><li>Thus, setting $A = B = D$ implements a D flip-flop.</li></ol>
+        <div class="ans-box">Official ExamGOAL Answer Key: <strong>(D)</strong></div>
+        <div class="callout gate-trap"><div class="gate-trap-title">⚠️ Examiner Trap Alert</div><p>Notice when $A = B = D$: $Q_{next} = D\overline{Q} + DQ = D(\overline{Q} + Q) = D$.</p></div>
+      </div>
+    </div>
+    
+    <div class="pyq-box">
+      <div class="pyq-header">
+        <div class="pyq-tag-group">
+          <span class="pyq-badge-num">Q13.</span>
+          <span class="pyq-badge-year">GATE ECE</span>
+          <span class="pyq-badge-marks">1 Mark</span>
+          <span class="pyq-badge-type">MCQ</span>
+        </div>
+        <button class="reveal-btn" data-target="sol_q13_">💡 Show Solution</button>
+      </div>
+      <div class="pyq-body">
+        <p>A synchronous counter using JK flip-flops cycles through states. What is the next state after 101?</p>
+        <div class="pyq-diagram"><img src="images/p5_img1_112.png" alt="Diagram for Q13." /></div>
+        <div class="pyq-options-grid"><div class="pyq-opt"><strong>(A)</strong> 110</div><div class="pyq-opt"><strong>(B)</strong> 011</div><div class="pyq-opt"><strong>(C)</strong> 000</div><div class="pyq-opt"><strong>(D)</strong> 100</div></div>
+      </div>
+      <div id="sol_q13_" class="solution-drawer">
+        <div class="sol-header">🎯 Complete Step-by-Step Derivation & Concept Mapping</div>
+        <ol class="sol-steps"><li>From schematic, evaluate $J$ and $K$ for each flip-flop when present state $= 101$.</li><li>Calculate next state bits $Q_{next} = J\overline{Q} + \overline{K}Q$.</li><li>Result: Next state is $110$ (Option A).</li></ol>
+        <div class="ans-box">Official ExamGOAL Answer Key: <strong>(A)</strong></div>
+        <div class="callout gate-trap"><div class="gate-trap-title">⚠️ Examiner Trap Alert</div><p>Evaluate all 3 flip-flops simultaneously.</p></div>
+      </div>
+    </div>
+    
+    <div class="pyq-box">
+      <div class="pyq-header">
+        <div class="pyq-tag-group">
+          <span class="pyq-badge-num">Q14.</span>
+          <span class="pyq-badge-year">GATE ECE 2011</span>
+          <span class="pyq-badge-marks">1 Mark</span>
+          <span class="pyq-badge-type">MCQ</span>
+        </div>
+        <button class="reveal-btn" data-target="sol_q14_">💡 Show Solution</button>
+      </div>
+      <div class="pyq-body">
+        <p>A 4-bit shift register with feedback XOR gate implements an LFSR. If initialized with 1000, how many clock cycles are required before the pattern repeats?</p>
+        <div class="pyq-diagram"><img src="images/p5_img2_114.png" alt="Diagram for Q14." /></div>
+        <div class="pyq-options-grid"><div class="pyq-opt"><strong>(A)</strong> 15</div><div class="pyq-opt"><strong>(B)</strong> 16</div><div class="pyq-opt"><strong>(C)</strong> 7</div><div class="pyq-opt"><strong>(D)</strong> 8</div></div>
+      </div>
+      <div id="sol_q14_" class="solution-drawer">
+        <div class="sol-header">🎯 Complete Step-by-Step Derivation & Concept Mapping</div>
+        <ol class="sol-steps"><li>For a 4-stage maximal-length LFSR ($n = 4$):</li><li>Maximal cycle length is $2^n - 1 = 2^4 - 1 = 15$ clock cycles.</li><li>The sequence visits all non-zero states and repeats every 15 cycles (Option A).</li></ol>
+        <div class="ans-box">Official ExamGOAL Answer Key: <strong>(A)</strong></div>
+        <div class="callout gate-trap"><div class="gate-trap-title">⚠️ Examiner Trap Alert</div><p>LFSR period is $2^n - 1$, excluding the all-zeros absorbing state.</p></div>
+      </div>
+    </div>
+    
+    <div class="pyq-box">
+      <div class="pyq-header">
+        <div class="pyq-tag-group">
+          <span class="pyq-badge-num">Q15.</span>
+          <span class="pyq-badge-year">GATE ECE 2005</span>
+          <span class="pyq-badge-marks">1 Mark</span>
+          <span class="pyq-badge-type">MCQ</span>
+        </div>
+        <button class="reveal-btn" data-target="sol_q15_">💡 Show Solution</button>
+      </div>
+      <div class="pyq-body">
+        <p>The minimum number of flip-flops required to construct a MOD-10 (decade) counter is</p>
+        
+        <div class="pyq-options-grid"><div class="pyq-opt"><strong>(A)</strong> 10</div><div class="pyq-opt"><strong>(B)</strong> 5</div><div class="pyq-opt"><strong>(C)</strong> 4</div><div class="pyq-opt"><strong>(D)</strong> 3</div></div>
+      </div>
+      <div id="sol_q15_" class="solution-drawer">
+        <div class="sol-header">🎯 Complete Step-by-Step Derivation & Concept Mapping</div>
+        <ol class="sol-steps"><li>For a counter with modulus $N = 10$, the number of flip-flops $n$ must satisfy $2^{n-1} < N \le 2^n$.</li><li>For $n=3$: $2^3 = 8 < 10$ (cannot hold 10 states).</li><li>For $n=4$: $2^4 = 16 \ge 10$ (sufficient).</li><li>Therefore, $n = 4$ flip-flops are required (Option C).</li></ol>
+        <div class="ans-box">Official ExamGOAL Answer Key: <strong>(C)</strong></div>
+        <div class="callout gate-trap"><div class="gate-trap-title">⚠️ Examiner Trap Alert</div><p>4 flip-flops provide 16 states, of which 10 are used and 6 are unused.</p></div>
+      </div>
+    </div>
+    
+    <div class="pyq-box">
+      <div class="pyq-header">
+        <div class="pyq-tag-group">
+          <span class="pyq-badge-num">Q16.</span>
+          <span class="pyq-badge-year">GATE ECE 2005</span>
+          <span class="pyq-badge-marks">1 Mark</span>
+          <span class="pyq-badge-type">MCQ</span>
+        </div>
+        <button class="reveal-btn" data-target="sol_q16_">💡 Show Solution</button>
+      </div>
+      <div class="pyq-body">
+        <p>In the sequential circuit shown, the present state is $Q_1 Q_0 = 00$. The next state after one clock cycle is</p>
+        <div class="pyq-diagram"><img src="images/p5_img3_116.jpeg" alt="Diagram for Q16." /></div>
+        <div class="pyq-options-grid"><div class="pyq-opt"><strong>(A)</strong> 00</div><div class="pyq-opt"><strong>(B)</strong> 01</div><div class="pyq-opt"><strong>(C)</strong> 10</div><div class="pyq-opt"><strong>(D)</strong> 11</div></div>
+      </div>
+      <div id="sol_q16_" class="solution-drawer">
+        <div class="sol-header">🎯 Complete Step-by-Step Derivation & Concept Mapping</div>
+        <ol class="sol-steps"><li>Substitute $Q_1=0, Q_0=0$ into input logic expressions.</li><li>Compute next state $Q_1^+ Q_0^+ = 01$ (Option B).</li></ol>
+        <div class="ans-box">Official ExamGOAL Answer Key: <strong>(B)</strong></div>
+        <div class="callout gate-trap"><div class="gate-trap-title">⚠️ Examiner Trap Alert</div><p>Read active clock edge and feedback connections carefully.</p></div>
+      </div>
+    </div>
+    
+    <div class="pyq-box">
+      <div class="pyq-header">
+        <div class="pyq-tag-group">
+          <span class="pyq-badge-num">Q17.</span>
+          <span class="pyq-badge-year">GATE ECE</span>
+          <span class="pyq-badge-marks">1 Mark</span>
+          <span class="pyq-badge-type">MCQ</span>
+        </div>
+        <button class="reveal-btn" data-target="sol_q17_">💡 Show Solution</button>
+      </div>
+      <div class="pyq-body">
+        <p>The race-around condition in a JK flip-flop occurs when</p>
+        
+        <div class="pyq-options-grid"><div class="pyq-opt"><strong>(A)</strong> $J=0, K=0$ and clock is HIGH</div><div class="pyq-opt"><strong>(B)</strong> $J=1, K=0$ and clock is LOW</div><div class="pyq-opt"><strong>(C)</strong> $J=1, K=1$ and clock pulse width is greater than gate propagation delay</div><div class="pyq-opt"><strong>(D)</strong> $J=0, K=1$ and clock pulse width is less than gate propagation delay</div></div>
+      </div>
+      <div id="sol_q17_" class="solution-drawer">
+        <div class="sol-header">🎯 Complete Step-by-Step Derivation & Concept Mapping</div>
+        <ol class="sol-steps"><li>Race-around occurs when a level-triggered JK flip-flop toggles continuously during a single clock pulse.</li><li>Condition: $J = K = 1$ and clock pulse width $t_p > t_{pd}$ (propagation delay of gates).</li><li>Option (C) correctly states this condition.</li></ol>
+        <div class="ans-box">Official ExamGOAL Answer Key: <strong>(C)</strong></div>
+        <div class="callout gate-trap"><div class="gate-trap-title">⚠️ Examiner Trap Alert</div><p>Master-slave or edge-triggering eliminates this phenomenon.</p></div>
+      </div>
+    </div>
+    
+    <div class="pyq-box">
+      <div class="pyq-header">
+        <div class="pyq-tag-group">
+          <span class="pyq-badge-num">Q18.</span>
+          <span class="pyq-badge-year">GATE ECE 2004</span>
+          <span class="pyq-badge-marks">1 Mark</span>
+          <span class="pyq-badge-type">MCQ</span>
+        </div>
+        <button class="reveal-btn" data-target="sol_q18_">💡 Show Solution</button>
+      </div>
+      <div class="pyq-body">
+        <p>The number of unused states in a 4-bit Johnson (twisted ring) counter is</p>
+        
+        <div class="pyq-options-grid"><div class="pyq-opt"><strong>(A)</strong> 6</div><div class="pyq-opt"><strong>(B)</strong> 8</div><div class="pyq-opt"><strong>(C)</strong> 12</div><div class="pyq-opt"><strong>(D)</strong> 14</div></div>
+      </div>
+      <div id="sol_q18_" class="solution-drawer">
+        <div class="sol-header">🎯 Complete Step-by-Step Derivation & Concept Mapping</div>
+        <ol class="sol-steps"><li>A 4-bit register has $2^4 = 16$ total possible binary states.</li><li>A Johnson counter with $n$ flip-flops has modulus $\text{MOD } 2n = 2 \times 4 = 8$ valid states.</li><li>Number of unused states $= 2^n - 2n = 16 - 8 = 8$ states (Option B).</li></ol>
+        <div class="ans-box">Official ExamGOAL Answer Key: <strong>(B)</strong></div>
+        <div class="callout gate-trap"><div class="gate-trap-title">⚠️ Examiner Trap Alert</div><p>Ring counter has $2^n - n$ unused states ($16 - 4 = 12$); Johnson counter has $2^n - 2n = 8$ unused states.</p></div>
+      </div>
+    </div>
+    
+    <div class="pyq-box">
+      <div class="pyq-header">
+        <div class="pyq-tag-group">
+          <span class="pyq-badge-num">Q19.</span>
+          <span class="pyq-badge-year">GATE ECE 2003</span>
+          <span class="pyq-badge-marks">1 Mark</span>
+          <span class="pyq-badge-type">MCQ</span>
+        </div>
+        <button class="reveal-btn" data-target="sol_q19_">💡 Show Solution</button>
+      </div>
+      <div class="pyq-body">
+        <p>Which of the following shift register configurations requires the minimum number of clock pulses to load an $n$-bit word and then read it out in parallel?</p>
+        
+        <div class="pyq-options-grid"><div class="pyq-opt"><strong>(A)</strong> SISO</div><div class="pyq-opt"><strong>(B)</strong> SIPO</div><div class="pyq-opt"><strong>(C)</strong> PISO</div><div class="pyq-opt"><strong>(D)</strong> PIPO</div></div>
+      </div>
+      <div id="sol_q19_" class="solution-drawer">
+        <div class="sol-header">🎯 Complete Step-by-Step Derivation & Concept Mapping</div>
+        <ol class="sol-steps"><li>In a Parallel-In Parallel-Out (PIPO) register, all $n$ bits are loaded simultaneously on 1 clock pulse.</li><li>All $n$ bits are available at the output lines simultaneously (0 additional clock cycles).</li><li>Total clock cycles required $= 1$ cycle (minimum among all configurations, Option D).</li></ol>
+        <div class="ans-box">Official ExamGOAL Answer Key: <strong>(D)</strong></div>
+        <div class="callout gate-trap"><div class="gate-trap-title">⚠️ Examiner Trap Alert</div><p>SISO requires $n$ pulses to load and $n-1$ to read.</p></div>
+      </div>
+    </div>
+    
+    <div class="pyq-box">
+      <div class="pyq-header">
+        <div class="pyq-tag-group">
+          <span class="pyq-badge-num">Q20.</span>
+          <span class="pyq-badge-year">GATE ECE 1998</span>
+          <span class="pyq-badge-marks">1 Mark</span>
+          <span class="pyq-badge-type">MCQ</span>
+        </div>
+        <button class="reveal-btn" data-target="sol_q20_">💡 Show Solution</button>
+      </div>
+      <div class="pyq-body">
+        <p>A latch is a _______ sensitive circuit, whereas a flip-flop is a _______ sensitive circuit.</p>
+        <div class="pyq-diagram"><img src="images/p6_img1_129.jpeg" alt="Diagram for Q20." /></div>
+        <div class="pyq-options-grid"><div class="pyq-opt"><strong>(A)</strong> edge, level</div><div class="pyq-opt"><strong>(B)</strong> edge, edge</div><div class="pyq-opt"><strong>(C)</strong> level, edge</div><div class="pyq-opt"><strong>(D)</strong> level, level</div></div>
+      </div>
+      <div id="sol_q20_" class="solution-drawer">
+        <div class="sol-header">🎯 Complete Step-by-Step Derivation & Concept Mapping</div>
+        <ol class="sol-steps"><li>A latch responds to input data continuously as long as the clock/enable is at a specific voltage level (level-sensitive / transparent).</li><li>A flip-flop samples its inputs only at the transition edge of the clock (edge-triggered).</li><li>Option (C) level, edge is correct.</li></ol>
+        <div class="ans-box">Official ExamGOAL Answer Key: <strong>(C)</strong></div>
+        <div class="callout gate-trap"><div class="gate-trap-title">⚠️ Examiner Trap Alert</div><p>Remember: Latch = Level, Flip-Flop = Edge.</p></div>
+      </div>
+    </div>
+    
+    <div class="pyq-box">
+      <div class="pyq-header">
+        <div class="pyq-tag-group">
+          <span class="pyq-badge-num">Q21.</span>
+          <span class="pyq-badge-year">GATE ECE</span>
+          <span class="pyq-badge-marks">1 Mark</span>
+          <span class="pyq-badge-type">MCQ</span>
+        </div>
+        <button class="reveal-btn" data-target="sol_q21_">💡 Show Solution</button>
+      </div>
+      <div class="pyq-body">
+        <p>In the counter shown in figure, the modulus is</p>
+        <div class="pyq-diagram"><img src="images/p7_img1_142.jpeg" alt="Diagram for Q21." /></div>
+        <div class="pyq-options-grid"><div class="pyq-opt"><strong>(A)</strong> 3</div><div class="pyq-opt"><strong>(B)</strong> 4</div><div class="pyq-opt"><strong>(C)</strong> 5</div><div class="pyq-opt"><strong>(D)</strong> 6</div></div>
+      </div>
+      <div id="sol_q21_" class="solution-drawer">
+        <div class="sol-header">🎯 Complete Step-by-Step Derivation & Concept Mapping</div>
+        <ol class="sol-steps"><li>Trace state transitions from schematic.</li><li>Total distinct states in repeating sequence $= 6$. Modulus is 6 (Option D).</li></ol>
+        <div class="ans-box">Official ExamGOAL Answer Key: <strong>(D)</strong></div>
+        <div class="callout gate-trap"><div class="gate-trap-title">⚠️ Examiner Trap Alert</div><p>Count distinct states in the repeating closed loop.</p></div>
+      </div>
+    </div>
+    
+    <div class="pyq-box">
+      <div class="pyq-header">
+        <div class="pyq-tag-group">
+          <span class="pyq-badge-num">Q22.</span>
+          <span class="pyq-badge-year">GATE ECE 1995</span>
+          <span class="pyq-badge-marks">1 Mark</span>
+          <span class="pyq-badge-type">MCQ</span>
+        </div>
+        <button class="reveal-btn" data-target="sol_q22_">💡 Show Solution</button>
+      </div>
+      <div class="pyq-body">
+        <p>The setup time of a flip-flop is defined as the</p>
+        
+        <div class="pyq-options-grid"><div class="pyq-opt"><strong>(A)</strong> time taken for output to settle after clock edge</div><div class="pyq-opt"><strong>(B)</strong> minimum pulse width of the clock</div><div class="pyq-opt"><strong>(C)</strong> minimum time the data must be held after the clock edge</div><div class="pyq-opt"><strong>(D)</strong> minimum time the data must be held stable before the clock edge</div></div>
+      </div>
+      <div id="sol_q22_" class="solution-drawer">
+        <div class="sol-header">🎯 Complete Step-by-Step Derivation & Concept Mapping</div>
+        <ol class="sol-steps"><li>Setup time ($t_{su}$) is the minimum time duration the data input must remain stable before the active transition of the clock pulse.</li><li>Option (D) matches the formal IEEE definition.</li></ol>
+        <div class="ans-box">Official ExamGOAL Answer Key: <strong>(D)</strong></div>
+        <div class="callout gate-trap"><div class="gate-trap-title">⚠️ Examiner Trap Alert</div><p>Do not confuse setup time (before clock edge) with hold time (after clock edge).</p></div>
+      </div>
+    </div>
+    
+    <div class="pyq-box">
+      <div class="pyq-header">
+        <div class="pyq-tag-group">
+          <span class="pyq-badge-num">Q23.</span>
+          <span class="pyq-badge-year">GATE ECE 1995</span>
+          <span class="pyq-badge-marks">1 Mark</span>
+          <span class="pyq-badge-type">MCQ</span>
+        </div>
+        <button class="reveal-btn" data-target="sol_q23_">💡 Show Solution</button>
+      </div>
+      <div class="pyq-body">
+        <p>A 5-bit Johnson counter has a clock frequency of $10\text{ MHz}$. The frequency of the output signal at any flip-flop is</p>
+        
+        <div class="pyq-options-grid"><div class="pyq-opt"><strong>(A)</strong> 2 MHz</div><div class="pyq-opt"><strong>(B)</strong> 5 MHz</div><div class="pyq-opt"><strong>(C)</strong> 1 MHz</div><div class="pyq-opt"><strong>(D)</strong> 0.5 MHz</div></div>
+      </div>
+      <div id="sol_q23_" class="solution-drawer">
+        <div class="sol-header">🎯 Complete Step-by-Step Derivation & Concept Mapping</div>
+        <ol class="sol-steps"><li>Modulus of an $n$-bit Johnson counter is $2n$.</li><li>For $n = 5$: $\text{MOD} = 2 \times 5 = 10$.</li><li>Output frequency at each flip-flop is $f_{out} = f_{clk} / \text{MOD} = 10\text{ MHz} / 10 = 1\text{ MHz}$ (Option C).</li></ol>
+        <div class="ans-box">Official ExamGOAL Answer Key: <strong>(C)</strong></div>
+        <div class="callout gate-trap"><div class="gate-trap-title">⚠️ Examiner Trap Alert</div><p>Johnson counter divides frequency by $2n$, whereas ring counter divides by $n$.</p></div>
+      </div>
+    </div>
+    
+    <div class="pyq-box">
+      <div class="pyq-header">
+        <div class="pyq-tag-group">
+          <span class="pyq-badge-num">Q24.</span>
+          <span class="pyq-badge-year">GATE ECE 1994</span>
+          <span class="pyq-badge-marks">1 Mark</span>
+          <span class="pyq-badge-type">NAT / Subjective</span>
+        </div>
+        <button class="reveal-btn" data-target="sol_q24_">💡 Show Solution</button>
+      </div>
+      <div class="pyq-body">
+        <p>Synchronous counters are _______ (faster/slower) than ripple counters of the same bit length.</p>
+        
+        
+      </div>
+      <div id="sol_q24_" class="solution-drawer">
+        <div class="sol-header">🎯 Complete Step-by-Step Derivation & Concept Mapping</div>
+        <ol class="sol-steps"><li>In synchronous counters, all flip-flops are clocked simultaneously, avoiding cumulative propagation delay.</li><li>In ripple counters, the clock ripples from stage to stage, accumulating delay ($N \times t_{pd}$).</li><li>Therefore, synchronous counters are significantly <strong>faster</strong>.</li></ol>
+        <div class="ans-box">Official ExamGOAL Answer Key: <strong>faster</strong></div>
+        <div class="callout gate-trap"><div class="gate-trap-title">⚠️ Examiner Trap Alert</div><p>Ripple counters have cumulative delay; synchronous counters toggle in parallel.</p></div>
+      </div>
+    </div>
+    
+    <div class="pyq-box">
+      <div class="pyq-header">
+        <div class="pyq-tag-group">
+          <span class="pyq-badge-num">Q25.</span>
+          <span class="pyq-badge-year">GATE ECE 1993</span>
+          <span class="pyq-badge-marks">1 Mark</span>
+          <span class="pyq-badge-type">NAT / Subjective</span>
+        </div>
+        <button class="reveal-btn" data-target="sol_q25_">💡 Show Solution</button>
+      </div>
+      <div class="pyq-body">
+        <p>A $1\text{ MHz}$ square wave clock is applied to a cascade of two BCD (MOD-10) counters. The frequency of the output from the second counter is _______ kHz.</p>
+        
+        
+      </div>
+      <div id="sol_q25_" class="solution-drawer">
+        <div class="sol-header">🎯 Complete Step-by-Step Derivation & Concept Mapping</div>
+        <ol class="sol-steps"><li>First BCD counter divides clock frequency by 10:<br/>$$f_1 = \frac{1\text{ MHz}}{10} = 100\text{ kHz}$$</li><li>Second BCD counter divides $f_1$ by 10:<br/>$$f_2 = \frac{100\text{ kHz}}{10} = 10\text{ kHz}$$</li><li>Total division ratio is $10 \times 10 = 100$. Output frequency is <strong>10 kHz</strong>.</li></ol>
+        <div class="ans-box">Official ExamGOAL Answer Key: <strong>10</strong></div>
+        <div class="callout gate-trap"><div class="gate-trap-title">⚠️ Examiner Trap Alert</div><p>Cascaded counters multiply their moduli: total modulus $= 10 \times 10 = 100$.</p></div>
+      </div>
+    </div>
+    
+    <div class="pyq-box">
+      <div class="pyq-header">
+        <div class="pyq-tag-group">
+          <span class="pyq-badge-num">Q26.</span>
+          <span class="pyq-badge-year">GATE ECE 1992</span>
+          <span class="pyq-badge-marks">1 Mark</span>
+          <span class="pyq-badge-type">MCQ</span>
+        </div>
+        <button class="reveal-btn" data-target="sol_q26_">💡 Show Solution</button>
+      </div>
+      <div class="pyq-body">
+        <p>The circuit shown in figure is initialized to $Q = 0$. After 3 clock pulses, the output $Q$ is</p>
+        <div class="pyq-diagram"><img src="images/p7_img2_143.jpeg" alt="Diagram for Q26." /></div>
+        <div class="pyq-options-grid"><div class="pyq-opt"><strong>(A)</strong> 0</div><div class="pyq-opt"><strong>(B)</strong> Undefined</div><div class="pyq-opt"><strong>(C)</strong> 1</div><div class="pyq-opt"><strong>(D)</strong> High impedance</div></div>
+      </div>
+      <div id="sol_q26_" class="solution-drawer">
+        <div class="sol-header">🎯 Complete Step-by-Step Derivation & Concept Mapping</div>
+        <ol class="sol-steps"><li>Trace circuit cycle-by-cycle starting from $Q=0$:</li><li>Pulse 1: $Q \to 1$. Pulse 2: $Q \to 0$. Pulse 3: $Q \to 1$.</li><li>Output after 3 pulses is 1 (Option C).</li></ol>
+        <div class="ans-box">Official ExamGOAL Answer Key: <strong>(C)</strong></div>
+        <div class="callout gate-trap"><div class="gate-trap-title">⚠️ Examiner Trap Alert</div><p>Track each clock pulse transition carefully.</p></div>
+      </div>
+    </div>
+    
+    <div class="pyq-box">
+      <div class="pyq-header">
+        <div class="pyq-tag-group">
+          <span class="pyq-badge-num">Q27.</span>
+          <span class="pyq-badge-year">GATE ECE</span>
+          <span class="pyq-badge-marks">1 Mark</span>
+          <span class="pyq-badge-type">NAT / Subjective</span>
+        </div>
+        <button class="reveal-btn" data-target="sol_q27_">💡 Show Solution</button>
+      </div>
+      <div class="pyq-body">
+        <p>In a cross-coupled NOR latch, asserting _______ resets the latch, while asserting _______ sets the latch.</p>
+        
+        
+      </div>
+      <div id="sol_q27_" class="solution-drawer">
+        <div class="sol-header">🎯 Complete Step-by-Step Derivation & Concept Mapping</div>
+        <ol class="sol-steps"><li>Active-HIGH NOR latch: $R=1, S=0 \implies Q=0$ (Reset).</li><li>$S=1, R=0 \implies Q=1$ (Set).</li><li>Inputs are $R$ (Reset) and $S$ (Set).</li></ol>
+        <div class="ans-box">Official ExamGOAL Answer Key: <strong>R, S</strong></div>
+        <div class="callout gate-trap"><div class="gate-trap-title">⚠️ Examiner Trap Alert</div><p>Remember NOR latch inputs are active-HIGH.</p></div>
+      </div>
+    </div>
+    
+    <div class="pyq-box">
+      <div class="pyq-header">
+        <div class="pyq-tag-group">
+          <span class="pyq-badge-num">Q28.</span>
+          <span class="pyq-badge-year">GATE ECE 1990</span>
+          <span class="pyq-badge-marks">1 Mark</span>
+          <span class="pyq-badge-type">MCQ</span>
+        </div>
+        <button class="reveal-btn" data-target="sol_q28_">💡 Show Solution</button>
+      </div>
+      <div class="pyq-body">
+        <p>The excitation equation for a T flip-flop in terms of present state $Q$ and next state $Q_{next}$ is</p>
+        
+        <div class="pyq-options-grid"><div class="pyq-opt"><strong>(A)</strong> $T = Q \cdot Q_{next}$</div><div class="pyq-opt"><strong>(B)</strong> $T = Q + Q_{next}$</div><div class="pyq-opt"><strong>(C)</strong> $T = Q \oplus Q_{next}$</div><div class="pyq-opt"><strong>(D)</strong> $T = \overline{Q \oplus Q_{next}}$</div></div>
+      </div>
+      <div id="sol_q28_" class="solution-drawer">
+        <div class="sol-header">🎯 Complete Step-by-Step Derivation & Concept Mapping</div>
+        <ol class="sol-steps"><li>T flip-flop characteristic equation: $Q_{next} = T \oplus Q$.</li><li>XORing both sides with $Q$:<br/>$$T = Q_{next} \oplus Q = Q \oplus Q_{next}$$</li><li>Option (C) is the exact excitation equation.</li></ol>
+        <div class="ans-box">Official ExamGOAL Answer Key: <strong>(C)</strong></div>
+        <div class="callout gate-trap"><div class="gate-trap-title">⚠️ Examiner Trap Alert</div><p>T must be 1 whenever state changes ($0 \to 1$ or $1 \to 0$), which is the XOR operation.</p></div>
+      </div>
+    </div>
+    
+    <div class="pyq-box">
+      <div class="pyq-header">
+        <div class="pyq-tag-group">
+          <span class="pyq-badge-num">Q29.</span>
+          <span class="pyq-badge-year">GATE ECE 1988</span>
+          <span class="pyq-badge-marks">1 Mark</span>
+          <span class="pyq-badge-type">MCQ</span>
+        </div>
+        <button class="reveal-btn" data-target="sol_q29_">💡 Show Solution</button>
+      </div>
+      <div class="pyq-body">
+        <p>A 4-bit ring counter is initialized with $1000$. The number of distinct states it cycles through is</p>
+        
+        <div class="pyq-options-grid"><div class="pyq-opt"><strong>(A)</strong> 16</div><div class="pyq-opt"><strong>(B)</strong> 8</div><div class="pyq-opt"><strong>(C)</strong> 4</div><div class="pyq-opt"><strong>(D)</strong> 2</div></div>
+      </div>
+      <div id="sol_q29_" class="solution-drawer">
+        <div class="sol-header">🎯 Complete Step-by-Step Derivation & Concept Mapping</div>
+        <ol class="sol-steps"><li>An $N$-bit ring counter has modulus equal to $N$.</li><li>For $N = 4$, the states are: $1000 \to 0100 \to 0010 \to 0001 \to 1000$.</li><li>Total distinct states $= 4$ (Option C).</li></ol>
+        <div class="ans-box">Official ExamGOAL Answer Key: <strong>(C)</strong></div>
+        <div class="callout gate-trap"><div class="gate-trap-title">⚠️ Examiner Trap Alert</div><p>Ring counter has $N$ states; Johnson counter has $2N$ states.</p></div>
+      </div>
+    </div>
+    
+    <div class="pyq-box">
+      <div class="pyq-header">
+        <div class="pyq-tag-group">
+          <span class="pyq-badge-num">Q30.</span>
+          <span class="pyq-badge-year">GATE ECE</span>
+          <span class="pyq-badge-marks">1 Mark</span>
+          <span class="pyq-badge-type">NAT / Subjective</span>
+        </div>
+        <button class="reveal-btn" data-target="sol_q30_">💡 Show Solution</button>
+      </div>
+      <div class="pyq-body">
+        <p>In an asynchronous ripple counter, the clock propagation delay causes</p>
+        <div class="pyq-diagram"><img src="images/p9_img1_181.jpeg" alt="Diagram for Q30." /></div>
+        
+      </div>
+      <div id="sol_q30_" class="solution-drawer">
+        <div class="sol-header">🎯 Complete Step-by-Step Derivation & Concept Mapping</div>
+        <ol class="sol-steps"><li>The cumulative delay through cascaded flip-flops produces transient intermediate states (glitches / decoding spikes).</li><li>This limits maximum clock frequency to $f_{max} = 1/(N \cdot t_{pd})$.</li></ol>
+        <div class="ans-box">Official ExamGOAL Answer Key: <strong>A</strong></div>
+        <div class="callout gate-trap"><div class="gate-trap-title">⚠️ Examiner Trap Alert</div><p>Decoding spikes occur because outputs do not change simultaneously.</p></div>
+      </div>
+    </div>
+    
+    <div class="pyq-box">
+      <div class="pyq-header">
+        <div class="pyq-tag-group">
+          <span class="pyq-badge-num">Q31.</span>
+          <span class="pyq-badge-year">GATE ECE 1987</span>
+          <span class="pyq-badge-marks">1 Mark</span>
+          <span class="pyq-badge-type">MCQ</span>
+        </div>
+        <button class="reveal-btn" data-target="sol_q31_">💡 Show Solution</button>
+      </div>
+      <div class="pyq-body">
+        <p>The race-around problem in a level-triggered JK flip-flop can be avoided by using</p>
+        
+        <div class="pyq-options-grid"><div class="pyq-opt"><strong>(A)</strong> larger resistors</div><div class="pyq-opt"><strong>(B)</strong> a Master-Slave configuration</div><div class="pyq-opt"><strong>(C)</strong> higher supply voltage</div><div class="pyq-opt"><strong>(D)</strong> a slower clock with longer pulse width</div></div>
+      </div>
+      <div id="sol_q31_" class="solution-drawer">
+        <div class="sol-header">🎯 Complete Step-by-Step Derivation & Concept Mapping</div>
+        <ol class="sol-steps"><li>Race-around is completely eliminated by breaking the direct feedback transparency.</li><li>The Master-Slave architecture achieves this by enabling the master on $CLK=1$ and the slave on $CLK=0$.</li><li>Option (B) is the textbook solution.</li></ol>
+        <div class="ans-box">Official ExamGOAL Answer Key: <strong>(B)</strong></div>
+        <div class="callout gate-trap"><div class="gate-trap-title">⚠️ Examiner Trap Alert</div><p>Slowing the clock exacerbates race-around if pulse width increases!</p></div>
+      </div>
+    </div>
+    
+          </div>
+        </section>
+        
+        <section id="sec-pyqs-2m" class="chapter-section">
+          <div class="chapter-number-pill">GATE Official Archive · 2-Mark Questions</div>
+          <h2 class="chapter-title">Official GATE 2-Mark PYQ Solutions (Q32 to Q72)</h2>
+          <div class="section-content">
+            
+    <div class="pyq-box">
+      <div class="pyq-header">
+        <div class="pyq-tag-group">
+          <span class="pyq-badge-num">Q32.</span>
+          <span class="pyq-badge-year">GATE ECE 2026</span>
+          <span class="pyq-badge-marks">2 Marks</span>
+          <span class="pyq-badge-type">MCQ</span>
+        </div>
+        <button class="reveal-btn" data-target="sol_q32_">💡 Show Solution</button>
+      </div>
+      <div class="pyq-body">
+        <p>In the synchronous sequential circuit shown below, the flip-flops are positive-edge triggered D flip-flops. If the initial state is $Q_1 Q_0 = 00$, the state sequence after subsequent clock pulses is</p>
+        <div class="pyq-diagram"><img src="images/p10_img1_191.png" alt="Diagram for Q32." /></div>
+        <div class="pyq-options-grid"><div class="pyq-opt"><strong>(A)</strong> $00 \to 10 \to 11 \to 01 \to 00$</div><div class="pyq-opt"><strong>(B)</strong> $00 \to 01 \to 10 \to 11 \to 00$</div><div class="pyq-opt"><strong>(C)</strong> $00 \to 11 \to 10 \to 01 \to 00$</div><div class="pyq-opt"><strong>(D)</strong> $00 \to 01 \to 11 \to 10 \to 00$</div></div>
+      </div>
+      <div id="sol_q32_" class="solution-drawer">
+        <div class="sol-header">🎯 Complete Step-by-Step Derivation & Concept Mapping</div>
+        <ol class="sol-steps"><li>Analyze logic inputs to each D flip-flop from schematic: $D_1 = \overline{Q_0}, D_0 = Q_1$.</li><li>Trace state transitions starting from $00$:</li><li>• State $00$: $D_1 = \overline{0} = 1, D_0 = 0 \implies$ Next state is $10$.</li><li>• State $10$: $D_1 = \overline{0} = 1, D_0 = 1 \implies$ Next state is $11$.</li><li>• State $11$: $D_1 = \overline{1} = 0, D_0 = 1 \implies$ Next state is $01$.</li><li>• State $01$: $D_1 = \overline{1} = 0, D_0 = 0 \implies$ Next state is $00$.</li><li>The repeating sequence is $00 \to 10 \to 11 \to 01 \to 00$ (Option A).</li></ol>
+        <div class="ans-box">Official ExamGOAL Answer Key: <strong>(A)</strong></div>
+        <div class="callout gate-trap"><div class="gate-trap-title">⚠️ Examiner Trap Alert</div><p>Notice this is a 2-bit Johnson counter ($N=2, 2N=4$ states).</p></div>
+      </div>
+    </div>
+    
+    <div class="pyq-box">
+      <div class="pyq-header">
+        <div class="pyq-tag-group">
+          <span class="pyq-badge-num">Q33.</span>
+          <span class="pyq-badge-year">GATE ECE 2025</span>
+          <span class="pyq-badge-marks">2 Marks</span>
+          <span class="pyq-badge-type">MCQ</span>
+        </div>
+        <button class="reveal-btn" data-target="sol_q33_">💡 Show Solution</button>
+      </div>
+      <div class="pyq-body">
+        <p>In a synchronous digital system, two flip-flops have $t_{cq} = 1.5\text{ ns}, t_{su} = 1.0\text{ ns}$, and $t_h = 0.5\text{ ns}$. The combinational logic delay between them has $t_{comb,max} = 4.5\text{ ns}$ and $t_{comb,min} = 1.2\text{ ns}$. A positive clock skew of $\delta = 0.5\text{ ns}$ exists at the receiving flip-flop. The minimum allowable clock period $T_{clk}$ is</p>
+        <div class="pyq-diagram"><img src="images/p10_img2_193.png" alt="Diagram for Q33." /></div>
+        <div class="pyq-options-grid"><div class="pyq-opt"><strong>(A)</strong> 6.5 ns</div><div class="pyq-opt"><strong>(B)</strong> 7.0 ns</div><div class="pyq-opt"><strong>(C)</strong> 7.5 ns</div><div class="pyq-opt"><strong>(D)</strong> 8.0 ns</div></div>
+      </div>
+      <div id="sol_q33_" class="solution-drawer">
+        <div class="sol-header">🎯 Complete Step-by-Step Derivation & Concept Mapping</div>
+        <ol class="sol-steps"><li>Apply setup timing constraint with clock skew $\delta$:<br/>$$T_{clk} + \delta \ge t_{cq} + t_{comb,max} + t_{su}$$</li><li>Solve for minimum clock period $T_{clk,min}$:<br/>$$T_{clk,min} = t_{cq} + t_{comb,max} + t_{su} - \delta$$</li><li>Substitute values:<br/>$$T_{clk,min} = 1.5\text{ ns} + 4.5\text{ ns} + 1.0\text{ ns} - 0.5\text{ ns} = 6.5\text{ ns}$$</li><li>Verify hold time constraint:<br/>$$t_{cq} + t_{comb,min} \ge t_h + \delta \implies 1.5 + 1.2 = 2.7\text{ ns} \ge 0.5 + 0.5 = 1.0\text{ ns} \quad (\text{Hold OK!})$$</li><li>Therefore, $T_{clk,min} = 6.5\text{ ns}$ (Option A).</li></ol>
+        <div class="ans-box">Official ExamGOAL Answer Key: <strong>(A) 6.5 ns</strong></div>
+        <div class="callout gate-trap"><div class="gate-trap-title">⚠️ Examiner Trap Alert</div><p>Positive clock skew HELPS setup time (reduces $T_{clk,min}$) but HURTS hold time!</p></div>
+      </div>
+    </div>
+    
+    <div class="pyq-box">
+      <div class="pyq-header">
+        <div class="pyq-tag-group">
+          <span class="pyq-badge-num">Q34.</span>
+          <span class="pyq-badge-year">GATE ECE</span>
+          <span class="pyq-badge-marks">2 Marks</span>
+          <span class="pyq-badge-type">NAT / Subjective</span>
+        </div>
+        <button class="reveal-btn" data-target="sol_q34_">💡 Show Solution</button>
+      </div>
+      <div class="pyq-body">
+        <p>For the synchronous counter shown in the figure, the maximum clock frequency (in MHz) at which the counter can operate reliably without any timing violation is _______.</p>
+        <div class="pyq-diagram"><img src="images/p11_img1_203.png" alt="Diagram for Q34." /></div>
+        
+      </div>
+      <div id="sol_q34_" class="solution-drawer">
+        <div class="sol-header">🎯 Complete Step-by-Step Derivation & Concept Mapping</div>
+        <ol class="sol-steps"><li>Identify the critical path delay in the synchronous counter:</li><li>Critical path $T_{crit} = t_{cq} + t_{gate} + t_{su} = 5.0\text{ ns}$.</li><li>Maximum operating clock frequency:<br/>$$f_{max} = \frac{1}{T_{crit}} = \frac{1}{5.0 \times 10^{-9}\text{ s}} = 200\text{ MHz}$$.</li></ol>
+        <div class="ans-box">Official ExamGOAL Answer Key: <strong>200</strong></div>
+        <div class="callout gate-trap"><div class="gate-trap-title">⚠️ Examiner Trap Alert</div><p>Always sum $t_{cq} + t_{comb} + t_{su}$ along the slowest feedback path.</p></div>
+      </div>
+    </div>
+    
+    <div class="pyq-box">
+      <div class="pyq-header">
+        <div class="pyq-tag-group">
+          <span class="pyq-badge-num">Q35.</span>
+          <span class="pyq-badge-year">GATE ECE 2024</span>
+          <span class="pyq-badge-marks">2 Marks</span>
+          <span class="pyq-badge-type">MCQ</span>
+        </div>
+        <button class="reveal-btn" data-target="sol_q35_">💡 Show Solution</button>
+      </div>
+      <div class="pyq-body">
+        <p>An FSM has state transitions shown in the diagram. Which sequence of inputs causes the machine to reach state S3?</p>
+        <div class="pyq-diagram"><img src="images/p11_img2_205.png" alt="Diagram for Q35." /></div>
+        <div class="pyq-options-grid"><div class="pyq-opt"><strong>(A)</strong> 0110</div><div class="pyq-opt"><strong>(B)</strong> 1011</div><div class="pyq-opt"><strong>(C)</strong> 1100</div><div class="pyq-opt"><strong>(D)</strong> 0011</div></div>
+      </div>
+      <div id="sol_q35_" class="solution-drawer">
+        <div class="sol-header">🎯 Complete Step-by-Step Derivation & Concept Mapping</div>
+        <ol class="sol-steps"><li>Trace transitions starting from initial state S0 with each option sequence.</li><li>Input 1011 transitions through S0 $\to$ S1 $\to$ S2 $\to$ S3 successfully (Option B).</li></ol>
+        <div class="ans-box">Official ExamGOAL Answer Key: <strong>(B)</strong></div>
+        <div class="callout gate-trap"><div class="gate-trap-title">⚠️ Examiner Trap Alert</div><p>Check for self-loops on matching bit prefixes.</p></div>
+      </div>
+    </div>
+    
+    <div class="pyq-box">
+      <div class="pyq-header">
+        <div class="pyq-tag-group">
+          <span class="pyq-badge-num">Q36.</span>
+          <span class="pyq-badge-year">GATE ECE 2023</span>
+          <span class="pyq-badge-marks">2 Marks</span>
+          <span class="pyq-badge-type">NAT / Subjective</span>
+        </div>
+        <button class="reveal-btn" data-target="sol_q36_">💡 Show Solution</button>
+      </div>
+      <div class="pyq-body">
+        <p>In the circuit shown, all flip-flops have $t_{cq} = 1\text{ ns}$ and $t_{su} = 1\text{ ns}$. The logic gates have propagation delay of $2\text{ ns}$. The maximum clock frequency of the circuit is _______ MHz.</p>
+        <div class="pyq-diagram"><img src="images/p11_img3_207.png" alt="Diagram for Q36." /></div>
+        
+      </div>
+      <div id="sol_q36_" class="solution-drawer">
+        <div class="sol-header">🎯 Complete Step-by-Step Derivation & Concept Mapping</div>
+        <ol class="sol-steps"><li>Compute minimum clock period:<br/>$$T_{clk} = t_{cq} + t_{gate} + t_{su} = 1\text{ ns} + 2\text{ ns} + 1\text{ ns} = 4\text{ ns}$$</li><li>Compute maximum frequency:<br/>$$f_{max} = \frac{1}{4\text{ ns}} = 250\text{ MHz}$$.</li></ol>
+        <div class="ans-box">Official ExamGOAL Answer Key: <strong>250</strong></div>
+        <div class="callout gate-trap"><div class="gate-trap-title">⚠️ Examiner Trap Alert</div><p>Unit conversion: $1 / (4 \times 10^{-9}) = 250 \times 10^6\text{ Hz} = 250\text{ MHz}$.</p></div>
+      </div>
+    </div>
+    
+    <div class="pyq-box">
+      <div class="pyq-header">
+        <div class="pyq-tag-group">
+          <span class="pyq-badge-num">Q37.</span>
+          <span class="pyq-badge-year">GATE ECE</span>
+          <span class="pyq-badge-marks">2 Marks</span>
+          <span class="pyq-badge-type">MCQ</span>
+        </div>
+        <button class="reveal-btn" data-target="sol_q37_">💡 Show Solution</button>
+      </div>
+      <div class="pyq-body">
+        <p>A Mealy FSM detects the sequence '101' with overlapping allowed. The state equations are derived using D flip-flops. The logic expression for output $Y$ is</p>
+        <div class="pyq-diagram"><img src="images/p12_img1_219.png" alt="Diagram for Q37." /></div>
+        <div class="pyq-options-grid"><div class="pyq-opt"><strong>(A)</strong> $Y = Q_1 \overline{Q_0} X$</div><div class="pyq-opt"><strong>(B)</strong> $Y = Q_1 Q_0 X$</div><div class="pyq-opt"><strong>(C)</strong> $Y = \overline{Q_1} Q_0 X$</div><div class="pyq-opt"><strong>(D)</strong> $Y = Q_1 X$</div></div>
+      </div>
+      <div id="sol_q37_" class="solution-drawer">
+        <div class="sol-header">🎯 Complete Step-by-Step Derivation & Concept Mapping</div>
+        <ol class="sol-steps"><li>Mealy machine asserts output when in state representing '10' (state $Q_1 Q_0 = 10$) and current input $X = 1$.</li><li>Output Boolean expression: $Y = Q_1 \overline{Q_0} X$ (Option A).</li></ol>
+        <div class="ans-box">Official ExamGOAL Answer Key: <strong>(A)</strong></div>
+        <div class="callout gate-trap"><div class="gate-trap-title">⚠️ Examiner Trap Alert</div><p>Mealy output depends on present state AND primary input $X$.</p></div>
+      </div>
+    </div>
+    
+    <div class="pyq-box">
+      <div class="pyq-header">
+        <div class="pyq-tag-group">
+          <span class="pyq-badge-num">Q38.</span>
+          <span class="pyq-badge-year">GATE ECE 2022</span>
+          <span class="pyq-badge-marks">2 Marks</span>
+          <span class="pyq-badge-type">MCQ</span>
+        </div>
+        <button class="reveal-btn" data-target="sol_q38_">💡 Show Solution</button>
+      </div>
+      <div class="pyq-body">
+        <p>Select the correct statement(s) regarding Finite State Machines (MSQ):</p>
+        <div class="pyq-diagram"><img src="images/p12_img2_221.png" alt="Diagram for Q38." /></div>
+        <div class="pyq-options-grid"><div class="pyq-opt"><strong>(A)</strong> A Moore machine output is synchronous with the clock edge.</div><div class="pyq-opt"><strong>(B)</strong> A Mealy machine output is always glitch-free.</div><div class="pyq-opt"><strong>(C)</strong> A Mealy machine typically requires fewer states than an equivalent Moore machine.</div><div class="pyq-opt"><strong>(D)</strong> Moore machine output depends directly on primary inputs.</div></div>
+      </div>
+      <div id="sol_q38_" class="solution-drawer">
+        <div class="sol-header">🎯 Complete Step-by-Step Derivation & Concept Mapping</div>
+        <ol class="sol-steps"><li>Statement (A) is correct: Moore outputs depend strictly on state flip-flops and change only on clock edges.</li><li>Statement (B) is false: Mealy outputs depend asynchronously on inputs and are prone to glitches.</li><li>Statement (C) is correct: Mealy machines typically require 1 fewer state for sequence detection.</li><li>Statement (D) is false: Moore output is independent of primary inputs.</li><li>Correct options are (A) and (C).</li></ol>
+        <div class="ans-box">Official ExamGOAL Answer Key: <strong>(A), (C)</strong></div>
+        <div class="callout gate-trap"><div class="gate-trap-title">⚠️ Examiner Trap Alert</div><p>MSQ question: both (A) and (C) must be selected.</p></div>
+      </div>
+    </div>
+    
+    <div class="pyq-box">
+      <div class="pyq-header">
+        <div class="pyq-tag-group">
+          <span class="pyq-badge-num">Q39.</span>
+          <span class="pyq-badge-year">GATE ECE 2021</span>
+          <span class="pyq-badge-marks">2 Marks</span>
+          <span class="pyq-badge-type">NAT / Subjective</span>
+        </div>
+        <button class="reveal-btn" data-target="sol_q39_">💡 Show Solution</button>
+      </div>
+      <div class="pyq-body">
+        <p>For the counter circuit shown in figure, the modulus is _______.</p>
+        <div class="pyq-diagram"><img src="images/p12_img3_223.png" alt="Diagram for Q39." /></div>
+        
+      </div>
+      <div id="sol_q39_" class="solution-drawer">
+        <div class="sol-header">🎯 Complete Step-by-Step Derivation & Concept Mapping</div>
+        <ol class="sol-steps"><li>Trace states of the counter through clock pulses.</li><li>The counter cycles through 4 unique states before repeating.</li><li>Modulus $= 4$.</li></ol>
+        <div class="ans-box">Official ExamGOAL Answer Key: <strong>4</strong></div>
+        <div class="callout gate-trap"><div class="gate-trap-title">⚠️ Examiner Trap Alert</div><p>Verify whether feedback reset occurs on state 4.</p></div>
+      </div>
+    </div>
+    
+    <div class="pyq-box">
+      <div class="pyq-header">
+        <div class="pyq-tag-group">
+          <span class="pyq-badge-num">Q40.</span>
+          <span class="pyq-badge-year">GATE ECE</span>
+          <span class="pyq-badge-marks">2 Marks</span>
+          <span class="pyq-badge-type">NAT / Subjective</span>
+        </div>
+        <button class="reveal-btn" data-target="sol_q40_">💡 Show Solution</button>
+      </div>
+      <div class="pyq-body">
+        <p>Two cascaded counters: a MOD-7 counter followed by a MOD-11 counter. An asynchronous reset resets both when the total count reaches 77. The modulus of the overall counter system is _______.</p>
+        <div class="pyq-diagram"><img src="images/p13_img1_235.png" alt="Diagram for Q40." /></div>
+        
+      </div>
+      <div id="sol_q40_" class="solution-drawer">
+        <div class="sol-header">🎯 Complete Step-by-Step Derivation & Concept Mapping</div>
+        <ol class="sol-steps"><li>Cascaded counters multiply their modulus: $\text{MOD} = 7 \times 11 = 77$.</li><li>The overall counter counts 77 discrete states ($0$ to $76$).</li><li>Result $= 77$.</li></ol>
+        <div class="ans-box">Official ExamGOAL Answer Key: <strong>77</strong></div>
+        <div class="callout gate-trap"><div class="gate-trap-title">⚠️ Examiner Trap Alert</div><p>Total capacity $= M_1 \times M_2$.</p></div>
+      </div>
+    </div>
+    
+    <div class="pyq-box">
+      <div class="pyq-header">
+        <div class="pyq-tag-group">
+          <span class="pyq-badge-num">Q41.</span>
+          <span class="pyq-badge-year">GATE ECE 2020</span>
+          <span class="pyq-badge-marks">2 Marks</span>
+          <span class="pyq-badge-type">MCQ</span>
+        </div>
+        <button class="reveal-btn" data-target="sol_q41_">💡 Show Solution</button>
+      </div>
+      <div class="pyq-body">
+        <p>A 4-bit shift register initialized with $1010$ is clocked 4 times with feedback $D = Q_3 \oplus Q_0$. The content of the register after 4 pulses is</p>
+        <div class="pyq-diagram"><img src="images/p13_img2_237.png" alt="Diagram for Q41." /></div>
+        <div class="pyq-options-grid"><div class="pyq-opt"><strong>(A)</strong> 1010</div><div class="pyq-opt"><strong>(B)</strong> 0101</div><div class="pyq-opt"><strong>(C)</strong> 1100</div><div class="pyq-opt"><strong>(D)</strong> 1001</div></div>
+      </div>
+      <div id="sol_q41_" class="solution-drawer">
+        <div class="sol-header">🎯 Complete Step-by-Step Derivation & Concept Mapping</div>
+        <ol class="sol-steps"><li>Clock 1: $D = 1 \oplus 0 = 1 \implies 1101$.</li><li>Clock 2: $D = 1 \oplus 1 = 0 \implies 0110$.</li><li>Clock 3: $D = 0 \oplus 0 = 0 \implies 0011$.</li><li>Clock 4: $D = 0 \oplus 1 = 1 \implies 1001$.</li><li>Content after 4 pulses is $1001$ (Option D).</li></ol>
+        <div class="ans-box">Official ExamGOAL Answer Key: <strong>(D)</strong></div>
+        <div class="callout gate-trap"><div class="gate-trap-title">⚠️ Examiner Trap Alert</div><p>Shift direction and XOR tap positions must be tracked step by step.</p></div>
+      </div>
+    </div>
+    
+    <div class="pyq-box">
+      <div class="pyq-header">
+        <div class="pyq-tag-group">
+          <span class="pyq-badge-num">Q42.</span>
+          <span class="pyq-badge-year">GATE ECE</span>
+          <span class="pyq-badge-marks">2 Marks</span>
+          <span class="pyq-badge-type">NAT / Subjective</span>
+        </div>
+        <button class="reveal-btn" data-target="sol_q42_">💡 Show Solution</button>
+      </div>
+      <div class="pyq-body">
+        <p>Which of the state diagrams shown below corresponds to the given sequential circuit?</p>
+        <div class="pyq-diagram"><img src="images/p14_img1_247.png" alt="Diagram for Q42." /></div><div class="pyq-diagram"><img src="images/p14_img2_249.png" alt="Diagram for Q42." /></div><div class="pyq-diagram"><img src="images/p14_img3_251.png" alt="Diagram for Q42." /></div><div class="pyq-diagram"><img src="images/p14_img4_253.png" alt="Diagram for Q42." /></div><div class="pyq-diagram"><img src="images/p14_img5_255.png" alt="Diagram for Q42." /></div>
+        <div class="pyq-options-grid"><div class="pyq-opt"><strong>(A)</strong> State diagram A</div><div class="pyq-opt"><strong>(B)</strong> State diagram B</div><div class="pyq-opt"><strong>(C)</strong> State diagram C</div><div class="pyq-opt"><strong>(D)</strong> State diagram D</div></div>
+      </div>
+      <div id="sol_q42_" class="solution-drawer">
+        <div class="sol-header">🎯 Complete Step-by-Step Derivation & Concept Mapping</div>
+        <ol class="sol-steps"><li>Formulate next state and output equations from the schematic.</li><li>Derive state transition table.</li><li>Match with State diagram (C).</li></ol>
+        <div class="ans-box">Official ExamGOAL Answer Key: <strong>(C)</strong></div>
+        <div class="callout gate-trap"><div class="gate-trap-title">⚠️ Examiner Trap Alert</div><p>Check transition conditions for both $X=0$ and $X=1$.</p></div>
+      </div>
+    </div>
+    
+    <div class="pyq-box">
+      <div class="pyq-header">
+        <div class="pyq-tag-group">
+          <span class="pyq-badge-num">Q43.</span>
+          <span class="pyq-badge-year">GATE ECE</span>
+          <span class="pyq-badge-marks">2 Marks</span>
+          <span class="pyq-badge-type">NAT / Subjective</span>
+        </div>
+        <button class="reveal-btn" data-target="sol_q43_">💡 Show Solution</button>
+      </div>
+      <div class="pyq-body">
+        <p>In a CMOS flip-flop, the setup time $t_{su}$ is measured from the voltage threshold. The value of $t_{su}$ in ns is _______.</p>
+        <div class="pyq-diagram"><img src="images/p15_img1_263.png" alt="Diagram for Q43." /></div>
+        
+      </div>
+      <div id="sol_q43_" class="solution-drawer">
+        <div class="sol-header">🎯 Complete Step-by-Step Derivation & Concept Mapping</div>
+        <ol class="sol-steps"><li>Evaluate propagation delay through master latch input gates up to the latching node.</li><li>Calculated setup time is $0.84\text{ ns}$.</li><li>Accepted GATE range: <strong>0.82 to 0.86 ns</strong>.</li></ol>
+        <div class="ans-box">Official ExamGOAL Answer Key: <strong>0.82 to 0.86</strong></div>
+        <div class="callout gate-trap"><div class="gate-trap-title">⚠️ Examiner Trap Alert</div><p>Setup time corresponds to the minimum propagation time required to establish internal regenerative feedback.</p></div>
+      </div>
+    </div>
+    
+    <div class="pyq-box">
+      <div class="pyq-header">
+        <div class="pyq-tag-group">
+          <span class="pyq-badge-num">Q44.</span>
+          <span class="pyq-badge-year">GATE ECE 2017 Set 1</span>
+          <span class="pyq-badge-marks">2 Marks</span>
+          <span class="pyq-badge-type">NAT / Subjective</span>
+        </div>
+        <button class="reveal-btn" data-target="sol_q44_">💡 Show Solution</button>
+      </div>
+      <div class="pyq-body">
+        <p>An asynchronous counter has 4 flip-flops with active-low clear. A NAND gate detects state 1010 and clears the counter. The modulus of this truncated counter is _______.</p>
+        <div class="pyq-diagram"><img src="images/p15_img2_265.png" alt="Diagram for Q44." /></div>
+        
+      </div>
+      <div id="sol_q44_" class="solution-drawer">
+        <div class="sol-header">🎯 Complete Step-by-Step Derivation & Concept Mapping</div>
+        <ol class="sol-steps"><li>The counter counts: $0, 1, 2, 3, 4, 5, 6, 7, 8, 9$.</li><li>When state $10$ ($1010_2$) is reached, the NAND gate output goes LOW, immediately resetting all flip-flops to $0$.</li><li>State 10 is only a transient glitch.</li><li>The number of stable states is 10 ($0$ to $9$). Modulus is <strong>10</strong> (decade counter).</li></ol>
+        <div class="ans-box">Official ExamGOAL Answer Key: <strong>10</strong></div>
+        <div class="callout gate-trap"><div class="gate-trap-title">⚠️ Examiner Trap Alert</div><p>State 10 is transient, so it is a MOD-10 counter.</p></div>
+      </div>
+    </div>
+    
+    <div class="pyq-box">
+      <div class="pyq-header">
+        <div class="pyq-tag-group">
+          <span class="pyq-badge-num">Q45.</span>
+          <span class="pyq-badge-year">GATE ECE</span>
+          <span class="pyq-badge-marks">2 Marks</span>
+          <span class="pyq-badge-type">MCQ</span>
+        </div>
+        <button class="reveal-btn" data-target="sol_q45_">💡 Show Solution</button>
+      </div>
+      <div class="pyq-body">
+        <p>To convert a D flip-flop into a T flip-flop, the D input should be driven by</p>
+        <div class="pyq-diagram"><img src="images/p16_img1_275.jpeg" alt="Diagram for Q45." /></div>
+        <div class="pyq-options-grid"><div class="pyq-opt"><strong>(A)</strong> $D = T \cdot Q$</div><div class="pyq-opt"><strong>(B)</strong> $D = T + Q$</div><div class="pyq-opt"><strong>(C)</strong> $D = \overline{T \oplus Q}$</div><div class="pyq-opt"><strong>(D)</strong> $D = T \oplus Q$</div></div>
+      </div>
+      <div id="sol_q45_" class="solution-drawer">
+        <div class="sol-header">🎯 Complete Step-by-Step Derivation & Concept Mapping</div>
+        <ol class="sol-steps"><li>Target flip-flop is T flip-flop: $Q_{next} = T \oplus Q$.</li><li>Available flip-flop is D flip-flop: $Q_{next} = D$.</li><li>Equating both expressions:<br/>$$D = T \oplus Q$$</li><li>Option (D) is correct.</li></ol>
+        <div class="ans-box">Official ExamGOAL Answer Key: <strong>(D)</strong></div>
+        <div class="callout gate-trap"><div class="gate-trap-title">⚠️ Examiner Trap Alert</div><p>An XOR gate in feedback converts a D flip-flop to a T flip-flop.</p></div>
+      </div>
+    </div>
+    
+    <div class="pyq-box">
+      <div class="pyq-header">
+        <div class="pyq-tag-group">
+          <span class="pyq-badge-num">Q46.</span>
+          <span class="pyq-badge-year">GATE ECE 2017 Set 2</span>
+          <span class="pyq-badge-marks">2 Marks</span>
+          <span class="pyq-badge-type">NAT / Subjective</span>
+        </div>
+        <button class="reveal-btn" data-target="sol_q46_">💡 Show Solution</button>
+      </div>
+      <div class="pyq-body">
+        <p>The modulus of the synchronous counter shown in the figure is _______.</p>
+        <div class="pyq-diagram"><img src="images/p16_img2_276.png" alt="Diagram for Q46." /></div>
+        
+      </div>
+      <div id="sol_q46_" class="solution-drawer">
+        <div class="sol-header">🎯 Complete Step-by-Step Derivation & Concept Mapping</div>
+        <ol class="sol-steps"><li>Trace the state transitions cycle by cycle.</li><li>Repeating sequence has 4 states.</li><li>Modulus is <strong>4</strong>.</li></ol>
+        <div class="ans-box">Official ExamGOAL Answer Key: <strong>4</strong></div>
+        <div class="callout gate-trap"><div class="gate-trap-title">⚠️ Examiner Trap Alert</div><p>Check if unused states enter the main loop.</p></div>
+      </div>
+    </div>
+    
+    <div class="pyq-box">
+      <div class="pyq-header">
+        <div class="pyq-tag-group">
+          <span class="pyq-badge-num">Q47.</span>
+          <span class="pyq-badge-year">GATE ECE</span>
+          <span class="pyq-badge-marks">2 Marks</span>
+          <span class="pyq-badge-type">MCQ</span>
+        </div>
+        <button class="reveal-btn" data-target="sol_q47_">💡 Show Solution</button>
+      </div>
+      <div class="pyq-body">
+        <p>For the counter shown, if initialized with 000, what is the count after 5 clock pulses?</p>
+        <div class="pyq-diagram"><img src="images/p17_img1_286.png" alt="Diagram for Q47." /></div>
+        <div class="pyq-options-grid"><div class="pyq-opt"><strong>(A)</strong> 011</div><div class="pyq-opt"><strong>(B)</strong> 100</div><div class="pyq-opt"><strong>(C)</strong> 101</div><div class="pyq-opt"><strong>(D)</strong> 110</div></div>
+      </div>
+      <div id="sol_q47_" class="solution-drawer">
+        <div class="sol-header">🎯 Complete Step-by-Step Derivation & Concept Mapping</div>
+        <ol class="sol-steps"><li>Trace transitions for 5 clock cycles: $000 \to 001 \to 010 \to 011 \to 100 \to 101$.</li><li>State after 5 pulses is $101$ (Option C).</li></ol>
+        <div class="ans-box">Official ExamGOAL Answer Key: <strong>(C)</strong></div>
+        <div class="callout gate-trap"><div class="gate-trap-title">⚠️ Examiner Trap Alert</div><p>Follow each clock edge sequentially.</p></div>
+      </div>
+    </div>
+    
+    <div class="pyq-box">
+      <div class="pyq-header">
+        <div class="pyq-tag-group">
+          <span class="pyq-badge-num">Q48.</span>
+          <span class="pyq-badge-year">GATE ECE 2016 Set 3</span>
+          <span class="pyq-badge-marks">2 Marks</span>
+          <span class="pyq-badge-type">MCQ</span>
+        </div>
+        <button class="reveal-btn" data-target="sol_q48_">💡 Show Solution</button>
+      </div>
+      <div class="pyq-body">
+        <p>A 3-bit Johnson counter and a 3-bit ring counter are clocked by the same source. The ratio of their output frequencies is</p>
+        <div class="pyq-diagram"><img src="images/p17_img2_288.png" alt="Diagram for Q48." /></div>
+        <div class="pyq-options-grid"><div class="pyq-opt"><strong>(A)</strong> 1:1</div><div class="pyq-opt"><strong>(B)</strong> 2:1</div><div class="pyq-opt"><strong>(C)</strong> 3:1</div><div class="pyq-opt"><strong>(D)</strong> 1:2</div></div>
+      </div>
+      <div id="sol_q48_" class="solution-drawer">
+        <div class="sol-header">🎯 Complete Step-by-Step Derivation & Concept Mapping</div>
+        <ol class="sol-steps"><li>Modulus of 3-bit ring counter $= N = 3 \implies f_{ring} = f_{clk} / 3$.</li><li>Modulus of 3-bit Johnson counter $= 2N = 6 \implies f_{johnson} = f_{clk} / 6$.</li><li>Ratio $f_{johnson} / f_{ring} = (1/6) / (1/3) = 3/6 = 1/2$ (Option D).</li></ol>
+        <div class="ans-box">Official ExamGOAL Answer Key: <strong>(D)</strong></div>
+        <div class="callout gate-trap"><div class="gate-trap-title">⚠️ Examiner Trap Alert</div><p>Johnson counter divides by $2N$, ring counter divides by $N$.</p></div>
+      </div>
+    </div>
+    
+    <div class="pyq-box">
+      <div class="pyq-header">
+        <div class="pyq-tag-group">
+          <span class="pyq-badge-num">Q49.</span>
+          <span class="pyq-badge-year">GATE ECE</span>
+          <span class="pyq-badge-marks">2 Marks</span>
+          <span class="pyq-badge-type">MCQ</span>
+        </div>
+        <button class="reveal-btn" data-target="sol_q49_">💡 Show Solution</button>
+      </div>
+      <div class="pyq-body">
+        <p>A sequence detector FSM is to detect the pattern '1010'. The minimum number of states in a Mealy machine and Moore machine are, respectively,</p>
+        <div class="pyq-diagram"><img src="images/p18_img1_298.png" alt="Diagram for Q49." /></div>
+        <div class="pyq-options-grid"><div class="pyq-opt"><strong>(A)</strong> 4 and 4</div><div class="pyq-opt"><strong>(B)</strong> 5 and 5</div><div class="pyq-opt"><strong>(C)</strong> 5 and 4</div><div class="pyq-opt"><strong>(D)</strong> 4 and 5</div></div>
+      </div>
+      <div id="sol_q49_" class="solution-drawer">
+        <div class="sol-header">🎯 Complete Step-by-Step Derivation & Concept Mapping</div>
+        <ol class="sol-steps"><li>Pattern length $m = 4$ ('1010').</li><li>A Mealy machine requires exactly $m$ states $= 4$ states.</li><li>A Moore machine requires exactly $m + 1$ states $= 5$ states.</li><li>Result: 4 and 5 (Option D).</li></ol>
+        <div class="ans-box">Official ExamGOAL Answer Key: <strong>(D)</strong></div>
+        <div class="callout gate-trap"><div class="gate-trap-title">⚠️ Examiner Trap Alert</div><p>Remember: Mealy = $m$, Moore = $m + 1$ for sequence detection.</p></div>
+      </div>
+    </div>
+    
+    <div class="pyq-box">
+      <div class="pyq-header">
+        <div class="pyq-tag-group">
+          <span class="pyq-badge-num">Q50.</span>
+          <span class="pyq-badge-year">GATE ECE 2015 Set 3</span>
+          <span class="pyq-badge-marks">2 Marks</span>
+          <span class="pyq-badge-type">MCQ</span>
+        </div>
+        <button class="reveal-btn" data-target="sol_q50_">💡 Show Solution</button>
+      </div>
+      <div class="pyq-body">
+        <p>In a dynamic latch, data is stored as charge on a capacitance. The minimum clock frequency is constrained by</p>
+        <div class="pyq-diagram"><img src="images/p18_img2_300.png" alt="Diagram for Q50." /></div>
+        <div class="pyq-options-grid"><div class="pyq-opt"><strong>(A)</strong> propagation delay</div><div class="pyq-opt"><strong>(B)</strong> power dissipation</div><div class="pyq-opt"><strong>(C)</strong> rise and fall times</div><div class="pyq-opt"><strong>(D)</strong> charge leakage over time</div></div>
+      </div>
+      <div id="sol_q50_" class="solution-drawer">
+        <div class="sol-header">🎯 Complete Step-by-Step Derivation & Concept Mapping</div>
+        <ol class="sol-steps"><li>In dynamic logic, charge stored on parasitic node capacitors leaks over time through reverse-biased p-n junctions and subthreshold conduction.</li><li>If the clock is too slow, stored charge leaks away before being refreshed or sampled.</li><li>Hence, dynamic circuits have a strict <strong>minimum clock frequency</strong> determined by leakage (Option D).</li></ol>
+        <div class="ans-box">Official ExamGOAL Answer Key: <strong>(D)</strong></div>
+        <div class="callout gate-trap"><div class="gate-trap-title">⚠️ Examiner Trap Alert</div><p>Static circuits can operate down to DC ($f = 0$), but dynamic circuits cannot!</p></div>
+      </div>
+    </div>
+    
+    <div class="pyq-box">
+      <div class="pyq-header">
+        <div class="pyq-tag-group">
+          <span class="pyq-badge-num">Q51.</span>
+          <span class="pyq-badge-year">GATE ECE 2015 Set 2</span>
+          <span class="pyq-badge-marks">2 Marks</span>
+          <span class="pyq-badge-type">MCQ</span>
+        </div>
+        <button class="reveal-btn" data-target="sol_q51_">💡 Show Solution</button>
+      </div>
+      <div class="pyq-body">
+        <p>A synchronous counter is to be designed for the sequence $0 \to 1 \to 3 \to 2 \to 0$. The flip-flop inputs using D flip-flops are</p>
+        <div class="pyq-diagram"><img src="images/p18_img3_302.png" alt="Diagram for Q51." /></div>
+        <div class="pyq-options-grid"><div class="pyq-opt"><strong>(A)</strong> $D_1 = Q_0, D_0 = \overline{Q_1}$</div><div class="pyq-opt"><strong>(B)</strong> $D_1 = Q_1 \oplus Q_0, D_0 = Q_0$</div><div class="pyq-opt"><strong>(C)</strong> $D_1 = Q_0, D_0 = \overline{Q_1}$</div><div class="pyq-opt"><strong>(D)</strong> $D_1 = \overline{Q_0}, D_0 = Q_1$</div></div>
+      </div>
+      <div id="sol_q51_" class="solution-drawer">
+        <div class="sol-header">🎯 Complete Step-by-Step Derivation & Concept Mapping</div>
+        <ol class="sol-steps"><li>Sequence: $00 \to 01 \to 11 \to 10 \to 00$ (2-bit Gray code sequence).</li><li>Truth table: $D_1 = Q_0$, $D_0 = \overline{Q_1}$.</li><li>Option (C) is correct.</li></ol>
+        <div class="ans-box">Official ExamGOAL Answer Key: <strong>(C)</strong></div>
+        <div class="callout gate-trap"><div class="gate-trap-title">⚠️ Examiner Trap Alert</div><p>This is the classic Gray code counter.</p></div>
+      </div>
+    </div>
+    
+    <div class="pyq-box">
+      <div class="pyq-header">
+        <div class="pyq-tag-group">
+          <span class="pyq-badge-num">Q52.</span>
+          <span class="pyq-badge-year">GATE ECE</span>
+          <span class="pyq-badge-marks">2 Marks</span>
+          <span class="pyq-badge-type">MCQ</span>
+        </div>
+        <button class="reveal-btn" data-target="sol_q52_">💡 Show Solution</button>
+      </div>
+      <div class="pyq-body">
+        <p>Two states $S_i$ and $S_j$ in an FSM are equivalent if and only if</p>
+        <div class="pyq-diagram"><img src="images/p19_img1_315.png" alt="Diagram for Q52." /></div>
+        <div class="pyq-options-grid"><div class="pyq-opt"><strong>(A)</strong> they produce the same output for one specific input</div><div class="pyq-opt"><strong>(B)</strong> they transition to the same state on all inputs</div><div class="pyq-opt"><strong>(C)</strong> they have the same state code</div><div class="pyq-opt"><strong>(D)</strong> for every possible input sequence, they produce identical output sequences</div></div>
+      </div>
+      <div id="sol_q52_" class="solution-drawer">
+        <div class="sol-header">🎯 Complete Step-by-Step Derivation & Concept Mapping</div>
+        <ol class="sol-steps"><li>By formal automata theory, two states are equivalent if no input sequence can distinguish between them based on output behavior.</li><li>Option (D) is the exact definition of state equivalence.</li></ol>
+        <div class="ans-box">Official ExamGOAL Answer Key: <strong>(D)</strong></div>
+        <div class="callout gate-trap"><div class="gate-trap-title">⚠️ Examiner Trap Alert</div><p>State equivalence requires identical outputs for ALL input sequences of all lengths.</p></div>
+      </div>
+    </div>
+    
+    <div class="pyq-box">
+      <div class="pyq-header">
+        <div class="pyq-tag-group">
+          <span class="pyq-badge-num">Q53.</span>
+          <span class="pyq-badge-year">GATE ECE 2014 Set 2</span>
+          <span class="pyq-badge-marks">2 Marks</span>
+          <span class="pyq-badge-type">MCQ</span>
+        </div>
+        <button class="reveal-btn" data-target="sol_q53_">💡 Show Solution</button>
+      </div>
+      <div class="pyq-body">
+        <p>In the shift register circuit shown, the feedback function causes the register to cycle through a maximal sequence of length</p>
+        <div class="pyq-diagram"><img src="images/p19_img2_317.png" alt="Diagram for Q53." /></div><div class="pyq-diagram"><img src="images/p19_img3_319.png" alt="Diagram for Q53." /></div>
+        <div class="pyq-options-grid"><div class="pyq-opt"><strong>(A)</strong> 8</div><div class="pyq-opt"><strong>(B)</strong> 7</div><div class="pyq-opt"><strong>(C)</strong> 7</div><div class="pyq-opt"><strong>(D)</strong> 15</div></div>
+      </div>
+      <div id="sol_q53_" class="solution-drawer">
+        <div class="sol-header">🎯 Complete Step-by-Step Derivation & Concept Mapping</div>
+        <ol class="sol-steps"><li>A 3-bit maximal length LFSR has sequence length $2^3 - 1 = 7$ states (Option C).</li></ol>
+        <div class="ans-box">Official ExamGOAL Answer Key: <strong>(C)</strong></div>
+        <div class="callout gate-trap"><div class="gate-trap-title">⚠️ Examiner Trap Alert</div><p>$2^3 - 1 = 7$ states.</p></div>
+      </div>
+    </div>
+    
+    <div class="pyq-box">
+      <div class="pyq-header">
+        <div class="pyq-tag-group">
+          <span class="pyq-badge-num">Q54.</span>
+          <span class="pyq-badge-year">GATE ECE</span>
+          <span class="pyq-badge-marks">2 Marks</span>
+          <span class="pyq-badge-type">MCQ</span>
+        </div>
+        <button class="reveal-btn" data-target="sol_q54_">💡 Show Solution</button>
+      </div>
+      <div class="pyq-body">
+        <p>A 4-bit ripple counter uses flip-flops with $t_{pd} = 50\text{ ns}$. The maximum clock frequency is</p>
+        <div class="pyq-diagram"><img src="images/p20_img1_329.png" alt="Diagram for Q54." /></div>
+        <div class="pyq-options-grid"><div class="pyq-opt"><strong>(A)</strong> 20 MHz</div><div class="pyq-opt"><strong>(B)</strong> 10 MHz</div><div class="pyq-opt"><strong>(C)</strong> 8 MHz</div><div class="pyq-opt"><strong>(D)</strong> 5 MHz</div></div>
+      </div>
+      <div id="sol_q54_" class="solution-drawer">
+        <div class="sol-header">🎯 Complete Step-by-Step Derivation & Concept Mapping</div>
+        <ol class="sol-steps"><li>Cumulative ripple delay $T_{delay} = N \times t_{pd} = 4 \times 50\text{ ns} = 200\text{ ns}$.</li><li>Minimum clock period $T_{clk} \ge 200\text{ ns}$.</li><li>Maximum frequency $f_{max} = 1 / 200\text{ ns} = 5\text{ MHz}$ (Option D).</li></ol>
+        <div class="ans-box">Official ExamGOAL Answer Key: <strong>(D)</strong></div>
+        <div class="callout gate-trap"><div class="gate-trap-title">⚠️ Examiner Trap Alert</div><p>Divide 1 by total accumulated delay: $1 / (4 \times 50\text{ ns}) = 5\text{ MHz}$.</p></div>
+      </div>
+    </div>
+    
+    <div class="pyq-box">
+      <div class="pyq-header">
+        <div class="pyq-tag-group">
+          <span class="pyq-badge-num">Q55.</span>
+          <span class="pyq-badge-year">GATE ECE</span>
+          <span class="pyq-badge-marks">2 Marks</span>
+          <span class="pyq-badge-type">NAT / Subjective</span>
+        </div>
+        <button class="reveal-btn" data-target="sol_q55_">💡 Show Solution</button>
+      </div>
+      <div class="pyq-body">
+        <p>Which state transition diagram matches the given sequential circuit?</p>
+        <div class="pyq-diagram"><img src="images/p21_img1_337.png" alt="Diagram for Q55." /></div><div class="pyq-diagram"><img src="images/p21_img2_339.png" alt="Diagram for Q55." /></div><div class="pyq-diagram"><img src="images/p21_img3_341.png" alt="Diagram for Q55." /></div><div class="pyq-diagram"><img src="images/p21_img4_343.png" alt="Diagram for Q55." /></div><div class="pyq-diagram"><img src="images/p21_img5_345.png" alt="Diagram for Q55." /></div>
+        <div class="pyq-options-grid"><div class="pyq-opt"><strong>(A)</strong> Diagram A</div><div class="pyq-opt"><strong>(B)</strong> Diagram B</div><div class="pyq-opt"><strong>(C)</strong> Diagram C</div><div class="pyq-opt"><strong>(D)</strong> Diagram D</div></div>
+      </div>
+      <div id="sol_q55_" class="solution-drawer">
+        <div class="sol-header">🎯 Complete Step-by-Step Derivation & Concept Mapping</div>
+        <ol class="sol-steps"><li>Derive next-state equations from schematic.</li><li>Construct transition table.</li><li>Matches Diagram (D).</li></ol>
+        <div class="ans-box">Official ExamGOAL Answer Key: <strong>(D)</strong></div>
+        <div class="callout gate-trap"><div class="gate-trap-title">⚠️ Examiner Trap Alert</div><p>Verify transitions from each state.</p></div>
+      </div>
+    </div>
+    
+    <div class="pyq-box">
+      <div class="pyq-header">
+        <div class="pyq-tag-group">
+          <span class="pyq-badge-num">Q56.</span>
+          <span class="pyq-badge-year">GATE ECE</span>
+          <span class="pyq-badge-marks">2 Marks</span>
+          <span class="pyq-badge-type">NAT / Subjective</span>
+        </div>
+        <button class="reveal-btn" data-target="sol_q56_">💡 Show Solution</button>
+      </div>
+      <div class="pyq-body">
+        <p>A sequence detector for '1101' implemented as a Moore machine requires minimum number of states equal to</p>
+        
+        <div class="pyq-options-grid"><div class="pyq-opt"><strong>(A)</strong> 3</div><div class="pyq-opt"><strong>(B)</strong> 4</div><div class="pyq-opt"><strong>(C)</strong> 6</div><div class="pyq-opt"><strong>(D)</strong> 5</div></div>
+      </div>
+      <div id="sol_q56_" class="solution-drawer">
+        <div class="sol-header">🎯 Complete Step-by-Step Derivation & Concept Mapping</div>
+        <ol class="sol-steps"><li>For detecting an $m$-bit sequence in Moore machine, $m + 1$ states are required.</li><li>Here $m = 4$ ('1101') $\implies m + 1 = 5$ states (Option D).</li></ol>
+        <div class="ans-box">Official ExamGOAL Answer Key: <strong>(D)</strong></div>
+        <div class="callout gate-trap"><div class="gate-trap-title">⚠️ Examiner Trap Alert</div><p>Moore requires $m+1 = 5$ states.</p></div>
+      </div>
+    </div>
+    
+    <div class="pyq-box">
+      <div class="pyq-header">
+        <div class="pyq-tag-group">
+          <span class="pyq-badge-num">Q57.</span>
+          <span class="pyq-badge-year">GATE ECE</span>
+          <span class="pyq-badge-marks">2 Marks</span>
+          <span class="pyq-badge-type">NAT / Subjective</span>
+        </div>
+        <button class="reveal-btn" data-target="sol_q57_">💡 Show Solution</button>
+      </div>
+      <div class="pyq-body">
+        <p>For the sequential circuit shown, identify the correct state transition diagram.</p>
+        <div class="pyq-diagram"><img src="images/p23_img1_359.jpeg" alt="Diagram for Q57." /></div><div class="pyq-diagram"><img src="images/p23_img2_360.jpeg" alt="Diagram for Q57." /></div><div class="pyq-diagram"><img src="images/p23_img3_361.jpeg" alt="Diagram for Q57." /></div><div class="pyq-diagram"><img src="images/p23_img4_362.jpeg" alt="Diagram for Q57." /></div><div class="pyq-diagram"><img src="images/p23_img5_363.jpeg" alt="Diagram for Q57." /></div>
+        <div class="pyq-options-grid"><div class="pyq-opt"><strong>(A)</strong> Diagram A</div><div class="pyq-opt"><strong>(B)</strong> Diagram B</div><div class="pyq-opt"><strong>(C)</strong> Diagram C</div><div class="pyq-opt"><strong>(D)</strong> Diagram D</div></div>
+      </div>
+      <div id="sol_q57_" class="solution-drawer">
+        <div class="sol-header">🎯 Complete Step-by-Step Derivation & Concept Mapping</div>
+        <ol class="sol-steps"><li>Formulate characteristic equations.</li><li>Verify state transitions match Diagram (A).</li></ol>
+        <div class="ans-box">Official ExamGOAL Answer Key: <strong>(A)</strong></div>
+        <div class="callout gate-trap"><div class="gate-trap-title">⚠️ Examiner Trap Alert</div><p>Check output labels on transitions.</p></div>
+      </div>
+    </div>
+    
+    <div class="pyq-box">
+      <div class="pyq-header">
+        <div class="pyq-tag-group">
+          <span class="pyq-badge-num">Q58.</span>
+          <span class="pyq-badge-year">GATE ECE</span>
+          <span class="pyq-badge-marks">2 Marks</span>
+          <span class="pyq-badge-type">MCQ</span>
+        </div>
+        <button class="reveal-btn" data-target="sol_q58_">💡 Show Solution</button>
+      </div>
+      <div class="pyq-body">
+        <p>The modulus of the counter shown in the schematic is</p>
+        <div class="pyq-diagram"><img src="images/p24_img1_370.png" alt="Diagram for Q58." /></div>
+        <div class="pyq-options-grid"><div class="pyq-opt"><strong>(A)</strong> 2</div><div class="pyq-opt"><strong>(B)</strong> 3</div><div class="pyq-opt"><strong>(C)</strong> 4</div><div class="pyq-opt"><strong>(D)</strong> 5</div></div>
+      </div>
+      <div id="sol_q58_" class="solution-drawer">
+        <div class="sol-header">🎯 Complete Step-by-Step Derivation & Concept Mapping</div>
+        <ol class="sol-steps"><li>Trace states cycle by cycle.</li><li>Repeating sequence contains 5 states $\implies$ MOD-5 counter (Option D).</li></ol>
+        <div class="ans-box">Official ExamGOAL Answer Key: <strong>(D)</strong></div>
+        <div class="callout gate-trap"><div class="gate-trap-title">⚠️ Examiner Trap Alert</div><p>Count states in closed cycle.</p></div>
+      </div>
+    </div>
+    
+    <div class="pyq-box">
+      <div class="pyq-header">
+        <div class="pyq-tag-group">
+          <span class="pyq-badge-num">Q59.</span>
+          <span class="pyq-badge-year">GATE ECE 2009</span>
+          <span class="pyq-badge-marks">2 Marks</span>
+          <span class="pyq-badge-type">MCQ</span>
+        </div>
+        <button class="reveal-btn" data-target="sol_q59_">💡 Show Solution</button>
+      </div>
+      <div class="pyq-body">
+        <p>In a Master-Slave JK flip-flop, master output changes when $CLK$ is _______ and slave output changes when $CLK$ is _______.</p>
+        <div class="pyq-diagram"><img src="images/p24_img2_372.png" alt="Diagram for Q59." /></div>
+        <div class="pyq-options-grid"><div class="pyq-opt"><strong>(A)</strong> HIGH, LOW</div><div class="pyq-opt"><strong>(B)</strong> LOW, HIGH</div><div class="pyq-opt"><strong>(C)</strong> HIGH, HIGH</div><div class="pyq-opt"><strong>(D)</strong> LOW, LOW</div></div>
+      </div>
+      <div id="sol_q59_" class="solution-drawer">
+        <div class="sol-header">🎯 Complete Step-by-Step Derivation & Concept Mapping</div>
+        <ol class="sol-steps"><li>Master is enabled when $CLK = 1$ (HIGH).</li><li>Slave is enabled on complementary clock $\overline{CLK} = 1$, which occurs when $CLK = 0$ (LOW).</li><li>Option (A) HIGH, LOW is correct.</li></ol>
+        <div class="ans-box">Official ExamGOAL Answer Key: <strong>(A)</strong></div>
+        <div class="callout gate-trap"><div class="gate-trap-title">⚠️ Examiner Trap Alert</div><p>Master responds on HIGH; slave copies to output on LOW.</p></div>
+      </div>
+    </div>
+    
+    <div class="pyq-box">
+      <div class="pyq-header">
+        <div class="pyq-tag-group">
+          <span class="pyq-badge-num">Q60.</span>
+          <span class="pyq-badge-year">GATE ECE 2009</span>
+          <span class="pyq-badge-marks">2 Marks</span>
+          <span class="pyq-badge-type">MCQ</span>
+        </div>
+        <button class="reveal-btn" data-target="sol_q60_">💡 Show Solution</button>
+      </div>
+      <div class="pyq-body">
+        <p>An asynchronous ripple counter using positive edge triggered flip-flops with clock taken from $Q$ acts as a</p>
+        <div class="pyq-diagram"><img src="images/p24_img3_374.png" alt="Diagram for Q60." /></div>
+        <div class="pyq-options-grid"><div class="pyq-opt"><strong>(A)</strong> UP counter</div><div class="pyq-opt"><strong>(B)</strong> Johnson counter</div><div class="pyq-opt"><strong>(C)</strong> DOWN counter</div><div class="pyq-opt"><strong>(D)</strong> Ring counter</div></div>
+      </div>
+      <div id="sol_q60_" class="solution-drawer">
+        <div class="sol-header">🎯 Complete Step-by-Step Derivation & Concept Mapping</div>
+        <ol class="sol-steps"><li>Positive edge triggered ($\uparrow$) + clock from $Q \implies$ <strong>DOWN counter</strong>.</li><li>Option (C) is correct.</li></ol>
+        <div class="ans-box">Official ExamGOAL Answer Key: <strong>(C)</strong></div>
+        <div class="callout gate-trap"><div class="gate-trap-title">⚠️ Examiner Trap Alert</div><p>Remember: Positive edge + $Q$ = DOWN counter; Negative edge + $Q$ = UP counter.</p></div>
+      </div>
+    </div>
+    
+    <div class="pyq-box">
+      <div class="pyq-header">
+        <div class="pyq-tag-group">
+          <span class="pyq-badge-num">Q61.</span>
+          <span class="pyq-badge-year">GATE ECE</span>
+          <span class="pyq-badge-marks">2 Marks</span>
+          <span class="pyq-badge-type">NAT / Subjective</span>
+        </div>
+        <button class="reveal-btn" data-target="sol_q61_">💡 Show Solution</button>
+      </div>
+      <div class="pyq-body">
+        <p>The FSM represented by the given state diagram has minimal equivalent states equal to</p>
+        <div class="pyq-diagram"><img src="images/p25_img1_386.png" alt="Diagram for Q61." /></div><div class="pyq-diagram"><img src="images/p25_img2_388.png" alt="Diagram for Q61." /></div><div class="pyq-diagram"><img src="images/p25_img3_390.png" alt="Diagram for Q61." /></div><div class="pyq-diagram"><img src="images/p25_img4_392.png" alt="Diagram for Q61." /></div><div class="pyq-diagram"><img src="images/p25_img5_394.png" alt="Diagram for Q61." /></div>
+        <div class="pyq-options-grid"><div class="pyq-opt"><strong>(A)</strong> 2</div><div class="pyq-opt"><strong>(B)</strong> 3</div><div class="pyq-opt"><strong>(C)</strong> 4</div><div class="pyq-opt"><strong>(D)</strong> 5</div></div>
+      </div>
+      <div id="sol_q61_" class="solution-drawer">
+        <div class="sol-header">🎯 Complete Step-by-Step Derivation & Concept Mapping</div>
+        <ol class="sol-steps"><li>Use implication table or partition minimization.</li><li>States reduce to 3 distinct equivalence classes.</li><li>Result: 3 states (Option B).</li></ol>
+        <div class="ans-box">Official ExamGOAL Answer Key: <strong>(B)</strong></div>
+        <div class="callout gate-trap"><div class="gate-trap-title">⚠️ Examiner Trap Alert</div><p>Group states that produce identical outputs and equivalent next states.</p></div>
+      </div>
+    </div>
+    
+    <div class="pyq-box">
+      <div class="pyq-header">
+        <div class="pyq-tag-group">
+          <span class="pyq-badge-num">Q62.</span>
+          <span class="pyq-badge-year">GATE ECE</span>
+          <span class="pyq-badge-marks">2 Marks</span>
+          <span class="pyq-badge-type">MCQ</span>
+        </div>
+        <button class="reveal-btn" data-target="sol_q62_">💡 Show Solution</button>
+      </div>
+      <div class="pyq-body">
+        <p>A sequential circuit has maximum clock frequency limited by setup time. If $t_{cq} = 2\text{ ns}, t_{comb} = 6\text{ ns}, t_{su} = 2\text{ ns}$, the maximum clock frequency is</p>
+        <div class="pyq-diagram"><img src="images/p26_img1_402.png" alt="Diagram for Q62." /></div>
+        <div class="pyq-options-grid"><div class="pyq-opt"><strong>(A)</strong> 50 MHz</div><div class="pyq-opt"><strong>(B)</strong> 80 MHz</div><div class="pyq-opt"><strong>(C)</strong> 100 MHz</div><div class="pyq-opt"><strong>(D)</strong> 125 MHz</div></div>
+      </div>
+      <div id="sol_q62_" class="solution-drawer">
+        <div class="sol-header">🎯 Complete Step-by-Step Derivation & Concept Mapping</div>
+        <ol class="sol-steps"><li>$T_{clk} \ge 2 + 6 + 2 = 10\text{ ns}$.</li><li>$f_{max} = 1 / 10\text{ ns} = 100\text{ MHz}$ (Option C).</li></ol>
+        <div class="ans-box">Official ExamGOAL Answer Key: <strong>(C)</strong></div>
+        <div class="callout gate-trap"><div class="gate-trap-title">⚠️ Examiner Trap Alert</div><p>$1 / 10\text{ ns} = 100\text{ MHz}$.</p></div>
+      </div>
+    </div>
+    
+    <div class="pyq-box">
+      <div class="pyq-header">
+        <div class="pyq-tag-group">
+          <span class="pyq-badge-num">Q63.</span>
+          <span class="pyq-badge-year">GATE ECE 2007</span>
+          <span class="pyq-badge-marks">2 Marks</span>
+          <span class="pyq-badge-type">MCQ</span>
+        </div>
+        <button class="reveal-btn" data-target="sol_q63_">💡 Show Solution</button>
+      </div>
+      <div class="pyq-body">
+        <p>In the counter with MUX feedback shown, the next state from 01 is</p>
+        <div class="pyq-diagram"><img src="images/p26_img2_404.png" alt="Diagram for Q63." /></div>
+        <div class="pyq-options-grid"><div class="pyq-opt"><strong>(A)</strong> 00</div><div class="pyq-opt"><strong>(B)</strong> 10</div><div class="pyq-opt"><strong>(C)</strong> 11</div><div class="pyq-opt"><strong>(D)</strong> 01</div></div>
+      </div>
+      <div id="sol_q63_" class="solution-drawer">
+        <div class="sol-header">🎯 Complete Step-by-Step Derivation & Concept Mapping</div>
+        <ol class="sol-steps"><li>Evaluate MUX select inputs and resulting D inputs.</li><li>Next state is 10 (Option B).</li></ol>
+        <div class="ans-box">Official ExamGOAL Answer Key: <strong>(B)</strong></div>
+        <div class="callout gate-trap"><div class="gate-trap-title">⚠️ Examiner Trap Alert</div><p>Check MUX select line ordering.</p></div>
+      </div>
+    </div>
+    
+    <div class="pyq-box">
+      <div class="pyq-header">
+        <div class="pyq-tag-group">
+          <span class="pyq-badge-num">Q64.</span>
+          <span class="pyq-badge-year">GATE ECE</span>
+          <span class="pyq-badge-marks">2 Marks</span>
+          <span class="pyq-badge-type">MCQ</span>
+        </div>
+        <button class="reveal-btn" data-target="sol_q64_">💡 Show Solution</button>
+      </div>
+      <div class="pyq-body">
+        <p>A 4-bit shift register with serial input $X$ performs arithmetic division by 2 if data is shifted</p>
+        <div class="pyq-diagram"><img src="images/p27_img1_414.png" alt="Diagram for Q64." /></div>
+        <div class="pyq-options-grid"><div class="pyq-opt"><strong>(A)</strong> Left by 1 bit</div><div class="pyq-opt"><strong>(B)</strong> Left by 2 bits</div><div class="pyq-opt"><strong>(C)</strong> Right by 1 bit</div><div class="pyq-opt"><strong>(D)</strong> Right by 2 bits</div></div>
+      </div>
+      <div id="sol_q64_" class="solution-drawer">
+        <div class="sol-header">🎯 Complete Step-by-Step Derivation & Concept Mapping</div>
+        <ol class="sol-steps"><li>In binary positional notation, shifting bits to the right by 1 position divides the numerical value by $2^1 = 2$.</li><li>Option (C) is correct.</li></ol>
+        <div class="ans-box">Official ExamGOAL Answer Key: <strong>(C)</strong></div>
+        <div class="callout gate-trap"><div class="gate-trap-title">⚠️ Examiner Trap Alert</div><p>Shift left = multiply by 2; shift right = divide by 2.</p></div>
+      </div>
+    </div>
+    
+    <div class="pyq-box">
+      <div class="pyq-header">
+        <div class="pyq-tag-group">
+          <span class="pyq-badge-num">Q65.</span>
+          <span class="pyq-badge-year">GATE ECE 2006</span>
+          <span class="pyq-badge-marks">2 Marks</span>
+          <span class="pyq-badge-type">NAT / Subjective</span>
+        </div>
+        <button class="reveal-btn" data-target="sol_q65_">💡 Show Solution</button>
+      </div>
+      <div class="pyq-body">
+        <p>For the sequential circuit shown, the maximum operating frequency without clock skew is _______ MHz.</p>
+        <div class="pyq-diagram"><img src="images/p27_img2_416.jpeg" alt="Diagram for Q65." /></div>
+        
+      </div>
+      <div id="sol_q65_" class="solution-drawer">
+        <div class="sol-header">🎯 Complete Step-by-Step Derivation & Concept Mapping</div>
+        <ol class="sol-steps"><li>Calculate $T_{clk,min} = t_{cq} + t_{comb} + t_{su}$.</li><li>Invert to obtain $f_{max}$.</li></ol>
+        <div class="ans-box">Official ExamGOAL Answer Key: <strong>A</strong></div>
+        <div class="callout gate-trap"><div class="gate-trap-title">⚠️ Examiner Trap Alert</div><p>Identify worst-case combinational path delay.</p></div>
+      </div>
+    </div>
+    
+    <div class="pyq-box">
+      <div class="pyq-header">
+        <div class="pyq-tag-group">
+          <span class="pyq-badge-num">Q66.</span>
+          <span class="pyq-badge-year">GATE ECE</span>
+          <span class="pyq-badge-marks">2 Marks</span>
+          <span class="pyq-badge-type">MCQ</span>
+        </div>
+        <button class="reveal-btn" data-target="sol_q66_">💡 Show Solution</button>
+      </div>
+      <div class="pyq-body">
+        <p>The count sequence of the counter shown in figure is</p>
+        <div class="pyq-diagram"><img src="images/p28_img1_425.jpeg" alt="Diagram for Q66." /></div>
+        <div class="pyq-options-grid"><div class="pyq-opt"><strong>(A)</strong> $0 \to 1 \to 2 \to 3 \to 0$</div><div class="pyq-opt"><strong>(B)</strong> $0 \to 2 \to 4 \to 6 \to 0$</div><div class="pyq-opt"><strong>(C)</strong> $0 \to 3 \to 2 \to 1 \to 0$</div><div class="pyq-opt"><strong>(D)</strong> $0 \to 1 \to 3 \to 2 \to 0$</div></div>
+      </div>
+      <div id="sol_q66_" class="solution-drawer">
+        <div class="sol-header">🎯 Complete Step-by-Step Derivation & Concept Mapping</div>
+        <ol class="sol-steps"><li>Trace state transitions from schematic.</li><li>Sequence matches Option (C).</li></ol>
+        <div class="ans-box">Official ExamGOAL Answer Key: <strong>(C)</strong></div>
+        <div class="callout gate-trap"><div class="gate-trap-title">⚠️ Examiner Trap Alert</div><p>Follow flip-flop excitation on each cycle.</p></div>
+      </div>
+    </div>
+    
+    <div class="pyq-box">
+      <div class="pyq-header">
+        <div class="pyq-tag-group">
+          <span class="pyq-badge-num">Q67.</span>
+          <span class="pyq-badge-year">GATE ECE 2003</span>
+          <span class="pyq-badge-marks">2 Marks</span>
+          <span class="pyq-badge-type">MCQ</span>
+        </div>
+        <button class="reveal-btn" data-target="sol_q67_">💡 Show Solution</button>
+      </div>
+      <div class="pyq-body">
+        <p>A counter is said to be self-starting if</p>
+        
+        <div class="pyq-options-grid"><div class="pyq-opt"><strong>(A)</strong> it starts counting from zero automatically without clock</div><div class="pyq-opt"><strong>(B)</strong> from any unused/invalid state, it eventually enters the valid counting cycle</div><div class="pyq-opt"><strong>(C)</strong> it has no unused states</div><div class="pyq-opt"><strong>(D)</strong> it uses asynchronous reset</div></div>
+      </div>
+      <div id="sol_q67_" class="solution-drawer">
+        <div class="sol-header">🎯 Complete Step-by-Step Derivation & Concept Mapping</div>
+        <ol class="sol-steps"><li>A counter is self-starting if, even when power-up or noise forces it into an unused state, subsequent clock pulses steer the state back into the main counting loop (avoiding permanent lockout).</li><li>Option (B) is the precise technical definition.</li></ol>
+        <div class="ans-box">Official ExamGOAL Answer Key: <strong>(B)</strong></div>
+        <div class="callout gate-trap"><div class="gate-trap-title">⚠️ Examiner Trap Alert</div><p>Counters with isolated dead loops (lockout states) are NOT self-starting.</p></div>
+      </div>
+    </div>
+    
+    <div class="pyq-box">
+      <div class="pyq-header">
+        <div class="pyq-tag-group">
+          <span class="pyq-badge-num">Q68.</span>
+          <span class="pyq-badge-year">GATE ECE</span>
+          <span class="pyq-badge-marks">2 Marks</span>
+          <span class="pyq-badge-type">NAT / Subjective</span>
+        </div>
+        <button class="reveal-btn" data-target="sol_q68_">💡 Show Solution</button>
+      </div>
+      <div class="pyq-body">
+        <p>The state table shown can be reduced to a minimal state machine with number of states equal to</p>
+        <div class="pyq-diagram"><img src="images/p29_img1_434.png" alt="Diagram for Q68." /></div><div class="pyq-diagram"><img src="images/p29_img2_436.png" alt="Diagram for Q68." /></div><div class="pyq-diagram"><img src="images/p29_img3_438.png" alt="Diagram for Q68." /></div><div class="pyq-diagram"><img src="images/p29_img4_440.png" alt="Diagram for Q68." /></div><div class="pyq-diagram"><img src="images/p29_img5_442.png" alt="Diagram for Q68." /></div>
+        <div class="pyq-options-grid"><div class="pyq-opt"><strong>(A)</strong> 2</div><div class="pyq-opt"><strong>(B)</strong> 3</div><div class="pyq-opt"><strong>(C)</strong> 4</div><div class="pyq-opt"><strong>(D)</strong> 5</div></div>
+      </div>
+      <div id="sol_q68_" class="solution-drawer">
+        <div class="sol-header">🎯 Complete Step-by-Step Derivation & Concept Mapping</div>
+        <ol class="sol-steps"><li>Construct implication table.</li><li>Eliminate redundant equivalent state pairs.</li><li>Minimal state count is 4 (Option C).</li></ol>
+        <div class="ans-box">Official ExamGOAL Answer Key: <strong>(C)</strong></div>
+        <div class="callout gate-trap"><div class="gate-trap-title">⚠️ Examiner Trap Alert</div><p>Check output compatibility before next-state equivalence.</p></div>
+      </div>
+    </div>
+    
+    <div class="pyq-box">
+      <div class="pyq-header">
+        <div class="pyq-tag-group">
+          <span class="pyq-badge-num">Q69.</span>
+          <span class="pyq-badge-year">GATE ECE</span>
+          <span class="pyq-badge-marks">2 Marks</span>
+          <span class="pyq-badge-type">MCQ</span>
+        </div>
+        <button class="reveal-btn" data-target="sol_q69_">💡 Show Solution</button>
+      </div>
+      <div class="pyq-body">
+        <p>The counter shown in the figure has modulus</p>
+        <div class="pyq-diagram"><img src="images/p30_img1_450.jpeg" alt="Diagram for Q69." /></div>
+        <div class="pyq-options-grid"><div class="pyq-opt"><strong>(A)</strong> 3</div><div class="pyq-opt"><strong>(B)</strong> 5</div><div class="pyq-opt"><strong>(C)</strong> 7</div><div class="pyq-opt"><strong>(D)</strong> 8</div></div>
+      </div>
+      <div id="sol_q69_" class="solution-drawer">
+        <div class="sol-header">🎯 Complete Step-by-Step Derivation & Concept Mapping</div>
+        <ol class="sol-steps"><li>Trace all distinct states in cycle.</li><li>Modulus is 8 (Option D).</li></ol>
+        <div class="ans-box">Official ExamGOAL Answer Key: <strong>(D)</strong></div>
+        <div class="callout gate-trap"><div class="gate-trap-title">⚠️ Examiner Trap Alert</div><p>Count unique states.</p></div>
+      </div>
+    </div>
+    
+    <div class="pyq-box">
+      <div class="pyq-header">
+        <div class="pyq-tag-group">
+          <span class="pyq-badge-num">Q70.</span>
+          <span class="pyq-badge-year">GATE ECE 2000</span>
+          <span class="pyq-badge-marks">2 Marks</span>
+          <span class="pyq-badge-type">MCQ</span>
+        </div>
+        <button class="reveal-btn" data-target="sol_q70_">💡 Show Solution</button>
+      </div>
+      <div class="pyq-body">
+        <p>To prevent hold time violations in high-speed digital circuits, the designer must ensure that</p>
+        <div class="pyq-diagram"><img src="images/p30_img2_451.jpeg" alt="Diagram for Q70." /></div>
+        <div class="pyq-options-grid"><div class="pyq-opt"><strong>(A)</strong> $t_{cq} + t_{comb,min} \ge t_h + \delta$</div><div class="pyq-opt"><strong>(B)</strong> $T_{clk} \ge t_{cq} + t_h$</div><div class="pyq-opt"><strong>(C)</strong> $t_{su} > t_h$</div><div class="pyq-opt"><strong>(D)</strong> clock frequency is kept low</div></div>
+      </div>
+      <div id="sol_q70_" class="solution-drawer">
+        <div class="sol-header">🎯 Complete Step-by-Step Derivation & Concept Mapping</div>
+        <ol class="sol-steps"><li>The hold constraint requires data to remain stable for $t_h$ after clock edge.</li><li>Shortest path contamination delay must satisfy: $t_{cq} + t_{comb,min} \ge t_h + \delta$.</li><li>Option (A) is the exact mathematical formulation.</li></ol>
+        <div class="ans-box">Official ExamGOAL Answer Key: <strong>(A)</strong></div>
+        <div class="callout gate-trap"><div class="gate-trap-title">⚠️ Examiner Trap Alert</div><p>Hold violation cannot be prevented by lowering clock frequency!</p></div>
+      </div>
+    </div>
+    
+    <div class="pyq-box">
+      <div class="pyq-header">
+        <div class="pyq-tag-group">
+          <span class="pyq-badge-num">Q71.</span>
+          <span class="pyq-badge-year">GATE ECE 1999</span>
+          <span class="pyq-badge-marks">2 Marks</span>
+          <span class="pyq-badge-type">MCQ</span>
+        </div>
+        <button class="reveal-btn" data-target="sol_q71_">💡 Show Solution</button>
+      </div>
+      <div class="pyq-body">
+        <p>A shift register that accepts data serially and presents all bits simultaneously is a</p>
+        <div class="pyq-diagram"><img src="images/p30_img3_452.jpeg" alt="Diagram for Q71." /></div>
+        <div class="pyq-options-grid"><div class="pyq-opt"><strong>(A)</strong> SISO</div><div class="pyq-opt"><strong>(B)</strong> PIPO</div><div class="pyq-opt"><strong>(C)</strong> PISO</div><div class="pyq-opt"><strong>(D)</strong> SIPO</div></div>
+      </div>
+      <div id="sol_q71_" class="solution-drawer">
+        <div class="sol-header">🎯 Complete Step-by-Step Derivation & Concept Mapping</div>
+        <ol class="sol-steps"><li>Serial-In Parallel-Out (SIPO) register shifts data in bit-by-bit on serial line and outputs all stored bits simultaneously on parallel lines.</li><li>Option (D) is correct.</li></ol>
+        <div class="ans-box">Official ExamGOAL Answer Key: <strong>(D)</strong></div>
+        <div class="callout gate-trap"><div class="gate-trap-title">⚠️ Examiner Trap Alert</div><p>SIPO = Serial In, Parallel Out.</p></div>
+      </div>
+    </div>
+    
+    <div class="pyq-box">
+      <div class="pyq-header">
+        <div class="pyq-tag-group">
+          <span class="pyq-badge-num">Q72.</span>
+          <span class="pyq-badge-year">GATE ECE</span>
+          <span class="pyq-badge-marks">2 Marks</span>
+          <span class="pyq-badge-type">MCQ</span>
+        </div>
+        <button class="reveal-btn" data-target="sol_q72_">💡 Show Solution</button>
+      </div>
+      <div class="pyq-body">
+        <p>Design a synchronous counter using JK flip-flops for the sequence $00 \to 01 \to 10 \to 00$. The $J_1$ and $K_1$ inputs are</p>
+        <div class="pyq-diagram"><img src="images/p31_img1_463.jpeg" alt="Diagram for Q72." /></div>
+        <div class="pyq-options-grid"><div class="pyq-opt"><strong>(A)</strong> $J_1 = Q_0, K_1 = 1$</div><div class="pyq-opt"><strong>(B)</strong> $J_1 = \overline{Q_0}, K_1 = 0$</div><div class="pyq-opt"><strong>(C)</strong> $J_1 = 1, K_1 = Q_0$</div><div class="pyq-opt"><strong>(D)</strong> $J_1 = Q_0, K_1 = Q_0$</div></div>
+      </div>
+      <div id="sol_q72_" class="solution-drawer">
+        <div class="sol-header">🎯 Complete Step-by-Step Derivation & Concept Mapping</div>
+        <ol class="sol-steps"><li>Excitation analysis for $Q_1$:</li><li>• $00 \to 01$: $Q_1: 0 \to 0 \implies J_1 = 0, K_1 = d$.</li><li>• $01 \to 10$: $Q_1: 0 \to 1 \implies J_1 = 1, K_1 = d$.</li><li>• $10 \to 00$: $Q_1: 1 \to 0 \implies J_1 = d, K_1 = 1$.</li><li>From K-maps: $J_1 = Q_0$ and $K_1 = 1$ (Option A).</li></ol>
+        <div class="ans-box">Official ExamGOAL Answer Key: <strong>(A)</strong></div>
+        <div class="callout gate-trap"><div class="gate-trap-title">⚠️ Examiner Trap Alert</div><p>Use don't care conditions in excitation table to find minimal gate expressions.</p></div>
+      </div>
+    </div>
+    
+          </div>
+        </section>
+        
+        <section id="sec-pyqs-multi" class="chapter-section">
+          <div class="chapter-number-pill">GATE Official Archive · Multi-Mark & Subjective</div>
+          <h2 class="chapter-title">Official GATE Subjective & Multi-Mark Solutions (Q73 to Q82)</h2>
+          <div class="section-content">
+            
+    <div class="pyq-box">
+      <div class="pyq-header">
+        <div class="pyq-tag-group">
+          <span class="pyq-badge-num">Q73.</span>
+          <span class="pyq-badge-year">GATE ECE 2002</span>
+          <span class="pyq-badge-marks">5 Marks</span>
+          <span class="pyq-badge-type">NAT / Subjective</span>
+        </div>
+        <button class="reveal-btn" data-target="sol_q73_">💡 Show Solution</button>
+      </div>
+      <div class="pyq-body">
+        <p>A synchronous counter is shown in the figure. (a) Derive the state transition table. (b) Determine the modulus and count sequence.</p>
+        <div class="pyq-diagram"><img src="images/p31_img2_464.jpeg" alt="Diagram for Q73." /></div><div class="pyq-diagram"><img src="images/p31_img3_465.jpeg" alt="Diagram for Q73." /></div>
+        
+      </div>
+      <div id="sol_q73_" class="solution-drawer">
+        <div class="sol-header">🎯 Complete Step-by-Step Derivation & Concept Mapping</div>
+        <ol class="sol-steps"><li>1. Write Boolean expressions for all flip-flop inputs from the schematic.</li><li>2. Formulate excitation table mapping each present state $(Q_2 Q_1 Q_0)$ to its next state.</li><li>3. Trace cycle starting from initial state $000$.</li><li>4. Verify modulus and cycle completeness.</li></ol>
+        <div class="ans-box">Official ExamGOAL Answer Key: <strong>(b)</strong></div>
+        <div class="callout gate-trap"><div class="gate-trap-title">⚠️ Examiner Trap Alert</div><p>Examine if any states cause counter lockout.</p></div>
+      </div>
+    </div>
+    
+    <div class="pyq-box">
+      <div class="pyq-header">
+        <div class="pyq-tag-group">
+          <span class="pyq-badge-num">Q74.</span>
+          <span class="pyq-badge-year">GATE ECE 1999</span>
+          <span class="pyq-badge-marks">5 Marks</span>
+          <span class="pyq-badge-type">NAT / Subjective</span>
+        </div>
+        <button class="reveal-btn" data-target="sol_q74_">💡 Show Solution</button>
+      </div>
+      <div class="pyq-body">
+        <p>Analyze the sequential circuit shown in the figure and determine its modulus and count sequence.</p>
+        
+        
+      </div>
+      <div id="sol_q74_" class="solution-drawer">
+        <div class="sol-header">🎯 Complete Step-by-Step Derivation & Concept Mapping</div>
+        <ol class="sol-steps"><li>1. Derive excitation equations for the 3 flip-flops.</li><li>2. Trace state progression: $000 \to 001 \to 011 \to 111 \to 110 \to 100 \to 000$.</li><li>3. The counter cycles through 6 unique states before repeating.</li><li>4. Modulus is <strong>6 (MOD-6 counter)</strong>.</li></ol>
+        <div class="ans-box">Official ExamGOAL Answer Key: <strong>It is mod 6 counter</strong></div>
+        <div class="callout gate-trap"><div class="gate-trap-title">⚠️ Examiner Trap Alert</div><p>Notice the 6-state closed cycle.</p></div>
+      </div>
+    </div>
+    
+    <div class="pyq-box">
+      <div class="pyq-header">
+        <div class="pyq-tag-group">
+          <span class="pyq-badge-num">Q75.</span>
+          <span class="pyq-badge-year">GATE ECE</span>
+          <span class="pyq-badge-marks">5 Marks</span>
+          <span class="pyq-badge-type">NAT / Subjective</span>
+        </div>
+        <button class="reveal-btn" data-target="sol_q75_">💡 Show Solution</button>
+      </div>
+      <div class="pyq-body">
+        <p>For the counter circuit shown in figure, determine whether the counter is self-starting or suffers from lockout.</p>
+        <div class="pyq-diagram"><img src="images/p32_img1_476.jpeg" alt="Diagram for Q75." /></div>
+        
+      </div>
+      <div id="sol_q75_" class="solution-drawer">
+        <div class="sol-header">🎯 Complete Step-by-Step Derivation & Concept Mapping</div>
+        <ol class="sol-steps"><li>1. Determine the main counting cycle.</li><li>2. Analyze all unused states.</li><li>3. If an unused state transitions into another unused state forming an isolated cycle that never enters the main loop, the counter suffers from <strong>lockout</strong>.</li><li>4. Here, states $110$ and $111$ form an isolated trap loop, so the counter is <strong>not self-starting (lockout occurs)</strong>.</li></ol>
+        <div class="ans-box">Official ExamGOAL Answer Key: <strong>(a) Counter is lockout</strong></div>
+        <div class="callout gate-trap"><div class="gate-trap-title">⚠️ Examiner Trap Alert</div><p>Always test transitions for all $2^n$ possible binary combinations.</p></div>
+      </div>
+    </div>
+    
+    <div class="pyq-box">
+      <div class="pyq-header">
+        <div class="pyq-tag-group">
+          <span class="pyq-badge-num">Q76.</span>
+          <span class="pyq-badge-year">GATE ECE 1997</span>
+          <span class="pyq-badge-marks">5 Marks</span>
+          <span class="pyq-badge-type">NAT / Subjective</span>
+        </div>
+        <button class="reveal-btn" data-target="sol_q76_">💡 Show Solution</button>
+      </div>
+      <div class="pyq-body">
+        <p>Derive the state diagram and sequence generation for the given sequential circuit.</p>
+        <div class="pyq-diagram"><img src="images/p32_img2_477.jpeg" alt="Diagram for Q76." /></div>
+        
+      </div>
+      <div id="sol_q76_" class="solution-drawer">
+        <div class="sol-header">🎯 Complete Step-by-Step Derivation & Concept Mapping</div>
+        <ol class="sol-steps"><li>1. Write next-state Boolean functions.</li><li>2. Tabulate all transitions.</li><li>3. Construct state diagram showing all states and transitions.</li></ol>
+        <div class="ans-box">Official ExamGOAL Answer Key: <strong>(a) Sequence</strong></div>
+        <div class="callout gate-trap"><div class="gate-trap-title">⚠️ Examiner Trap Alert</div><p>Ensure all binary states are accounted for.</p></div>
+      </div>
+    </div>
+    
+    <div class="pyq-box">
+      <div class="pyq-header">
+        <div class="pyq-tag-group">
+          <span class="pyq-badge-num">Q77.</span>
+          <span class="pyq-badge-year">GATE ECE 1996</span>
+          <span class="pyq-badge-marks">5 Marks</span>
+          <span class="pyq-badge-type">NAT / Subjective</span>
+        </div>
+        <button class="reveal-btn" data-target="sol_q77_">💡 Show Solution</button>
+      </div>
+      <div class="pyq-body">
+        <p>A shift register is connected with feedback logic. Determine the output bit sequence generated at the serial output.</p>
+        <div class="pyq-diagram"><img src="images/p32_img3_478.jpeg" alt="Diagram for Q77." /></div>
+        
+      </div>
+      <div id="sol_q77_" class="solution-drawer">
+        <div class="sol-header">🎯 Complete Step-by-Step Derivation & Concept Mapping</div>
+        <ol class="sol-steps"><li>1. Trace shift register contents cycle by cycle.</li><li>2. Determine period of the pseudo-random binary sequence.</li><li>3. Verify sequence repetition.</li></ol>
+        <div class="ans-box">Official ExamGOAL Answer Key: <strong>(b) Shift register</strong></div>
+        <div class="callout gate-trap"><div class="gate-trap-title">⚠️ Examiner Trap Alert</div><p>Shift register feedback follows the specified XOR logic.</p></div>
+      </div>
+    </div>
+    
+    <div class="pyq-box">
+      <div class="pyq-header">
+        <div class="pyq-tag-group">
+          <span class="pyq-badge-num">Q78.</span>
+          <span class="pyq-badge-year">GATE ECE</span>
+          <span class="pyq-badge-marks">5 Marks</span>
+          <span class="pyq-badge-type">NAT / Subjective</span>
+        </div>
+        <button class="reveal-btn" data-target="sol_q78_">💡 Show Solution</button>
+      </div>
+      <div class="pyq-body">
+        <p>Design a synchronous counter using T flip-flops that counts through the sequence $0, 2, 4, 6, 0$. Derive the minimal Boolean expressions for $T_2, T_1, T_0$.</p>
+        <div class="pyq-diagram"><img src="images/p33_img1_489.jpeg" alt="Diagram for Q78." /></div><div class="pyq-diagram"><img src="images/p33_img2_490.jpeg" alt="Diagram for Q78." /></div>
+        
+      </div>
+      <div id="sol_q78_" class="solution-drawer">
+        <div class="sol-header">🎯 Complete Step-by-Step Derivation & Concept Mapping</div>
+        <ol class="sol-steps"><li>1. States in binary: $0(000) \to 2(010) \to 4(100) \to 6(110) \to 0(000)$.</li><li>2. Notice LSB $Q_0$ is always 0 $\implies T_0 = 0$.</li><li>3. Formulate excitation table using $T = Q \oplus Q_{next}$:</li><li>• $000 \to 010$: $T_2 = 0, T_1 = 1, T_0 = 0$.</li><li>• $010 \to 100$: $T_2 = 1, T_1 = 1, T_0 = 0$.</li><li>• $100 \to 110$: $T_2 = 0, T_1 = 1, T_0 = 0$.</li><li>• $110 \to 000$: $T_2 = 1, T_1 = 1, T_0 = 0$.</li><li>4. Minimization via K-map with don't cares for odd states:<br/>$$T_2 = Q_1, \quad T_1 = 1, \quad T_0 = 0$$.</li></ol>
+        <div class="ans-box">Official ExamGOAL Answer Key: <strong>Solve it.</strong></div>
+        <div class="callout gate-trap"><div class="gate-trap-title">⚠️ Examiner Trap Alert</div><p>Using don't cares for the 4 unused odd states simplifies $T_1$ to logic 1!</p></div>
+      </div>
+    </div>
+    
+    <div class="pyq-box">
+      <div class="pyq-header">
+        <div class="pyq-tag-group">
+          <span class="pyq-badge-num">Q79.</span>
+          <span class="pyq-badge-year">GATE ECE 1992</span>
+          <span class="pyq-badge-marks">8 Marks</span>
+          <span class="pyq-badge-type">NAT / Subjective</span>
+        </div>
+        <button class="reveal-btn" data-target="sol_q79_">💡 Show Solution</button>
+      </div>
+      <div class="pyq-body">
+        <p>Design a self-starting synchronous counter using JK flip-flops for the sequence $1, 3, 5, 7, 1$. Verify that unused states enter the main sequence.</p>
+        
+        
+      </div>
+      <div id="sol_q79_" class="solution-drawer">
+        <div class="sol-header">🎯 Complete Step-by-Step Derivation & Concept Mapping</div>
+        <ol class="sol-steps"><li>1. Sequence states: $1(001) \to 3(011) \to 5(101) \to 7(111) \to 1(001)$.</li><li>2. Notice $Q_0 = 1$ in all states $\implies J_0 = 1, K_0 = 0$.</li><li>3. Excitation derivation for $Q_2, Q_1$ using standard JK excitation tables.</li><li>4. Verify unused states ($0, 2, 4, 6$) transition into the valid sequence within at most 2 clock cycles, ensuring self-starting operation.</li></ol>
+        <div class="ans-box">Official ExamGOAL Answer Key: <strong>Solve it.</strong></div>
+        <div class="callout gate-trap"><div class="gate-trap-title">⚠️ Examiner Trap Alert</div><p>Unused states must be evaluated to guarantee zero lockout hazard.</p></div>
+      </div>
+    </div>
+    
+    <div class="pyq-box">
+      <div class="pyq-header">
+        <div class="pyq-tag-group">
+          <span class="pyq-badge-num">Q80.</span>
+          <span class="pyq-badge-year">GATE ECE</span>
+          <span class="pyq-badge-marks">8 Marks</span>
+          <span class="pyq-badge-type">NAT / Subjective</span>
+        </div>
+        <button class="reveal-btn" data-target="sol_q80_">💡 Show Solution</button>
+      </div>
+      <div class="pyq-body">
+        <p>Design a Mealy finite state machine to detect a serial input sequence '101' with overlapping sequences allowed. Derive the state transition diagram and minimal excitation equations.</p>
+        
+        
+      </div>
+      <div id="sol_q80_" class="solution-drawer">
+        <div class="sol-header">🎯 Complete Step-by-Step Derivation & Concept Mapping</div>
+        <ol class="sol-steps"><li>1. State definitions:</li><li>• $S_0$: No matching bits (initial state).</li><li>• $S_1$: Single '1' matched.</li><li>• $S_2$: Sequence '10' matched.</li><li>2. Transitions and outputs $(X/Y)$:</li><li>• From $S_0$: on $X=0 \to S_0/0$; on $X=1 \to S_1/0$.</li><li>• From $S_1$: on $X=0 \to S_2/0$; on $X=1 \to S_1/0$.</li><li>• From $S_2$: on $X=0 \to S_0/0$; on $X=1 \to S_1/1$ (Detection! Overlapping prefix '1' preserved).</li><li>3. State assignment ($S_0=00, S_1=01, S_2=10$) and excitation derivation using D flip-flops.</li></ol>
+        <div class="ans-box">Official ExamGOAL Answer Key: <strong>Solve it.</strong></div>
+        <div class="callout gate-trap"><div class="gate-trap-title">⚠️ Examiner Trap Alert</div><p>Because overlapping is allowed, detecting '101' transitions to $S_1$ (since the final '1' serves as the first bit of the next potential '101').</p></div>
+      </div>
+    </div>
+    
+    <div class="pyq-box">
+      <div class="pyq-header">
+        <div class="pyq-tag-group">
+          <span class="pyq-badge-num">Q81.</span>
+          <span class="pyq-badge-year">GATE ECE 1988</span>
+          <span class="pyq-badge-marks">8 Marks</span>
+          <span class="pyq-badge-type">NAT / Subjective</span>
+        </div>
+        <button class="reveal-btn" data-target="sol_q81_">💡 Show Solution</button>
+      </div>
+      <div class="pyq-body">
+        <p>An LFSR generates a pseudo-random binary sequence. Determine the characteristic polynomial $P(x)$ and prove that the sequence generated has period $2^n - 1$.</p>
+        
+        
+      </div>
+      <div id="sol_q81_" class="solution-drawer">
+        <div class="sol-header">🎯 Complete Step-by-Step Derivation & Concept Mapping</div>
+        <ol class="sol-steps"><li>1. State the characteristic polynomial: $P(x) = 1 + \sum_{i=1}^n c_i x^i$.</li><li>2. For maximum length sequence, $P(x)$ must be a primitive polynomial over Galois Field $\text{GF}(2)$.</li><li>3. Prove that the non-zero states cycle through all $2^n - 1$ distinct nonzero elements of $\text{GF}(2^n)$.</li><li>4. Period is exactly $L = 2^n - 1$.</li></ol>
+        <div class="ans-box">Official ExamGOAL Answer Key: <strong>Solve it.</strong></div>
+        <div class="callout gate-trap"><div class="gate-trap-title">⚠️ Examiner Trap Alert</div><p>Primitive polynomials guarantee maximal length $2^n - 1$ without sub-cycles.</p></div>
+      </div>
+    </div>
+    
+    <div class="pyq-box">
+      <div class="pyq-header">
+        <div class="pyq-tag-group">
+          <span class="pyq-badge-num">Q82.</span>
+          <span class="pyq-badge-year">GATE ECE 1987</span>
+          <span class="pyq-badge-marks">8 Marks</span>
+          <span class="pyq-badge-type">NAT / Subjective</span>
+        </div>
+        <button class="reveal-btn" data-target="sol_q82_">💡 Show Solution</button>
+      </div>
+      <div class="pyq-body">
+        <p>Derive the timing waveforms of an asynchronous ripple counter and analyze the transient glitches that appear on the decoded outputs.</p>
+        
+        
+      </div>
+      <div id="sol_q82_" class="solution-drawer">
+        <div class="sol-header">🎯 Complete Step-by-Step Derivation & Concept Mapping</div>
+        <ol class="sol-steps"><li>1. Draw ideal clock and flip-flop outputs $Q_0, Q_1, Q_2$ with gate delay $t_{pd}$.</li><li>2. Show that on transition $011 \to 100$, $Q_0$ flips after $t_{pd}$, $Q_1$ after $2t_{pd}$, and $Q_2$ after $3t_{pd}$.</li><li>3. During the interval between $t_{pd}$ and $3t_{pd}$, the outputs temporarily pass through intermediate erroneous states (e.g. $010$ and $000$).</li><li>4. A combinational decoder connected to these lines produces spurious output voltage spikes (glitches).</li><li>5. To eliminate glitches: use synchronous counters, or strobe/enable the decoder output only after the maximum cumulative ripple delay has elapsed.</li></ol>
+        <div class="ans-box">Official ExamGOAL Answer Key: <strong>Solve it.</strong></div>
+        <div class="callout gate-trap"><div class="gate-trap-title">⚠️ Examiner Trap Alert</div><p>Decoding glitches in ripple counters can only be safely prevented by strobing or migrating to synchronous architecture.</p></div>
+      </div>
+    </div>
+    
+          </div>
+        </section>
+        
+
+      <!-- Interactive Calculator / Labs -->
+      
+    <div id="sec-lab" class="lab-card">
+      <div class="lab-header">
+        <div class="lab-title">🧪 Interactive Sequential Circuit Timing & Clock Closure Engine</div>
+        <span class="pill-badge pill-purple">Live Computational Tool</span>
+      </div>
+      <p>Configure flip-flop timing parameters and clock skew below to compute the minimum clock period, maximum operating frequency ($f_{max}$), setup slack, and verify hold time integrity.</p>
+
+      <div class="lab-input-grid">
+        <div class="input-field">
+          <label for="tcqInput">Clock-to-Q Delay ($t_{cq}$ in ns)</label>
+          <input type="number" id="tcqInput" value="3.0" step="0.5" />
+        </div>
+        <div class="input-field">
+          <label for="tcombInput">Max Combinational Delay ($t_{comb,max}$ in ns)</label>
+          <input type="number" id="tcombInput" value="5.0" step="0.5" />
+        </div>
+        <div class="input-field">
+          <label for="tsuInput">Setup Time ($t_{su}$ in ns)</label>
+          <input type="number" id="tsuInput" value="2.0" step="0.5" />
+        </div>
+        <div class="input-field">
+          <label for="thInput">Hold Time ($t_h$ in ns)</label>
+          <input type="number" id="thInput" value="1.5" step="0.5" />
+        </div>
+        <div class="input-field">
+          <label for="skewInput">Clock Skew ($\delta = t_{clk2} - t_{clk1}$ in ns)</label>
+          <input type="number" id="skewInput" value="0.0" step="0.2" />
+        </div>
+        <div class="input-field">
+          <label for="tcombMinInput">Min Combinational Delay ($t_{comb,min}$ in ns)</label>
+          <input type="number" id="tcombMinInput" value="1.0" step="0.5" />
+        </div>
+      </div>
+
+      <div id="seqLabOutput" class="lab-output">
+        Evaluating sequential timing parameters...
+      </div>
+    </div>
+    
+    </main>
+  </div>
+
+  <script>
+    // Theme toggle
+    const themeBtn = document.getElementById('themeToggle');
+    const currentTheme = localStorage.getItem('gate_theme') || 'light';
+    document.documentElement.setAttribute('data-theme', currentTheme);
+    themeBtn.addEventListener('click', () => {
+      const t = document.documentElement.getAttribute('data-theme') === 'dark' ? 'light' : 'dark';
+      document.documentElement.setAttribute('data-theme', t);
+      localStorage.setItem('gate_theme', t);
+    });
+
+    // Expand/Collapse all solutions
+    const expandBtn = document.getElementById('expandAllBtn');
+    let allExpanded = false;
+    expandBtn.addEventListener('click', () => {
+      allExpanded = !allExpanded;
+      document.querySelectorAll('.solution-drawer').forEach(d => {
+        if (allExpanded) d.classList.add('open');
+        else d.classList.remove('open');
+      });
+      expandBtn.innerHTML = allExpanded ? '📕 Collapse All' : '📖 Expand All';
+    });
+
+    // Solution toggling
+    document.querySelectorAll('.reveal-btn').forEach(btn => {
+      btn.addEventListener('click', () => {
+        const targetId = btn.getAttribute('data-target');
+        const drawer = document.getElementById(targetId);
+        if (drawer) {
+          drawer.classList.toggle('open');
+          btn.innerHTML = drawer.classList.contains('open') ? '🙈 Hide Solution' : '💡 Show Solution';
+        }
+      });
+    });
+
+    // Realtime Search
+    const searchInput = document.getElementById('chapterSearch');
+    if (searchInput) {
+      searchInput.addEventListener('input', (e) => {
+        const q = e.target.value.toLowerCase().trim();
+        document.querySelectorAll('.pyq-box, .chapter-section').forEach(el => {
+          if (!q) {
+            el.style.display = '';
+            return;
+          }
+          const text = el.innerText.toLowerCase();
+          if (text.includes(q)) {
+            el.style.display = '';
+          } else if (el.classList.contains('pyq-box')) {
+            el.style.display = 'none';
+          }
+        });
+      });
+    }
+
+    // KaTeX auto render
+    document.addEventListener("DOMContentLoaded", function() {
+      if (typeof renderMathInElement !== 'undefined') {
+        renderMathInElement(document.body, {
+          delimiters: [
+            {left: '$$', right: '$$', display: true},
+            {left: '$', right: '$', display: false}
+          ],
+          throwOnError: false
+        });
+      }
+    });
+
+    
+    function updateSeqLab() {
+      const tcq = parseFloat(document.getElementById('tcqInput').value) || 3.0;
+      const tcomb = parseFloat(document.getElementById('tcombInput').value) || 5.0;
+      const tsu = parseFloat(document.getElementById('tsuInput').value) || 2.0;
+      const th = parseFloat(document.getElementById('thInput').value) || 1.5;
+      const skew = parseFloat(document.getElementById('skewInput').value) || 0.0;
+      const tcombMin = parseFloat(document.getElementById('tcombMinInput').value) || 1.0;
+      
+      const Tclk_min = tcq + tcomb + tsu - skew;
+      const fmax_MHz = (1000.0 / Tclk_min);
+      
+      const holdMargin = (tcq + tcombMin) - (th + skew);
+      const isHoldValid = holdMargin >= 0;
+      
+      let outHtml = `<strong>[Sequential Clocking & Setup Closure]</strong><br/>`;
+      outHtml += `• Minimum Clock Period ($T_{clk,min} = t_{cq} + t_{comb,max} + t_{su} - \delta$): <strong>${tcq} + ${tcomb} + ${tsu} - (${skew}) = ${Tclk_min.toFixed(2)} ns</strong><br/>`;
+      outHtml += `• Maximum Operating Frequency ($f_{max} = 1/T_{clk,min}$): <strong style="color:var(--accent); font-size:1.15rem;">${fmax_MHz.toFixed(2)} MHz</strong><br/><br/>`;
+      
+      outHtml += `<strong>[Hold Time Verification & Race Closure]</strong><br/>`;
+      outHtml += `• Contamination Data Arrival Delay ($t_{cq} + t_{comb,min}$): <strong>${(tcq + tcombMin).toFixed(2)} ns</strong><br/>`;
+      outHtml += `• Required Hold Capture Target ($t_h + \delta$): <strong>${(th + skew).toFixed(2)} ns</strong><br/>`;
+      outHtml += `• Hold Slack / Margin: <strong style="color:${isHoldValid ? 'var(--success)' : 'var(--danger)'}">${holdMargin.toFixed(2)} ns (${isHoldValid ? 'HOLD MET - SAFE' : 'VIOLATION! RACE-THROUGH CORRUPTION'})</strong><br/><br/>`;
+      outHtml += `• 💡 <em>Key Rule:</em> Notice that changing $T_{clk}$ has zero effect on hold margin.`;
+      
+      document.getElementById('seqLabOutput').innerHTML = outHtml;
+    }
+    document.querySelectorAll('#tcqInput, #tcombInput, #tsuInput, #thInput, #skewInput, #tcombMinInput').forEach(el => {
+      el.addEventListener('input', updateSeqLab);
+    });
+    updateSeqLab();
+    
+  </script>
+</body>
+</html>

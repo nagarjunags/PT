@@ -1,0 +1,257 @@
+{
+  "slug": "logic-gates",
+  "title": "Logic Gates",
+  "pages_count": 18,
+  "images": {
+    "2": [
+      {
+        "file": "images/p2_img1_54.png",
+        "width": 800,
+        "height": 675
+      },
+      {
+        "file": "images/p2_img2_57.png",
+        "width": 800,
+        "height": 748
+      }
+    ],
+    "3": [
+      {
+        "file": "images/p3_img1_71.png",
+        "width": 800,
+        "height": 325
+      },
+      {
+        "file": "images/p3_img2_73.png",
+        "width": 800,
+        "height": 939
+      }
+    ],
+    "4": [
+      {
+        "file": "images/p4_img1_85.png",
+        "width": 800,
+        "height": 364
+      },
+      {
+        "file": "images/p4_img2_87.png",
+        "width": 800,
+        "height": 349
+      }
+    ],
+    "5": [
+      {
+        "file": "images/p5_img1_99.png",
+        "width": 800,
+        "height": 284
+      },
+      {
+        "file": "images/p5_img2_101.png",
+        "width": 800,
+        "height": 643
+      }
+    ],
+    "6": [
+      {
+        "file": "images/p6_img1_111.png",
+        "width": 800,
+        "height": 365
+      },
+      {
+        "file": "images/p6_img2_113.png",
+        "width": 800,
+        "height": 237
+      },
+      {
+        "file": "images/p6_img3_115.jpeg",
+        "width": 505,
+        "height": 135
+      }
+    ],
+    "7": [
+      {
+        "file": "images/p7_img1_126.jpeg",
+        "width": 320,
+        "height": 181
+      },
+      {
+        "file": "images/p7_img2_127.jpeg",
+        "width": 258,
+        "height": 128
+      }
+    ],
+    "8": [
+      {
+        "file": "images/p8_img1_142.jpeg",
+        "width": 470,
+        "height": 211
+      }
+    ],
+    "10": [
+      {
+        "file": "images/p10_img1_171.png",
+        "width": 800,
+        "height": 415
+      },
+      {
+        "file": "images/p10_img2_173.png",
+        "width": 800,
+        "height": 96
+      }
+    ],
+    "11": [
+      {
+        "file": "images/p11_img1_185.png",
+        "width": 800,
+        "height": 208
+      },
+      {
+        "file": "images/p11_img2_186.png",
+        "width": 800,
+        "height": 637
+      },
+      {
+        "file": "images/p11_img3_188.png",
+        "width": 800,
+        "height": 270
+      }
+    ],
+    "12": [
+      {
+        "file": "images/p12_img1_200.png",
+        "width": 800,
+        "height": 280
+      },
+      {
+        "file": "images/p12_img2_202.png",
+        "width": 800,
+        "height": 242
+      },
+      {
+        "file": "images/p12_img3_204.png",
+        "width": 800,
+        "height": 217
+      },
+      {
+        "file": "images/p12_img4_206.png",
+        "width": 800,
+        "height": 227
+      },
+      {
+        "file": "images/p12_img5_208.png",
+        "width": 800,
+        "height": 208
+      }
+    ],
+    "13": [
+      {
+        "file": "images/p13_img1_216.jpeg",
+        "width": 572,
+        "height": 350
+      },
+      {
+        "file": "images/p13_img2_217.jpeg",
+        "width": 755,
+        "height": 259
+      }
+    ],
+    "14": [
+      {
+        "file": "images/p14_img1_226.jpeg",
+        "width": 387,
+        "height": 256
+      },
+      {
+        "file": "images/p14_img2_227.jpeg",
+        "width": 380,
+        "height": 328
+      }
+    ],
+    "15": [
+      {
+        "file": "images/p15_img1_234.jpeg",
+        "width": 652,
+        "height": 224
+      },
+      {
+        "file": "images/p15_img2_235.jpeg",
+        "width": 437,
+        "height": 241
+      }
+    ]
+  },
+  "pages": [
+    {
+      "page": 1,
+      "text": "Keep practising on the ExamGOAL app\nChapter-wise PYQs with solutions, full mock tests and analysis for JEE, NEET, GATE and more.\nGoogle Play\nGET IT ON\nExamGOAL\nP Y Q P D F\nFree \u00b7 With answer key\nGATE ECE \u00b7 DIGITAL CIRCUITS \u00b7 CHAPTER-WISE PYQS\nLogic Gates\nGATE ECE Digital Circuits \u00b7 Previous Year Questions with Answer Key\n40\nQUESTIONS\n26\nPAPERS COVERED\n1988 \u2013 2026\nYEARS\nEnglish\nLANGUAGE\nINSIDE THIS PDF\nMarks 1\n26 questions\nMarks 2\n10 questions\nMarks 5\n3 questions\nMarks 8\n1 question\nAnswer key\nat the end\nPractise online\nEvery question with its full solution,\nfree on questions.examside.com\n1\nSolve\nPrint it, or work through it on\nscreen.\n2\nCheck\nThe answer key is on the last\npages.\n3\nUnderstand\nScan the QR code beside any\nquestion for its full solution.\npdf.questions.examgoal.com\nFree previous year question PDFs for JEE, NEET, GATE and more\n"
+    },
+    {
+      "page": 2,
+      "text": "ExamGOAL\nP Y Q P D F\nMarks 1\n26 questions\nQ1.\nGATE ECE 2026\nIn the circuit shown in the Figure,  and  are logic inputs and  is the logic output. Which of the\nfollowing logic operations is realized by the circuit?\n(A)\n(B)\n(C)\n(D)\nOpen solution\nQ2.\nGATE ECE 2025\nA 3-input majority logic gate has inputs \n and . The output  of the gate is logic ' 1 ' if two or\nmore of the inputs are logic ' 1 '. The output  is logic ' 0 ' if two or more of the inputs are logic '0'.\nWhich one of the following options is a Boolean expression of the output  ?\n(A)\n(B)\n(C)\n(D)\nOpen solution\nQ3.\nGATE ECE 2023\nFor the circuit shown below, the propagation delay of each NAND gate is 1 ns. The critical path\ndelay, in ns, is __________ (rounded off to the nearest integer).\nOpen solution\nKeep practising on the ExamGOAL app\nChapter-wise PYQs with solutions, full mock tests and analysis for JEE, NEET, GATE and more.\nGoogle Play\nGET IT ON\nGATE ECE Digital Circuits: Logic Gates \u00b7 pdf.questions.examgoal.com\nSolutions: questions.examside.com \u00b7 Page 2 / 18\n"
+    },
+    {
+      "page": 3,
+      "text": "ExamGOAL\nP Y Q P D F\nQ4.\nGATE ECE 2016 Set 1\nThe output of the combinational circuit given below is\n(A) A+B+C\n(B) A(B+C)\n(C) B(C+A)\n(D) C(A+B)\nOpen solution\nQ5.\nGATE ECE 2016 Set 3\nThe minimum number of 2-input NAND gates required to implement a 2-input XOR gate is\n(A) 4\n(B) 5\n(C) 6\n(D) 7\nOpen solution\nQ6.\nGATE ECE 2015 Set 3\nIn the circuit shown, diodes \n,\n and \n are ideal, and the inputs \n,\n and \n are \u201c0 V\u201d for logic\n\u20180\u2019 and \u201c10 V\u201d for logic \u20181\u2019. What logic gate does the circuit represent?\n(A) 3-input OR gate\n(B) 3-input NOR gate\n(C) 3-input AND gate\n(D) 3-input XOR gate\nOpen solution\nKeep practising on the ExamGOAL app\nChapter-wise PYQs with solutions, full mock tests and analysis for JEE, NEET, GATE and more.\nGoogle Play\nGET IT ON\nGATE ECE Digital Circuits: Logic Gates \u00b7 pdf.questions.examgoal.com\nSolutions: questions.examside.com \u00b7 Page 3 / 18\n"
+    },
+    {
+      "page": 4,
+      "text": "ExamGOAL\nP Y Q P D F\nQ7.\nGATE ECE 2015 Set 2\nIn the figure shown, the output  is required to be \n. The gates G1 and G2 must be,\nrespectively,\n(A) NOR, OR\n(B) OR, NAND\n(C) NAND, OR\n(D) AND, NAND\nOpen solution\nQ8.\nGATE ECE 2014 Set 4\nIn the circuit shown in the figure, if \n, the expression for  is\n(A)\n(B)\n(C)\n(D)\nOpen solution\nQ9.\nGATE ECE 2013\nA bulb in a staircase has two switches, one switch being at the ground floor and the other one at the\nfirst floor. The bulb can be turned ON and also can be turned OFF by any one of the switches\nirrespective of the state of the other switch. The logic of switching of the bulb resembles.\n(A) an AND gate\n(B) an OR gate\n(C) an XOR gate\n(D) a NAND gate\nOpen solution\nKeep practising on the ExamGOAL app\nChapter-wise PYQs with solutions, full mock tests and analysis for JEE, NEET, GATE and more.\nGoogle Play\nGET IT ON\nGATE ECE Digital Circuits: Logic Gates \u00b7 pdf.questions.examgoal.com\nSolutions: questions.examside.com \u00b7 Page 4 / 18\n"
+    },
+    {
+      "page": 5,
+      "text": "ExamGOAL\nP Y Q P D F\nQ10.\nGATE ECE 2011\nThe output Y in the circuit below is always \"1\" when\n(A) two or more of the inputs P, Q, R are \"0\"\n(B) two or more of the inputs P, Q, R are \"1\"\n(C) any odd number of the inputs P, Q, R is \"0\"\n(D) any odd number of the inputs P, Q, R is \"1\"\nOpen solution\nQ11.\nGATE ECE 2010\nMatch the logic gates in Column A with their equivalents in Column B.\n(A) P-2, Q-4, R-1, S-3\n(B) P-4, Q-2, R-1, S-3\n(C) P-2, Q-4, R-3, S-1\n(D) P-4, Q-2, R-3, S-1\nOpen solution\nKeep practising on the ExamGOAL app\nChapter-wise PYQs with solutions, full mock tests and analysis for JEE, NEET, GATE and more.\nGoogle Play\nGET IT ON\nGATE ECE Digital Circuits: Logic Gates \u00b7 pdf.questions.examgoal.com\nSolutions: questions.examside.com \u00b7 Page 5 / 18\n"
+    },
+    {
+      "page": 6,
+      "text": "ExamGOAL\nP Y Q P D F\nQ12.\nGATE ECE 2010\nFor the output F to be 1 in the logic circuit shown, the input combination should be\n(A)\n(B)\n(C)\n(D)\nOpen solution\nQ13.\nGATE ECE 2002\nIf the input to the digital circuit (in the figure) consisting of a cascade of 20 XOR-gates is X then the\noutput Y is equal to\n(A) O\n(B) 1\n(C)\n(D) X\nOpen solution\nQ14.\nGATE ECE 2001\nFor the ring oscillator shown in the figure, the propagation delay of each inverter is 100 pico sec.\nWhat is the fundamental frequency of the oscillator output?\n(A) 10 MHz\n(B) 100 MHz\n(C) 1 GHz\n(D) 2 GHz\nOpen solution\nKeep practising on the ExamGOAL app\nChapter-wise PYQs with solutions, full mock tests and analysis for JEE, NEET, GATE and more.\nGoogle Play\nGET IT ON\nGATE ECE Digital Circuits: Logic Gates \u00b7 pdf.questions.examgoal.com\nSolutions: questions.examside.com \u00b7 Page 6 / 18\n"
+    },
+    {
+      "page": 7,
+      "text": "ExamGOAL\nP Y Q P D F\nQ15.\nGATE ECE 2000\nFor the logic circuit shown in Figure, the required input condition (A, B, C) to make the output (X)=1.\n(A) 1, 0, 1\n(B) 0, 0, 1\n(C) 1, 1, 1\n(D) 0, 1, 1\nOpen solution\nQ16.\nGATE ECE 1997\nThe output of the logic gate in figure is\n(A) 0\n(B) 1\n(C)\n(D) A\nOpen solution\nQ17.\nGATE ECE 1995\nThe minimum number of NAND gates required to implement the Boolean function \nis equal to\n(A) Zero\n(B) 1\n(C) 4\n(D) 7\nOpen solution\nQ18.\nGATE ECE 1994\nA ring oscillator consisting of 5 inverters is running at a frequency of 1.0 MHz. The propagation\ndelay per gate is ______ ns.\nOpen solution\nQ19.\nGATE ECE 1993\nBoolean expression for the output of XNOR (equivalence) logic gate with inputs A and B is\n(A)\n(B)\n(C)\n(D)\nOpen solution\nKeep practising on the ExamGOAL app\nChapter-wise PYQs with solutions, full mock tests and analysis for JEE, NEET, GATE and more.\nGoogle Play\nGET IT ON\nGATE ECE Digital Circuits: Logic Gates \u00b7 pdf.questions.examgoal.com\nSolutions: questions.examside.com \u00b7 Page 7 / 18\n"
+    },
+    {
+      "page": 8,
+      "text": "ExamGOAL\nP Y Q P D F\nQ20.\nGATE ECE 1993\nFor the logic circuit shown in Figure, the output is equal to\n(A)\n(B)\n(C)\n(D)\nOpen solution\nQ21.\nGATE ECE 1989\nIndicate which of the following logic gates can be used to realize all possible combinational Logic\nfunctions:\n(A) OR gates only.\n(B) NAND gates only.\n(C) EX-OR gates only.\n(D) NOR gates only.\nOpen solution\nQ22.\nGATE ECE 1988\nMinimum number of 2-input NAND gates required to implement the function, f=(\n+ )(Z+W) is\n(A) 3\n(B) 4\n(C) 5\n(D) 6\nOpen solution\nQ23.\nGATE ECE 1988\nFor the circuit shown below the output F is given by\nExamside.com\nX\nF\n(A) F=1\n(B) F=0\n(C) F=X\n(D) F= \nOpen solution\nKeep practising on the ExamGOAL app\nChapter-wise PYQs with solutions, full mock tests and analysis for JEE, NEET, GATE and more.\nGoogle Play\nGET IT ON\nGATE ECE Digital Circuits: Logic Gates \u00b7 pdf.questions.examgoal.com\nSolutions: questions.examside.com \u00b7 Page 8 / 18\n"
+    },
+    {
+      "page": 9,
+      "text": "ExamGOAL\nP Y Q P D F\nQ24.\nGATE ECE 1988\nThe Boolean function A+BC is a reduced form of\n(A) AB+BC\n(B) (A+B).(A+C)\n(C)\nB+A C\n(D) (A+C).B\nOpen solution\nQ25.\nGATE ECE 1988\nThe minimum number of 2-input NAND gates required to implement the Boolean function Z=A\nC,\nassuming that A, B and C are available, is\n(A) two\n(B) three\n(C) five\n(D) six\nOpen solution\nQ26.\nGATE ECE 1988\nFor the identity AB+ C + BC= AB +  C, The dual form is\n(A) (a+b)(\n)(b+c)=(a+b)( +C)\n(B) (\n(C)\n(D)\nOpen solution\nMarks 2\n10 questions\nQ27.\nGATE ECE 2022\nConsider a Boolean gate (D) where the output Y is related to the inputs A and B as, Y = A + , where\n+ denotes logical OR operation. The Boolean inputs '0' and '1' are also available separately. Using\ninstances of only D gates and inputs '0' and '1', ___________ (select the correct options).\n(A) NAND logic can be implemented\n(B) OR logic cannot be implemented\n(C) NOR logic can be implemented\n(D) AND logic cannot be implemented\nOpen solution\nKeep practising on the ExamGOAL app\nChapter-wise PYQs with solutions, full mock tests and analysis for JEE, NEET, GATE and more.\nGoogle Play\nGET IT ON\nGATE ECE Digital Circuits: Logic Gates \u00b7 pdf.questions.examgoal.com\nSolutions: questions.examside.com \u00b7 Page 9 / 18\n"
+    },
+    {
+      "page": 10,
+      "text": "ExamGOAL\nP Y Q P D F\nQ28.\nGATE ECE 2018\nThe logic gates shown in the digital circuit below use strong pull-down nMOS transistors for LOW\nlogic level at the outputs. When the pull-downs are off, high-value resistors set the output logic\nlevels to HIGH (i.e. the pull-ups are weak). Note that some nodes are intentionally shorted to\nimplement \u201cwired logic\u201d. Such shorted nodes will be HIGH only if the outputs of all the gates whose\noutputs are shorted are HIGH.\nThe number of distinct values of \n (out of the 16 possible values) that give \n is\n_______.\nOpen solution\nQ29.\nGATE ECE 2015 Set 3\nA universal logic gate can implement any Boolean function by connecting sufficient number of them\nappropriately. Three gates are shown.\nWhich one of the following statements is TRUE?\n(A) Gate 1 is a universal gate.\n(B) Gate 2 is a universal gate.\n(C) Gate 3 is a universal gate.\n(D) None of the gates shown is a universal gate.\nOpen solution\nQ30.\nGATE ECE 2015 Set 1\nA 3-input majority gate is defined by the logic function \n. Which one of the\nfollowing gates is represented by the function \n ?\n(A) 3-Input NAND gate\n(B) 3-Input XOR gate\n(C) 3-Input NOR gate\n(D) 3-Input XNOR gate\nOpen solution\nKeep practising on the ExamGOAL app\nChapter-wise PYQs with solutions, full mock tests and analysis for JEE, NEET, GATE and more.\nGoogle Play\nGET IT ON\nGATE ECE Digital Circuits: Logic Gates \u00b7 pdf.questions.examgoal.com\nSolutions: questions.examside.com \u00b7 Page 10 / 18\n"
+    },
+    {
+      "page": 11,
+      "text": "ExamGOAL\nP Y Q P D F\nQ31.\nGATE ECE 2015 Set 1\nAll the logic gates shown in the figure have a propagation delay of 20 ns. Let A = C = 0 and B = 1\nuntil time t = 0. At t = 0, all the inputs flip (i.e., A = C = 1 and B = 0) and remain in that state. For t > 0,\noutput Z = 1 for a duration (in ns) of ________.\nOpen solution\nQ32.\nGATE ECE 2014 Set 1\nThe output  in the digital logic circuit shown in the figure is\n(A)\n(B)\n(C)\n(D)\nOpen solution\nQ33.\nGATE ECE 2008\nWhich of the following Boolean Expressions correctly represents the relation between P, Q, R and\nM1?\n(A) M1=(P OR Q) XOR R\n(B) M1=(P AND Q) XOR R\n(C) M1=(P NOR Q) XOR R\n(D) M1=(P XOR Q) XOR R\nOpen solution\nKeep practising on the ExamGOAL app\nChapter-wise PYQs with solutions, full mock tests and analysis for JEE, NEET, GATE and more.\nGoogle Play\nGET IT ON\nGATE ECE Digital Circuits: Logic Gates \u00b7 pdf.questions.examgoal.com\nSolutions: questions.examside.com \u00b7 Page 11 / 18\n"
+    },
+    {
+      "page": 12,
+      "text": "ExamGOAL\nP Y Q P D F\nQ34.\nGATE ECE 2002\nThe gates G1 and G2 in figure have propagation delays of 10nsec and 20nsec respectively. If the\ninput Vi makes an abrupt change from logic 0 to 1 at time t = t0, then the output waveform V0 is\n(A)\n(B)\n(C)\n(D)\nOpen solution\nKeep practising on the ExamGOAL app\nChapter-wise PYQs with solutions, full mock tests and analysis for JEE, NEET, GATE and more.\nGoogle Play\nGET IT ON\nGATE ECE Digital Circuits: Logic Gates \u00b7 pdf.questions.examgoal.com\nSolutions: questions.examside.com \u00b7 Page 12 / 18\n"
+    },
+    {
+      "page": 13,
+      "text": "ExamGOAL\nP Y Q P D F\nQ35.\nGATE ECE 2001\nIn the figure the LED\n(A) emits light when both S1 and S2 are closed.\n(B) emits light when both S1 and S2 are open.\n(C) emits light when only S1 or S2 is closed.\n(D) does not emit light, irrespective of the switch positions.\nOpen solution\nQ36.\nGATE ECE 2000\nFor the logic circuit shown in the figure, the simplified Boolean expression for the output Y is\n(A) A + B + C\n(B) A\n(C) B\n(D) C\nOpen solution\nKeep practising on the ExamGOAL app\nChapter-wise PYQs with solutions, full mock tests and analysis for JEE, NEET, GATE and more.\nGoogle Play\nGET IT ON\nGATE ECE Digital Circuits: Logic Gates \u00b7 pdf.questions.examgoal.com\nSolutions: questions.examside.com \u00b7 Page 13 / 18\n"
+    },
+    {
+      "page": 14,
+      "text": "ExamGOAL\nP Y Q P D F\nMarks 5\n3 questions\nQ37.\nGATE ECE 2001\nFor the digital block shown in Figure. 2(a), the output Y=f(S3,S2,S1,S0) where S3 is MSB and S0 is\nLSB. Y is given in terms of minterms as \n and its complements\n.\n(a) Enter the logical values in the given Karnaugh map [figure2(b)] for the output Y.\n(b) Write down the expression for Y in sum-of products from using minimum number of terms.\n(c) Draw the circuit for the digital logic boxes using four 2-input NAND gates only for each of the\nboxes.\nOpen solution\nKeep practising on the ExamGOAL app\nChapter-wise PYQs with solutions, full mock tests and analysis for JEE, NEET, GATE and more.\nGoogle Play\nGET IT ON\nGATE ECE Digital Circuits: Logic Gates \u00b7 pdf.questions.examgoal.com\nSolutions: questions.examside.com \u00b7 Page 14 / 18\n"
+    },
+    {
+      "page": 15,
+      "text": "ExamGOAL\nP Y Q P D F\nQ38.\nGATE ECE 2000\nThe operating conditions (ON = 1, OFF = 0) of three pumps (x,y,z) are to be monitored. x = 1 implies\nthat pump X is on. It is required that the indicator (LED) on the panel should glow when a majority of\nthe pumps fail.\n(a) Enter the logical values in the K-map in the format shown in figure 3(a). Derive the minimal\nBoolean sum-of-products expression whose output is zero when a majority of the pumps fail.\n(b) The above expression is implemented using logic gates, and point P is the output of this circuit,\nas shown in figure 3(b). P is at 0 V when a majority of the pumps fails and is at 5 V otherwise.\nDesign a circuit to drive the LED using this output. The current through the LED should be 10 mA\nand the voltage drop across it is 1V. Assume that P can source or sink 10 mA and a 5 V supply is\navailable.\nOpen solution\nQ39.\nGATE ECE 1993\nThe truth table for the output Y in terms of three inputs A, B and C are given in table. Draw a logic\ncircuit realization using only NOR gates.\nOpen solution\nKeep practising on the ExamGOAL app\nChapter-wise PYQs with solutions, full mock tests and analysis for JEE, NEET, GATE and more.\nGoogle Play\nGET IT ON\nGATE ECE Digital Circuits: Logic Gates \u00b7 pdf.questions.examgoal.com\nSolutions: questions.examside.com \u00b7 Page 15 / 18\n"
+    },
+    {
+      "page": 16,
+      "text": "ExamGOAL\nP Y Q P D F\nMarks 8\n1 questions\nQ40.\nGATE ECE 1992\nA combinational circuit has three inputs A, B and C and an output F. F is true only for the following\ninput combinations?\nA is false and B is true\nA is false and C is true\nA, B and C are all false\nA, B and C are all true.\n(a)Write the truth table for F. use the convention, true = 1 and false = 0.\n(b)Write the simplified expression for F as a Sum of Products.\n(c) Write the simplified expression for F as a product of Sums.\n(d) Draw a logic circuit implementation of F using the minimum number of 2 input NAND gates only.\nOpen solution\nKeep practising on the ExamGOAL app\nChapter-wise PYQs with solutions, full mock tests and analysis for JEE, NEET, GATE and more.\nGoogle Play\nGET IT ON\nGATE ECE Digital Circuits: Logic Gates \u00b7 pdf.questions.examgoal.com\nSolutions: questions.examside.com \u00b7 Page 16 / 18\n"
+    },
+    {
+      "page": 17,
+      "text": "ExamGOAL\nP Y Q P D F\nAnswer Key\nMarks 1\n1. A\n2. A\n3. 2\n4. C\n5. A\n6. C\n7. A\n8. A\n9. C\n10. B\n11. D\n12. D\n13. B\n14. C\n15. A, D\n16. C\n17. A\n18. 100\n19. B, C\n20. B\n21. B, D\n22. B\n23. B\n24. B\n25. C\n26. A\nMarks 2\n27. A, C\n28. 8 to 8\n29. C\n30. B\n31. 40\n32. A\n33. D\n34. C\n35. D\n36. C\nMarks 5\n37. (b)\n(c)\n38. Solve it.\n39.\nMarks 8\n40. (b) F = \n(c) F =\nFor numerical answers given as a range, any value within the range is correct. Full solutions: scan the QR code next to each question, or visit\nquestions.examside.com.\nKeep practising on the ExamGOAL app\nChapter-wise PYQs with solutions, full mock tests and analysis for JEE, NEET, GATE and more.\nGoogle Play\nGET IT ON\nGATE ECE Digital Circuits: Logic Gates \u00b7 pdf.questions.examgoal.com\nSolutions: questions.examside.com \u00b7 Page 17 / 18\n"
+    },
+    {
+      "page": 18,
+      "text": "Keep practising on the ExamGOAL app\nChapter-wise PYQs with solutions, full mock tests and analysis for JEE, NEET, GATE and more.\nGoogle Play\nGET IT ON\nExamGOAL\nP Y Q P D F\nYour Exam. Our Responsibility.\nFrom first chapter\nto exam day.\nPractise with the questions your exam has already asked, then test yourself\nunder real exam conditions.\nPAST YEAR QUESTIONS\nEvery past paper, chapter-wise.\nPrevious year questions sorted the way you study,\neach with a full solution.\nMOCK TESTS\nMock tests with a real exam feel.\nPractise under the same pressure as the real paper,\non your phone or on the big screen.\nANALYSIS\nKnow your score. Know your rank.\nA full report after every test, so you know exactly\nwhere you stand.\nPRACTICE\nSolve. Check. Understand.\nLearn from every question, not just the ones you get\nright.\nChapter-wise and year-wise\nWeightage and topic tags on every chapter\nYour progress on each one, at a glance\nTimed sections, just like exam day\nMark questions for review and come back\nYour percentile among everyone who took it\nPredicted real-exam percentile and All India Rank\nSubject breakdown and time analysis\nInstant answers as you practise\nStep-by-step explanations\nSee how everyone else answered\nNCERT Exemplar\nWith full solutions\nExam syllabus\nSubject and chapter-wise\nBookmarks\nOrganised in groups\nYour notes\nOn any question\nExamGOAL: Exam Preparation App\nOne app for every exam. Free trial for new users, on Android and the web.\nGoogle Play\nScan to get the app\nGET IT ON\nwww.examgoal.com\nPractice and mock tests\nquestions.examside.com\nFree solutions\npdf.questions.examgoal.com\nFree PYQ PDFs\n"
+    }
+  ]
+}

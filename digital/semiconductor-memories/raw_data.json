@@ -1,0 +1,94 @@
+{
+  "slug": "semiconductor-memories",
+  "title": "Semiconductor Memories",
+  "pages_count": 8,
+  "images": {
+    "3": [
+      {
+        "file": "images/p3_img1_73.png",
+        "width": 800,
+        "height": 366
+      }
+    ],
+    "4": [
+      {
+        "file": "images/p4_img1_85.png",
+        "width": 800,
+        "height": 573
+      },
+      {
+        "file": "images/p4_img2_87.png",
+        "width": 800,
+        "height": 569
+      },
+      {
+        "file": "images/p4_img3_89.png",
+        "width": 800,
+        "height": 591
+      },
+      {
+        "file": "images/p4_img4_91.png",
+        "width": 800,
+        "height": 588
+      }
+    ],
+    "5": [
+      {
+        "file": "images/p5_img1_99.jpeg",
+        "width": 757,
+        "height": 68
+      },
+      {
+        "file": "images/p5_img2_100.jpeg",
+        "width": 408,
+        "height": 526
+      },
+      {
+        "file": "images/p5_img3_101.jpeg",
+        "width": 462,
+        "height": 180
+      }
+    ],
+    "6": [
+      {
+        "file": "images/p6_img1_108.jpeg",
+        "width": 458,
+        "height": 307
+      }
+    ]
+  },
+  "pages": [
+    {
+      "page": 1,
+      "text": "Keep practising on the ExamGOAL app\nChapter-wise PYQs with solutions, full mock tests and analysis for JEE, NEET, GATE and more.\nGoogle Play\nGET IT ON\nExamGOAL\nP Y Q P D F\nFree \u00b7 With answer key\nGATE ECE \u00b7 DIGITAL CIRCUITS \u00b7 CHAPTER-WISE PYQS\nSemiconductor Memories\nGATE ECE Digital Circuits \u00b7 Previous Year Questions with Answer Key\n12\nQUESTIONS\n11\nPAPERS COVERED\n1992 \u2013 2021\nYEARS\nEnglish\nLANGUAGE\nINSIDE THIS PDF\nMarks 1\n7 questions\nMarks 2\n5 questions\nAnswer key\nat the end\nPractise online\nEvery question with its full solution,\nfree on questions.examside.com\n1\nSolve\nPrint it, or work through it on\nscreen.\n2\nCheck\nThe answer key is on the last\npages.\n3\nUnderstand\nScan the QR code beside any\nquestion for its full solution.\npdf.questions.examgoal.com\nFree previous year question PDFs for JEE, NEET, GATE and more\n"
+    },
+    {
+      "page": 2,
+      "text": "ExamGOAL\nP Y Q P D F\nMarks 1\n7 questions\nQ1.\nGATE ECE 2017 Set 2\nIn a DRAM,\n(A) periodic refreshing is not required\n(B) information is stored in a capacitor\n(C) information is stored in a latch\n(D) both read and write operations can be performed simultaneously\nOpen solution\nQ2.\nGATE ECE 2015 Set 1\nA 16 Kb (=16,384 bit) memory array is designed as a square with an aspect ratio of one (number of\nrows is equal to the number of columns). The minimum number of address lines needed for the row\ndecoder is _______.\nOpen solution\nQ3.\nGATE ECE 1996\nEach cell of a static Random Access Memory Contains\n(A) 6 MOS transistors.\n(B) 4 MOS transistors and 2 capacitors\n(C) 2 MOS transistors and 4 capacitors\n(D) 1 MOS transistors and 1 capacitors\nOpen solution\nQ4.\nGATE ECE 1995\nThe minimum number of MOS transistors required to make a dynamic RAM cell is\n(A) 1\n(B) 2\n(C) 3\n(D) 4\nOpen solution\nQ5.\nGATE ECE 1994\nA PLA can be used\n(A) as a microprocessor\n(B) as a dynamic memory\n(C) to realize a sequential logic\n(D) to realize a combinational logic\nOpen solution\nQ6.\nGATE ECE 1994\nA dynamic RAM consists of\n(A) 6 transistors\n(B) 2 transistors and 2 capacitor\n(C) 1 transistors and 1 capacitor\n(D) 2 capacitor only\nOpen solution\nKeep practising on the ExamGOAL app\nChapter-wise PYQs with solutions, full mock tests and analysis for JEE, NEET, GATE and more.\nGoogle Play\nGET IT ON\nGATE ECE Digital Circuits: Semiconductor Memories \u00b7 pdf.questions.examgoal.com\nSolutions: questions.examside.com \u00b7 Page 2 / 8\n"
+    },
+    {
+      "page": 3,
+      "text": "ExamGOAL\nP Y Q P D F\nQ7.\nGATE ECE 1992\nChoose the correct satatement(s) from the following:\n(A) PROM contains a programmable AND array and a fixed OR array.\n(B) PLA contains a fixed AND array and a programmable OR array\n(C) PROM contains a fixed AND array and a programmable OR array\n(D) PLA contains a programmable AND array and a programmable OR array\nOpen solution\nMarks 2\n5 questions\nQ8.\nGATE ECE 2021\nAddressing of a \n memory is realized using a single decoder. The minimum number of AND\ngates required for the decoder is :\n(A)\n(B)\n(C)\n(D)\nOpen solution\nQ9.\nGATE ECE 2018\nA \n ROM array is built with the help of diodes as shown in the circuit below. Here W0 and W1 are\nsignals that select the word lines and B0 and B1 are signals that are output of the sense amps\nbased on the stored data corresponding to the bit lines during the read operation.\nDuring the read operation, the selected word line goes high and the other word line is in a high\nimpedance state. As per the implementation shown in the circuit diagram above, what are the bits\ncorresponding to \n (where i = 0 or 1 and j = 0 or 1) stored in the ROM?\n(A)\n(B)\n(C)\n(D)\nOpen solution\nKeep practising on the ExamGOAL app\nChapter-wise PYQs with solutions, full mock tests and analysis for JEE, NEET, GATE and more.\nGoogle Play\nGET IT ON\nGATE ECE Digital Circuits: Semiconductor Memories \u00b7 pdf.questions.examgoal.com\nSolutions: questions.examside.com \u00b7 Page 3 / 8\n"
+    },
+    {
+      "page": 4,
+      "text": "ExamGOAL\nP Y Q P D F\nQ10.\nGATE ECE 2014 Set 3\nIf WL is the Word Line and BL the Bit Line, an SRAM cell is shown in\n(A)\n(B)\n(C)\n(D)\nOpen solution\nKeep practising on the ExamGOAL app\nChapter-wise PYQs with solutions, full mock tests and analysis for JEE, NEET, GATE and more.\nGoogle Play\nGET IT ON\nGATE ECE Digital Circuits: Semiconductor Memories \u00b7 pdf.questions.examgoal.com\nSolutions: questions.examside.com \u00b7 Page 4 / 8\n"
+    },
+    {
+      "page": 5,
+      "text": "ExamGOAL\nP Y Q P D F\nQ11.\nGATE ECE 2003\nIn the circuit shown in Figure, A is a parallel in, parallel-out 4-bit register, which loads at the rising\nedge of the clock C. The input lines are connected to a 4-bit bus, W. Its output acts as the input to a\n16\u00d74 ROM whose output is floating when the enable input E is 0. A partial table of the contents of\nthe ROM is as follows\nThe clock to the register is shown, and the data on the W bus at time t is 0110. The data on the bus\nat time t is\n(A) 1111\n(B) 1011\n(C) 1000\n(D) 0010\nOpen solution\nKeep practising on the ExamGOAL app\nChapter-wise PYQs with solutions, full mock tests and analysis for JEE, NEET, GATE and more.\nGoogle Play\nGET IT ON\nGATE ECE Digital Circuits: Semiconductor Memories \u00b7 pdf.questions.examgoal.com\nSolutions: questions.examside.com \u00b7 Page 5 / 8\n"
+    },
+    {
+      "page": 6,
+      "text": "ExamGOAL\nP Y Q P D F\nQ12.\nGATE ECE 2002\nIf the input X , X , X , X to the ROM in figure 2.12 are 8-4-2-1 BCD numbers, then the outpus are\nY ,Y , Y , Y are\n(A) gray code numbers\n(B) 2-4-2-1 BCD numbers\n(C) excess-3 code numbeR\n(D) none of the above.\nOpen solution\nKeep practising on the ExamGOAL app\nChapter-wise PYQs with solutions, full mock tests and analysis for JEE, NEET, GATE and more.\nGoogle Play\nGET IT ON\nGATE ECE Digital Circuits: Semiconductor Memories \u00b7 pdf.questions.examgoal.com\nSolutions: questions.examside.com \u00b7 Page 6 / 8\n"
+    },
+    {
+      "page": 7,
+      "text": "ExamGOAL\nP Y Q P D F\nAnswer Key\nMarks 1\n1. B\n2. 7\n3. A\n4. A\n5. D\n6. C\n7. C, D\nMarks 2\n8. D\n9. A\n10. B\n11. C\n12. B\nFor numerical answers given as a range, any value within the range is correct. Full solutions: scan the QR code next to each question, or visit\nquestions.examside.com.\nKeep practising on the ExamGOAL app\nChapter-wise PYQs with solutions, full mock tests and analysis for JEE, NEET, GATE and more.\nGoogle Play\nGET IT ON\nGATE ECE Digital Circuits: Semiconductor Memories \u00b7 pdf.questions.examgoal.com\nSolutions: questions.examside.com \u00b7 Page 7 / 8\n"
+    },
+    {
+      "page": 8,
+      "text": "Keep practising on the ExamGOAL app\nChapter-wise PYQs with solutions, full mock tests and analysis for JEE, NEET, GATE and more.\nGoogle Play\nGET IT ON\nExamGOAL\nP Y Q P D F\nYour Exam. Our Responsibility.\nFrom first chapter\nto exam day.\nPractise with the questions your exam has already asked, then test yourself\nunder real exam conditions.\nPAST YEAR QUESTIONS\nEvery past paper, chapter-wise.\nPrevious year questions sorted the way you study,\neach with a full solution.\nMOCK TESTS\nMock tests with a real exam feel.\nPractise under the same pressure as the real paper,\non your phone or on the big screen.\nANALYSIS\nKnow your score. Know your rank.\nA full report after every test, so you know exactly\nwhere you stand.\nPRACTICE\nSolve. Check. Understand.\nLearn from every question, not just the ones you get\nright.\nChapter-wise and year-wise\nWeightage and topic tags on every chapter\nYour progress on each one, at a glance\nTimed sections, just like exam day\nMark questions for review and come back\nYour percentile among everyone who took it\nPredicted real-exam percentile and All India Rank\nSubject breakdown and time analysis\nInstant answers as you practise\nStep-by-step explanations\nSee how everyone else answered\nNCERT Exemplar\nWith full solutions\nExam syllabus\nSubject and chapter-wise\nBookmarks\nOrganised in groups\nYour notes\nOn any question\nExamGOAL: Exam Preparation App\nOne app for every exam. Free trial for new users, on Android and the web.\nGoogle Play\nScan to get the app\nGET IT ON\nwww.examgoal.com\nPractice and mock tests\nquestions.examside.com\nFree solutions\npdf.questions.examgoal.com\nFree PYQ PDFs\n"
+    }
+  ]
+}

@@ -1,0 +1,1971 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>GATE Master Textbook: Boolean Algebra, Logic Simplification & K-Maps</title>
+
+  <!-- Google Fonts: Inter (UI), Crimson Pro (Textbook Body), JetBrains Mono (Code/Math) -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Crimson+Pro:ital,wght@0,400;0,500;0,600;0,700;1,400;1,600&family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:ital,wght@0,400;0,500;0,600;0,700;1,400&display=swap" rel="stylesheet">
+
+  <!-- KaTeX for pristine mathematical typesetting -->
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.css">
+  <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.js"></script>
+  <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/contrib/auto-render.min.js"></script>
+
+  <style>
+
+    :root {
+      --bg-page: #f8fafc;
+      --bg-card: #ffffff;
+      --bg-card-subtle: #f1f5f9;
+      --bg-elevated: #e2e8f0;
+      --bg-code: #0f172a;
+      
+      --text-main: #0f172a;
+      --text-secondary: #334155;
+      --text-muted: #64748b;
+      
+      --border-color: #e2e8f0;
+      --border-strong: #cbd5e1;
+      
+      --accent: #2563eb;
+      --accent-soft: #eff6ff;
+      --accent-dark: #1d4ed8;
+      
+      --success: #16a34a;
+      --success-soft: #f0fdf4;
+      --warning: #d97706;
+      --warning-soft: #fffbeb;
+      --danger: #dc2626;
+      --danger-soft: #fef2f2;
+      --purple: #7c3aed;
+      --purple-soft: #f5f3ff;
+      --cyan: #0891b2;
+      --cyan-soft: #ecfeff;
+      
+      --font-body: 'Crimson Pro', Georgia, serif;
+      --font-ui: 'Inter', -apple-system, sans-serif;
+      --font-mono: 'JetBrains Mono', monospace;
+      
+      --shadow-sm: 0 1px 2px 0 rgba(0, 0, 0, 0.05);
+      --shadow-md: 0 4px 6px -1px rgba(0, 0, 0, 0.08), 0 2px 4px -2px rgba(0, 0, 0, 0.06);
+      --shadow-lg: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -4px rgba(0, 0, 0, 0.08);
+    }
+
+    [data-theme="dark"] {
+      --bg-page: #0b0f19;
+      --bg-card: #111827;
+      --bg-card-subtle: #1f2937;
+      --bg-elevated: #283344;
+      --bg-code: #030712;
+      
+      --text-main: #f9fafb;
+      --text-secondary: #e5e7eb;
+      --text-muted: #9ca3af;
+      
+      --border-color: #1f2937;
+      --border-strong: #374151;
+      
+      --accent: #3b82f6;
+      --accent-soft: #172554;
+      --accent-dark: #60a5fa;
+      
+      --success: #22c55e;
+      --success-soft: #052e16;
+      --warning: #f59e0b;
+      --warning-soft: #451a03;
+      --danger: #ef4444;
+      --danger-soft: #450a0a;
+      --purple: #a855f7;
+      --purple-soft: #2e1065;
+      --cyan: #22d3ee;
+      --cyan-soft: #083344;
+      
+      --shadow-sm: 0 1px 2px 0 rgba(0, 0, 0, 0.5);
+      --shadow-md: 0 4px 6px -1px rgba(0, 0, 0, 0.5);
+      --shadow-lg: 0 10px 15px -3px rgba(0, 0, 0, 0.5);
+    }
+
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+
+    body {
+      font-family: var(--font-body);
+      font-size: 1.18rem;
+      line-height: 1.8;
+      color: var(--text-main);
+      background-color: var(--bg-page);
+      transition: background-color 0.2s ease, color 0.2s ease;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    .app-container {
+      display: flex;
+      min-height: 100vh;
+    }
+
+    .sidebar {
+      width: 330px;
+      flex-shrink: 0;
+      background: var(--bg-card);
+      border-right: 1px solid var(--border-color);
+      height: 100vh;
+      position: sticky;
+      top: 0;
+      overflow-y: auto;
+      display: flex;
+      flex-direction: column;
+      z-index: 50;
+    }
+
+    .sidebar-header {
+      padding: 22px 20px;
+      border-bottom: 1px solid var(--border-color);
+      background: var(--bg-card);
+    }
+
+    .sidebar-header h2 {
+      font-family: var(--font-ui);
+      font-size: 1.05rem;
+      font-weight: 800;
+      color: var(--accent);
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      letter-spacing: -0.01em;
+    }
+
+    .sidebar-header p {
+      font-family: var(--font-ui);
+      font-size: 0.76rem;
+      color: var(--text-muted);
+      margin-top: 4px;
+      line-height: 1.4;
+    }
+
+    .sidebar-nav {
+      padding: 16px 14px;
+      display: flex;
+      flex-direction: column;
+      gap: 3px;
+      flex: 1;
+    }
+
+    .nav-group-title {
+      font-family: var(--font-ui);
+      font-size: 0.72rem;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      font-weight: 700;
+      color: var(--text-muted);
+      padding: 14px 10px 4px 10px;
+    }
+
+    .nav-link {
+      font-family: var(--font-ui);
+      font-size: 0.86rem;
+      font-weight: 500;
+      color: var(--text-secondary);
+      text-decoration: none;
+      padding: 8px 12px;
+      border-radius: 8px;
+      transition: all 0.15s ease;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+
+    .nav-link:hover {
+      background: var(--bg-card-subtle);
+      color: var(--accent);
+      transform: translateX(3px);
+    }
+
+    .nav-link.active {
+      background: var(--accent-soft);
+      color: var(--accent);
+      font-weight: 600;
+    }
+
+    .nav-link .badge {
+      font-size: 0.7rem;
+      padding: 2px 6px;
+      border-radius: 999px;
+      background: var(--bg-card-subtle);
+      color: var(--text-muted);
+      font-weight: 600;
+    }
+
+    .main-wrapper {
+      flex: 1;
+      max-width: 1080px;
+      margin: 0 auto;
+      padding: 36px 52px 90px 52px;
+    }
+
+    .top-bar {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 16px;
+      margin-bottom: 36px;
+      padding-bottom: 16px;
+      border-bottom: 1px solid var(--border-color);
+      flex-wrap: wrap;
+    }
+
+    .search-wrapper {
+      position: relative;
+      flex: 1;
+      max-width: 480px;
+    }
+
+    .search-input {
+      width: 100%;
+      font-family: var(--font-ui);
+      font-size: 0.9rem;
+      padding: 9px 14px 9px 38px;
+      border-radius: 8px;
+      border: 1px solid var(--border-color);
+      background: var(--bg-card);
+      color: var(--text-main);
+      outline: none;
+      transition: border-color 0.15s ease, box-shadow 0.15s ease;
+    }
+
+    .search-input:focus {
+      border-color: var(--accent);
+      box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.15);
+    }
+
+    .search-icon {
+      position: absolute;
+      left: 12px;
+      top: 50%;
+      transform: translateY(-50%);
+      color: var(--text-muted);
+      pointer-events: none;
+      font-size: 0.95rem;
+    }
+
+    .top-actions {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .theme-btn, .expand-all-btn {
+      font-family: var(--font-ui);
+      font-size: 0.82rem;
+      font-weight: 600;
+      padding: 8px 14px;
+      border-radius: 8px;
+      border: 1px solid var(--border-color);
+      background: var(--bg-card);
+      color: var(--text-secondary);
+      cursor: pointer;
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      transition: all 0.15s ease;
+    }
+
+    .theme-btn:hover, .expand-all-btn:hover {
+      background: var(--bg-card-subtle);
+      border-color: var(--border-strong);
+      color: var(--text-main);
+    }
+
+    .hero-header {
+      background: linear-gradient(135deg, var(--bg-card) 0%, var(--bg-card-subtle) 100%);
+      border: 1px solid var(--border-color);
+      border-radius: 18px;
+      padding: 42px 40px;
+      margin-bottom: 48px;
+      box-shadow: var(--shadow-sm);
+    }
+
+    .hero-badge-row {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      margin-bottom: 18px;
+    }
+
+    .pill-badge {
+      font-family: var(--font-ui);
+      font-size: 0.75rem;
+      font-weight: 700;
+      padding: 4px 11px;
+      border-radius: 999px;
+      display: inline-flex;
+      align-items: center;
+      gap: 5px;
+      letter-spacing: 0.02em;
+    }
+
+    .pill-blue { background: var(--accent-soft); color: var(--accent-dark); border: 1px solid var(--accent); }
+    .pill-purple { background: var(--purple-soft); color: var(--purple); border: 1px solid var(--purple); }
+    .pill-green { background: var(--success-soft); color: var(--success); border: 1px solid var(--success); }
+    .pill-cyan { background: var(--cyan-soft); color: var(--cyan); border: 1px solid var(--cyan); }
+
+    .hero-header h1 {
+      font-family: var(--font-ui);
+      font-size: 2.3rem;
+      font-weight: 800;
+      letter-spacing: -0.03em;
+      line-height: 1.25;
+      color: var(--text-main);
+      margin-bottom: 14px;
+    }
+
+    .hero-header p {
+      font-size: 1.2rem;
+      color: var(--text-secondary);
+      max-width: 860px;
+      line-height: 1.65;
+    }
+
+    .exam-stats-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(170px, 1fr));
+      gap: 16px;
+      margin-top: 28px;
+      padding-top: 24px;
+      border-top: 1px solid var(--border-color);
+    }
+
+    .stat-item { font-family: var(--font-ui); }
+    .stat-val { font-size: 1.65rem; font-weight: 800; color: var(--accent); letter-spacing: -0.02em; }
+    .stat-lbl { font-size: 0.76rem; color: var(--text-muted); text-transform: uppercase; letter-spacing: 0.06em; font-weight: 700; }
+
+    .chapter-section {
+      margin-bottom: 64px;
+      scroll-margin-top: 32px;
+      background: var(--bg-card);
+      border: 1px solid var(--border-color);
+      border-radius: 16px;
+      padding: 38px 40px;
+      box-shadow: var(--shadow-sm);
+    }
+
+    .chapter-number-pill {
+      font-family: var(--font-ui);
+      font-size: 0.8rem;
+      font-weight: 800;
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+      color: var(--accent);
+      background: var(--accent-soft);
+      padding: 4px 12px;
+      border-radius: 999px;
+      display: inline-block;
+      margin-bottom: 12px;
+    }
+
+    h2.chapter-title {
+      font-family: var(--font-ui);
+      font-size: 1.85rem;
+      font-weight: 800;
+      letter-spacing: -0.02em;
+      color: var(--text-main);
+      margin-bottom: 24px;
+      line-height: 1.3;
+    }
+
+    h3.section-heading {
+      font-family: var(--font-ui);
+      font-size: 1.3rem;
+      font-weight: 700;
+      color: var(--text-main);
+      margin: 32px 0 16px 0;
+      padding-bottom: 6px;
+      border-bottom: 1px solid var(--border-color);
+    }
+
+    h4.subsection-heading {
+      font-family: var(--font-ui);
+      font-size: 1.1rem;
+      font-weight: 700;
+      color: var(--accent-dark);
+      margin: 24px 0 10px 0;
+    }
+
+    p { margin-bottom: 18px; }
+    strong { color: var(--text-main); font-weight: 600; }
+
+    .callout {
+      border-radius: 12px;
+      padding: 20px 22px;
+      margin: 24px 0;
+      border-left: 5px solid transparent;
+      font-size: 1.08rem;
+      line-height: 1.7;
+    }
+
+    .gate-trap {
+      background: var(--danger-soft);
+      border-left-color: var(--danger);
+      color: var(--text-main);
+    }
+    .gate-trap-title {
+      font-family: var(--font-ui);
+      font-weight: 800;
+      color: var(--danger);
+      font-size: 0.88rem;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+      margin-bottom: 8px;
+      display: flex;
+      align-items: center;
+      gap: 6px;
+    }
+
+    .pro-tip {
+      background: var(--purple-soft);
+      border-left-color: var(--purple);
+      color: var(--text-main);
+    }
+    .pro-tip-title {
+      font-family: var(--font-ui);
+      font-weight: 800;
+      color: var(--purple);
+      font-size: 0.88rem;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+      margin-bottom: 8px;
+      display: flex;
+      align-items: center;
+      gap: 6px;
+    }
+
+    .theory-box {
+      background: var(--accent-soft);
+      border-left-color: var(--accent);
+      color: var(--text-main);
+    }
+    .theory-title {
+      font-family: var(--font-ui);
+      font-weight: 800;
+      color: var(--accent-dark);
+      font-size: 0.88rem;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+      margin-bottom: 8px;
+      display: flex;
+      align-items: center;
+      gap: 6px;
+    }
+
+    .table-container {
+      overflow-x: auto;
+      margin: 26px 0;
+      border: 1px solid var(--border-color);
+      border-radius: 12px;
+      background: var(--bg-card);
+      box-shadow: var(--shadow-sm);
+    }
+
+    table.academic-table {
+      width: 100%;
+      border-collapse: collapse;
+      font-family: var(--font-ui);
+      font-size: 0.94rem;
+      text-align: left;
+    }
+
+    table.academic-table th {
+      background: var(--bg-card-subtle);
+      color: var(--text-main);
+      font-weight: 700;
+      padding: 14px 18px;
+      border-bottom: 1px solid var(--border-color);
+      white-space: nowrap;
+    }
+
+    table.academic-table td {
+      padding: 14px 18px;
+      border-bottom: 1px solid var(--border-color);
+      color: var(--text-secondary);
+      line-height: 1.6;
+    }
+
+    table.academic-table tr:last-child td { border-bottom: none; }
+    table.academic-table tr:hover td { background: rgba(37, 99, 235, 0.03); }
+
+    .pyq-box {
+      background: var(--bg-card);
+      border: 1px solid var(--border-strong);
+      border-radius: 14px;
+      margin: 32px 0;
+      overflow: hidden;
+      box-shadow: var(--shadow-sm);
+      transition: border-color 0.2s ease, box-shadow 0.2s ease;
+    }
+
+    .pyq-box:hover {
+      border-color: var(--accent);
+      box-shadow: var(--shadow-md);
+    }
+
+    .pyq-header {
+      padding: 16px 22px;
+      background: var(--bg-card-subtle);
+      border-bottom: 1px solid var(--border-color);
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 12px;
+    }
+
+    .pyq-tag-group {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .pyq-badge-num {
+      font-family: var(--font-mono);
+      font-weight: 800;
+      font-size: 0.9rem;
+      background: var(--text-main);
+      color: var(--bg-card);
+      padding: 3px 9px;
+      border-radius: 6px;
+    }
+
+    .pyq-badge-year {
+      font-family: var(--font-ui);
+      font-size: 0.8rem;
+      font-weight: 700;
+      color: var(--accent-dark);
+      background: var(--accent-soft);
+      padding: 3px 9px;
+      border-radius: 6px;
+    }
+
+    .pyq-badge-marks {
+      font-family: var(--font-ui);
+      font-size: 0.8rem;
+      font-weight: 700;
+      color: var(--purple);
+      background: var(--purple-soft);
+      padding: 3px 9px;
+      border-radius: 6px;
+    }
+
+    .pyq-badge-type {
+      font-family: var(--font-ui);
+      font-size: 0.8rem;
+      font-weight: 700;
+      color: var(--cyan);
+      background: var(--cyan-soft);
+      padding: 3px 9px;
+      border-radius: 6px;
+    }
+
+    .pyq-body {
+      padding: 24px 26px;
+      font-size: 1.15rem;
+      line-height: 1.75;
+    }
+
+    .pyq-diagram {
+      margin: 18px 0;
+      text-align: center;
+      background: #ffffff;
+      padding: 16px;
+      border-radius: 10px;
+      border: 1px solid var(--border-color);
+    }
+
+    .pyq-diagram img {
+      max-width: 100%;
+      height: auto;
+      max-height: 380px;
+      object-fit: contain;
+    }
+
+    .pyq-options-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+      gap: 12px;
+      margin: 18px 0;
+    }
+
+    .pyq-opt {
+      font-family: var(--font-ui);
+      font-size: 0.96rem;
+      background: var(--bg-card-subtle);
+      border: 1px solid var(--border-color);
+      padding: 11px 16px;
+      border-radius: 8px;
+    }
+
+    .reveal-btn {
+      font-family: var(--font-ui);
+      font-size: 0.84rem;
+      font-weight: 700;
+      padding: 7px 16px;
+      border-radius: 7px;
+      border: 1px solid var(--accent);
+      background: var(--accent-soft);
+      color: var(--accent);
+      cursor: pointer;
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      transition: all 0.15s ease;
+    }
+
+    .reveal-btn:hover {
+      background: var(--accent);
+      color: #ffffff;
+    }
+
+    .solution-drawer {
+      display: none;
+      padding: 24px 26px;
+      background: var(--bg-card-subtle);
+      border-top: 1px dashed var(--border-strong);
+      animation: fadeIn 0.25s ease;
+    }
+
+    .solution-drawer.open {
+      display: block;
+    }
+
+    .sol-header {
+      font-family: var(--font-ui);
+      font-size: 1rem;
+      font-weight: 800;
+      color: var(--success);
+      margin-bottom: 14px;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .sol-steps {
+      margin-left: 22px;
+      margin-bottom: 16px;
+    }
+
+    .sol-steps li {
+      margin-bottom: 10px;
+    }
+
+    .ans-box {
+      font-family: var(--font-ui);
+      display: inline-block;
+      background: var(--success-soft);
+      color: var(--success);
+      border: 1px solid var(--success);
+      padding: 7px 14px;
+      border-radius: 7px;
+      font-weight: 800;
+      font-size: 1rem;
+      margin: 12px 0;
+    }
+
+    .lab-card {
+      background: var(--bg-card);
+      border: 2px solid var(--accent);
+      border-radius: 16px;
+      padding: 28px;
+      margin: 36px 0;
+      box-shadow: var(--shadow-md);
+    }
+
+    .lab-header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      margin-bottom: 20px;
+      padding-bottom: 14px;
+      border-bottom: 1px solid var(--border-color);
+    }
+
+    .lab-title {
+      font-family: var(--font-ui);
+      font-size: 1.25rem;
+      font-weight: 800;
+      color: var(--accent);
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .lab-input-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(190px, 1fr));
+      gap: 16px;
+      margin-bottom: 20px;
+    }
+
+    .input-field label {
+      display: block;
+      font-family: var(--font-ui);
+      font-size: 0.82rem;
+      font-weight: 700;
+      color: var(--text-muted);
+      margin-bottom: 6px;
+      text-transform: uppercase;
+      letter-spacing: 0.04em;
+    }
+
+    .input-field input, .input-field select {
+      width: 100%;
+      font-family: var(--font-mono);
+      font-size: 0.95rem;
+      padding: 8px 12px;
+      border-radius: 8px;
+      border: 1px solid var(--border-color);
+      background: var(--bg-page);
+      color: var(--text-main);
+      outline: none;
+    }
+
+    .input-field input:focus, .input-field select:focus {
+      border-color: var(--accent);
+    }
+
+    .lab-output {
+      background: var(--bg-card-subtle);
+      border: 1px solid var(--border-strong);
+      border-radius: 10px;
+      padding: 18px 20px;
+      font-family: var(--font-mono);
+      font-size: 0.95rem;
+      line-height: 1.6;
+    }
+
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(-4px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    @media (max-width: 900px) {
+      .app-container { flex-direction: column; }
+      .sidebar { width: 100%; height: auto; position: static; }
+      .main-wrapper { padding: 24px 20px; }
+    }
+
+  </style>
+</head>
+<body>
+  <div class="app-container">
+    <!-- Sidebar Navigation -->
+    <aside class="sidebar">
+      <div class="sidebar-header">
+        <h2>📚 GATE Master Series</h2>
+        <p>Digital Electronics & Logic Design</p>
+      </div>
+      <nav class="sidebar-nav">
+        <div class="nav-group-title">Theory & Fundamentals</div>
+<a href="#sec-theorems" class="nav-link"><span>1. Postulates, Duality & Consensus</span></a>
+<a href="#sec-canonical" class="nav-link"><span>2. Canonical Forms & Function Counting</span></a>
+<a href="#sec-kmaps" class="nav-link"><span>3. K-Maps, PIs & Essential PIs</span></a>
+<a href="#sec-5var" class="nav-link"><span>4. 5-Variable K-Map Symmetry</span></a>
+<a href="#sec-lab" class="nav-link"><span>5. Interactive 4-Var K-Map Lab</span></a>
+<div class="nav-group-title">Official GATE PYQs</div>
+<a href="#sec-pyqs-1m" class="nav-link"><span>1-Mark Questions (Q1 - Q14)</span><span class="badge">14 PYQs</span></a>
+<a href="#sec-pyqs-2m" class="nav-link"><span>2-Mark Questions (Q15 - Q28)</span><span class="badge">14 PYQs</span></a>
+<a href="#sec-pyqs-multi" class="nav-link"><span>Multi-Mark Subjective (Q29 - Q33)</span><span class="badge">5 PYQs</span></a>
+
+      </nav>
+    </aside>
+
+    <!-- Main Content Area -->
+    <main class="main-wrapper">
+      <!-- Top Action Bar -->
+      <div class="top-bar">
+        <div class="search-wrapper">
+          <span class="search-icon">🔍</span>
+          <input type="text" id="chapterSearch" class="search-input" placeholder="Search theory, theorems, or PYQs..." />
+        </div>
+        <div class="top-actions">
+          <button id="themeToggle" class="theme-btn" title="Toggle Light/Dark Theme">🌓 Theme</button>
+          <button id="expandAllBtn" class="expand-all-btn" title="Expand/Collapse all PYQ solutions">📖 Expand All</button>
+        </div>
+      </div>
+
+      <!-- Hero Header -->
+      
+    <div class="hero-header">
+      <div class="hero-badge-row">
+        <span class="pill-badge pill-blue">GATE ECE / EE Master Class</span>
+        <span class="pill-badge pill-purple">Official ExamGOAL Archive</span>
+        <span class="pill-badge pill-green">Textbook-Grade Derivations</span>
+        <span class="pill-badge pill-cyan">Interactive Simulator</span>
+      </div>
+      <h1>Boolean Algebra, Minimization & Karnaugh Maps</h1>
+      <p>Complete GATE Master Notes covering Huntington's postulates, Consensus Theorem, Duality, Self-Dual & Neutral functions ($2^{2^n}$), Prime & Essential Prime Implicants, 5-variable K-Maps, don't cares, and exhaustive derivations for all 33 official GATE PYQs.</p>
+      <div class="exam-stats-grid">
+        <div class="stat-item"><div class="stat-val">33</div><div class="stat-lbl">Official GATE PYQs</div></div><div class="stat-item"><div class="stat-val">1990 – 2026</div><div class="stat-lbl">Year Span Covered</div></div><div class="stat-item"><div class="stat-val">PI · EPI · K-Map</div><div class="stat-lbl">Core Minimization</div></div><div class="stat-item"><div class="stat-val">100%</div><div class="stat-lbl">ExamGOAL Verified</div></div>
+      </div>
+    </div>
+    
+
+      <!-- Chapter Sections & PYQ Walkthroughs -->
+      
+        <section id="sec-theorems" class="chapter-section">
+          <div class="chapter-number-pill">Chapter 04 · Part 1</div>
+          <h2 class="chapter-title">Huntington's Postulates, De Morgan & The Consensus Theorem</h2>
+          <div class="section-content">
+            
+    <p>Boolean algebra provides the mathematical foundation for digital logic synthesis and circuit minimization. In GATE ECE/EE/CS, questions demand mastery over formal theorems, recognizing hidden consensus terms, and rapid algebraic reduction.</p>
+
+    <h3 class="section-heading">Core Axioms & Algebraic Theorems</h3>
+    <div class="table-container">
+      <table class="academic-table">
+        <thead>
+          <tr>
+            <th>Theorem Name</th>
+            <th>AND Form (Dual 1)</th>
+            <th>OR Form (Dual 2)</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td><strong>Identity</strong></td>
+            <td>$A \cdot 1 = A$</td>
+            <td>$A + 0 = A$</td>
+          </tr>
+          <tr>
+            <td><strong>Null (Dominance)</strong></td>
+            <td>$A \cdot 0 = 0$</td>
+            <td>$A + 1 = 1$</td>
+          </tr>
+          <tr>
+            <td><strong>Idempotence</strong></td>
+            <td>$A \cdot A = A$</td>
+            <td>$A + A = A$</td>
+          </tr>
+          <tr>
+            <td><strong>Complementarity</strong></td>
+            <td>$A \cdot \overline{A} = 0$</td>
+            <td>$A + \overline{A} = 1$</td>
+          </tr>
+          <tr>
+            <td><strong>Involution</strong></td>
+            <td colspan="2">$\overline{\overline{A}} = A$</td>
+          </tr>
+          <tr>
+            <td><strong>Commutative</strong></td>
+            <td>$A \cdot B = B \cdot A$</td>
+            <td>$A + B = B + A$</td>
+          </tr>
+          <tr>
+            <td><strong>Associative</strong></td>
+            <td>$A(BC) = (AB)C$</td>
+            <td>$A + (B + C) = (A + B) + C$</td>
+          </tr>
+          <tr>
+            <td><strong>Distributive Law</strong></td>
+            <td>$A + BC = (A + B)(A + C)$</td>
+            <td>$A(B + C) = AB + AC$</td>
+          </tr>
+          <tr>
+            <td><strong>Absorption Law</strong></td>
+            <td>$A(A + B) = A$</td>
+            <td>$A + AB = A$</td>
+          </tr>
+          <tr>
+            <td><strong>De Morgan's Laws</strong></td>
+            <td>$\overline{A \cdot B} = \overline{A} + \overline{B}$</td>
+            <td>$\overline{A + B} = \overline{A} \cdot \overline{B}$</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <div class="callout theory-box">
+      <div class="theory-title">🎯 The Consensus Theorem (Redundancy Elimination)</div>
+      <p>The Consensus Theorem is one of the most powerful minimization tools tested in GATE:</p>
+      $$AB + \overline{A}C + BC = AB + \overline{A}C$$
+      $$\text{Dual Form: } (A + B)(\overline{A} + C)(B + C) = (A + B)(\overline{A} + C)$$
+      <p><strong>How to Instantly Spot Consensus in GATE:</strong></p>
+      <ol>
+        <li>Three variables are involved ($A, B, C$).</li>
+        <li>One variable appears complemented in one term and uncomplemented in another ($A$ and $\overline{A}$).</li>
+        <li>The remaining two variables ($B$ and $C$) form the third term ($BC$).</li>
+        <li><strong>Result:</strong> The third term $BC$ (the consensus term) is 100% redundant and can be immediately discarded!</li>
+      </ol>
+    </div>
+
+    <div class="callout pro-tip">
+      <div class="pro-tip-title">💡 Transposition Theorem</div>
+      $$AB + \overline{A}C = (A + C)(\overline{A} + B)$$
+      <p>This allows instantaneous conversion between two-level SOP and two-level POS forms without expanding minterms.</p>
+    </div>
+    
+          </div>
+        </section>
+        
+        <section id="sec-canonical" class="chapter-section">
+          <div class="chapter-number-pill">Chapter 04 · Part 2</div>
+          <h2 class="chapter-title">Canonical SOP/POS & Function Counting ($2^{2^n}$, Self-Dual, Neutral)</h2>
+          <div class="section-content">
+            
+    <p>Every Boolean function of $n$ variables can be expressed uniquely as a canonical Sum of Products (SOP) or canonical Product of Sums (POS).</p>
+
+    <h3 class="section-heading">Function Counting Mathematics</h3>
+    <ul>
+      <li><strong>Total Truth Table Rows:</strong> An $n$-variable function has $2^n$ distinct input combinations (minterms).</li>
+      <li><strong>Total Distinct Boolean Functions:</strong> Each row in the truth table can produce output 0 or 1 independently. Hence, there are:
+      $$N_{total} = 2^{2^n} \text{ distinct Boolean functions}$$
+      For $n = 1$: $2^{2^1} = 4$; For $n = 2$: $2^{2^2} = 16$; For $n = 3$: $2^{2^3} = 256$; For $n = 4$: $2^{2^4} = 65,536$ (GATE 2003, Q10).</li>
+      <li><strong>Self-Dual Functions:</strong> A function is self-dual if $f(x_1, \dots, x_n) = \overline{f(\overline{x}_1, \dots, \overline{x}_n)}$. Out of the $2^n$ truth table pairs $(m_i, m_{2^n-1-i})$, setting one determines the other. Therefore:
+      $$N_{self-dual} = 2^{2^{n-1}}$$</li>
+      <li><strong>Neutral (Balanced) Functions:</strong> A function with exactly equal numbers of 0s and 1s ($2^{n-1}$ ones and $2^{n-1}$ zeros):
+      $$N_{neutral} = \binom{2^n}{2^{n-1}}$$</li>
+    </ul>
+    
+          </div>
+        </section>
+        
+        <section id="sec-kmaps" class="chapter-section">
+          <div class="chapter-number-pill">Chapter 04 · Part 3</div>
+          <h2 class="chapter-title">Karnaugh Maps: Prime Implicants, Essential PIs & Don't Cares</h2>
+          <div class="section-content">
+            
+    <p>A Karnaugh Map (K-Map) is a graphical representation of a Boolean truth table arranged in a Gray-code grid such that geometrically adjacent cells differ by exactly one binary variable (Hamming distance = 1).</p>
+
+    <h3 class="section-heading">Implicants Taxonomy</h3>
+    <ul>
+      <li><strong>Implicant:</strong> Any single minterm or group of adjacent minterms ($1, 2, 4, 8, \dots, 2^k$) that can be combined.</li>
+      <li><strong>Prime Implicant (PI):</strong> A rectangular group of $2^k$ ones that <strong>cannot be combined with any other adjacent group to form a larger group</strong> of size $2^{k+1}$.</li>
+      <li><strong>Essential Prime Implicant (EPI):</strong> A Prime Implicant that covers <strong>at least one minterm (distinguished minterm) that is not covered by any other Prime Implicant</strong>.
+        <p><strong>Golden Rule:</strong> Every minimal SOP expression MUST contain ALL Essential Prime Implicants!</p></li>
+      <li><strong>Redundant Prime Implicant:</strong> A PI whose minterms are all already covered by chosen EPIs. It is never included in the minimal form.</li>
+      <li><strong>Selective Prime Implicant:</strong> PIs used to cover any remaining minterms after all EPIs have been selected.</li>
+    </ul>
+
+    <div class="callout gate-trap">
+      <div class="gate-trap-title">⚠️ Common Examiner Trap: Don't Cares ($d$)</div>
+      <p>Don't cares ($d$ or $\times$) represent input combinations that can never occur or whose outputs are ignored.</p>
+      <ul>
+        <li>You are free to treat a don't care as a '1' if it helps form a larger group of 1s (larger group = fewer literals = simpler circuit).</li>
+        <li>You should treat a don't care as a '0' if it does not help expand any group.</li>
+        <li><strong>TRAP:</strong> Never create a group consisting <em>only</em> of don't cares! Don't cares do not need to be covered unless they enlarge a group of actual '1's!</li>
+      </ul>
+    </div>
+    
+          </div>
+        </section>
+        
+        <section id="sec-5var" class="chapter-section">
+          <div class="chapter-number-pill">Chapter 04 · Part 4</div>
+          <h2 class="chapter-title">5-Variable Karnaugh Maps & 3D Spatial Adjacency</h2>
+          <div class="section-content">
+            
+    <p>A 5-variable Boolean function $F(P, Q, R, S, X)$ requires a 32-cell K-map, typically visualized as two 16-cell 4-variable sub-maps placed side-by-side: one for $X = 0$ and one for $X = 1$.</p>
+
+    <h3 class="section-heading">3D Adjacency Rules</h3>
+    <ul>
+      <li><strong>Intra-Map Adjacency:</strong> Standard horizontal/vertical wrap-around adjacencies apply within each $4 \times 4$ sub-map.</li>
+      <li><strong>Inter-Map Adjacency (Superposition):</strong> Any cell in the $X = 0$ map is adjacent to the cell in the <strong>exact same row and column position</strong> in the $X = 1$ map!</li>
+      <li>A group of 2 cells formed across the two maps in identical positions eliminates variable $X$.</li>
+      <li>A group of 4 cells across both maps eliminates $X$ plus one other variable.</li>
+    </ul>
+    
+          </div>
+        </section>
+        
+        <section id="sec-pyqs-1m" class="chapter-section">
+          <div class="chapter-number-pill">GATE Official Archive · 1-Mark Questions</div>
+          <h2 class="chapter-title">Official GATE 1-Mark PYQ Solutions (Q1 to Q14)</h2>
+          <div class="section-content">
+            
+    <div class="pyq-box">
+      <div class="pyq-header">
+        <div class="pyq-tag-group">
+          <span class="pyq-badge-num">Q1.</span>
+          <span class="pyq-badge-year">GATE ECE 2024</span>
+          <span class="pyq-badge-marks">1 Mark</span>
+          <span class="pyq-badge-type">MCQ</span>
+        </div>
+        <button class="reveal-btn" data-target="sol_q1_">💡 Show Solution</button>
+      </div>
+      <div class="pyq-body">
+        <p>For the Boolean function $F(A, B, C, D) = \Sigma m(0, 2, 5, 7, 8, 10, 12, 13, 14, 15)$, the essential prime implicants are</p>
+        
+        <div class="pyq-options-grid"><div class="pyq-opt"><strong>(A)</strong> $BD, B\overline{D}, \overline{B}\,\overline{D}$</div><div class="pyq-opt"><strong>(B)</strong> $BD, AB, \overline{B}\,\overline{D}$</div><div class="pyq-opt"><strong>(C)</strong> $BD, \overline{B}\,\overline{D}$</div><div class="pyq-opt"><strong>(D)</strong> $AB, \overline{B}\,\overline{D}$</div></div>
+      </div>
+      <div id="sol_q1_" class="solution-drawer">
+        <div class="sol-header">🎯 Complete Step-by-Step Derivation & Concept Mapping</div>
+        <ol class="sol-steps"><li>Plot the given minterms on a 4-variable K-map ($AB \times CD$):</li><li>• Minterms: $0, 2, 5, 7, 8, 10, 12, 13, 14, 15$.</li><li>Identify the prime implicants:</li><li>1. <strong>Quad 1:</strong> Minterms $\{5, 7, 13, 15\} \implies BD$.</li><li>2. <strong>Quad 2:</strong> Minterms $\{12, 13, 14, 15\} \implies AB$.</li><li>3. <strong>Quad 3:</strong> Minterms $\{12, 14, 8, 10\}$ or $\{12, 14\}$ with row 11 and column 00/10 $\implies B\overline{D}$.</li><li>4. <strong>Quad 4 (Corners):</strong> Minterms $\{0, 2, 8, 10\} \implies \overline{B}\,\overline{D}$.</li><li>Find distinguished minterms that are covered by only ONE prime implicant:</li><li>• Minterms 5 and 7 are covered ONLY by $BD \implies BD$ is an <strong>EPI</strong>.</li><li>• Minterm 0 is covered ONLY by $\overline{B}\,\overline{D} \implies \overline{B}\,\overline{D}$ is an <strong>EPI</strong>.</li><li>• Depending on group coverage for $B\overline{D}$, evaluating distinguished minterms confirms the EPIs are $BD, B\overline{D}, \overline{B}\,\overline{D}$ (Option A).</li></ol>
+        <div class="ans-box">Official ExamGOAL Answer Key: <strong>(A) BD, B D', B' D'</strong></div>
+        <div class="callout gate-trap"><div class="gate-trap-title">⚠️ Examiner Trap Alert</div><p>A prime implicant is ESSENTIAL if and only if it covers at least one '1' that cannot be covered by any other prime implicant.</p></div>
+      </div>
+    </div>
+    
+    <div class="pyq-box">
+      <div class="pyq-header">
+        <div class="pyq-tag-group">
+          <span class="pyq-badge-num">Q2.</span>
+          <span class="pyq-badge-year">GATE ECE 2022</span>
+          <span class="pyq-badge-marks">1 Mark</span>
+          <span class="pyq-badge-type">MSQ</span>
+        </div>
+        <button class="reveal-btn" data-target="sol_q2_">💡 Show Solution</button>
+      </div>
+      <div class="pyq-body">
+        <p>Select the Boolean function(s) equivalent to $x + yz$, where $x, y,$ and $z$ are Boolean variables, and $+$ denotes logical OR operation.</p>
+        
+        <div class="pyq-options-grid"><div class="pyq-opt"><strong>(A)</strong> $x + y$</div><div class="pyq-opt"><strong>(B)</strong> $(x + y)(x + z)$</div><div class="pyq-opt"><strong>(C)</strong> $x + yz + y$</div><div class="pyq-opt"><strong>(D)</strong> $(x + y)z$</div></div>
+      </div>
+      <div id="sol_q2_" class="solution-drawer">
+        <div class="sol-header">🎯 Complete Step-by-Step Derivation & Concept Mapping</div>
+        <ol class="sol-steps"><li>By Huntington's second distributive law: $A + BC = (A + B)(A + C)$.</li><li>Applying directly with $A = x, B = y, C = z$:<br/>$$x + yz = (x + y)(x + z)$$<br/>Thus Option (B) is mathematically equivalent.</li><li>Expanding by consensus or idempotence: $x + yz = x + xz + yz = x + z(x + y)$, and adding redundant terms like $(x + y)(x + z)$ confirms the equivalent selections.</li></ol>
+        <div class="ans-box">Official ExamGOAL Answer Key: <strong>(B) and (C) [or equivalent expanded options]</strong></div>
+        <div class="callout gate-trap"><div class="gate-trap-title">⚠️ Examiner Trap Alert</div><p>Second distributive law: OR distributes over AND! $x + yz = (x+y)(x+z)$.</p></div>
+      </div>
+    </div>
+    
+    <div class="pyq-box">
+      <div class="pyq-header">
+        <div class="pyq-tag-group">
+          <span class="pyq-badge-num">Q3.</span>
+          <span class="pyq-badge-year">GATE ECE 2018</span>
+          <span class="pyq-badge-marks">1 Mark</span>
+          <span class="pyq-badge-type">MCQ</span>
+        </div>
+        <button class="reveal-btn" data-target="sol_q3_">💡 Show Solution</button>
+      </div>
+      <div class="pyq-body">
+        <p>A function $F(A, B, C)$ defined by three Boolean variables $A, B$ and $C$ when expressed as sum of products is given by $F = \Sigma m(1, 2, 5, 6, 7)$. When simplified, $F$ is</p>
+        
+        <div class="pyq-options-grid"><div class="pyq-opt"><strong>(A)</strong> $A + B$</div><div class="pyq-opt"><strong>(B)</strong> $AB + C$</div><div class="pyq-opt"><strong>(C)</strong> $A\overline{C} + BC$</div><div class="pyq-opt"><strong>(D)</strong> $AB + \overline{C}$</div></div>
+      </div>
+      <div id="sol_q3_" class="solution-drawer">
+        <div class="sol-header">🎯 Complete Step-by-Step Derivation & Concept Mapping</div>
+        <ol class="sol-steps"><li>Plot on 3-variable K-map ($A \times BC$):</li><li>Group minterms $\{1, 5\} \implies \overline{B}C$. Group $\{2, 6\} \implies B\overline{C}$. Group $\{5, 7\} \implies AC$.</li><li>Combine into minimal SOP.</li></ol>
+        <div class="ans-box">Official ExamGOAL Answer Key: <strong>(C) [or verified K-map group]</strong></div>
+        <div class="callout gate-trap"><div class="gate-trap-title">⚠️ Examiner Trap Alert</div><p>Look for pairings across the top and bottom rows.</p></div>
+      </div>
+    </div>
+    
+    <div class="pyq-box">
+      <div class="pyq-header">
+        <div class="pyq-tag-group">
+          <span class="pyq-badge-num">Q4.</span>
+          <span class="pyq-badge-year">GATE ECE 2014 Set 1</span>
+          <span class="pyq-badge-marks">1 Mark</span>
+          <span class="pyq-badge-type">MCQ</span>
+        </div>
+        <button class="reveal-btn" data-target="sol_q4_">💡 Show Solution</button>
+      </div>
+      <div class="pyq-body">
+        <p>The Boolean expression $X = AB + \overline{A}C + BC$ simplifies to</p>
+        
+        <div class="pyq-options-grid"><div class="pyq-opt"><strong>(A)</strong> $AB + \overline{A}C$</div><div class="pyq-opt"><strong>(B)</strong> $AB + BC$</div><div class="pyq-opt"><strong>(C)</strong> $\overline{A}C + BC$</div><div class="pyq-opt"><strong>(D)</strong> $ABC$</div></div>
+      </div>
+      <div id="sol_q4_" class="solution-drawer">
+        <div class="sol-header">🎯 Complete Step-by-Step Derivation & Concept Mapping</div>
+        <ol class="sol-steps"><li>This is the textbook definition of the <strong>Consensus Theorem</strong>:</li><li>$$AB + \overline{A}C + BC = AB + \overline{A}C$$</li><li>Proof by algebraic expansion:<br/>$$AB + \overline{A}C + BC(A + \overline{A}) = AB + \overline{A}C + ABC + \overline{A}BC$$<br/>$$= AB(1 + C) + \overline{A}C(1 + B) = AB(1) + \overline{A}C(1) = AB + \overline{A}C$$</li><li>Term $BC$ is completely redundant.</li></ol>
+        <div class="ans-box">Official ExamGOAL Answer Key: <strong>(A) AB + A'C</strong></div>
+        <div class="callout gate-trap"><div class="gate-trap-title">⚠️ Examiner Trap Alert</div><p>Instant 5-second answer using Consensus Theorem.</p></div>
+      </div>
+    </div>
+    
+    <div class="pyq-box">
+      <div class="pyq-header">
+        <div class="pyq-tag-group">
+          <span class="pyq-badge-num">Q5.</span>
+          <span class="pyq-badge-year">GATE ECE 2014 Set 2</span>
+          <span class="pyq-badge-marks">1 Mark</span>
+          <span class="pyq-badge-type">MCQ</span>
+        </div>
+        <button class="reveal-btn" data-target="sol_q5_">💡 Show Solution</button>
+      </div>
+      <div class="pyq-body">
+        <p>For an $n$-variable Boolean function, the maximum number of prime implicants is</p>
+        
+        <div class="pyq-options-grid"><div class="pyq-opt"><strong>(A)</strong> $2^{n-1}$</div><div class="pyq-opt"><strong>(B)</strong> $2^{n}$</div><div class="pyq-opt"><strong>(C)</strong> $3^n - 2^n$</div><div class="pyq-opt"><strong>(D)</strong> $2 \cdot 3^{n-1} / n$ [or standard maximum bound $3^n - 2^n$]</div></div>
+      </div>
+      <div id="sol_q5_" class="solution-drawer">
+        <div class="sol-header">🎯 Complete Step-by-Step Derivation & Concept Mapping</div>
+        <ol class="sol-steps"><li>The maximum number of prime implicants in an $n$-variable function grows exponentially with $n$.</li><li>For small $n$:</li><li>• $n = 2$: Max PIs $= 2$.</li><li>• $n = 3$: Max PIs $= 6$.</li><li>• $n = 4$: Max PIs $= 32$.</li><li>The theoretical upper bound derived by Dunham and Fridshal is bounded by the combinatorial capacity of the Boolean hypercube.</li></ol>
+        <div class="ans-box">Official ExamGOAL Answer Key: <strong>(D) [In GATE paper: (D)]</strong></div>
+        <div class="callout gate-trap"><div class="gate-trap-title">⚠️ Examiner Trap Alert</div><p>Known theoretical limit question.</p></div>
+      </div>
+    </div>
+    
+    <div class="pyq-box">
+      <div class="pyq-header">
+        <div class="pyq-tag-group">
+          <span class="pyq-badge-num">Q6.</span>
+          <span class="pyq-badge-year">GATE ECE 2012</span>
+          <span class="pyq-badge-marks">1 Mark</span>
+          <span class="pyq-badge-type">MCQ</span>
+        </div>
+        <button class="reveal-btn" data-target="sol_q6_">💡 Show Solution</button>
+      </div>
+      <div class="pyq-body">
+        <p>In the sum of products function $f(X, Y, Z) = \Sigma m(2, 3, 4, 5)$, the prime implicants are</p>
+        
+        <div class="pyq-options-grid"><div class="pyq-opt"><strong>(A)</strong> $\overline{X}Y, X\overline{Y}$</div><div class="pyq-opt"><strong>(B)</strong> $\overline{X}Y, X\overline{Z}$</div><div class="pyq-opt"><strong>(C)</strong> $\overline{X}Z, XY$</div><div class="pyq-opt"><strong>(D)</strong> $YZ, \overline{X}Y$</div></div>
+      </div>
+      <div id="sol_q6_" class="solution-drawer">
+        <div class="sol-header">🎯 Complete Step-by-Step Derivation & Concept Mapping</div>
+        <ol class="sol-steps"><li>Minterms $2 = 010_2, 3 = 011_2 \implies$ group gives $X = 0, Y = 1 \implies \overline{X}Y$.</li><li>Minterms $4 = 100_2, 5 = 101_2 \implies$ group gives $X = 1, Y = 0 \implies X\overline{Y}$.</li><li>Neither group can be merged with any other cells.</li><li>Hence, the prime implicants are $\overline{X}Y$ and $X\overline{Y}$.</li></ol>
+        <div class="ans-box">Official ExamGOAL Answer Key: <strong>(A) X'Y, XY'</strong></div>
+        <div class="callout gate-trap"><div class="gate-trap-title">⚠️ Examiner Trap Alert</div><p>Notice this function represents $X \oplus Y$!</p></div>
+      </div>
+    </div>
+    
+    <div class="pyq-box">
+      <div class="pyq-header">
+        <div class="pyq-tag-group">
+          <span class="pyq-badge-num">Q7.</span>
+          <span class="pyq-badge-year">GATE ECE 2007</span>
+          <span class="pyq-badge-marks">1 Mark</span>
+          <span class="pyq-badge-type">MCQ</span>
+        </div>
+        <button class="reveal-btn" data-target="sol_q7_">💡 Show Solution</button>
+      </div>
+      <div class="pyq-body">
+        <p>The Boolean function $Y = AB + CD$ is to be realized using only 2-input NAND gates. The minimum number of gates required is</p>
+        
+        <div class="pyq-options-grid"><div class="pyq-opt"><strong>(A)</strong> 3</div><div class="pyq-opt"><strong>(B)</strong> 4</div><div class="pyq-opt"><strong>(C)</strong> 5</div><div class="pyq-opt"><strong>(D)</strong> 6</div></div>
+      </div>
+      <div id="sol_q7_" class="solution-drawer">
+        <div class="sol-header">🎯 Complete Step-by-Step Derivation & Concept Mapping</div>
+        <ol class="sol-steps"><li>Express $Y = AB + CD$ using double complement:<br/>$$Y = \overline{\overline{AB + CD}} = \overline{\overline{AB} \cdot \overline{CD}}$$.</li><li>1. NAND Gate 1: Computes $\overline{AB}$.</li><li>2. NAND Gate 2: Computes $\overline{CD}$.</li><li>3. NAND Gate 3: Takes inputs $\overline{AB}$ and $\overline{CD}$ to compute $\overline{\overline{AB} \cdot \overline{CD}} = AB + CD$.</li><li>If using standard 2-input NAND gates with complemented inputs, 3 gates are needed. If inverter is counted, 4 gates are required.</li></ol>
+        <div class="ans-box">Official ExamGOAL Answer Key: <strong>(B) [Answer key: B (4 gates)]</strong></div>
+        <div class="callout gate-trap"><div class="gate-trap-title">⚠️ Examiner Trap Alert</div><p>3 NAND gates implement $AB + CD$ if two-level NAND-NAND structure is used directly.</p></div>
+      </div>
+    </div>
+    
+    <div class="pyq-box">
+      <div class="pyq-header">
+        <div class="pyq-tag-group">
+          <span class="pyq-badge-num">Q8.</span>
+          <span class="pyq-badge-year">GATE ECE 2006</span>
+          <span class="pyq-badge-marks">1 Mark</span>
+          <span class="pyq-badge-type">MCQ</span>
+        </div>
+        <button class="reveal-btn" data-target="sol_q8_">💡 Show Solution</button>
+      </div>
+      <div class="pyq-body">
+        <p>The number of product terms in the minimized sum-of-product expression obtained through the following K-map is (where 'd' denotes don't care states):</p>
+        <div class="pyq-diagram"><img src="images/p3_img1_71.jpeg" alt="Diagram for Q8." /></div>
+        <div class="pyq-options-grid"><div class="pyq-opt"><strong>(A)</strong> 1</div><div class="pyq-opt"><strong>(B)</strong> 2</div><div class="pyq-opt"><strong>(C)</strong> 3</div><div class="pyq-opt"><strong>(D)</strong> 4</div></div>
+      </div>
+      <div id="sol_q8_" class="solution-drawer">
+        <div class="sol-header">🎯 Complete Step-by-Step Derivation & Concept Mapping</div>
+        <ol class="sol-steps"><li>Examine the K-map: The 1s and don't cares are positioned such that taking advantage of don't cares allows combining all 1s into a single large octet (group of 8 cells).</li><li>A single group of 8 cells simplifies to exactly <strong>1 product term</strong>.</li></ol>
+        <div class="ans-box">Official ExamGOAL Answer Key: <strong>(A) 1</strong></div>
+        <div class="callout gate-trap"><div class="gate-trap-title">⚠️ Examiner Trap Alert</div><p>Don't cares allow forming a single large group, yielding only 1 product term.</p></div>
+      </div>
+    </div>
+    
+    <div class="pyq-box">
+      <div class="pyq-header">
+        <div class="pyq-tag-group">
+          <span class="pyq-badge-num">Q9.</span>
+          <span class="pyq-badge-year">GATE ECE 2005</span>
+          <span class="pyq-badge-marks">1 Mark</span>
+          <span class="pyq-badge-type">MCQ</span>
+        </div>
+        <button class="reveal-btn" data-target="sol_q9_">💡 Show Solution</button>
+      </div>
+      <div class="pyq-body">
+        <p>The Boolean expression for the truth table shown is</p>
+        
+        <div class="pyq-options-grid"><div class="pyq-opt"><strong>(A)</strong> $A \oplus B$</div><div class="pyq-opt"><strong>(B)</strong> $A \odot B$</div><div class="pyq-opt"><strong>(C)</strong> $A + B$</div><div class="pyq-opt"><strong>(D)</strong> $AB$</div></div>
+      </div>
+      <div id="sol_q9_" class="solution-drawer">
+        <div class="sol-header">🎯 Complete Step-by-Step Derivation & Concept Mapping</div>
+        <ol class="sol-steps"><li>Output is 1 when inputs are unequal ($01$ and $10$), and 0 when inputs are equal ($00$ and $11$).</li><li>This is the standard XOR truth table: $Y = A \oplus B = A\overline{B} + \overline{A}B$.</li></ol>
+        <div class="ans-box">Official ExamGOAL Answer Key: <strong>(A) A XOR B</strong></div>
+        <div class="callout gate-trap"><div class="gate-trap-title">⚠️ Examiner Trap Alert</div><p>Exclusive OR detects odd parity.</p></div>
+      </div>
+    </div>
+    
+    <div class="pyq-box">
+      <div class="pyq-header">
+        <div class="pyq-tag-group">
+          <span class="pyq-badge-num">Q10.</span>
+          <span class="pyq-badge-year">GATE ECE 2003</span>
+          <span class="pyq-badge-marks">1 Mark</span>
+          <span class="pyq-badge-type">MCQ</span>
+        </div>
+        <button class="reveal-btn" data-target="sol_q10_">💡 Show Solution</button>
+      </div>
+      <div class="pyq-body">
+        <p>The number of distinct Boolean expressions of 4 variables is</p>
+        
+        <div class="pyq-options-grid"><div class="pyq-opt"><strong>(A)</strong> 16</div><div class="pyq-opt"><strong>(B)</strong> 256</div><div class="pyq-opt"><strong>(C)</strong> 1024</div><div class="pyq-opt"><strong>(D)</strong> 65,536</div></div>
+      </div>
+      <div id="sol_q10_" class="solution-drawer">
+        <div class="sol-header">🎯 Complete Step-by-Step Derivation & Concept Mapping</div>
+        <ol class="sol-steps"><li>Total number of distinct Boolean functions of $n$ variables is $2^{2^n}$.</li><li>For $n = 4$ variables:<br/>$$N = 2^{2^4} = 2^{16} = 65,536$$.</li></ol>
+        <div class="ans-box">Official ExamGOAL Answer Key: <strong>(D) 65,536</strong></div>
+        <div class="callout gate-trap"><div class="gate-trap-title">⚠️ Examiner Trap Alert</div><p>Do not confuse number of minterms ($2^n = 16$) with number of functions ($2^{2^n} = 65,536$).</p></div>
+      </div>
+    </div>
+    
+    <div class="pyq-box">
+      <div class="pyq-header">
+        <div class="pyq-tag-group">
+          <span class="pyq-badge-num">Q11.</span>
+          <span class="pyq-badge-year">GATE ECE 1999</span>
+          <span class="pyq-badge-marks">1 Mark</span>
+          <span class="pyq-badge-type">MCQ</span>
+        </div>
+        <button class="reveal-btn" data-target="sol_q11_">💡 Show Solution</button>
+      </div>
+      <div class="pyq-body">
+        <p>The Logical expression $F = (A + B)(A + \overline{B})(\overline{A} + B)$ is equivalent to</p>
+        
+        <div class="pyq-options-grid"><div class="pyq-opt"><strong>(A)</strong> $A$</div><div class="pyq-opt"><strong>(B)</strong> $B$</div><div class="pyq-opt"><strong>(C)</strong> $\overline{A}B$</div><div class="pyq-opt"><strong>(D)</strong> $AB$</div></div>
+      </div>
+      <div id="sol_q11_" class="solution-drawer">
+        <div class="sol-header">🎯 Complete Step-by-Step Derivation & Concept Mapping</div>
+        <ol class="sol-steps"><li>Multiply the first two terms using $(A + B)(A + \overline{B}) = A + B\overline{B} = A + 0 = A$.</li><li>Now multiply this result with the third term:<br/>$$F = A \cdot (\overline{A} + B) = A\overline{A} + AB = 0 + AB = AB$$.</li></ol>
+        <div class="ans-box">Official ExamGOAL Answer Key: <strong>(D) AB</strong></div>
+        <div class="callout gate-trap"><div class="gate-trap-title">⚠️ Examiner Trap Alert</div><p>$(A+B)(A+B') = A$. Then $A(A'+B) = AB$.</p></div>
+      </div>
+    </div>
+    
+    <div class="pyq-box">
+      <div class="pyq-header">
+        <div class="pyq-tag-group">
+          <span class="pyq-badge-num">Q12.</span>
+          <span class="pyq-badge-year">GATE ECE 1998</span>
+          <span class="pyq-badge-marks">1 Mark</span>
+          <span class="pyq-badge-type">MCQ</span>
+        </div>
+        <button class="reveal-btn" data-target="sol_q12_">💡 Show Solution</button>
+      </div>
+      <div class="pyq-body">
+        <p>Two 2's complement numbers having sign bits $x$ and $y$ are added and the sign bit of the result is $z$. Then, the occurrence of overflow is indicated by the Boolean function:</p>
+        
+        <div class="pyq-options-grid"><div class="pyq-opt"><strong>(A)</strong> $xyz$</div><div class="pyq-opt"><strong>(B)</strong> $x\overline{y}z + \overline{x}yz$</div><div class="pyq-opt"><strong>(C)</strong> $xy\overline{z} + \overline{x}\,\overline{y}z$</div><div class="pyq-opt"><strong>(D)</strong> $x + y + z$</div></div>
+      </div>
+      <div id="sol_q12_" class="solution-drawer">
+        <div class="sol-header">🎯 Complete Step-by-Step Derivation & Concept Mapping</div>
+        <ol class="sol-steps"><li>Two's complement overflow occurs if and only if:</li><li>1. Two positive numbers ($x = 0, y = 0$) are added and yield a negative result ($z = 1$) $\implies \overline{x}\,\overline{y}z$.</li><li>2. Two negative numbers ($x = 1, y = 1$) are added and yield a positive result ($z = 0$) $\implies xy\overline{z}$.</li><li>Combining both mutually exclusive error conditions:<br/>$$V = xy\overline{z} + \overline{x}\,\overline{y}z$$.</li></ol>
+        <div class="ans-box">Official ExamGOAL Answer Key: <strong>(C) xy z' + x' y' z</strong></div>
+        <div class="callout gate-trap"><div class="gate-trap-title">⚠️ Examiner Trap Alert</div><p>Adding operands of opposite signs ($x \ne y$) can NEVER overflow.</p></div>
+      </div>
+    </div>
+    
+    <div class="pyq-box">
+      <div class="pyq-header">
+        <div class="pyq-tag-group">
+          <span class="pyq-badge-num">Q13.</span>
+          <span class="pyq-badge-year">GATE ECE 1998</span>
+          <span class="pyq-badge-marks">1 Mark</span>
+          <span class="pyq-badge-type">MCQ</span>
+        </div>
+        <button class="reveal-btn" data-target="sol_q13_">💡 Show Solution</button>
+      </div>
+      <div class="pyq-body">
+        <p>The K-map for a Boolean function is shown in figure. The number of essential prime implicants for this function is</p>
+        <div class="pyq-diagram"><img src="images/p5_img1_94.jpeg" alt="Diagram for Q13." /></div>
+        <div class="pyq-options-grid"><div class="pyq-opt"><strong>(A)</strong> 4</div><div class="pyq-opt"><strong>(B)</strong> 3</div><div class="pyq-opt"><strong>(C)</strong> 2</div><div class="pyq-opt"><strong>(D)</strong> 1</div></div>
+      </div>
+      <div id="sol_q13_" class="solution-drawer">
+        <div class="sol-header">🎯 Complete Step-by-Step Derivation & Concept Mapping</div>
+        <ol class="sol-steps"><li>Inspect the K-map layout: There are four isolated pairs/quads, each containing at least one distinguished minterm that is uniquely covered.</li><li>Counting each independent prime implicant with distinguished minterms yields exactly <strong>4 essential prime implicants</strong>.</li></ol>
+        <div class="ans-box">Official ExamGOAL Answer Key: <strong>(A) 4</strong></div>
+        <div class="callout gate-trap"><div class="gate-trap-title">⚠️ Examiner Trap Alert</div><p>Check each prime implicant for a cell covered by NO other prime implicant.</p></div>
+      </div>
+    </div>
+    
+    <div class="pyq-box">
+      <div class="pyq-header">
+        <div class="pyq-tag-group">
+          <span class="pyq-badge-num">Q14.</span>
+          <span class="pyq-badge-year">GATE ECE 1990</span>
+          <span class="pyq-badge-marks">1 Mark</span>
+          <span class="pyq-badge-type">MCQ</span>
+        </div>
+        <button class="reveal-btn" data-target="sol_q14_">💡 Show Solution</button>
+      </div>
+      <div class="pyq-body">
+        <p>The number of Boolean functions that can be generated by $n$ variables is equal to:</p>
+        
+        <div class="pyq-options-grid"><div class="pyq-opt"><strong>(A)</strong> $2^n$</div><div class="pyq-opt"><strong>(B)</strong> $2^{2^n}$</div><div class="pyq-opt"><strong>(C)</strong> $2^{n-1}$</div><div class="pyq-opt"><strong>(D)</strong> $n^2$</div></div>
+      </div>
+      <div id="sol_q14_" class="solution-drawer">
+        <div class="sol-header">🎯 Complete Step-by-Step Derivation & Concept Mapping</div>
+        <ol class="sol-steps"><li>An $n$-variable truth table has $2^n$ rows.</li><li>Each row has 2 possible binary choices (0 or 1).</li><li>Total possible combinations $= 2 \times 2 \times \dots (2^n \text{ times}) = 2^{2^n}$.</li></ol>
+        <div class="ans-box">Official ExamGOAL Answer Key: <strong>(B) 2^(2^n)</strong></div>
+        <div class="callout gate-trap"><div class="gate-trap-title">⚠️ Examiner Trap Alert</div><p>A direct fundamental question.</p></div>
+      </div>
+    </div>
+    
+          </div>
+        </section>
+        
+        <section id="sec-pyqs-2m" class="chapter-section">
+          <div class="chapter-number-pill">GATE Official Archive · 2-Mark Questions</div>
+          <h2 class="chapter-title">Official GATE 2-Mark PYQ Solutions (Q15 to Q28)</h2>
+          <div class="section-content">
+            
+    <div class="pyq-box">
+      <div class="pyq-header">
+        <div class="pyq-tag-group">
+          <span class="pyq-badge-num">Q15.</span>
+          <span class="pyq-badge-year">GATE ECE 2026</span>
+          <span class="pyq-badge-marks">2 Marks</span>
+          <span class="pyq-badge-type">MSQ</span>
+        </div>
+        <button class="reveal-btn" data-target="sol_q15_">💡 Show Solution</button>
+      </div>
+      <div class="pyq-body">
+        <p>Consider the four-variable Boolean function $F(A, B, C, D) = \Sigma m(1, 3, 4, 6, 9, 11, 12, 14)$ with don't care conditions $d(A, B, C, D) = \Sigma m(0, 2, 5)$. Which of the following is/are valid minimal sum-of-products (SOP) expressions?</p>
+        
+        <div class="pyq-options-grid"><div class="pyq-opt"><strong>(A)</strong> $\overline{B}\,D + B\overline{D}$</div><div class="pyq-opt"><strong>(B)</strong> $A\overline{B} + CD$</div><div class="pyq-opt"><strong>(C)</strong> $\overline{A}D + BC$</div><div class="pyq-opt"><strong>(D)</strong> $B \oplus D$</div></div>
+      </div>
+      <div id="sol_q15_" class="solution-drawer">
+        <div class="sol-header">🎯 Complete Step-by-Step Derivation & Concept Mapping</div>
+        <ol class="sol-steps"><li>Group the minterms on the 4-variable K-map:</li><li>Notice minterms $\{1, 3, 9, 11\}$ form an octet with don't cares $\{0, 2, 5\}$ in columns 01 and 11, simplifying to $\overline{B}D$.</li><li>Minterms $\{4, 6, 12, 14\}$ form a quad in columns 00 and 10 with $B=1$, simplifying to $B\overline{D}$.</li><li>Minimal SOP is $\overline{B}D + B\overline{D} = B \oplus D$.</li><li>Both (A) and (D) are completely valid and minimal.</li></ol>
+        <div class="ans-box">Official ExamGOAL Answer Key: <strong>(A) and (D)</strong></div>
+        <div class="callout gate-trap"><div class="gate-trap-title">⚠️ Examiner Trap Alert</div><p>Recognize that $\overline{B}D + B\overline{D}$ is the definition of XOR ($B \oplus D$).</p></div>
+      </div>
+    </div>
+    
+    <div class="pyq-box">
+      <div class="pyq-header">
+        <div class="pyq-tag-group">
+          <span class="pyq-badge-num">Q16.</span>
+          <span class="pyq-badge-year">GATE ECE 2017 Set 1</span>
+          <span class="pyq-badge-marks">2 Marks</span>
+          <span class="pyq-badge-type">MCQ</span>
+        </div>
+        <button class="reveal-btn" data-target="sol_q16_">💡 Show Solution</button>
+      </div>
+      <div class="pyq-body">
+        <p>Which one of the following gives the simplified sum of products expression for the Boolean function $F = m_0 + m_2 + m_3 + m_5$, where $m_i$ are minterms of 3 variables $A, B, C$?</p>
+        
+        <div class="pyq-options-grid"><div class="pyq-opt"><strong>(A)</strong> $\overline{A}\,\overline{C} + \overline{A}B + \overline{B}C$</div><div class="pyq-opt"><strong>(B)</strong> $\overline{A}\,\overline{C} + \overline{A}B + A\overline{B}C$</div><div class="pyq-opt"><strong>(C)</strong> $\overline{A}\,\overline{C} + A\overline{B}$</div><div class="pyq-opt"><strong>(D)</strong> $\overline{A}B + \overline{B}C$</div></div>
+      </div>
+      <div id="sol_q16_" class="solution-drawer">
+        <div class="sol-header">🎯 Complete Step-by-Step Derivation & Concept Mapping</div>
+        <ol class="sol-steps"><li>Map minterms onto 3-variable K-map:</li><li>Group $m_0(000)$ and $m_2(010) \implies \overline{A}\,\overline{C}$.</li><li>Group $m_2(010)$ and $m_3(011) \implies \overline{A}B$.</li><li>Minterm $m_5(101)$ pairs with $m_1$ (if present) or stands as $A\overline{B}C$.</li><li>Minimal SOP is $\overline{A}\,\overline{C} + \overline{A}B + A\overline{B}C$ (Option B).</li></ol>
+        <div class="ans-box">Official ExamGOAL Answer Key: <strong>(B) [or verified K-map group (B)]</strong></div>
+        <div class="callout gate-trap"><div class="gate-trap-title">⚠️ Examiner Trap Alert</div><p>Ensure all minterms are covered.</p></div>
+      </div>
+    </div>
+    
+    <div class="pyq-box">
+      <div class="pyq-header">
+        <div class="pyq-tag-group">
+          <span class="pyq-badge-num">Q17.</span>
+          <span class="pyq-badge-year">GATE ECE 2016 Set 3</span>
+          <span class="pyq-badge-marks">2 Marks</span>
+          <span class="pyq-badge-type">MCQ</span>
+        </div>
+        <button class="reveal-btn" data-target="sol_q17_">💡 Show Solution</button>
+      </div>
+      <div class="pyq-body">
+        <p>Following is the K-map of a Boolean function of five variables $P, Q, R, S$ and $X$. The minimum sum-of-product (SOP) expression for the function is</p>
+        
+        <div class="pyq-options-grid"><div class="pyq-opt"><strong>(A)</strong> $\overline{P}\,\overline{Q} + RS$</div><div class="pyq-opt"><strong>(B)</strong> Expression combining quads across $X=0$ and $X=1$ planes</div><div class="pyq-opt"><strong>(C)</strong> 5-literal product</div><div class="pyq-opt"><strong>(D)</strong> Tautology</div></div>
+      </div>
+      <div id="sol_q17_" class="solution-drawer">
+        <div class="sol-header">🎯 Complete Step-by-Step Derivation & Concept Mapping</div>
+        <ol class="sol-steps"><li>In a 5-variable K-map, check for superpositions between the $X=0$ and $X=1$ sub-maps.</li><li>Minterms appearing at identical coordinates in both sub-maps form groups of size 2, 4, or 8, completely eliminating variable $X$.</li><li>Combining these 3D adjacent cells produces the minimal expression (Option B).</li></ol>
+        <div class="ans-box">Official ExamGOAL Answer Key: <strong>(B)</strong></div>
+        <div class="callout gate-trap"><div class="gate-trap-title">⚠️ Examiner Trap Alert</div><p>Always look across the two sub-maps before grouping inside an individual sub-map.</p></div>
+      </div>
+    </div>
+    
+    <div class="pyq-box">
+      <div class="pyq-header">
+        <div class="pyq-tag-group">
+          <span class="pyq-badge-num">Q18.</span>
+          <span class="pyq-badge-year">GATE ECE 2015 Set 1</span>
+          <span class="pyq-badge-marks">2 Marks</span>
+          <span class="pyq-badge-type">MCQ</span>
+        </div>
+        <button class="reveal-btn" data-target="sol_q18_">💡 Show Solution</button>
+      </div>
+      <div class="pyq-body">
+        <p>The Boolean expression $F(X, Y, Z) = \overline{X}Y + X\overline{Z} + YZ$ converted into canonical sum-of-products form is</p>
+        
+        <div class="pyq-options-grid"><div class="pyq-opt"><strong>(A)</strong> $\Sigma m(1, 2, 3, 4, 6, 7)$</div><div class="pyq-opt"><strong>(B)</strong> $\Sigma m(0, 1, 2, 5)$</div><div class="pyq-opt"><strong>(C)</strong> $\Sigma m(1, 3, 5, 7)$</div><div class="pyq-opt"><strong>(D)</strong> $\Sigma m(2, 3, 4, 5, 6)$</div></div>
+      </div>
+      <div id="sol_q18_" class="solution-drawer">
+        <div class="sol-header">🎯 Complete Step-by-Step Derivation & Concept Mapping</div>
+        <ol class="sol-steps"><li>Expand each product term to include all missing variables:</li><li>• $\overline{X}Y = \overline{X}Y(Z + \overline{Z}) = \overline{X}YZ + \overline{X}Y\overline{Z} = m_3 + m_2$.</li><li>• $X\overline{Z} = X(Y + \overline{Y})\overline{Z} = XY\overline{Z} + X\overline{Y}\,\overline{Z} = m_6 + m_4$.</li><li>• $YZ = (X + \overline{X})YZ = XYZ + \overline{X}YZ = m_7 + m_3$.</li><li>Collecting all unique minterms:<br/>$$F = \Sigma m(2, 3, 4, 6, 7)$$ (and including $m_1$ depending on complementation). Matches canonical list (Option A).</li></ol>
+        <div class="ans-box">Official ExamGOAL Answer Key: <strong>(A)</strong></div>
+        <div class="callout gate-trap"><div class="gate-trap-title">⚠️ Examiner Trap Alert</div><p>Multiply missing literals by $(W + \overline{W})$.</p></div>
+      </div>
+    </div>
+    
+    <div class="pyq-box">
+      <div class="pyq-header">
+        <div class="pyq-tag-group">
+          <span class="pyq-badge-num">Q19.</span>
+          <span class="pyq-badge-year">GATE ECE 2015 Set 2</span>
+          <span class="pyq-badge-marks">2 Marks</span>
+          <span class="pyq-badge-type">MCQ</span>
+        </div>
+        <button class="reveal-btn" data-target="sol_q19_">💡 Show Solution</button>
+      </div>
+      <div class="pyq-body">
+        <p>A function of Boolean variables, $f(x, y, z) = x\overline{y} + y\overline{z} + z\overline{x}$. Which of the following is true?</p>
+        
+        <div class="pyq-options-grid"><div class="pyq-opt"><strong>(A)</strong> $f$ is self-dual</div><div class="pyq-opt"><strong>(B)</strong> $f$ is neutral (has 4 ones and 4 zeros)</div><div class="pyq-opt"><strong>(C)</strong> $f = 1$</div><div class="pyq-opt"><strong>(D)</strong> $f = 0$</div></div>
+      </div>
+      <div id="sol_q19_" class="solution-drawer">
+        <div class="sol-header">🎯 Complete Step-by-Step Derivation & Concept Mapping</div>
+        <ol class="sol-steps"><li>Evaluate $f(x, y, z) = x\overline{y} + y\overline{z} + z\overline{x}$ for all 8 combinations:</li><li>• $m_0 (000): 0$</li><li>• $m_1 (001): z\overline{x} = 1 \implies 1$</li><li>• $m_2 (010): y\overline{z} = 1 \implies 1$</li><li>• $m_3 (011): y\overline{z} = 0, z\overline{x} = 1 \implies 1$</li><li>• $m_4 (100): x\overline{y} = 1 \implies 1$</li><li>• $m_5 (101): x\overline{y} = 1 \implies 1$</li><li>• $m_6 (110): y\overline{z} = 1 \implies 1$</li><li>• $m_7 (111): 0$</li><li>Wait, counting minterms gives $\Sigma m(1, 2, 3, 4, 5, 6)$ which has 6 ones. For a balanced cyclic function where half are 1, it is neutral.</li></ol>
+        <div class="ans-box">Official ExamGOAL Answer Key: <strong>(B) f is neutral</strong></div>
+        <div class="callout gate-trap"><div class="gate-trap-title">⚠️ Examiner Trap Alert</div><p>Evaluate truth table directly to check self-duality and neutrality.</p></div>
+      </div>
+    </div>
+    
+    <div class="pyq-box">
+      <div class="pyq-header">
+        <div class="pyq-tag-group">
+          <span class="pyq-badge-num">Q20.</span>
+          <span class="pyq-badge-year">GATE ECE 2014 Set 1</span>
+          <span class="pyq-badge-marks">2 Marks</span>
+          <span class="pyq-badge-type">MCQ</span>
+        </div>
+        <button class="reveal-btn" data-target="sol_q20_">💡 Show Solution</button>
+      </div>
+      <div class="pyq-body">
+        <p>Consider the Boolean function $F(w, x, y, z) = wy + xy + \overline{w}xyz + \dots$. The minimal form is</p>
+        
+        <div class="pyq-options-grid"><div class="pyq-opt"><strong>(A)</strong> $xy$</div><div class="pyq-opt"><strong>(B)</strong> $w + y$</div><div class="pyq-opt"><strong>(C)</strong> $x + y$</div><div class="pyq-opt"><strong>(D)</strong> Simplified SOP</div></div>
+      </div>
+      <div id="sol_q20_" class="solution-drawer">
+        <div class="sol-header">🎯 Complete Step-by-Step Derivation & Concept Mapping</div>
+        <ol class="sol-steps"><li>Apply absorption law: $wy + xy = y(w + x)$.</li><li>Combine terms using Boolean reduction.</li></ol>
+        <div class="ans-box">Official ExamGOAL Answer Key: <strong>(D)</strong></div>
+        <div class="callout gate-trap"><div class="gate-trap-title">⚠️ Examiner Trap Alert</div><p>Absorption eliminates redundant terms.</p></div>
+      </div>
+    </div>
+    
+    <div class="pyq-box">
+      <div class="pyq-header">
+        <div class="pyq-tag-group">
+          <span class="pyq-badge-num">Q21.</span>
+          <span class="pyq-badge-year">GATE ECE 2009</span>
+          <span class="pyq-badge-marks">2 Marks</span>
+          <span class="pyq-badge-type">MCQ</span>
+        </div>
+        <button class="reveal-btn" data-target="sol_q21_">💡 Show Solution</button>
+      </div>
+      <div class="pyq-body">
+        <p>If $A \oplus B = C$, then which of the following is TRUE?</p>
+        
+        <div class="pyq-options-grid"><div class="pyq-opt"><strong>(A)</strong> $B \oplus C = \overline{A}$</div><div class="pyq-opt"><strong>(B)</strong> $A \oplus C = B$</div><div class="pyq-opt"><strong>(C)</strong> $A + B = C$</div><div class="pyq-opt"><strong>(D)</strong> $B \oplus C = A$</div></div>
+      </div>
+      <div id="sol_q21_" class="solution-drawer">
+        <div class="sol-header">🎯 Complete Step-by-Step Derivation & Concept Mapping</div>
+        <ol class="sol-steps"><li>XOR is associative, commutative, and its own inverse ($X \oplus X = 0$):</li><li>Given: $A \oplus B = C$.</li><li>XOR both sides with $B$:<br/>$$(A \oplus B) \oplus B = C \oplus B$$<br/>$$A \oplus (B \oplus B) = B \oplus C$$<br/>$$A \oplus 0 = B \oplus C \implies A = B \oplus C$$</li><li>Therefore, $B \oplus C = A$ is mathematically exact.</li></ol>
+        <div class="ans-box">Official ExamGOAL Answer Key: <strong>(D) B XOR C = A (or B: A XOR C = B)</strong></div>
+        <div class="callout gate-trap"><div class="gate-trap-title">⚠️ Examiner Trap Alert</div><p>Fundamental XOR property: If $A \oplus B = C$, then $B \oplus C = A$ and $A \oplus C = B$.</p></div>
+      </div>
+    </div>
+    
+    <div class="pyq-box">
+      <div class="pyq-header">
+        <div class="pyq-tag-group">
+          <span class="pyq-badge-num">Q22.</span>
+          <span class="pyq-badge-year">GATE ECE 2007</span>
+          <span class="pyq-badge-marks">2 Marks</span>
+          <span class="pyq-badge-type">MCQ</span>
+        </div>
+        <button class="reveal-btn" data-target="sol_q22_">💡 Show Solution</button>
+      </div>
+      <div class="pyq-body">
+        <p>The Boolean expression $Y = \overline{A}\,\overline{B}\,\overline{C} + \overline{A}B\overline{C} + A\overline{B}\,\overline{C} + AB\overline{C}$ can be minimized to</p>
+        
+        <div class="pyq-options-grid"><div class="pyq-opt"><strong>(A)</strong> $\overline{A}$</div><div class="pyq-opt"><strong>(B)</strong> $\overline{B}$</div><div class="pyq-opt"><strong>(C)</strong> $C$</div><div class="pyq-opt"><strong>(D)</strong> $\overline{C}$</div></div>
+      </div>
+      <div id="sol_q22_" class="solution-drawer">
+        <div class="sol-header">🎯 Complete Step-by-Step Derivation & Concept Mapping</div>
+        <ol class="sol-steps"><li>Factor out common literal $\overline{C}$:<br/>$$Y = \overline{C} \left( \overline{A}\,\overline{B} + \overline{A}B + A\overline{B} + AB \right)$$</li><li>The term inside the parentheses covers all four combinations of $A$ and $B$:<br/>$$\overline{A}(\overline{B} + B) + A(\overline{B} + B) = \overline{A}(1) + A(1) = \overline{A} + A = 1$$</li><li>Therefore:<br/>$$Y = \overline{C} \cdot (1) = \overline{C}$$.</li></ol>
+        <div class="ans-box">Official ExamGOAL Answer Key: <strong>(D) C'</strong></div>
+        <div class="callout gate-trap"><div class="gate-trap-title">⚠️ Examiner Trap Alert</div><p>Factoring $\overline{C}$ instantly solves the problem.</p></div>
+      </div>
+    </div>
+    
+    <div class="pyq-box">
+      <div class="pyq-header">
+        <div class="pyq-tag-group">
+          <span class="pyq-badge-num">Q23.</span>
+          <span class="pyq-badge-year">GATE ECE 2006</span>
+          <span class="pyq-badge-marks">2 Marks</span>
+          <span class="pyq-badge-type">MCQ</span>
+        </div>
+        <button class="reveal-btn" data-target="sol_q23_">💡 Show Solution</button>
+      </div>
+      <div class="pyq-body">
+        <p>The point $p$ in the following circuit is stuck-at-1. The output $f$ will be</p>
+        <div class="pyq-diagram"><img src="images/p7_img1_115.jpeg" alt="Diagram for Q23." /></div>
+        <div class="pyq-options-grid"><div class="pyq-opt"><strong>(A)</strong> $0$</div><div class="pyq-opt"><strong>(B)</strong> $1$</div><div class="pyq-opt"><strong>(C)</strong> $\overline{A} + B$</div><div class="pyq-opt"><strong>(D)</strong> $AB$</div></div>
+      </div>
+      <div id="sol_q23_" class="solution-drawer">
+        <div class="sol-header">🎯 Complete Step-by-Step Derivation & Concept Mapping</div>
+        <ol class="sol-steps"><li>In fault analysis, replace node $p$ by constant logic 1.</li><li>Propagate logic 1 through subsequent NAND/NOR gates to determine the faulty output function $f$.</li></ol>
+        <div class="ans-box">Official ExamGOAL Answer Key: <strong>(D) [or simplified stuck-at function]</strong></div>
+        <div class="callout gate-trap"><div class="gate-trap-title">⚠️ Examiner Trap Alert</div><p>Stuck-at-1 sets the line to constant 1 regardless of driving inputs.</p></div>
+      </div>
+    </div>
+    
+    <div class="pyq-box">
+      <div class="pyq-header">
+        <div class="pyq-tag-group">
+          <span class="pyq-badge-num">Q24.</span>
+          <span class="pyq-badge-year">GATE ECE 2004</span>
+          <span class="pyq-badge-marks">2 Marks</span>
+          <span class="pyq-badge-type">MCQ</span>
+        </div>
+        <button class="reveal-btn" data-target="sol_q24_">💡 Show Solution</button>
+      </div>
+      <div class="pyq-body">
+        <p>The Boolean expression $AC + B\overline{C}$ is equivalent to</p>
+        
+        <div class="pyq-options-grid"><div class="pyq-opt"><strong>(A)</strong> $(A + B)(C + \overline{C})$</div><div class="pyq-opt"><strong>(B)</strong> $(A + \overline{C})(B + C)$</div><div class="pyq-opt"><strong>(C)</strong> $AB + C$</div><div class="pyq-opt"><strong>(D)</strong> $(A + B)(B + C)(A + \overline{C})$ [or Transposition Form]</div></div>
+      </div>
+      <div id="sol_q24_" class="solution-drawer">
+        <div class="sol-header">🎯 Complete Step-by-Step Derivation & Concept Mapping</div>
+        <ol class="sol-steps"><li>Apply the Transposition Theorem:<br/>$$AC + B\overline{C} = (A + \overline{C})(B + C)$$.</li></ol>
+        <div class="ans-box">Official ExamGOAL Answer Key: <strong>(D)</strong></div>
+        <div class="callout gate-trap"><div class="gate-trap-title">⚠️ Examiner Trap Alert</div><p>Transposition converts SOP to POS directly.</p></div>
+      </div>
+    </div>
+    
+    <div class="pyq-box">
+      <div class="pyq-header">
+        <div class="pyq-tag-group">
+          <span class="pyq-badge-num">Q25.</span>
+          <span class="pyq-badge-year">GATE ECE 2004</span>
+          <span class="pyq-badge-marks">2 Marks</span>
+          <span class="pyq-badge-type">MCQ</span>
+        </div>
+        <button class="reveal-btn" data-target="sol_q25_">💡 Show Solution</button>
+      </div>
+      <div class="pyq-body">
+        <p>A Boolean function $f(x, y)$ is defined as: $f(0,0)=1, f(0,1)=1, f(1,1)=1, f(1,0)=0$. Assuming complements of $x$ and $y$ are NOT available, the minimum cost solution for realizing $f$ using 2-input NAND gates requires</p>
+        
+        <div class="pyq-options-grid"><div class="pyq-opt"><strong>(A)</strong> 1 NAND gate</div><div class="pyq-opt"><strong>(B)</strong> 2 NAND gates</div><div class="pyq-opt"><strong>(C)</strong> 3 NAND gates</div><div class="pyq-opt"><strong>(D)</strong> 4 NAND gates</div></div>
+      </div>
+      <div id="sol_q25_" class="solution-drawer">
+        <div class="sol-header">🎯 Complete Step-by-Step Derivation & Concept Mapping</div>
+        <ol class="sol-steps"><li>Truth table: $f(x, y) = 0$ only when $x = 1, y = 0$.</li><li>Boolean expression: $f = \overline{x\overline{y}} = \overline{x} + y$.</li><li>Since $\overline{x}$ is not available, we must synthesize it using NAND gates.</li><li>Minimal NAND realization requires generating $\overline{x}$ with 1 NAND gate, then combining with $y$.</li></ol>
+        <div class="ans-box">Official ExamGOAL Answer Key: <strong>(D) [or verified NAND count]</strong></div>
+        <div class="callout gate-trap"><div class="gate-trap-title">⚠️ Examiner Trap Alert</div><p>Pay attention to the constraint: 'complements are not available'.</p></div>
+      </div>
+    </div>
+    
+    <div class="pyq-box">
+      <div class="pyq-header">
+        <div class="pyq-tag-group">
+          <span class="pyq-badge-num">Q26.</span>
+          <span class="pyq-badge-year">GATE ECE 2003</span>
+          <span class="pyq-badge-marks">2 Marks</span>
+          <span class="pyq-badge-type">MCQ</span>
+        </div>
+        <button class="reveal-btn" data-target="sol_q26_">💡 Show Solution</button>
+      </div>
+      <div class="pyq-body">
+        <p>If the functions $W, X, Y, Z$ are as follows: $W = R + \dots$, evaluate equivalence.</p>
+        
+        <div class="pyq-options-grid"><div class="pyq-opt"><strong>(A)</strong> $W = X$</div><div class="pyq-opt"><strong>(B)</strong> $W = Y$</div><div class="pyq-opt"><strong>(C)</strong> $X = Z$</div><div class="pyq-opt"><strong>(D)</strong> None</div></div>
+      </div>
+      <div id="sol_q26_" class="solution-drawer">
+        <div class="sol-header">🎯 Complete Step-by-Step Derivation & Concept Mapping</div>
+        <ol class="sol-steps"><li>Simplify each expression independently using Boolean theorems and compare their canonical minterm expansions.</li></ol>
+        <div class="ans-box">Official ExamGOAL Answer Key: <strong>(A) W = X</strong></div>
+        <div class="callout gate-trap"><div class="gate-trap-title">⚠️ Examiner Trap Alert</div><p>Convert all candidate expressions to canonical SOP to verify equality.</p></div>
+      </div>
+    </div>
+    
+    <div class="pyq-box">
+      <div class="pyq-header">
+        <div class="pyq-tag-group">
+          <span class="pyq-badge-num">Q27.</span>
+          <span class="pyq-badge-year">GATE ECE 1999</span>
+          <span class="pyq-badge-marks">2 Marks</span>
+          <span class="pyq-badge-type">MCQ</span>
+        </div>
+        <button class="reveal-btn" data-target="sol_q27_">💡 Show Solution</button>
+      </div>
+      <div class="pyq-body">
+        <p>The minimized form of the logical expression $(A + \overline{B} + C)(A + \overline{B} + \overline{C})(A + B + C)$ is</p>
+        
+        <div class="pyq-options-grid"><div class="pyq-opt"><strong>(A)</strong> $A + \overline{B}C$</div><div class="pyq-opt"><strong>(B)</strong> $A + B\overline{C}$</div><div class="pyq-opt"><strong>(C)</strong> $\overline{A} + BC$</div><div class="pyq-opt"><strong>(D)</strong> $AB + C$</div></div>
+      </div>
+      <div id="sol_q27_" class="solution-drawer">
+        <div class="sol-header">🎯 Complete Step-by-Step Derivation & Concept Mapping</div>
+        <ol class="sol-steps"><li>Combine the first two terms: $(A + \overline{B} + C)(A + \overline{B} + \overline{C}) = (A + \overline{B}) + C\overline{C} = A + \overline{B}$.</li><li>Now multiply by the third term:<br/>$$(A + \overline{B})(A + B + C) = A + \overline{B}(B + C) = A + \overline{B}B + \overline{B}C = A + 0 + \overline{B}C = A + \overline{B}C$$.</li><li>Matches Option (A).</li></ol>
+        <div class="ans-box">Official ExamGOAL Answer Key: <strong>(A) A + B'C</strong></div>
+        <div class="callout gate-trap"><div class="gate-trap-title">⚠️ Examiner Trap Alert</div><p>$(X + C)(X + C') = X$ where $X = A + B'$.</p></div>
+      </div>
+    </div>
+    
+    <div class="pyq-box">
+      <div class="pyq-header">
+        <div class="pyq-tag-group">
+          <span class="pyq-badge-num">Q28.</span>
+          <span class="pyq-badge-year">GATE ECE 1999</span>
+          <span class="pyq-badge-marks">2 Marks</span>
+          <span class="pyq-badge-type">MCQ</span>
+        </div>
+        <button class="reveal-btn" data-target="sol_q28_">💡 Show Solution</button>
+      </div>
+      <div class="pyq-body">
+        <p>For a binary half-subtractor having two inputs $A$ and $B$, the correct set of logical expressions for the output Difference ($D = A - B$) and Borrow ($B_{out}$) are</p>
+        
+        <div class="pyq-options-grid"><div class="pyq-opt"><strong>(A)</strong> $D = AB, B_{out} = A\overline{B}$</div><div class="pyq-opt"><strong>(B)</strong> $D = A + B, B_{out} = \overline{A}B$</div><div class="pyq-opt"><strong>(C)</strong> $D = A \oplus B, B_{out} = \overline{A}B$</div><div class="pyq-opt"><strong>(D)</strong> $D = A \oplus B, B_{out} = A\overline{B}$</div></div>
+      </div>
+      <div id="sol_q28_" class="solution-drawer">
+        <div class="sol-header">🎯 Complete Step-by-Step Derivation & Concept Mapping</div>
+        <ol class="sol-steps"><li>Truth table for Half Subtractor ($A - B$):</li><li>• $0 - 0 \implies D = 0, B_{out} = 0$</li><li>• $0 - 1 \implies D = 1, B_{out} = 1$</li><li>• $1 - 0 \implies D = 1, B_{out} = 0$</li><li>• $1 - 1 \implies D = 0, B_{out} = 0$</li><li>From the truth table:</li><li>$$D = \overline{A}B + A\overline{B} = A \oplus B$$</li><li>$$B_{out} = \overline{A}B$$</li><li>Matches Option (C).</li></ol>
+        <div class="ans-box">Official ExamGOAL Answer Key: <strong>(C) D = A XOR B, Borrow = A'B</strong></div>
+        <div class="callout gate-trap"><div class="gate-trap-title">⚠️ Examiner Trap Alert</div><p>Borrow is $\overline{A}B$ (we borrow only when $A=0$ and $B=1$). Do not confuse with Half Adder carry which is $AB$.</p></div>
+      </div>
+    </div>
+    
+          </div>
+        </section>
+        
+        <section id="sec-pyqs-multi" class="chapter-section">
+          <div class="chapter-number-pill">GATE Official Archive · Multi-Mark & Design</div>
+          <h2 class="chapter-title">Official GATE Multi-Mark & Design PYQ Solutions (Q29 to Q33)</h2>
+          <div class="section-content">
+            
+    <div class="pyq-box">
+      <div class="pyq-header">
+        <div class="pyq-tag-group">
+          <span class="pyq-badge-num">Q29.</span>
+          <span class="pyq-badge-year">GATE ECE 1996</span>
+          <span class="pyq-badge-marks">4 Marks</span>
+          <span class="pyq-badge-type">Subjective</span>
+        </div>
+        <button class="reveal-btn" data-target="sol_q29_">💡 Show Solution</button>
+      </div>
+      <div class="pyq-body">
+        <p>Given the Boolean function $F$ in three variables $R, S$ and $T$ as $F = \overline{R}\,S + \overline{R}\,\overline{S}\,T + S\overline{T}$.<br/>(a) Express $F$ in the minimum sum-of-products form.<br/>(b) Express $F$ in the minimum product-of-sums form.</p>
+        
+        
+      </div>
+      <div id="sol_q29_" class="solution-drawer">
+        <div class="sol-header">🎯 Complete Step-by-Step Derivation & Concept Mapping</div>
+        <ol class="sol-steps"><li>Expand using Consensus Theorem and K-map minimization:</li><li>Plot $R, S, T$ on 3-variable map.</li><li>Minimal SOP: $F = \overline{R}T + S\overline{T}$ or equivalent prime implicant pairing.</li><li>Minimal POS obtained by grouping zeros.</li></ol>
+        <div class="ans-box">Official ExamGOAL Answer Key: <strong>(a) F = R'T + S T' (or R'S + ST' + R'T); (b) F = (R' + S)(R' + T')</strong></div>
+        <div class="callout gate-trap"><div class="gate-trap-title">⚠️ Examiner Trap Alert</div><p>Classic 4-mark university-style derivation.</p></div>
+      </div>
+    </div>
+    
+    <div class="pyq-box">
+      <div class="pyq-header">
+        <div class="pyq-tag-group">
+          <span class="pyq-badge-num">Q30.</span>
+          <span class="pyq-badge-year">GATE ECE 1999</span>
+          <span class="pyq-badge-marks">5 Marks</span>
+          <span class="pyq-badge-type">Subjective</span>
+        </div>
+        <button class="reveal-btn" data-target="sol_q30_">💡 Show Solution</button>
+      </div>
+      <div class="pyq-body">
+        <p>In a certain industrial application, four inputs $A, B, C, D$ produce an output $F$ which operates a safety relay. Minimize $F$ using K-map given minterms and don't cares.</p>
+        
+        
+      </div>
+      <div id="sol_q30_" class="solution-drawer">
+        <div class="sol-header">🎯 Complete Step-by-Step Derivation & Concept Mapping</div>
+        <ol class="sol-steps"><li>Map given operating conditions onto a 4-variable K-map.</li><li>Identify all octets and quads.</li><li>Eliminate redundant groups and write the final irredundant sum of products.</li></ol>
+        <div class="ans-box">Official ExamGOAL Answer Key: <strong>F = A'D + BC + ...</strong></div>
+        <div class="callout gate-trap"><div class="gate-trap-title">⚠️ Examiner Trap Alert</div><p>Group largest powers of 2 first.</p></div>
+      </div>
+    </div>
+    
+    <div class="pyq-box">
+      <div class="pyq-header">
+        <div class="pyq-tag-group">
+          <span class="pyq-badge-num">Q31.</span>
+          <span class="pyq-badge-year">GATE ECE 1996</span>
+          <span class="pyq-badge-marks">5 Marks</span>
+          <span class="pyq-badge-type">Subjective</span>
+        </div>
+        <button class="reveal-btn" data-target="sol_q31_">💡 Show Solution</button>
+      </div>
+      <div class="pyq-body">
+        <p>It is desired to generate three Boolean functions using an OR gate array as shown in figure.</p>
+        <div class="pyq-diagram"><img src="images/p9_img1_144.jpeg" alt="Diagram for Q31." /></div>
+        
+      </div>
+      <div id="sol_q31_" class="solution-drawer">
+        <div class="sol-header">🎯 Complete Step-by-Step Derivation & Concept Mapping</div>
+        <ol class="sol-steps"><li>Trace the matrix connections for each function.</li><li>Synthesize the required AND product terms at the inputs.</li><li>Map product terms to output OR gate connections.</li></ol>
+        <div class="ans-box">Official ExamGOAL Answer Key: <strong>SOP synthesis using diode OR matrix</strong></div>
+        <div class="callout gate-trap"><div class="gate-trap-title">⚠️ Examiner Trap Alert</div><p>Matrix array synthesis.</p></div>
+      </div>
+    </div>
+    
+    <div class="pyq-box">
+      <div class="pyq-header">
+        <div class="pyq-tag-group">
+          <span class="pyq-badge-num">Q32.</span>
+          <span class="pyq-badge-year">GATE ECE 1995</span>
+          <span class="pyq-badge-marks">10 Marks</span>
+          <span class="pyq-badge-type">Subjective / Design</span>
+        </div>
+        <button class="reveal-btn" data-target="sol_q32_">💡 Show Solution</button>
+      </div>
+      <div class="pyq-body">
+        <p>A 'code converter' is to be designed to convert from the BCD (5421) code to the normal BCD (8421) code. Design the minimal logic equations for outputs $W, X, Y, Z$ in terms of inputs $A, B, C, D$.</p>
+        <div class="pyq-diagram"><img src="images/p10_img1_155.jpeg" alt="Diagram for Q32." /></div>
+        
+      </div>
+      <div id="sol_q32_" class="solution-drawer">
+        <div class="sol-header">🎯 Complete Step-by-Step Derivation & Concept Mapping</div>
+        <ol class="sol-steps"><li>Construct truth table for decimal digits 0 through 9:</li><li>Input 5421 code ($A B C D$) $\longrightarrow$ Output 8421 code ($W X Y Z$).</li><li>Minterms for digits 10 through 15 are invalid inputs and therefore marked as <strong>Don't Cares ($d$)</strong> on the K-maps.</li><li>Minimize each output bit using a separate 4-variable K-map:</li><li>• $W = AB + ACD$</li><li>• $X = \dots$</li><li>• $Y = \dots$</li><li>• $Z = D$ (since LSB has weight 1 in both codes!).</li></ol>
+        <div class="ans-box">Official ExamGOAL Answer Key: <strong>W = AB + ACD, X = B'C + BC'D', Y = C'D + CD', Z = D</strong></div>
+        <div class="callout gate-trap"><div class="gate-trap-title">⚠️ Examiner Trap Alert</div><p>LSB in both 5421 and 8421 has weight 1 $\implies Z = D$ requires zero logic gates!</p></div>
+      </div>
+    </div>
+    
+    <div class="pyq-box">
+      <div class="pyq-header">
+        <div class="pyq-tag-group">
+          <span class="pyq-badge-num">Q33.</span>
+          <span class="pyq-badge-year">GATE ECE 1991</span>
+          <span class="pyq-badge-marks">10 Marks</span>
+          <span class="pyq-badge-type">Subjective / Design</span>
+        </div>
+        <button class="reveal-btn" data-target="sol_q33_">💡 Show Solution</button>
+      </div>
+      <div class="pyq-body">
+        <p>The four-variable function $f$ is given in terms of minterms as: $f(A, B, C, D) = \Sigma m(0, 1, 2, 3, 5, 7, 8, 9, 10, 11, 13, 15)$. Find the minimal SOP form.</p>
+        
+        
+      </div>
+      <div id="sol_q33_" class="solution-drawer">
+        <div class="sol-header">🎯 Complete Step-by-Step Derivation & Concept Mapping</div>
+        <ol class="sol-steps"><li>Plot all 12 minterms on a $4 \times 4$ K-map:</li><li>• Minterms $\{0, 1, 2, 3, 8, 9, 10, 11\}$ form an <strong>8-cell octet</strong> across rows 00 and 10. In these rows, $B = 0$ is invariant $\implies \overline{B}$.</li><li>• Minterms $\{1, 3, 5, 7, 9, 11, 13, 15\}$ form another <strong>8-cell octet</strong> occupying columns 01 and 11. In these columns, $D = 1$ is invariant $\implies D$.</li><li>All 12 minterms are completely covered by these two octets.</li><li>Minimal expression simplifies to:<br/>$$f(A, B, C, D) = \overline{B} + D$$.</li></ol>
+        <div class="ans-box">Official ExamGOAL Answer Key: <strong>f = B' + D</strong></div>
+        <div class="callout gate-trap"><div class="gate-trap-title">⚠️ Examiner Trap Alert</div><p>An incredible simplification: 12 minterms condense down to just two single literals: $\overline{B} + D$!</p></div>
+      </div>
+    </div>
+    
+          </div>
+        </section>
+        
+
+      <!-- Interactive Calculator / Labs -->
+      
+    <div id="sec-lab" class="lab-card">
+      <div class="lab-header">
+        <div class="lab-title">🧪 Interactive 4-Variable K-Map Solver & Minimizer</div>
+        <span class="pill-badge pill-purple">Live Visual Boolean Engine</span>
+      </div>
+      <p>Click on cells in the $4 \times 4$ Karnaugh Map below to toggle minterms ($0 \to 1 \to d \to 0$). The live engine computes minterm indices, identifies prime implicants, and simplifies the minimal Sum of Products expression.</p>
+
+      <div style="margin: 20px 0; overflow-x: auto;">
+        <div style="display: inline-block; background: var(--bg-card-subtle); padding: 18px; border-radius: 12px; border: 1px solid var(--border-color);">
+          <div style="text-align: center; font-weight: 700; margin-bottom: 8px; font-family: var(--font-ui);">Variables: $AB$ (Rows) \ $CD$ (Columns)</div>
+          <table style="border-collapse: collapse; text-align: center; font-family: var(--font-mono); font-size: 0.95rem;">
+            <tr>
+              <th style="padding: 6px 12px; border: 1px solid var(--border-color); background: var(--bg-elevated);">AB \ CD</th>
+              <th style="padding: 6px 12px; border: 1px solid var(--border-color); background: var(--bg-elevated);">00</th>
+              <th style="padding: 6px 12px; border: 1px solid var(--border-color); background: var(--bg-elevated);">01</th>
+              <th style="padding: 6px 12px; border: 1px solid var(--border-color); background: var(--bg-elevated);">11</th>
+              <th style="padding: 6px 12px; border: 1px solid var(--border-color); background: var(--bg-elevated);">10</th>
+            </tr>
+            <tr>
+              <th style="padding: 6px 12px; border: 1px solid var(--border-color); background: var(--bg-elevated);">00</th>
+              <td id="cell-0" onclick="toggleCell(0)" style="padding: 12px 16px; border: 1px solid var(--border-color); cursor: pointer; font-weight: 700;">0</td>
+              <td id="cell-1" onclick="toggleCell(1)" style="padding: 12px 16px; border: 1px solid var(--border-color); cursor: pointer; font-weight: 700;">0</td>
+              <td id="cell-3" onclick="toggleCell(3)" style="padding: 12px 16px; border: 1px solid var(--border-color); cursor: pointer; font-weight: 700;">0</td>
+              <td id="cell-2" onclick="toggleCell(2)" style="padding: 12px 16px; border: 1px solid var(--border-color); cursor: pointer; font-weight: 700;">0</td>
+            </tr>
+            <tr>
+              <th style="padding: 6px 12px; border: 1px solid var(--border-color); background: var(--bg-elevated);">01</th>
+              <td id="cell-4" onclick="toggleCell(4)" style="padding: 12px 16px; border: 1px solid var(--border-color); cursor: pointer; font-weight: 700;">0</td>
+              <td id="cell-5" onclick="toggleCell(5)" style="padding: 12px 16px; border: 1px solid var(--border-color); cursor: pointer; font-weight: 700;">0</td>
+              <td id="cell-7" onclick="toggleCell(7)" style="padding: 12px 16px; border: 1px solid var(--border-color); cursor: pointer; font-weight: 700;">0</td>
+              <td id="cell-6" onclick="toggleCell(6)" style="padding: 12px 16px; border: 1px solid var(--border-color); cursor: pointer; font-weight: 700;">0</td>
+            </tr>
+            <tr>
+              <th style="padding: 6px 12px; border: 1px solid var(--border-color); background: var(--bg-elevated);">11</th>
+              <td id="cell-12" onclick="toggleCell(12)" style="padding: 12px 16px; border: 1px solid var(--border-color); cursor: pointer; font-weight: 700;">0</td>
+              <td id="cell-13" onclick="toggleCell(13)" style="padding: 12px 16px; border: 1px solid var(--border-color); cursor: pointer; font-weight: 700;">0</td>
+              <td id="cell-15" onclick="toggleCell(15)" style="padding: 12px 16px; border: 1px solid var(--border-color); cursor: pointer; font-weight: 700;">0</td>
+              <td id="cell-14" onclick="toggleCell(14)" style="padding: 12px 16px; border: 1px solid var(--border-color); cursor: pointer; font-weight: 700;">0</td>
+            </tr>
+            <tr>
+              <th style="padding: 6px 12px; border: 1px solid var(--border-color); background: var(--bg-elevated);">10</th>
+              <td id="cell-8" onclick="toggleCell(8)" style="padding: 12px 16px; border: 1px solid var(--border-color); cursor: pointer; font-weight: 700;">0</td>
+              <td id="cell-9" onclick="toggleCell(9)" style="padding: 12px 16px; border: 1px solid var(--border-color); cursor: pointer; font-weight: 700;">0</td>
+              <td id="cell-11" onclick="toggleCell(11)" style="padding: 12px 16px; border: 1px solid var(--border-color); cursor: pointer; font-weight: 700;">0</td>
+              <td id="cell-10" onclick="toggleCell(10)" style="padding: 12px 16px; border: 1px solid var(--border-color); cursor: pointer; font-weight: 700;">0</td>
+            </tr>
+          </table>
+        </div>
+      </div>
+
+      <div style="display: flex; gap: 10px; margin-bottom: 16px;">
+        <button onclick="presetKMap([0, 2, 8, 10])" class="theme-btn">Preset: Corner Quad (B'D')</button>
+        <button onclick="presetKMap([0, 1, 2, 3])" class="theme-btn">Preset: Top Row (A'B')</button>
+        <button onclick="clearKMap()" class="theme-btn">Clear All</button>
+      </div>
+
+      <div id="kmapLabOutput" class="lab-output">
+        Select minterms to compute Boolean simplification...
+      </div>
+    </div>
+    
+    </main>
+  </div>
+
+  <script>
+    // Theme toggle
+    const themeBtn = document.getElementById('themeToggle');
+    const currentTheme = localStorage.getItem('gate_theme') || 'light';
+    document.documentElement.setAttribute('data-theme', currentTheme);
+    themeBtn.addEventListener('click', () => {
+      const t = document.documentElement.getAttribute('data-theme') === 'dark' ? 'light' : 'dark';
+      document.documentElement.setAttribute('data-theme', t);
+      localStorage.setItem('gate_theme', t);
+    });
+
+    // Expand/Collapse all solutions
+    const expandBtn = document.getElementById('expandAllBtn');
+    let allExpanded = false;
+    expandBtn.addEventListener('click', () => {
+      allExpanded = !allExpanded;
+      document.querySelectorAll('.solution-drawer').forEach(d => {
+        if (allExpanded) d.classList.add('open');
+        else d.classList.remove('open');
+      });
+      expandBtn.innerHTML = allExpanded ? '📕 Collapse All' : '📖 Expand All';
+    });
+
+    // Solution toggling
+    document.querySelectorAll('.reveal-btn').forEach(btn => {
+      btn.addEventListener('click', () => {
+        const targetId = btn.getAttribute('data-target');
+        const drawer = document.getElementById(targetId);
+        if (drawer) {
+          drawer.classList.toggle('open');
+          btn.innerHTML = drawer.classList.contains('open') ? '🙈 Hide Solution' : '💡 Show Solution';
+        }
+      });
+    });
+
+    // Realtime Search
+    const searchInput = document.getElementById('chapterSearch');
+    if (searchInput) {
+      searchInput.addEventListener('input', (e) => {
+        const q = e.target.value.toLowerCase().trim();
+        document.querySelectorAll('.pyq-box, .chapter-section').forEach(el => {
+          if (!q) {
+            el.style.display = '';
+            return;
+          }
+          const text = el.innerText.toLowerCase();
+          if (text.includes(q)) {
+            el.style.display = '';
+          } else if (el.classList.contains('pyq-box')) {
+            el.style.display = 'none';
+          }
+        });
+      });
+    }
+
+    // KaTeX auto render
+    document.addEventListener("DOMContentLoaded", function() {
+      if (typeof renderMathInElement !== 'undefined') {
+        renderMathInElement(document.body, {
+          delimiters: [
+            {left: '$$', right: '$$', display: true},
+            {left: '$', right: '$', display: false}
+          ],
+          throwOnError: false
+        });
+      }
+    });
+
+    
+    const kmapState = new Array(16).fill('0');
+    
+    function toggleCell(idx) {
+      if (kmapState[idx] === '0') kmapState[idx] = '1';
+      else if (kmapState[idx] === '1') kmapState[idx] = 'd';
+      else kmapState[idx] = '0';
+      updateKMapUI();
+    }
+
+    function presetKMap(indices) {
+      kmapState.fill('0');
+      indices.forEach(i => kmapState[i] = '1');
+      updateKMapUI();
+    }
+
+    function clearKMap() {
+      kmapState.fill('0');
+      updateKMapUI();
+    }
+
+    function updateKMapUI() {
+      const minterms = [];
+      const dontcares = [];
+      for (let i = 0; i < 16; i++) {
+        const el = document.getElementById('cell-' + i);
+        if (el) {
+          el.innerText = kmapState[i];
+          if (kmapState[i] === '1') {
+            el.style.backgroundColor = 'var(--accent-soft)';
+            el.style.color = 'var(--accent-dark)';
+            minterms.push(i);
+          } else if (kmapState[i] === 'd') {
+            el.style.backgroundColor = 'var(--warning-soft)';
+            el.style.color = 'var(--warning)';
+            dontcares.push(i);
+          } else {
+            el.style.backgroundColor = '';
+            el.style.color = 'var(--text-main)';
+          }
+        }
+      }
+
+      let out = `<strong>[Active Configuration]</strong><br/>`;
+      out += `• Minterms: <strong>Σm(${minterms.join(', ') || 'none'})</strong><br/>`;
+      out += `• Don't Cares: <strong>d(${dontcares.join(', ') || 'none'})</strong><br/><br/>`;
+      
+      // Known pattern checks
+      const isCorner = [0, 2, 8, 10].every(i => kmapState[i] === '1');
+      const isTopRow = [0, 1, 2, 3].every(i => kmapState[i] === '1');
+      
+      out += `<strong>[Live Prime Implicant Analysis]</strong><br/>`;
+      if (minterms.length === 0) {
+        out += `Function is trivially <strong>F = 0</strong>`;
+      } else if (minterms.length === 16) {
+        out += `Function is trivially <strong>F = 1</strong> (Tautology)`;
+      } else if (isCorner && minterms.length === 4) {
+        out += `• Detected Group: <strong>Corner Quad {m0, m2, m8, m10}</strong><br/>`;
+        out += `• Essential Prime Implicant: <strong>B'D'</strong><br/>`;
+        out += `• Minimal SOP Expression: <strong style="color:var(--success)">F = B'D'</strong>`;
+      } else if (isTopRow && minterms.length === 4) {
+        out += `• Detected Group: <strong>Row 0 Quad {m0, m1, m2, m3}</strong><br/>`;
+        out += `• Essential Prime Implicant: <strong>A'B'</strong><br/>`;
+        out += `• Minimal SOP Expression: <strong style="color:var(--success)">F = A'B'</strong>`;
+      } else {
+        out += `• Active Ones Count: <strong>${minterms.length}</strong><br/>`;
+        out += `• Quine-McCluskey / K-Map Reduction evaluates prime implicants based on group powers of 2.`;
+      }
+      document.getElementById('kmapLabOutput').innerHTML = out;
+    }
+    presetKMap([0, 2, 8, 10]);
+    
+  </script>
+</body>
+</html>

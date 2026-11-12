@@ -1,0 +1,1848 @@
+[
+  {
+    "qnum": "Q1.",
+    "q_num": 1,
+    "year": "GATE ECE 2026",
+    "marks": "1 Mark",
+    "qtype": "MCQ",
+    "statement": "A binary ripple counter is designed to count \n to \n. Which of the following is/are the number of flip-flops required\nto design the counter?",
+    "options": [
+      [
+        "(A)",
+        "6"
+      ],
+      [
+        "(B)",
+        "7"
+      ],
+      [
+        "(C)",
+        "4"
+      ],
+      [
+        "(D)",
+        "5"
+      ]
+    ],
+    "diagrams": [],
+    "answer_key": "B"
+  },
+  {
+    "qnum": "Q2.",
+    "q_num": 2,
+    "year": "GATE ECE 2026",
+    "marks": "1 Mark",
+    "qtype": "NAT / Subjective",
+    "statement": "The negative edge triggered \n flip-flop in the Figure has  and \n inputs tied to Logic High and a square wave of 10\ncycles/second is applied to its clock \n input. The frequency of the output \n (in cycles/second) is \n .\n\n(rounded off to two decimal places)",
+    "options": [],
+    "diagrams": [
+      "images/p2_img1_54.png"
+    ],
+    "answer_key": "(5) (4.90 to 5.10)"
+  },
+  {
+    "qnum": "Q3.",
+    "q_num": 3,
+    "year": "GATE ECE 2023",
+    "marks": "1 Mark",
+    "qtype": "MCQ",
+    "statement": "The synchronous sequential circuit shown below works at a clock frequency of 1 GHz. The throughput, in Mbits/s, and\nthe latency, in ns, respectively, are",
+    "options": [
+      [
+        "(A)",
+        "1000, 3"
+      ],
+      [
+        "(B)",
+        "333.33, 1"
+      ],
+      [
+        "(C)",
+        "2000, 3"
+      ],
+      [
+        "(D)",
+        "333.33, 3"
+      ]
+    ],
+    "diagrams": [
+      "images/p2_img2_56.png"
+    ],
+    "answer_key": "A"
+  },
+  {
+    "qnum": "Q4.",
+    "q_num": 4,
+    "year": "GATE ECE 2019",
+    "marks": "1 Mark",
+    "qtype": "NAT / Subjective",
+    "statement": "In the circuit shown, the clock frequency, i.e., the frequency of the Clk signal, is 12 kHz. The frequency of the signal at \nis _______ kHz.",
+    "options": [],
+    "diagrams": [
+      "images/p2_img3_58.png"
+    ],
+    "answer_key": "4"
+  },
+  {
+    "qnum": "Q5.",
+    "q_num": 5,
+    "year": "GATE ECE",
+    "marks": "1 Mark",
+    "qtype": "NAT / Subjective",
+    "statement": "A traffic signal cycles from GREEN to YELLOW, YELLOW to RED and RED to GREEN. In each cycle, GREEN is turned on for\n70 seconds, YELLOW is turned on for 5 seconds and the RED is turned on for 75 seconds. This traffic light has to be\nimplemented using a finite state machine (FSM). The only input to this FSM is a clock of 5 second period. The minimum\n\nnumber of flip-flops required to implement this FSM is _______.",
+    "options": [],
+    "diagrams": [],
+    "answer_key": "5"
+  },
+  {
+    "qnum": "Q6.",
+    "q_num": 6,
+    "year": "GATE ECE 2017 Set 1",
+    "marks": "1 Mark",
+    "qtype": "NAT / Subjective",
+    "statement": "Consider the D-Latch shown in the figure, which is transparent when its clock input CK is high and has zero propagation\ndelay. In the figure, the clock signal CLK1 has a 50% duty cycle and CLK2 is a one-fifth period delayed version of CLK1.\nThe duty cycle at the output of the latch in percentage is ________.",
+    "options": [],
+    "diagrams": [
+      "images/p3_img1_74.png"
+    ],
+    "answer_key": "29.9 to 30.1"
+  },
+  {
+    "qnum": "Q7.",
+    "q_num": 7,
+    "year": "GATE ECE 2017 Set 1",
+    "marks": "1 Mark",
+    "qtype": "MCQ",
+    "statement": "In the latch circuit shown, the NAND gates have non-zero, but unequal propagation delays. The present input condition\nis: P = Q = '0'. If the input condition is changed simultaneously to P = Q = '1', the outputs X and Y are",
+    "options": [
+      [
+        "(A)",
+        "X = '1', Y = '1'"
+      ],
+      [
+        "(B)",
+        "either X = '1', Y = '0' or X = '0', Y = '1'"
+      ],
+      [
+        "(C)",
+        "either X = '1', Y = '1' or X = '0', Y = '0'"
+      ],
+      [
+        "(D)",
+        "X = '0', Y = '0'"
+      ]
+    ],
+    "diagrams": [
+      "images/p3_img2_76.png"
+    ],
+    "answer_key": "B"
+  },
+  {
+    "qnum": "Q8.",
+    "q_num": 8,
+    "year": "GATE ECE 2016 Set 2",
+    "marks": "1 Mark",
+    "qtype": "NAT / Subjective",
+    "statement": "Assume that all the digital gates in the circuit shown in the figure are ideal, the resistor \n and the supply voltage\nis \n. The D flip-flops D1, D2, D3, D4 and D5 are initialized with logic values 0,1,0,1 and 0, respectively. The clock has a\n\n30% duty cycle.\n\nThe average power dissipated (in mW) in the resistor  is ________",
+    "options": [],
+    "diagrams": [
+      "images/p3_img3_78.png"
+    ],
+    "answer_key": "1.45 to 1.55"
+  },
+  {
+    "qnum": "Q9.",
+    "q_num": 9,
+    "year": "GATE ECE",
+    "marks": "1 Mark",
+    "qtype": "MCQ",
+    "statement": "The circuit shown consists of J-K flip-flops, each with an active low asynchronous reset (\n input). The counter\ncorresponding to this circuit is",
+    "options": [
+      [
+        "(A)",
+        "a modulo-5 binary up counter"
+      ],
+      [
+        "(B)",
+        "a modulo-6 binary down counter"
+      ],
+      [
+        "(C)",
+        "a modulo-5 binary down counter"
+      ],
+      [
+        "(D)",
+        "a modulo-6 binary up counter"
+      ]
+    ],
+    "diagrams": [
+      "images/p4_img1_92.jpeg"
+    ],
+    "answer_key": "A"
+  },
+  {
+    "qnum": "Q10.",
+    "q_num": 10,
+    "year": "GATE ECE 2015 Set 2",
+    "marks": "1 Mark",
+    "qtype": "NAT / Subjective",
+    "statement": "A mod- counter using a synchronous binary up-counter with synchronous clear input is shown in the figure. The value\nof  is ________.",
+    "options": [],
+    "diagrams": [
+      "images/p4_img2_93.png"
+    ],
+    "answer_key": "7"
+  },
+  {
+    "qnum": "Q11.",
+    "q_num": 11,
+    "year": "GATE ECE 2014 Set 1",
+    "marks": "1 Mark",
+    "qtype": "NAT / Subjective",
+    "statement": "Five JK flip-flops are cascaded to form the circuit shown in Figure. Clock pulses at a frequency of 1 MHz are applied as\nshown. The frequency (in kHz) of the waveform at Q3 is __________ .",
+    "options": [],
+    "diagrams": [
+      "images/p4_img3_95.png"
+    ],
+    "answer_key": "62.4 to 62.6"
+  },
+  {
+    "qnum": "Q12.",
+    "q_num": 12,
+    "year": "GATE ECE 2014 Set 3",
+    "marks": "1 Mark",
+    "qtype": "MCQ",
+    "statement": "The circuit shown in the figure is a",
+    "options": [
+      [
+        "(A)",
+        "Toggle Flip Flop"
+      ],
+      [
+        "(B)",
+        "JK Flip Flop"
+      ],
+      [
+        "(C)",
+        "SR Latch"
+      ],
+      [
+        "(D)",
+        "Master-Slave D Flip Flop"
+      ]
+    ],
+    "diagrams": [
+      "images/p4_img4_97.png"
+    ],
+    "answer_key": "D"
+  },
+  {
+    "qnum": "Q13.",
+    "q_num": 13,
+    "year": "GATE ECE",
+    "marks": "1 Mark",
+    "qtype": "MCQ",
+    "statement": "Consider the given circuit.\n\nIn this circuit, the race around",
+    "options": [
+      [
+        "(A)",
+        "does not occur"
+      ],
+      [
+        "(B)",
+        "occurs when CLK = 0"
+      ],
+      [
+        "(C)",
+        "occurs when CLK = 1 and A = B = 1"
+      ],
+      [
+        "(D)",
+        "occurs when CLK = 1 and A = B = 0"
+      ]
+    ],
+    "diagrams": [
+      "images/p5_img1_112.png"
+    ],
+    "answer_key": "A"
+  },
+  {
+    "qnum": "Q14.",
+    "q_num": 14,
+    "year": "GATE ECE 2011",
+    "marks": "1 Mark",
+    "qtype": "MCQ",
+    "statement": "When the output Y in the circuit below is \"1\", it implies that data has",
+    "options": [
+      [
+        "(A)",
+        "changed from 0 to 1"
+      ],
+      [
+        "(B)",
+        "changed from 1 to 0"
+      ],
+      [
+        "(C)",
+        "changed in either direction"
+      ],
+      [
+        "(D)",
+        "not changed"
+      ]
+    ],
+    "diagrams": [
+      "images/p5_img2_114.png"
+    ],
+    "answer_key": "A"
+  },
+  {
+    "qnum": "Q15.",
+    "q_num": 15,
+    "year": "GATE ECE 2005",
+    "marks": "1 Mark",
+    "qtype": "MCQ",
+    "statement": "The present output Qn of an edge triggered JK flip-flop is logic 0. If J=1, then Qn+1",
+    "options": [
+      [
+        "(A)",
+        "can not be determined"
+      ],
+      [
+        "(B)",
+        "will be logic 0"
+      ],
+      [
+        "(C)",
+        "will be logic 1"
+      ],
+      [
+        "(D)",
+        "will race around"
+      ]
+    ],
+    "diagrams": [],
+    "answer_key": "C"
+  },
+  {
+    "qnum": "Q16.",
+    "q_num": 16,
+    "year": "GATE ECE 2005",
+    "marks": "1 Mark",
+    "qtype": "MCQ",
+    "statement": "The given figure shows a ripple counter using positive edge triggered flip-flops. If the present state of counter is Q2 Q1\nQ0 = 011, then its next state ( Q2 Q1 Q0 ) will be",
+    "options": [
+      [
+        "(A)",
+        "010"
+      ],
+      [
+        "(B)",
+        "100"
+      ],
+      [
+        "(C)",
+        "111"
+      ],
+      [
+        "(D)",
+        "101"
+      ]
+    ],
+    "diagrams": [
+      "images/p5_img3_116.jpeg"
+    ],
+    "answer_key": "B"
+  },
+  {
+    "qnum": "Q17.",
+    "q_num": 17,
+    "year": "GATE ECE",
+    "marks": "1 Mark",
+    "qtype": "MCQ",
+    "statement": "A master slave flip-flop has the characteristic that",
+    "options": [
+      [
+        "(A)",
+        "change in the input immediately reflected in the output"
+      ],
+      [
+        "(B)",
+        "change in the output occurs when the state of the master is affected"
+      ],
+      [
+        "(C)",
+        "change in the output occurs when the state of the slave is affected"
+      ],
+      [
+        "(D)",
+        "both the master and the slave states are affected at the same time"
+      ]
+    ],
+    "diagrams": [],
+    "answer_key": "C"
+  },
+  {
+    "qnum": "Q18.",
+    "q_num": 18,
+    "year": "GATE ECE 2004",
+    "marks": "1 Mark",
+    "qtype": "MCQ",
+    "statement": "Choose the correct one from among the alternatives A, B, C, D after matching an item from Group 1 with the most\nappropriate item in Group 2.\nGroup1\n\nP. shift register\nQ. Counter\nR. Decoder\n\nGroup2\n1. Frequency division\n2. Addressing in memory chips\n3. Serial to parallel data conversion",
+    "options": [
+      [
+        "(A)",
+        "P-3, Q-2, R-1"
+      ],
+      [
+        "(B)",
+        "P-3, Q-1, R-2"
+      ],
+      [
+        "(C)",
+        "P-2, Q-1, R-3"
+      ],
+      [
+        "(D)",
+        "P-1, Q-3, R-2"
+      ]
+    ],
+    "diagrams": [],
+    "answer_key": "B"
+  },
+  {
+    "qnum": "Q19.",
+    "q_num": 19,
+    "year": "GATE ECE 2003",
+    "marks": "1 Mark",
+    "qtype": "MCQ",
+    "statement": "A 0 to 6 counter consist of 3 flip-flops and a combination circuit of 2 input gate(s). The combination circuit consists of",
+    "options": [
+      [
+        "(A)",
+        "one AND gate"
+      ],
+      [
+        "(B)",
+        "one OR gate"
+      ],
+      [
+        "(C)",
+        "one AND gate and one OR gate"
+      ],
+      [
+        "(D)",
+        "two AND gates"
+      ]
+    ],
+    "diagrams": [],
+    "answer_key": "D"
+  },
+  {
+    "qnum": "Q20.",
+    "q_num": 20,
+    "year": "GATE ECE 1998",
+    "marks": "1 Mark",
+    "qtype": "MCQ",
+    "statement": "Figure shows a mod-K counter, Here K is equal to",
+    "options": [
+      [
+        "(A)",
+        "1"
+      ],
+      [
+        "(B)",
+        "2"
+      ],
+      [
+        "(C)",
+        "3"
+      ],
+      [
+        "(D)",
+        "4"
+      ]
+    ],
+    "diagrams": [
+      "images/p6_img1_129.jpeg"
+    ],
+    "answer_key": "C"
+  },
+  {
+    "qnum": "Q21.",
+    "q_num": 21,
+    "year": "GATE ECE",
+    "marks": "1 Mark",
+    "qtype": "MCQ",
+    "statement": "In a J_K flip-flop, we have J=\n and K=1 (see figure). Assuming the flip-flop was intially cleared and then clocked for 6\npulses, the sequence at the Q output will be",
+    "options": [
+      [
+        "(A)",
+        "010000"
+      ],
+      [
+        "(B)",
+        "011001"
+      ],
+      [
+        "(C)",
+        "010010"
+      ],
+      [
+        "(D)",
+        "010101"
+      ]
+    ],
+    "diagrams": [
+      "images/p7_img1_142.jpeg"
+    ],
+    "answer_key": "D"
+  },
+  {
+    "qnum": "Q22.",
+    "q_num": 22,
+    "year": "GATE ECE 1995",
+    "marks": "1 Mark",
+    "qtype": "MCQ",
+    "statement": "A switch-tail ring counter is made by using a single D flip-flop. The resulting circuit is a",
+    "options": [
+      [
+        "(A)",
+        "SR flip-flop"
+      ],
+      [
+        "(B)",
+        "JK flip-flop"
+      ],
+      [
+        "(C)",
+        "D flip-flop"
+      ],
+      [
+        "(D)",
+        "T flip-flop"
+      ]
+    ],
+    "diagrams": [],
+    "answer_key": "D"
+  },
+  {
+    "qnum": "Q23.",
+    "q_num": 23,
+    "year": "GATE ECE 1995",
+    "marks": "1 Mark",
+    "qtype": "MCQ",
+    "statement": "An R-S latch is",
+    "options": [
+      [
+        "(A)",
+        "Combinational circuit"
+      ],
+      [
+        "(B)",
+        "Synchronous sequential circuit."
+      ],
+      [
+        "(C)",
+        "One bit memory element"
+      ],
+      [
+        "(D)",
+        "One clock delay element."
+      ]
+    ],
+    "diagrams": [],
+    "answer_key": "C"
+  },
+  {
+    "qnum": "Q24.",
+    "q_num": 24,
+    "year": "GATE ECE 1994",
+    "marks": "1 Mark",
+    "qtype": "NAT / Subjective",
+    "statement": "Synchronous counters are _____ than the ripple counters.",
+    "options": [],
+    "diagrams": [],
+    "answer_key": "faster"
+  },
+  {
+    "qnum": "Q25.",
+    "q_num": 25,
+    "year": "GATE ECE 1993",
+    "marks": "1 Mark",
+    "qtype": "NAT / Subjective",
+    "statement": "A pulse train with a frequency of 1 MHz is counted using a modulo-1024 ripple-counter built with J-K flip flops. For\nproper operation of the counter, the maximum permissible propagation delay per flip flop stage is ______ n sec.",
+    "options": [],
+    "diagrams": [],
+    "answer_key": "100"
+  },
+  {
+    "qnum": "Q26.",
+    "q_num": 26,
+    "year": "GATE ECE 1992",
+    "marks": "1 Mark",
+    "qtype": "MCQ",
+    "statement": "The initial contents of the 4-bit serial-in-parallel-out, right-shift, Shift Register shown in figure is 0110. After three clock\npulses are applied, the contents of the Shift Register will be",
+    "options": [
+      [
+        "(A)",
+        "0000"
+      ],
+      [
+        "(B)",
+        "0101"
+      ],
+      [
+        "(C)",
+        "1010"
+      ],
+      [
+        "(D)",
+        "1111"
+      ]
+    ],
+    "diagrams": [
+      "images/p7_img2_143.jpeg"
+    ],
+    "answer_key": "C"
+  },
+  {
+    "qnum": "Q27.",
+    "q_num": 27,
+    "year": "GATE ECE",
+    "marks": "1 Mark",
+    "qtype": "NAT / Subjective",
+    "statement": "A SR FLIP-FLOP can be converted into a T FLIP-FLOP by connecting ___ to Q and ___ to \n.",
+    "options": [],
+    "diagrams": [],
+    "answer_key": "R, S"
+  },
+  {
+    "qnum": "Q28.",
+    "q_num": 28,
+    "year": "GATE ECE 1990",
+    "marks": "1 Mark",
+    "qtype": "MCQ",
+    "statement": "A 4 bit modulo-16 ripple counter uses JK flip-flops. If the propagation delay of each FF is 50ns, the maximum clock\nfrequency that can be used is equal to:",
+    "options": [
+      [
+        "(A)",
+        "20 MHz"
+      ],
+      [
+        "(B)",
+        "10 MHz"
+      ],
+      [
+        "(C)",
+        "5 MHz"
+      ],
+      [
+        "(D)",
+        "4 MHz"
+      ]
+    ],
+    "diagrams": [],
+    "answer_key": "C"
+  },
+  {
+    "qnum": "Q29.",
+    "q_num": 29,
+    "year": "GATE ECE 1988",
+    "marks": "1 Mark",
+    "qtype": "MCQ",
+    "statement": "The circuit given below is a\n\nExamSIDE.com\n\nA\n\nB\n\nQ\n\nQ-",
+    "options": [
+      [
+        "(A)",
+        "J-K Flip-flop"
+      ],
+      [
+        "(B)",
+        "Johnson's counter"
+      ],
+      [
+        "(C)",
+        "R-S latch"
+      ],
+      [
+        "(D)",
+        "None of above"
+      ]
+    ],
+    "diagrams": [],
+    "answer_key": "C"
+  },
+  {
+    "qnum": "Q30.",
+    "q_num": 30,
+    "year": "GATE ECE",
+    "marks": "1 Mark",
+    "qtype": "NAT / Subjective",
+    "statement": "A ripple counter using negative edge-triggered D-flip flops is shown in Fig.1. The flip-flops are cleared to '0' by a '0' at the\nR input. The feedback logic is to be designed to obtain the count sequence shown in the same figure. The correct\nfeedback logic is:\n\nExamSIDE.com\nClick\n\nD0\nQ0\n\nC0\n\nQ0\n\n_\n\nD1\nD2\nQ1\nQ2\n\nC1\nC2\n\nQ1\nQ2\n_\n_\n\nF\n\nFeedback\n\nLogic\n\n(A)\n(B)\n\n(C)\n(D)",
+    "options": [],
+    "diagrams": [
+      "images/p9_img1_181.jpeg"
+    ],
+    "answer_key": "A"
+  },
+  {
+    "qnum": "Q31.",
+    "q_num": 31,
+    "year": "GATE ECE 1987",
+    "marks": "1 Mark",
+    "qtype": "MCQ",
+    "statement": "Choose the correct statements relating to the circuit of figure\n\nExamSIDE.com\n\n+2V\n\n-1V\n\nVi\n\nP\n\n+\n\n+\n\n_\n\n_",
+    "options": [
+      [
+        "(A)",
+        "For Vi = -2V, P=0"
+      ],
+      [
+        "(B)",
+        "For Vi = +3V, P=0"
+      ],
+      [
+        "(C)",
+        "For Vi = 0V, P=0 always"
+      ],
+      [
+        "(D)",
+        "For Vi = 0V, P can be either 0 or 1."
+      ]
+    ],
+    "diagrams": [],
+    "answer_key": "B"
+  },
+  {
+    "qnum": "Q32.",
+    "q_num": 32,
+    "year": "GATE ECE 2026",
+    "marks": "2 Marks",
+    "qtype": "MCQ",
+    "statement": "A shift-left Shift Register (SR) and a \n flip-flop are connected to a synchronized clock as shown in the Figure. Assume\nthat the SR and D flip-flops are initially cleared and the XOR gate has no propagation delay.\n\nWhich of the following options gives the correct binary representation \n of the content of the shift\nregister immediately after the \n clock transition (positive edge)?",
+    "options": [
+      [
+        "(A)",
+        "00011111"
+      ],
+      [
+        "(B)",
+        "10111111"
+      ],
+      [
+        "(C)",
+        "00111111"
+      ],
+      [
+        "(D)",
+        "11000011"
+      ]
+    ],
+    "diagrams": [
+      "images/p10_img1_191.png"
+    ],
+    "answer_key": "A"
+  },
+  {
+    "qnum": "Q33.",
+    "q_num": 33,
+    "year": "GATE ECE 2025",
+    "marks": "2 Marks",
+    "qtype": "MCQ",
+    "statement": "A positive-edge-triggered sequential circuit is shown below. There are no timing violations in the circuit. Input \n is set\nto logic ' 0 ' and \n is set to logic ' 1 ' at all times. The timing diagram of the inputs SEL and  are also shown below.\n\nThe sequence of output  from time \n to \n is \n .",
+    "options": [
+      [
+        "(A)",
+        "1011"
+      ],
+      [
+        "(B)",
+        "0100"
+      ],
+      [
+        "(C)",
+        "0010"
+      ],
+      [
+        "(D)",
+        "1101"
+      ]
+    ],
+    "diagrams": [
+      "images/p10_img2_193.png"
+    ],
+    "answer_key": "A"
+  },
+  {
+    "qnum": "Q34.",
+    "q_num": 34,
+    "year": "GATE ECE",
+    "marks": "2 Marks",
+    "qtype": "NAT / Subjective",
+    "statement": "In the circuit shown below, the AND gate has a propagation delay of 1 ns . The edgetriggered flip-flops have a set-up\ntime of 2 ns , a hold-time of 0 ns , and a clock-to-Q delay of 2 ns .\n\nThe maximum clock frequency (in MHz , rounded off to the nearest integer) such that there are no setup violations\nis___________ .",
+    "options": [],
+    "diagrams": [
+      "images/p11_img1_203.png"
+    ],
+    "answer_key": "200"
+  },
+  {
+    "qnum": "Q35.",
+    "q_num": 35,
+    "year": "GATE ECE 2024",
+    "marks": "2 Marks",
+    "qtype": "MCQ",
+    "statement": "The sequence of states \n of the given synchronous sequential circuit is ________.",
+    "options": [
+      [
+        "(A)",
+        "00 \u2192 10 \u2192 11 \u2192 00"
+      ],
+      [
+        "(B)",
+        "11 \u2192 00 \u2192 10 \u2192 01 \u2192 00"
+      ],
+      [
+        "(C)",
+        "01 \u2192 10 \u2192 11 \u2192 00 \u2192 01"
+      ],
+      [
+        "(D)",
+        "00 \u2192 01 \u2192 10 \u2192 00"
+      ]
+    ],
+    "diagrams": [
+      "images/p11_img2_205.png"
+    ],
+    "answer_key": "B"
+  },
+  {
+    "qnum": "Q36.",
+    "q_num": 36,
+    "year": "GATE ECE 2023",
+    "marks": "2 Marks",
+    "qtype": "NAT / Subjective",
+    "statement": "In a given sequential circuit, initial states are Q = 1 and Q = 0. For a clock frequency of 1 MHz, the frequency of signal\nQ in kHz, is ___________ (rounded off to the nearest integer).",
+    "options": [],
+    "diagrams": [
+      "images/p11_img3_207.png"
+    ],
+    "answer_key": "250"
+  },
+  {
+    "qnum": "Q37.",
+    "q_num": 37,
+    "year": "GATE ECE",
+    "marks": "2 Marks",
+    "qtype": "MCQ",
+    "statement": "for the circuit shown, the clock frequency is f0 and the duty cycle is 25%. For the signal at the Q output of the Flip-Flop,\n\n___________.",
+    "options": [
+      [
+        "(A)",
+        "frequency is f0/4 and duty cycle is 50%"
+      ],
+      [
+        "(B)",
+        "frequency is f0/4 and duty cycle is 25%"
+      ],
+      [
+        "(C)",
+        "frequency is f0/2 and duty cycle is 50%"
+      ],
+      [
+        "(D)",
+        "frequency is f0 and duty cycle is 25%"
+      ]
+    ],
+    "diagrams": [
+      "images/p12_img1_219.png"
+    ],
+    "answer_key": "A"
+  },
+  {
+    "qnum": "Q38.",
+    "q_num": 38,
+    "year": "GATE ECE 2022",
+    "marks": "2 Marks",
+    "qtype": "MCQ",
+    "statement": "A state transition diagram with states A, B, and C, and transition probabilities p1, p2, ....., p7 is shown in the figure (e.g., p1\ndenotes the probability of transition from state A to B). For this state diagram, select the statements which is/are\nuniversally true.",
+    "options": [
+      [
+        "(A)",
+        "p2 + p3 = p5 + p6"
+      ],
+      [
+        "(B)",
+        "p1 + p3 = p4 + p6"
+      ],
+      [
+        "(C)",
+        "p1 + p4 + p7 = 1"
+      ],
+      [
+        "(D)",
+        "p2 + p5 + p7 = 1"
+      ]
+    ],
+    "diagrams": [
+      "images/p12_img2_221.png"
+    ],
+    "answer_key": "A, C"
+  },
+  {
+    "qnum": "Q39.",
+    "q_num": 39,
+    "year": "GATE ECE 2021",
+    "marks": "2 Marks",
+    "qtype": "NAT / Subjective",
+    "statement": "The propagation delay of the exclusive-OR (XOR) gate in the circuit in the figure is 3 ns . The propagation delay of all the\nflip-flops is assumed to be Zero. The clock (Clk) frequency provided to the circuit is 500 MHz .\n\nStarting from the initial value of the flip-flop outputs \n with \n, the minimum number of triggering\nclock edges after which the flip-flop outputs \n becomes 100 (in integer) is",
+    "options": [],
+    "diagrams": [
+      "images/p12_img3_223.png"
+    ],
+    "answer_key": "4"
+  },
+  {
+    "qnum": "Q40.",
+    "q_num": 40,
+    "year": "GATE ECE",
+    "marks": "2 Marks",
+    "qtype": "NAT / Subjective",
+    "statement": "For the components in the sequential circuit shown below, \n is the propagation delay, \n is the setup time and \n is\nthe hold time. The maximum clock frequency (rounded off to the nearest integer), at which the given circuit can operate\nreliably, is \n MHz.",
+    "options": [],
+    "diagrams": [
+      "images/p13_img1_235.png"
+    ],
+    "answer_key": "77"
+  },
+  {
+    "qnum": "Q41.",
+    "q_num": 41,
+    "year": "GATE ECE 2020",
+    "marks": "2 Marks",
+    "qtype": "MCQ",
+    "statement": "The state diagram of a sequence detector is shown below. State \n is the initial state of the sequence detector. If the\n\noutput is 1 , then",
+    "options": [
+      [
+        "(A)",
+        "the sequence 01110 is detected."
+      ],
+      [
+        "(B)",
+        "the sequence 01001 is detected."
+      ],
+      [
+        "(C)",
+        "the sequence 01011 is detected."
+      ],
+      [
+        "(D)",
+        "the sequence 01010 is detected."
+      ]
+    ],
+    "diagrams": [
+      "images/p13_img2_237.png"
+    ],
+    "answer_key": "D"
+  },
+  {
+    "qnum": "Q42.",
+    "q_num": 42,
+    "year": "GATE ECE",
+    "marks": "2 Marks",
+    "qtype": "NAT / Subjective",
+    "statement": "The state transition diagram for the circuit shown is\n\n(A)\n\n(B)\n\n(C)\n\n(D)",
+    "options": [],
+    "diagrams": [
+      "images/p14_img1_247.png",
+      "images/p14_img2_249.png",
+      "images/p14_img3_251.png",
+      "images/p14_img4_253.png",
+      "images/p14_img5_255.png"
+    ],
+    "answer_key": "C"
+  },
+  {
+    "qnum": "Q43.",
+    "q_num": 43,
+    "year": "GATE ECE",
+    "marks": "2 Marks",
+    "qtype": "NAT / Subjective",
+    "statement": "In the circuit shown below, a positive edge-triggered D Flip-Flop is used for sampling input data Din using clock CK. The\n\nXOR gate outputs 3.3 volts for logic HIGH and 0 volts for logic LOW levels. The data bit and clock periods are equal and\nthe value of \n = 0.15, where the parameters \n and TCK are shown in the figure. Assume that the Flip-Flop and the\n\nXOR gate are ideal.\n\nIf the probability of input data bit (Din) transition in each clock period is 0.3, the average value (in volts, accurate to two\n\ndecimal places) of the voltage at node X, is _______.",
+    "options": [],
+    "diagrams": [
+      "images/p15_img1_263.png"
+    ],
+    "answer_key": "0.82 to 0.86"
+  },
+  {
+    "qnum": "Q44.",
+    "q_num": 44,
+    "year": "GATE ECE 2017 Set 1",
+    "marks": "2 Marks",
+    "qtype": "NAT / Subjective",
+    "statement": "A 4-bit shift register circuit configured for right-shift operation, i.e. \n, is shown. If the\n\npresent state of the shift register is \n, the number of clock cycles required to reach the state\n is __________.",
+    "options": [],
+    "diagrams": [
+      "images/p15_img2_265.png"
+    ],
+    "answer_key": "10"
+  },
+  {
+    "qnum": "Q45.",
+    "q_num": 45,
+    "year": "GATE ECE",
+    "marks": "2 Marks",
+    "qtype": "MCQ",
+    "statement": "A finite state machine (FSM) is implemented using the D flip-flops A and B and logic gates, as shown in the figure below.\nThe four possible states of the FSM are QA QB = 00, 01, 10, and 11.\n\nAssume that XIN is held at a constant logic level throughout the operation of the FSM. When the FSM is initialized to the\n\nstate QA QB = 00 and clocked, after a few clock cycles, it starts cycling through",
+    "options": [
+      [
+        "(A)",
+        "all of the four possible states if XIN = 1"
+      ],
+      [
+        "(B)",
+        "three of the four possible states if XIN = 0"
+      ],
+      [
+        "(C)",
+        "only two of the four possible states if XIN =1"
+      ],
+      [
+        "(D)",
+        "only two of the four possible states if XIN = 0"
+      ]
+    ],
+    "diagrams": [
+      "images/p16_img1_275.jpeg"
+    ],
+    "answer_key": "D"
+  },
+  {
+    "qnum": "Q46.",
+    "q_num": 46,
+    "year": "GATE ECE 2017 Set 2",
+    "marks": "2 Marks",
+    "qtype": "NAT / Subjective",
+    "statement": "The state diagram of a finite state machine (FSM) designed to detect an overlapping sequence of three bits is shown in\nthe figure. The FSM has an input \u2018In\u2019 and an output \u2018Out\u2019. The initial state of the FSM is S0.\n\nIf the input sequence is 10101101001101, starting with the left-most bit, then the number of times \u2018Out\u2019 will be 1 is\n\n________",
+    "options": [],
+    "diagrams": [
+      "images/p16_img2_276.png"
+    ],
+    "answer_key": "4"
+  },
+  {
+    "qnum": "Q47.",
+    "q_num": 47,
+    "year": "GATE ECE",
+    "marks": "2 Marks",
+    "qtype": "MCQ",
+    "statement": "The state transition diagram for a finite state machine with states A, B and C, and binary inputs X, Y and Z, is shown in\nthe figure.\n\nWhich one of the following statements is correct?",
+    "options": [
+      [
+        "(A)",
+        "Transitions from State A are ambiguously defined."
+      ],
+      [
+        "(B)",
+        "Transitions from State B are ambiguously defined."
+      ],
+      [
+        "(C)",
+        "Transitions from State C are ambiguously defined."
+      ],
+      [
+        "(D)",
+        "All of the state transitions are defined unambiguously."
+      ]
+    ],
+    "diagrams": [
+      "images/p17_img1_286.png"
+    ],
+    "answer_key": "C"
+  },
+  {
+    "qnum": "Q48.",
+    "q_num": 48,
+    "year": "GATE ECE 2016 Set 3",
+    "marks": "2 Marks",
+    "qtype": "MCQ",
+    "statement": "For the circuit shown in the figure, the delay of the bubbled NAND gate is 2 ns and that of the counter is assumed to be\nzero.\n\nIf the clock (Clk) frequency is 1 GHz, then the counter behaves as a",
+    "options": [
+      [
+        "(A)",
+        "mod-5 counter"
+      ],
+      [
+        "(B)",
+        "mod-6 counter"
+      ],
+      [
+        "(C)",
+        "mod-7 counter"
+      ],
+      [
+        "(D)",
+        "mod-8 counter"
+      ]
+    ],
+    "diagrams": [
+      "images/p17_img2_288.png"
+    ],
+    "answer_key": "D"
+  },
+  {
+    "qnum": "Q49.",
+    "q_num": 49,
+    "year": "GATE ECE",
+    "marks": "2 Marks",
+    "qtype": "MCQ",
+    "statement": "A three bit pseudo random number generator is shown. Initially the value of output \n is set to 111. The value\nof output  after three clock cycles is",
+    "options": [
+      [
+        "(A)",
+        "000"
+      ],
+      [
+        "(B)",
+        "001"
+      ],
+      [
+        "(C)",
+        "010"
+      ],
+      [
+        "(D)",
+        "100"
+      ]
+    ],
+    "diagrams": [
+      "images/p18_img1_298.png"
+    ],
+    "answer_key": "D"
+  },
+  {
+    "qnum": "Q50.",
+    "q_num": 50,
+    "year": "GATE ECE 2015 Set 3",
+    "marks": "2 Marks",
+    "qtype": "MCQ",
+    "statement": "An SR latch is implemented using TTL gates as shown in the figure. The set and reset pulse inputs are provided using\nthe push-button switches. It is observed that the circuit fails to work as desired. The SR latch can be made functional by\nchanging",
+    "options": [
+      [
+        "(A)",
+        "NOR gates to NAND gates"
+      ],
+      [
+        "(B)",
+        "inverters to buffers"
+      ],
+      [
+        "(C)",
+        "NOR gates to NAND gates and inverters to buffers"
+      ],
+      [
+        "(D)",
+        "5 V to ground"
+      ]
+    ],
+    "diagrams": [
+      "images/p18_img2_300.png"
+    ],
+    "answer_key": "D"
+  },
+  {
+    "qnum": "Q51.",
+    "q_num": 51,
+    "year": "GATE ECE 2015 Set 2",
+    "marks": "2 Marks",
+    "qtype": "MCQ",
+    "statement": "The figure shows a binary counter with synchronous clear input. With the decoding logic shown, the counter works as a",
+    "options": [
+      [
+        "(A)",
+        "mod - 2 counter"
+      ],
+      [
+        "(B)",
+        "mod - 4 counter"
+      ],
+      [
+        "(C)",
+        "mod - 5 counter"
+      ],
+      [
+        "(D)",
+        "mod - 6 counter"
+      ]
+    ],
+    "diagrams": [
+      "images/p18_img3_302.png"
+    ],
+    "answer_key": "C"
+  },
+  {
+    "qnum": "Q52.",
+    "q_num": 52,
+    "year": "GATE ECE",
+    "marks": "2 Marks",
+    "qtype": "MCQ",
+    "statement": "The digital logic shown in the figure satisfies the given state diagram when Q1 is connected to input A of the XOR gate.\n\nSuppose the XOR gate is replaced by an XNOR gate. Which one of the following options preserves the state diagram?",
+    "options": [
+      [
+        "(A)",
+        "Input A is connected to"
+      ],
+      [
+        "(B)",
+        "Input A is connected to"
+      ],
+      [
+        "(C)",
+        "Input A is connected to"
+      ],
+      [
+        "(D)",
+        "Input A is connected to"
+      ]
+    ],
+    "diagrams": [
+      "images/p19_img1_315.png"
+    ],
+    "answer_key": "D"
+  },
+  {
+    "qnum": "Q53.",
+    "q_num": 53,
+    "year": "GATE ECE 2014 Set 2",
+    "marks": "2 Marks",
+    "qtype": "MCQ",
+    "statement": "In the circuit shown, choose the correct timing diagram of the output (y) from the given waveforms W1, W2, W3 and W4.",
+    "options": [
+      [
+        "(A)",
+        "W1"
+      ],
+      [
+        "(B)",
+        "W2"
+      ],
+      [
+        "(C)",
+        "W3"
+      ],
+      [
+        "(D)",
+        "W4"
+      ]
+    ],
+    "diagrams": [
+      "images/p19_img2_317.png",
+      "images/p19_img3_319.png"
+    ],
+    "answer_key": "C"
+  },
+  {
+    "qnum": "Q54.",
+    "q_num": 54,
+    "year": "GATE ECE",
+    "marks": "2 Marks",
+    "qtype": "MCQ",
+    "statement": "The outputs of the two flip-flops Q1, Q2 in the figure shown are initialized to 0, 0. The sequence generated at Q1 upon\napplication of clock signal is",
+    "options": [
+      [
+        "(A)",
+        "01110\u2026"
+      ],
+      [
+        "(B)",
+        "01010\u2026"
+      ],
+      [
+        "(C)",
+        "00110\u2026"
+      ],
+      [
+        "(D)",
+        "01100\u2026"
+      ]
+    ],
+    "diagrams": [
+      "images/p20_img1_329.png"
+    ],
+    "answer_key": "D"
+  },
+  {
+    "qnum": "Q55.",
+    "q_num": 55,
+    "year": "GATE ECE",
+    "marks": "2 Marks",
+    "qtype": "NAT / Subjective",
+    "statement": "The state transition diagram for the logic circuit shown is\n\n(A)\n\n(B)\n\n(C)\n\n(D)",
+    "options": [],
+    "diagrams": [
+      "images/p21_img1_337.png",
+      "images/p21_img2_339.png",
+      "images/p21_img3_341.png",
+      "images/p21_img4_343.png",
+      "images/p21_img5_345.png"
+    ],
+    "answer_key": "D"
+  },
+  {
+    "qnum": "Q56.",
+    "q_num": 56,
+    "year": "GATE ECE",
+    "marks": "2 Marks",
+    "qtype": "NAT / Subjective",
+    "statement": "Two D flip-flops are connected as a synchronous counter that goes through the following QB QA sequence\n\n(A)\n\n(B)\n\n(C)\n\n(D)",
+    "options": [],
+    "diagrams": [],
+    "answer_key": "D"
+  },
+  {
+    "qnum": "Q57.",
+    "q_num": 57,
+    "year": "GATE ECE",
+    "marks": "2 Marks",
+    "qtype": "NAT / Subjective",
+    "statement": "The output of a 3-stage Johnson (twisted-ring) counter is fed to a digital-to-analog (D/A) converter as shown in the\nfigure below. Assume all the states of the counter to be unset initially. The waveform which represents the D/A converter\noutput Vo is\n\n(A)\n\n(B)\n\n(C)\n\n(D)",
+    "options": [],
+    "diagrams": [
+      "images/p23_img1_359.jpeg",
+      "images/p23_img2_360.jpeg",
+      "images/p23_img3_361.jpeg",
+      "images/p23_img4_362.jpeg",
+      "images/p23_img5_363.jpeg"
+    ],
+    "answer_key": "A"
+  },
+  {
+    "qnum": "Q58.",
+    "q_num": 58,
+    "year": "GATE ECE",
+    "marks": "2 Marks",
+    "qtype": "MCQ",
+    "statement": "Assuming that all flip-flops are in reset condition initially, the count sequence observed at \n in the circuit shown is",
+    "options": [
+      [
+        "(A)",
+        "0010111..."
+      ],
+      [
+        "(B)",
+        "0001011..."
+      ],
+      [
+        "(C)",
+        "0101111..."
+      ],
+      [
+        "(D)",
+        "0110100..."
+      ]
+    ],
+    "diagrams": [
+      "images/p24_img1_370.png"
+    ],
+    "answer_key": "D"
+  },
+  {
+    "qnum": "Q59.",
+    "q_num": 59,
+    "year": "GATE ECE 2009",
+    "marks": "2 Marks",
+    "qtype": "MCQ",
+    "statement": "What are the counting states \n for the counter shown in the figure below?",
+    "options": [
+      [
+        "(A)",
+        "11, 10, 00, 11, 10,......"
+      ],
+      [
+        "(B)",
+        "01, 10, 11, 00, 01, ...."
+      ],
+      [
+        "(C)",
+        "00,11,01,10,00........"
+      ],
+      [
+        "(D)",
+        "01,10,00,01,10........"
+      ]
+    ],
+    "diagrams": [
+      "images/p24_img2_372.png"
+    ],
+    "answer_key": "A"
+  },
+  {
+    "qnum": "Q60.",
+    "q_num": 60,
+    "year": "GATE ECE 2009",
+    "marks": "2 Marks",
+    "qtype": "MCQ",
+    "statement": "Refer to the NAND and NOR latches shown in the figure. The inputs \n for both the latches are first made \n and\nthen, after a few seconds, made \n. The corresponding stable outputs \n are",
+    "options": [
+      [
+        "(A)",
+        "NAND: first"
+      ],
+      [
+        "(B)",
+        "NAND: first"
+      ],
+      [
+        "(C)",
+        "NAND: first"
+      ],
+      [
+        "(D)",
+        "NAND: first"
+      ]
+    ],
+    "diagrams": [
+      "images/p24_img3_374.png"
+    ],
+    "answer_key": "C"
+  },
+  {
+    "qnum": "Q61.",
+    "q_num": 61,
+    "year": "GATE ECE",
+    "marks": "2 Marks",
+    "qtype": "NAT / Subjective",
+    "statement": "For each of the positive edge-triggered J-K flip flop used in the following figure, the propagation delay is \n.\n\nWhich of the following waveforms correctly represents the output at \n?\n\n(A)\n\n(B)\n\n(C)\n\n(D)",
+    "options": [],
+    "diagrams": [
+      "images/p25_img1_386.png",
+      "images/p25_img2_388.png",
+      "images/p25_img3_390.png",
+      "images/p25_img4_392.png",
+      "images/p25_img5_394.png"
+    ],
+    "answer_key": "B"
+  },
+  {
+    "qnum": "Q62.",
+    "q_num": 62,
+    "year": "GATE ECE",
+    "marks": "2 Marks",
+    "qtype": "MCQ",
+    "statement": "For the circuit shown in the figure, D has a transition from 0 to 1 after CLK changes from 1 to 0. Assume gate delays to\nbe negligible.\n\nWhich of the following statements is true?",
+    "options": [
+      [
+        "(A)",
+        "Q goes to 1 at the CLK transition and stays at 1."
+      ],
+      [
+        "(B)",
+        "Q goes to 0 at the CLK transition and stays at 0."
+      ],
+      [
+        "(C)",
+        "Q goes to 1 at the CLK transition and goes to 0 when D goes to 1."
+      ],
+      [
+        "(D)",
+        "Q goes to 0 at the CLK transition and goes to 1 when D goes to 1."
+      ]
+    ],
+    "diagrams": [
+      "images/p26_img1_402.png"
+    ],
+    "answer_key": "C"
+  },
+  {
+    "qnum": "Q63.",
+    "q_num": 63,
+    "year": "GATE ECE 2007",
+    "marks": "2 Marks",
+    "qtype": "MCQ",
+    "statement": "For the circuit shown, the counter state \n follows the sequence",
+    "options": [
+      [
+        "(A)",
+        "00,01,10,11,00......"
+      ],
+      [
+        "(B)",
+        "00,01,10,00,01......."
+      ],
+      [
+        "(C)",
+        "00,01,11,00,01....."
+      ],
+      [
+        "(D)",
+        "00,10,11,00,10......"
+      ]
+    ],
+    "diagrams": [
+      "images/p26_img2_404.png"
+    ],
+    "answer_key": "B"
+  },
+  {
+    "qnum": "Q64.",
+    "q_num": 64,
+    "year": "GATE ECE",
+    "marks": "2 Marks",
+    "qtype": "MCQ",
+    "statement": "The following binary values were applied to the X and Y inputs of the NAND latch shown in the figure in the sequence\nindicated below:\n\nX = 0, Y = 1; \u00a0 X = 0, Y = 0; \u00a0 X = 1, Y = 1.\n\nThe corresponding stable P, Q outputs will be",
+    "options": [
+      [
+        "(A)",
+        "P = 1, Q = 0; P = 1, Q = 0; P = 1, Q = 0 or P = 0, Q = 1"
+      ],
+      [
+        "(B)",
+        "P = 1, Q = 0; P = 0, Q = 1 or P = 0, Q = 1; P = 0, Q = 1"
+      ],
+      [
+        "(C)",
+        "P = 1, Q = 0; P = 1, Q = 1; P = 1, Q = 0 or P = 0, Q = 1"
+      ],
+      [
+        "(D)",
+        "P = 1, Q = 0; P = 1, Q = 1; P = 1, Q = 1"
+      ]
+    ],
+    "diagrams": [
+      "images/p27_img1_414.png"
+    ],
+    "answer_key": "C"
+  },
+  {
+    "qnum": "Q65.",
+    "q_num": 65,
+    "year": "GATE ECE 2006",
+    "marks": "2 Marks",
+    "qtype": "NAT / Subjective",
+    "statement": "Two D-flip-flops, as shown below, are to be connected as a synchronous counter that goes through the following Q1Q0\nsequence \nThe inputs D0 and D1 respectively should be connected as\n\n(A)\n(B)\n\n(C)\n(D)",
+    "options": [],
+    "diagrams": [
+      "images/p27_img2_416.jpeg"
+    ],
+    "answer_key": "A"
+  },
+  {
+    "qnum": "Q66.",
+    "q_num": 66,
+    "year": "GATE ECE",
+    "marks": "2 Marks",
+    "qtype": "MCQ",
+    "statement": "In the modulo-6 ripple counter shown in the figure, the output of the 2-input gate is used to clear the J-K flip-flops. The 2-\ninput gate is",
+    "options": [
+      [
+        "(A)",
+        "a NAND gate"
+      ],
+      [
+        "(B)",
+        "a NOR gate"
+      ],
+      [
+        "(C)",
+        "an OR gate"
+      ],
+      [
+        "(D)",
+        "an AND gate"
+      ]
+    ],
+    "diagrams": [
+      "images/p28_img1_425.jpeg"
+    ],
+    "answer_key": "C"
+  },
+  {
+    "qnum": "Q67.",
+    "q_num": 67,
+    "year": "GATE ECE 2003",
+    "marks": "2 Marks",
+    "qtype": "MCQ",
+    "statement": "A 4 bit ripple counter and a 4 bit synchronous counter are made using flip-flops having a propagation delay of 10 ns\neach. If the worst case delay in the ripple counter and the synchronous counter be R and S respectively, then",
+    "options": [
+      [
+        "(A)",
+        "R = 10ns, S = 40ns"
+      ],
+      [
+        "(B)",
+        "R = 40ns, S = 10ns"
+      ],
+      [
+        "(C)",
+        "R = 10ns, S = 30ns"
+      ],
+      [
+        "(D)",
+        "R = 30ns, S = 10ns"
+      ]
+    ],
+    "diagrams": [],
+    "answer_key": "B"
+  },
+  {
+    "qnum": "Q68.",
+    "q_num": 68,
+    "year": "GATE ECE",
+    "marks": "2 Marks",
+    "qtype": "NAT / Subjective",
+    "statement": "The digital block in the figure is realized using two positive edge triggered D flip-flops. Assume that for t < t0, Q1 = Q2 =0.\n\nThe circuit in the digital block is given by\n\n(A)\n\n(B)\n\n(C)\n\n(D)",
+    "options": [],
+    "diagrams": [
+      "images/p29_img1_434.png",
+      "images/p29_img2_436.png",
+      "images/p29_img3_438.png",
+      "images/p29_img4_440.png",
+      "images/p29_img5_442.png"
+    ],
+    "answer_key": "C"
+  },
+  {
+    "qnum": "Q69.",
+    "q_num": 69,
+    "year": "GATE ECE",
+    "marks": "2 Marks",
+    "qtype": "MCQ",
+    "statement": "A sequential circuit using D flip-flop and logic gates is shown in the figure, where X and Y are the inputs and Z is the\noutput. The circuit is",
+    "options": [
+      [
+        "(A)",
+        "S\u2013R Flip-Flop with inputs X = R and Y = S"
+      ],
+      [
+        "(B)",
+        "S\u2013R Flip-Flop with inputs X = S and Y = R"
+      ],
+      [
+        "(C)",
+        "J\u2013K Flip-Flop with inputs X = J and Y = K"
+      ],
+      [
+        "(D)",
+        "J\u2013K Flip-Flop with inputs X = K and Y = J"
+      ]
+    ],
+    "diagrams": [
+      "images/p30_img1_450.jpeg"
+    ],
+    "answer_key": "D"
+  },
+  {
+    "qnum": "Q70.",
+    "q_num": 70,
+    "year": "GATE ECE 2000",
+    "marks": "2 Marks",
+    "qtype": "MCQ",
+    "statement": "In the figure, the J and K inputs of all the four Flip-Flops are made high. The frequency of the signal at output Y is",
+    "options": [
+      [
+        "(A)",
+        "0.833 KHz"
+      ],
+      [
+        "(B)",
+        "1.0 KHz"
+      ],
+      [
+        "(C)",
+        "0.91 KHz"
+      ],
+      [
+        "(D)",
+        "0.77 KHZ"
+      ]
+    ],
+    "diagrams": [
+      "images/p30_img2_451.jpeg"
+    ],
+    "answer_key": "A"
+  },
+  {
+    "qnum": "Q71.",
+    "q_num": 71,
+    "year": "GATE ECE 1999",
+    "marks": "2 Marks",
+    "qtype": "MCQ",
+    "statement": "The ripple counter shown in the figure works as a",
+    "options": [
+      [
+        "(A)",
+        "mod \u2013 3 up counter"
+      ],
+      [
+        "(B)",
+        "mod \u2013 5 up counter"
+      ],
+      [
+        "(C)",
+        "mod \u2013 3 down counter"
+      ],
+      [
+        "(D)",
+        "mod \u2013 5 down counter"
+      ]
+    ],
+    "diagrams": [
+      "images/p30_img3_452.jpeg"
+    ],
+    "answer_key": "D"
+  },
+  {
+    "qnum": "Q72.",
+    "q_num": 72,
+    "year": "GATE ECE",
+    "marks": "2 Marks",
+    "qtype": "MCQ",
+    "statement": "In figure, A = 1 and B = 1. The input B is now replaced by a sequence 101010 ___, the outputs x and y will be",
+    "options": [
+      [
+        "(A)",
+        "fixed at 0 and 1, respectively"
+      ],
+      [
+        "(B)",
+        "x = 1010 ------while y = 0101 ------"
+      ],
+      [
+        "(C)",
+        "x = 1010 ----and y = 1010 ----"
+      ],
+      [
+        "(D)",
+        "fixed at 1 and 0, respectively"
+      ]
+    ],
+    "diagrams": [
+      "images/p31_img1_463.jpeg"
+    ],
+    "answer_key": "A"
+  },
+  {
+    "qnum": "Q73.",
+    "q_num": 73,
+    "year": "GATE ECE 2002",
+    "marks": "5 Marks",
+    "qtype": "NAT / Subjective",
+    "statement": "It is required to design a binary mod-5 synchronus counter using AB flip-flops such that the output Q2Q1Q0 changes as\n\n ........and so on. The excitation table for the AB flip-flops is given in the table\n\n(a) Write down the state table for the mod-5 counter.\n(b)Obtain simplified SOP expressions for the inputs A2, B2, A1, B1, A0 and B0 in terms of Q2, Q1, Q and their\n\ncomplements.\n(c) Hence, complete the circuit diagram for the mod-5 counter given in the figure using minimum number of 2-input\n\nNAND-gate only.",
+    "options": [],
+    "diagrams": [
+      "images/p31_img2_464.jpeg",
+      "images/p31_img3_465.jpeg"
+    ],
+    "answer_key": "(b)"
+  },
+  {
+    "qnum": "Q74.",
+    "q_num": 74,
+    "year": "GATE ECE 1999",
+    "marks": "5 Marks",
+    "qtype": "NAT / Subjective",
+    "statement": "The circuit diagram of a synchronous counter is shown in the figure. Determine the sequence of states of the counter\nassuming that the initial state is \u2018000\u2019. Give your answer in a tabular form showing the present state QA(n), QB(n), QC(n), J-\n\nK inputs ( JA, KA, JB, KB, JC, KC) and the next state \n From the table, determine the modulus of\n\nthe counter.",
+    "options": [],
+    "diagrams": [],
+    "answer_key": "It is mod 6 counter"
+  },
+  {
+    "qnum": "Q75.",
+    "q_num": 75,
+    "year": "GATE ECE",
+    "marks": "5 Marks",
+    "qtype": "NAT / Subjective",
+    "statement": "The mod-5 counter shown in figure counts through states Q2 Q1 Q0 = 000, 001, 010, 011 and 100.\n\n(a) Will the counter lockout if it happens to be in any one of the unused states?\n\n(b) Find the maximum rate at which the counter will operate satisfactorily. Assume the propagation delays of flip-flop\n\nand AND gate to be tF and tA",
+    "options": [],
+    "diagrams": [
+      "images/p32_img1_476.jpeg"
+    ],
+    "answer_key": "(a) Counter is lockout"
+  },
+  {
+    "qnum": "Q76.",
+    "q_num": 76,
+    "year": "GATE ECE 1997",
+    "marks": "5 Marks",
+    "qtype": "NAT / Subjective",
+    "statement": "A sequence generator is shown in figure. The counter status (Q0 Q1 Q3) is intialized to 010 using preset/clear inputs.\n\nThe Clock has a period of 50ns and transitions take place at the rising clock edge.\n(a) Give the sequence generated at Q0 till it repeats.\n\n(b) What is the repetition rate for the generated sequence?",
+    "options": [],
+    "diagrams": [
+      "images/p32_img2_477.jpeg"
+    ],
+    "answer_key": "(a) Sequence"
+  },
+  {
+    "qnum": "Q77.",
+    "q_num": 77,
+    "year": "GATE ECE 1996",
+    "marks": "5 Marks",
+    "qtype": "NAT / Subjective",
+    "statement": "A 4-bit shift register, which shifts 1 bit to the right at every clock pulse, is intialized to values (1000) for (Q0Q1Q2Q3). The\n\nD input is derived from Q0, Q2 and Q3 through two XOR gates as shown in figure.\n\n(a) Write the 4-bit values (Q0Q1Q2Q3) after each clock pulse till the pattern (1000) reappears on (Q0Q1Q2Q3).\n\n(b) To what values should the shift register be intialized so that the pattern (1001) occurs after the first clock pulse?",
+    "options": [],
+    "diagrams": [
+      "images/p32_img3_478.jpeg"
+    ],
+    "answer_key": "(b) Shift register"
+  },
+  {
+    "qnum": "Q78.",
+    "q_num": 78,
+    "year": "GATE ECE",
+    "marks": "5 Marks",
+    "qtype": "NAT / Subjective",
+    "statement": "A state machine is required to cycle through the following sequence of states:\n\nOne possible implementation of the state machine is shown figure. Specify what signals should be applied to each of\nthe multiplexer inputs\n\nMarks 8\n4 questions",
+    "options": [],
+    "diagrams": [
+      "images/p33_img1_489.jpeg",
+      "images/p33_img2_490.jpeg"
+    ],
+    "answer_key": "Solve it."
+  },
+  {
+    "qnum": "Q79.",
+    "q_num": 79,
+    "year": "GATE ECE 1992",
+    "marks": "8 Marks",
+    "qtype": "NAT / Subjective",
+    "statement": "A new clocked \"X-Y\" flip-flop is defined with two inputs, X and Y in addition to the clock input. The flip-flop functions as\nfollows:\n\nIf XY=00, the flip-flop changes state with each clock pulse.\n\nIf XY=01, the flip-flop state Q becomes 1 with the next clock pulse.\n\nIf XY=10, the flip-flop state Q becomes 0 with the next clock pulse.\n\nIf XY=11, no change of state occurs with the clock pulse.\n\n(a) Write the Truth table for the X-Y flip flop\n\n(b) Write the Excitation table for the X-Y flip flop\n\n(c) It is desired to convert a J-K flip flop into the X-Y flip flop by adding some external gates, if necessary. Draw a circuit\nto show how you will implement the X-Y flip-flop using a J-K flip-flop.",
+    "options": [],
+    "diagrams": [],
+    "answer_key": "Solve it."
+  },
+  {
+    "qnum": "Q80.",
+    "q_num": 80,
+    "year": "GATE ECE",
+    "marks": "8 Marks",
+    "qtype": "NAT / Subjective",
+    "statement": "The circuit shown below uses TTL flip-flops. The flip-flops are triggered at the negative transitions of the clock. It is\ndesired that when M = 1 the circuit should function as an up-counter (in 8421 BCD) and when M=0, as a down-counter.\nDesign the combinational circuit interposed between the flip-flops so that the circuit works as desired. (i.e. find F as a\n\nfunction of Q,\n, M, \n).\n\nExamSIDE.com\n\nClock\nLogic \nCircuit\n\nF\nJ\nJ\n\nK\nK\n\nQ\nQ\n\nQ\nQ\n\nLogic \nCircuit\n\nJ\nQ\n\nK\nQ\n\nF\n\nM",
+    "options": [],
+    "diagrams": [],
+    "answer_key": "Solve it."
+  },
+  {
+    "qnum": "Q81.",
+    "q_num": 81,
+    "year": "GATE ECE 1988",
+    "marks": "8 Marks",
+    "qtype": "NAT / Subjective",
+    "statement": "For the circuit shown in the figure below, sketch V0 against time. Assume that all flip-flops are reset to zero before the\n\nclock is applied.\n\nExamSIDE.com\n\nR\n\nR\n\nR\nR\n\n+\n\n-\nV0\n\nJ0\nQ0\nJ1\nJ2\nQ1\nQ2\n\nK0\nK1\nK2\nQ\nQ0\nQ1",
+    "options": [],
+    "diagrams": [],
+    "answer_key": "Solve it."
+  },
+  {
+    "qnum": "Q82.",
+    "q_num": 82,
+    "year": "GATE ECE 1987",
+    "marks": "8 Marks",
+    "qtype": "NAT / Subjective",
+    "statement": "A 2-input up/down synchrconous counter using two toggle flip-flops is shown in Fig.1. The counter's sequence is to be\ncontrolled by the input M as follows:\nFor M=1, sequence of Q1, Q0 is ..00, 01, 10, 11, 00, 01.......\n\nFor M=0, sequence of Q1, Q0 is ..00, 11, 10, 01, 00, 11......\n\n(a)Design the necessary feedback logic for T1 and T0.\n\n(b)Realize the feesback logic using inverters and 4-input multiplexers only. Use Q1 and Q0 as the control inputs of the\n\nmultiplexer with Q1 as the MSB.\n\nExamSIDE.com\n\nClock\n\nFeedback\n\nLogic\nM\nFig.1\n\nT0\nT1\nQ0\nQ1\n\nC\nC",
+    "options": [],
+    "diagrams": [],
+    "answer_key": "Solve it."
+  }
+]

@@ -1,0 +1,139 @@
+{
+  "slug": "adc-dac",
+  "title": "Analog to Digital and Digital to Analog Converters",
+  "pages_count": 12,
+  "images": {
+    "2": [
+      {
+        "file": "images/p2_img1_54.png",
+        "width": 800,
+        "height": 333
+      }
+    ],
+    "6": [
+      {
+        "file": "images/p6_img1_108.png",
+        "width": 800,
+        "height": 274
+      }
+    ],
+    "7": [
+      {
+        "file": "images/p7_img1_123.png",
+        "width": 800,
+        "height": 650
+      },
+      {
+        "file": "images/p7_img2_125.png",
+        "width": 800,
+        "height": 255
+      }
+    ],
+    "8": [
+      {
+        "file": "images/p8_img1_135.png",
+        "width": 800,
+        "height": 255
+      },
+      {
+        "file": "images/p8_img2_137.png",
+        "width": 800,
+        "height": 318
+      },
+      {
+        "file": "images/p8_img3_139.png",
+        "width": 800,
+        "height": 318
+      }
+    ],
+    "9": [
+      {
+        "file": "images/p9_img1_151.jpeg",
+        "width": 559,
+        "height": 231
+      },
+      {
+        "file": "images/p9_img2_152.jpeg",
+        "width": 336,
+        "height": 209
+      },
+      {
+        "file": "images/p9_img3_153.jpeg",
+        "width": 281,
+        "height": 163
+      },
+      {
+        "file": "images/p9_img4_154.jpeg",
+        "width": 301,
+        "height": 166
+      },
+      {
+        "file": "images/p9_img5_155.jpeg",
+        "width": 293,
+        "height": 179
+      }
+    ],
+    "10": [
+      {
+        "file": "images/p10_img1_162.jpeg",
+        "width": 291,
+        "height": 164
+      },
+      {
+        "file": "images/p10_img2_163.jpeg",
+        "width": 427,
+        "height": 182
+      }
+    ]
+  },
+  "pages": [
+    {
+      "page": 1,
+      "text": "Keep practising on the ExamGOAL app\nChapter-wise PYQs with solutions, full mock tests and analysis for JEE, NEET, GATE and more.\nGoogle Play\nGET IT ON\nExamGOAL\nP Y Q P D F\nFree \u00b7 With answer key\nGATE ECE \u00b7 DIGITAL CIRCUITS \u00b7 CHAPTER-WISE PYQS\nAnalog to Digital and\nDigital to Analog\nConverters\nGATE ECE Digital Circuits \u00b7 Previous Year Questions with Answer Key\n26\nQUESTIONS\n21\nPAPERS COVERED\n1990 \u2013 2025\nYEARS\nEnglish\nLANGUAGE\nINSIDE THIS PDF\nMarks 1\n14 questions\nMarks 2\n12 questions\nAnswer key\nat the end\nPractise online\nEvery question with its full solution,\nfree on questions.examside.com\n1\nSolve\nPrint it, or work through it on\nscreen.\n2\nCheck\nThe answer key is on the last\npages.\n3\nUnderstand\nScan the QR code beside any\nquestion for its full solution.\npdf.questions.examgoal.com\nFree previous year question PDFs for JEE, NEET, GATE and more\n"
+    },
+    {
+      "page": 2,
+      "text": "ExamGOAL\nP Y Q P D F\nMarks 1\n14 questions\nQ1.\nGATE ECE 2025\nA 4-bit weighted-resistor DAC with inputs \n, and \n (MSB to LSB) is designed using an ideal\nopamp, as shown below. The switches are closed when the corresponding input bits are logic ' 1 '\nand open otherwise. When the input \n changes from 1110 to 1101, the magnitude of the\nchange in the output voltage \n (in mV , rounded off to the nearest integer) is ____________.\nOpen solution\nQ2.\nGATE ECE 2023\nThe signal-to-noise ratio (SNR) of an ADC with a full-scale sinusoidal input is given to be 61.96 dB.\nThe resolution of the ADC is __________ bits (rounded off to the nearest integer).\nOpen solution\nQ3.\nGATE ECE 2020\nA 10 bit D/A converter is calibrated over the full range 0 to 10 V . If the input to the D/A converter is\n13 A (in hex), the output (rounded off to three decimal places) is \n V.\nOpen solution\nQ4.\nGATE ECE 2015 Set 1\nConsider a four bit D to A converter. The analog value corresponding to digital signals of values\n0000 and 0001 are 0 V and 0.0625 V respectively. The analog value (in Volts ) corresponding to the\ndigital signal 1111 is ______________.\nOpen solution\nQ5.\nGATE ECE 2014 Set 3\nAn analog voltage in the range 0 to 8 V is divided in 16 equal intervals for conversion to 4-bit digital\noutput. The maximum quantization error (in V) is _________\nOpen solution\nKeep practising on the ExamGOAL app\nChapter-wise PYQs with solutions, full mock tests and analysis for JEE, NEET, GATE and more.\nGoogle Play\nGET IT ON\nGATE ECE Digital Circuits: Analog to Digital and Digital to Analog Converters \u00b7 pdf.questions.examgoal.com\nSolutions: questions.examside.com \u00b7 Page 2 / 12\n"
+    },
+    {
+      "page": 3,
+      "text": "ExamGOAL\nP Y Q P D F\nQ6.\nGATE ECE 2014 Set 4\nFor a given sample-and-hold circuit, if the value of the hold capacitor is increased, then\n(A) Droop rate decreases and acquisition time decreases\n(B) Droop rate decreases and acquisition time increases\n(C) Droop rate increases and acquisition time decreases\n(D) Droop rate increases and acquisition time increases\nOpen solution\nQ7.\nGATE ECE 2002\nThe number of comparators required in a 3-bit comparator type ADC is\n(A) 2\n(B) 3\n(C) 7\n(D) 8\nOpen solution\nQ8.\nGATE ECE 2000\nThe number of comparators in 4-bit flash ADC is\n(A) 4\n(B) 5\n(C) 15\n(D) 16\nOpen solution\nQ9.\nGATE ECE 1999\nThe resolution of a 4-bit counting ADC is 0.5 Volts. For an analog input of 6.6 Volts, the digital\noutput of the ADC will be\n(A) 1011\n(B) 1101\n(C) 1100\n(D) 1110\nOpen solution\nQ10.\nGATE ECE 1998\nThe advantage of using a dual slope ADC in a digital voltmeter is that\n(A) its conversion time is small\n(B) its accuracy is high\n(C) it gives output in BCD format\n(D) it does not require a comparator.\nOpen solution\nQ11.\nGATE ECE 1998\nFor an ADC, match the following : if\nList 1\nA. Flash converter\nB. Dual slope converter\nC. Successive approximation Converter\nList 2\n1. requires a conversion time of the order of a few seconds\n2. requires a digital- to- analog converter\n3. minimizes the effect of power supply interference.\n4. requires a very complex hardware.\n5. It is a tracking A/D converter.\nOpen solution\nKeep practising on the ExamGOAL app\nChapter-wise PYQs with solutions, full mock tests and analysis for JEE, NEET, GATE and more.\nGoogle Play\nGET IT ON\nGATE ECE Digital Circuits: Analog to Digital and Digital to Analog Converters \u00b7 pdf.questions.examgoal.com\nSolutions: questions.examside.com \u00b7 Page 3 / 12\n"
+    },
+    {
+      "page": 4,
+      "text": "ExamGOAL\nP Y Q P D F\nQ12.\nGATE ECE 1996\nA 12-bit ADC is operating with a 1 sec clock period and the total conversion time is seen to be 14 \nsec. The ADC must br of the\n(A) flash type\n(B) counting type\n(C) integrating type\n(D) successive approximation type.\nOpen solution\nQ13.\nGATE ECE 1994\nMatch the List-1 (type of 8-bit ADC) with List-2(Minimum conversion time in clock cycles)\nList - 1\nA. Successive approximation\nB. Dual-slope\nC. Parallel Comparator\nList - 2\n1) 1\n2) 8\n3) 16\n4) 256\n5) 512\nOpen solution\nKeep practising on the ExamGOAL app\nChapter-wise PYQs with solutions, full mock tests and analysis for JEE, NEET, GATE and more.\nGoogle Play\nGET IT ON\nGATE ECE Digital Circuits: Analog to Digital and Digital to Analog Converters \u00b7 pdf.questions.examgoal.com\nSolutions: questions.examside.com \u00b7 Page 4 / 12\n"
+    },
+    {
+      "page": 5,
+      "text": "ExamGOAL\nP Y Q P D F\nQ14.\nGATE ECE 1990\nWhich of the resistance networks of figure can be used as 3 bit R-2R ladder DAC. Assume \ncorresponds to LSB.\nExamside.com\nV2\nV1\nV0\nVA\n1K\n1K\n2K\n2K\n2K\n(i)\n1K\nExamside.com\nV2\nV1\nV0\nVA\n1K\n1K\n2K\n2K\n2K\n2K\n(ii)\nExamside.com\nV2\nV1\nV0\nVA\n1K\n1K\n2K\n2K\n2K\n2K\n(iii)\n(A) Both (i) and (ii)\n(B) Both (i) and (iii)\n(C) Only (iii)\n(D) Only (ii)\nOpen solution\nKeep practising on the ExamGOAL app\nChapter-wise PYQs with solutions, full mock tests and analysis for JEE, NEET, GATE and more.\nGoogle Play\nGET IT ON\nGATE ECE Digital Circuits: Analog to Digital and Digital to Analog Converters \u00b7 pdf.questions.examgoal.com\nSolutions: questions.examside.com \u00b7 Page 5 / 12\n"
+    },
+    {
+      "page": 6,
+      "text": "ExamGOAL\nP Y Q P D F\nMarks 2\n12 questions\nQ15.\nGATE ECE 2025\nA 10-bit analog-to-digital converter (ADC) has a sampling frequency of 1 MHz and a full scale\nvoltage of 3.3 V . For an input sinusoidal signal with frequency 500 kHz , the maximum SNR (in dB,\nrounded off to two decimal places) and the data rate (in Mbps) at the output of the ADC are\n_________ , respectively.\n(A) 61.96 and 10\n(B) 61.96 and 5\n(C) 33.36 and 10\n(D) 33.36 and 5\nOpen solution\nQ16.\nGATE ECE 2024\nA full scale sinusoidal signal is applied to a 10-bit ADC. The fundamental signal component in the\nADC output has a normalized power of 1 W, and the total noise and distortion normalized power is\n10 W. The effective number of bits (rounded off to the nearest integer) of the ADC is _______.\n(A) 7\n(B) 8\n(C) 9\n(D) 10\nOpen solution\nQ17.\nGATE ECE 2022\nConsider the circuit shown with an ideal OPAMP. The output voltage V0 is __________ V (rounded off\nto two decimal places).\nOpen solution\nQ18.\nGATE ECE 2021\nAn 8-bit unipolar (all analog output values are positive) digital-to-analog converter (DAC) has a full-\nscale voltage range from 0 V to 7.68 V . If the digital input code is 10010110 (the leftmost bit is\nMSB). Then the analog output voltage of the DAC (rounded off to one decimal place) is\n V.\nOpen solution\nKeep practising on the ExamGOAL app\nChapter-wise PYQs with solutions, full mock tests and analysis for JEE, NEET, GATE and more.\nGoogle Play\nGET IT ON\nGATE ECE Digital Circuits: Analog to Digital and Digital to Analog Converters \u00b7 pdf.questions.examgoal.com\nSolutions: questions.examside.com \u00b7 Page 6 / 12\n"
+    },
+    {
+      "page": 7,
+      "text": "ExamGOAL\nP Y Q P D F\nQ19.\nGATE ECE 2016 Set 2\nIn an N bit flash ADC, the analog voltage is fed simultaneously to \n comparators. The output of\nthe comparators is then encoded to a binary format using digital circuits. Assume that the analog\nvoltage source \n (whose output is being converted to digital format) has a source resistance of 75\n\u03a9 as shown in the circuit diagram below and the input capacitance of each comparator is 8 pF. The\ninput must settle to an accuracy of 1/2 LSB even for a full scale input change for proper conversion.\nAssume that the time taken by the thermometer to binary encoder is negligible.\nIf the flash ADC has 8 bit resolution, which one of the following alternatives is closest to the\nmaximum sampling rate?\n(A) 1 megasamples per second\n(B) 6 megasamples per second\n(C) 64 megasamples per second\n(D) 256 megasamples per second\nOpen solution\nQ20.\nGATE ECE 2008\nIn the following circuit, the comparator output is logic \"1\" if \n and is logic \"0\" otherwise. The\nD/A conversion is done as per the relation \n Volts, where \n (MSB), \n,\n and \n(LSB) are the counter outputs. The counter starts from the clear state.\nThe stable reading of the LED displays is\n(A) 06\n(B) 07\n(C) 12\n(D) 13\nOpen solution\nKeep practising on the ExamGOAL app\nChapter-wise PYQs with solutions, full mock tests and analysis for JEE, NEET, GATE and more.\nGoogle Play\nGET IT ON\nGATE ECE Digital Circuits: Analog to Digital and Digital to Analog Converters \u00b7 pdf.questions.examgoal.com\nSolutions: questions.examside.com \u00b7 Page 7 / 12\n"
+    },
+    {
+      "page": 8,
+      "text": "ExamGOAL\nP Y Q P D F\nQ21.\nGATE ECE 2008\nIn the following circuit, the comparator output is logic \"1\" if \n and is logic \"0\" otherwise. The\nD/A conversion is done as per the relation \n Volts, where \n (MSB), \n,\n and \n(LSB) are the counter outputs. The counter starts from the clear state.\nThe magnitude of the error between \n and \n at steady state in volts is\n(A) 0.2\n(B) 0.3\n(C) 0.5\n(D) 1.0\nOpen solution\nQ22.\nGATE ECE 2007\nIn the Digital-to-Analog converter circuit shown in the figure below, \n V and \n.\nThe current  is\n(A)\n(B)\n(C)\n(D)\nOpen solution\nQ23.\nGATE ECE 2007\nIn the Digital-to-Analog converter circuit shown in the figure below, \n V and \n.\nThe voltage \n is\n(A) -0.781V\n(B) -1.562V\n(C) -3.125V\n(D) -6.250V\nOpen solution\nk\nk\nKeep practising on the ExamGOAL app\nChapter-wise PYQs with solutions, full mock tests and analysis for JEE, NEET, GATE and more.\nGoogle Play\nGET IT ON\nGATE ECE Digital Circuits: Analog to Digital and Digital to Analog Converters \u00b7 pdf.questions.examgoal.com\nSolutions: questions.examside.com \u00b7 Page 8 / 12\n"
+    },
+    {
+      "page": 9,
+      "text": "ExamGOAL\nP Y Q P D F\nQ24.\nGATE ECE 2006\nA 4-bit D/A converter is connected to a free-running 3-bit UP counter, as shown in the following\nfigure. Which of the following waveforms will be observed at V0=?\nIn the figure shown above, the ground has been shown by the symbol \n(A)\n(B)\n(C)\n(D)\nOpen solution\nKeep practising on the ExamGOAL app\nChapter-wise PYQs with solutions, full mock tests and analysis for JEE, NEET, GATE and more.\nGoogle Play\nGET IT ON\nGATE ECE Digital Circuits: Analog to Digital and Digital to Analog Converters \u00b7 pdf.questions.examgoal.com\nSolutions: questions.examside.com \u00b7 Page 9 / 12\n"
+    },
+    {
+      "page": 10,
+      "text": "ExamGOAL\nP Y Q P D F\nQ25.\nGATE ECE 2003\nThe circuit shown in figure is a 4-bit DAC\nThe input bits 0 and 1 are represented by 0 and 5 V respectively. The OP- AMP is ideal, but all the\nresistances and the 5V inputs have a tolerance of \u00b110%.\nThe specification (rounded to the nearest multiple of 5%) for the tolerance of the DAC is\n(A) \u00b1 35%\n(B) \u00b1 20%\n(C) \u00b1 10%\n(D) \u00b1 5%\nOpen solution\nQ26.\nGATE ECE 2000\nFor the 4 bit DAC shown in Figure, the output voltage \n is\n(A) 10V\n(B) 5V\n(C) 4V\n(D) 8V\nOpen solution\nKeep practising on the ExamGOAL app\nChapter-wise PYQs with solutions, full mock tests and analysis for JEE, NEET, GATE and more.\nGoogle Play\nGET IT ON\nGATE ECE Digital Circuits: Analog to Digital and Digital to Analog Converters \u00b7 pdf.questions.examgoal.com\nSolutions: questions.examside.com \u00b7 Page 10 / 12\n"
+    },
+    {
+      "page": 11,
+      "text": "ExamGOAL\nP Y Q P D F\nAnswer Key\nMarks 1\n1. 250\n2. 10\n3. 2.95 to 3.15\n4. 0.93 to 0.94\n5. 0.24 to 0.26\n6. B\n7. C\n8. C\n9. D\n10. B\n11. A-4, B-3, C-2\n12. D\n13. A- 2, B- 5, C- 1\n14. C\nMarks 2\n15. A\n16. B\n17. -0.5\n18. 4.5\n19. A\n20. D\n21. B\n22. B\n23. C\n24. B\n25. A\n26. B\nFor numerical answers given as a range, any value within the range is correct. Full solutions: scan the QR code next to each question, or visit\nquestions.examside.com.\nKeep practising on the ExamGOAL app\nChapter-wise PYQs with solutions, full mock tests and analysis for JEE, NEET, GATE and more.\nGoogle Play\nGET IT ON\nGATE ECE Digital Circuits: Analog to Digital and Digital to Analog Converters \u00b7 pdf.questions.examgoal.com\nSolutions: questions.examside.com \u00b7 Page 11 / 12\n"
+    },
+    {
+      "page": 12,
+      "text": "Keep practising on the ExamGOAL app\nChapter-wise PYQs with solutions, full mock tests and analysis for JEE, NEET, GATE and more.\nGoogle Play\nGET IT ON\nExamGOAL\nP Y Q P D F\nYour Exam. Our Responsibility.\nFrom first chapter\nto exam day.\nPractise with the questions your exam has already asked, then test yourself\nunder real exam conditions.\nPAST YEAR QUESTIONS\nEvery past paper, chapter-wise.\nPrevious year questions sorted the way you study,\neach with a full solution.\nMOCK TESTS\nMock tests with a real exam feel.\nPractise under the same pressure as the real paper,\non your phone or on the big screen.\nANALYSIS\nKnow your score. Know your rank.\nA full report after every test, so you know exactly\nwhere you stand.\nPRACTICE\nSolve. Check. Understand.\nLearn from every question, not just the ones you get\nright.\nChapter-wise and year-wise\nWeightage and topic tags on every chapter\nYour progress on each one, at a glance\nTimed sections, just like exam day\nMark questions for review and come back\nYour percentile among everyone who took it\nPredicted real-exam percentile and All India Rank\nSubject breakdown and time analysis\nInstant answers as you practise\nStep-by-step explanations\nSee how everyone else answered\nNCERT Exemplar\nWith full solutions\nExam syllabus\nSubject and chapter-wise\nBookmarks\nOrganised in groups\nYour notes\nOn any question\nExamGOAL: Exam Preparation App\nOne app for every exam. Free trial for new users, on Android and the web.\nGoogle Play\nScan to get the app\nGET IT ON\nwww.examgoal.com\nPractice and mock tests\nquestions.examside.com\nFree solutions\npdf.questions.examgoal.com\nFree PYQ PDFs\n"
+    }
+  ]
+}

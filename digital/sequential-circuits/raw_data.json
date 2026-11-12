@@ -1,0 +1,640 @@
+{
+  "slug": "sequential-circuits",
+  "title": "Sequential Circuits",
+  "pages_count": 36,
+  "images": {
+    "2": [
+      {
+        "file": "images/p2_img1_54.png",
+        "width": 800,
+        "height": 529
+      },
+      {
+        "file": "images/p2_img2_56.png",
+        "width": 800,
+        "height": 281
+      },
+      {
+        "file": "images/p2_img3_58.png",
+        "width": 800,
+        "height": 307
+      }
+    ],
+    "3": [
+      {
+        "file": "images/p3_img1_74.png",
+        "width": 800,
+        "height": 207
+      },
+      {
+        "file": "images/p3_img2_76.png",
+        "width": 800,
+        "height": 503
+      },
+      {
+        "file": "images/p3_img3_78.png",
+        "width": 800,
+        "height": 228
+      }
+    ],
+    "4": [
+      {
+        "file": "images/p4_img1_92.jpeg",
+        "width": 634,
+        "height": 205
+      },
+      {
+        "file": "images/p4_img2_93.png",
+        "width": 800,
+        "height": 331
+      },
+      {
+        "file": "images/p4_img3_95.png",
+        "width": 800,
+        "height": 285
+      },
+      {
+        "file": "images/p4_img4_97.png",
+        "width": 800,
+        "height": 207
+      }
+    ],
+    "5": [
+      {
+        "file": "images/p5_img1_112.png",
+        "width": 800,
+        "height": 370
+      },
+      {
+        "file": "images/p5_img2_114.png",
+        "width": 800,
+        "height": 253
+      },
+      {
+        "file": "images/p5_img3_116.jpeg",
+        "width": 799,
+        "height": 230
+      }
+    ],
+    "6": [
+      {
+        "file": "images/p6_img1_129.jpeg",
+        "width": 606,
+        "height": 385
+      }
+    ],
+    "7": [
+      {
+        "file": "images/p7_img1_142.jpeg",
+        "width": 340,
+        "height": 318
+      },
+      {
+        "file": "images/p7_img2_143.jpeg",
+        "width": 578,
+        "height": 219
+      }
+    ],
+    "9": [
+      {
+        "file": "images/p9_img1_181.jpeg",
+        "width": 585,
+        "height": 206
+      }
+    ],
+    "10": [
+      {
+        "file": "images/p10_img1_191.png",
+        "width": 800,
+        "height": 599
+      },
+      {
+        "file": "images/p10_img2_193.png",
+        "width": 800,
+        "height": 462
+      }
+    ],
+    "11": [
+      {
+        "file": "images/p11_img1_203.png",
+        "width": 800,
+        "height": 430
+      },
+      {
+        "file": "images/p11_img2_205.png",
+        "width": 800,
+        "height": 432
+      },
+      {
+        "file": "images/p11_img3_207.png",
+        "width": 800,
+        "height": 467
+      }
+    ],
+    "12": [
+      {
+        "file": "images/p12_img1_219.png",
+        "width": 800,
+        "height": 345
+      },
+      {
+        "file": "images/p12_img2_221.png",
+        "width": 800,
+        "height": 578
+      },
+      {
+        "file": "images/p12_img3_223.png",
+        "width": 800,
+        "height": 276
+      }
+    ],
+    "13": [
+      {
+        "file": "images/p13_img1_235.png",
+        "width": 800,
+        "height": 397
+      },
+      {
+        "file": "images/p13_img2_237.png",
+        "width": 800,
+        "height": 443
+      }
+    ],
+    "14": [
+      {
+        "file": "images/p14_img1_247.png",
+        "width": 800,
+        "height": 621
+      },
+      {
+        "file": "images/p14_img2_249.png",
+        "width": 800,
+        "height": 317
+      },
+      {
+        "file": "images/p14_img3_251.png",
+        "width": 800,
+        "height": 348
+      },
+      {
+        "file": "images/p14_img4_253.png",
+        "width": 800,
+        "height": 341
+      },
+      {
+        "file": "images/p14_img5_255.png",
+        "width": 800,
+        "height": 300
+      }
+    ],
+    "15": [
+      {
+        "file": "images/p15_img1_263.png",
+        "width": 1040,
+        "height": 302
+      },
+      {
+        "file": "images/p15_img2_265.png",
+        "width": 800,
+        "height": 440
+      }
+    ],
+    "16": [
+      {
+        "file": "images/p16_img1_275.jpeg",
+        "width": 699,
+        "height": 299
+      },
+      {
+        "file": "images/p16_img2_276.png",
+        "width": 800,
+        "height": 815
+      }
+    ],
+    "17": [
+      {
+        "file": "images/p17_img1_286.png",
+        "width": 800,
+        "height": 661
+      },
+      {
+        "file": "images/p17_img2_288.png",
+        "width": 800,
+        "height": 706
+      }
+    ],
+    "18": [
+      {
+        "file": "images/p18_img1_298.png",
+        "width": 800,
+        "height": 273
+      },
+      {
+        "file": "images/p18_img2_300.png",
+        "width": 800,
+        "height": 402
+      },
+      {
+        "file": "images/p18_img3_302.png",
+        "width": 800,
+        "height": 933
+      }
+    ],
+    "19": [
+      {
+        "file": "images/p19_img1_315.png",
+        "width": 800,
+        "height": 301
+      },
+      {
+        "file": "images/p19_img2_317.png",
+        "width": 800,
+        "height": 663
+      },
+      {
+        "file": "images/p19_img3_319.png",
+        "width": 800,
+        "height": 705
+      }
+    ],
+    "20": [
+      {
+        "file": "images/p20_img1_329.png",
+        "width": 800,
+        "height": 398
+      }
+    ],
+    "21": [
+      {
+        "file": "images/p21_img1_337.png",
+        "width": 800,
+        "height": 467
+      },
+      {
+        "file": "images/p21_img2_339.png",
+        "width": 800,
+        "height": 492
+      },
+      {
+        "file": "images/p21_img3_341.png",
+        "width": 800,
+        "height": 506
+      },
+      {
+        "file": "images/p21_img4_343.png",
+        "width": 800,
+        "height": 485
+      },
+      {
+        "file": "images/p21_img5_345.png",
+        "width": 800,
+        "height": 499
+      }
+    ],
+    "23": [
+      {
+        "file": "images/p23_img1_359.jpeg",
+        "width": 525,
+        "height": 333
+      },
+      {
+        "file": "images/p23_img2_360.jpeg",
+        "width": 383,
+        "height": 218
+      },
+      {
+        "file": "images/p23_img3_361.jpeg",
+        "width": 405,
+        "height": 225
+      },
+      {
+        "file": "images/p23_img4_362.jpeg",
+        "width": 391,
+        "height": 195
+      },
+      {
+        "file": "images/p23_img5_363.jpeg",
+        "width": 461,
+        "height": 244
+      }
+    ],
+    "24": [
+      {
+        "file": "images/p24_img1_370.png",
+        "width": 800,
+        "height": 305
+      },
+      {
+        "file": "images/p24_img2_372.png",
+        "width": 800,
+        "height": 378
+      },
+      {
+        "file": "images/p24_img3_374.png",
+        "width": 800,
+        "height": 192
+      }
+    ],
+    "25": [
+      {
+        "file": "images/p25_img1_386.png",
+        "width": 800,
+        "height": 453
+      },
+      {
+        "file": "images/p25_img2_388.png",
+        "width": 800,
+        "height": 208
+      },
+      {
+        "file": "images/p25_img3_390.png",
+        "width": 800,
+        "height": 227
+      },
+      {
+        "file": "images/p25_img4_392.png",
+        "width": 800,
+        "height": 194
+      },
+      {
+        "file": "images/p25_img5_394.png",
+        "width": 800,
+        "height": 243
+      }
+    ],
+    "26": [
+      {
+        "file": "images/p26_img1_402.png",
+        "width": 800,
+        "height": 325
+      },
+      {
+        "file": "images/p26_img2_404.png",
+        "width": 800,
+        "height": 432
+      }
+    ],
+    "27": [
+      {
+        "file": "images/p27_img1_414.png",
+        "width": 800,
+        "height": 549
+      },
+      {
+        "file": "images/p27_img2_416.jpeg",
+        "width": 543,
+        "height": 169
+      }
+    ],
+    "28": [
+      {
+        "file": "images/p28_img1_425.jpeg",
+        "width": 462,
+        "height": 298
+      }
+    ],
+    "29": [
+      {
+        "file": "images/p29_img1_434.png",
+        "width": 800,
+        "height": 195
+      },
+      {
+        "file": "images/p29_img2_436.png",
+        "width": 800,
+        "height": 144
+      },
+      {
+        "file": "images/p29_img3_438.png",
+        "width": 800,
+        "height": 143
+      },
+      {
+        "file": "images/p29_img4_440.png",
+        "width": 800,
+        "height": 183
+      },
+      {
+        "file": "images/p29_img5_442.png",
+        "width": 800,
+        "height": 176
+      }
+    ],
+    "30": [
+      {
+        "file": "images/p30_img1_450.jpeg",
+        "width": 560,
+        "height": 342
+      },
+      {
+        "file": "images/p30_img2_451.jpeg",
+        "width": 949,
+        "height": 297
+      },
+      {
+        "file": "images/p30_img3_452.jpeg",
+        "width": 807,
+        "height": 304
+      }
+    ],
+    "31": [
+      {
+        "file": "images/p31_img1_463.jpeg",
+        "width": 367,
+        "height": 225
+      },
+      {
+        "file": "images/p31_img2_464.jpeg",
+        "width": 250,
+        "height": 207
+      },
+      {
+        "file": "images/p31_img3_465.jpeg",
+        "width": 725,
+        "height": 221
+      }
+    ],
+    "32": [
+      {
+        "file": "images/p32_img1_476.jpeg",
+        "width": 633,
+        "height": 231
+      },
+      {
+        "file": "images/p32_img2_477.jpeg",
+        "width": 652,
+        "height": 256
+      },
+      {
+        "file": "images/p32_img3_478.jpeg",
+        "width": 439,
+        "height": 241
+      }
+    ],
+    "33": [
+      {
+        "file": "images/p33_img1_489.jpeg",
+        "width": 552,
+        "height": 171
+      },
+      {
+        "file": "images/p33_img2_490.jpeg",
+        "width": 381,
+        "height": 485
+      }
+    ],
+    "35": [
+      {
+        "file": "images/p35_img1_519.jpeg",
+        "width": 422,
+        "height": 144
+      }
+    ]
+  },
+  "pages": [
+    {
+      "page": 1,
+      "text": "Keep practising on the ExamGOAL app\nChapter-wise PYQs with solutions, full mock tests and analysis for JEE, NEET, GATE and more.\nGoogle Play\nGET IT ON\nExamGOAL\nP Y Q P D F\nFree \u00b7 With answer key\nGATE ECE \u00b7 DIGITAL CIRCUITS \u00b7 CHAPTER-WISE PYQS\nSequential Circuits\nGATE ECE Digital Circuits \u00b7 Previous Year Questions with Answer Key\n82\nQUESTIONS\n43\nPAPERS COVERED\n1987 \u2013 2026\nYEARS\nEnglish\nLANGUAGE\nINSIDE THIS PDF\nMarks 1\n31 questions\nMarks 2\n41 questions\nMarks 5\n6 questions\nMarks 8\n4 questions\nAnswer key\nat the end\nPractise online\nEvery question with its full solution,\nfree on questions.examside.com\n1\nSolve\nPrint it, or work through it on screen.\n2\nCheck\nThe answer key is on the last pages.\n3\nUnderstand\nScan the QR code beside any question for\nits full solution.\npdf.questions.examgoal.com\nFree previous year question PDFs for JEE, NEET, GATE and more\n"
+    },
+    {
+      "page": 2,
+      "text": "ExamGOAL\nP Y Q P D F\nMarks 1\n31 questions\nQ1.\nGATE ECE 2026\nA binary ripple counter is designed to count \n to \n. Which of the following is/are the number of flip-flops required\nto design the counter?\n(A) 6\n(B) 7\n(C) 4\n(D) 5\nOpen solution\nQ2.\nGATE ECE 2026\nThe negative edge triggered \n flip-flop in the Figure has  and \n inputs tied to Logic High and a square wave of 10\ncycles/second is applied to its clock \n input. The frequency of the output \n (in cycles/second) is \n .\n(rounded off to two decimal places)\nOpen solution\nQ3.\nGATE ECE 2023\nThe synchronous sequential circuit shown below works at a clock frequency of 1 GHz. The throughput, in Mbits/s, and\nthe latency, in ns, respectively, are\n(A) 1000, 3\n(B) 333.33, 1\n(C) 2000, 3\n(D) 333.33, 3\nOpen solution\nQ4.\nGATE ECE 2019\nIn the circuit shown, the clock frequency, i.e., the frequency of the Clk signal, is 12 kHz. The frequency of the signal at \nis _______ kHz.\nOpen solution\nKeep practising on the ExamGOAL app\nChapter-wise PYQs with solutions, full mock tests and analysis for JEE, NEET, GATE and more.\nGoogle Play\nGET IT ON\nGATE ECE Digital Circuits: Sequential Circuits \u00b7 pdf.questions.examgoal.com\nSolutions: questions.examside.com \u00b7 Page 2 / 36\n"
+    },
+    {
+      "page": 3,
+      "text": "ExamGOAL\nP Y Q P D F\nQ5.\nGATE ECE 2018\nA traffic signal cycles from GREEN to YELLOW, YELLOW to RED and RED to GREEN. In each cycle, GREEN is turned on for\n70 seconds, YELLOW is turned on for 5 seconds and the RED is turned on for 75 seconds. This traffic light has to be\nimplemented using a finite state machine (FSM). The only input to this FSM is a clock of 5 second period. The minimum\nnumber of flip-flops required to implement this FSM is _______.\nOpen solution\nQ6.\nGATE ECE 2017 Set 1\nConsider the D-Latch shown in the figure, which is transparent when its clock input CK is high and has zero propagation\ndelay. In the figure, the clock signal CLK1 has a 50% duty cycle and CLK2 is a one-fifth period delayed version of CLK1.\nThe duty cycle at the output of the latch in percentage is ________.\nOpen solution\nQ7.\nGATE ECE 2017 Set 1\nIn the latch circuit shown, the NAND gates have non-zero, but unequal propagation delays. The present input condition\nis: P = Q = '0'. If the input condition is changed simultaneously to P = Q = '1', the outputs X and Y are\n(A) X = '1', Y = '1'\n(B) either X = '1', Y = '0' or X = '0', Y = '1'\n(C) either X = '1', Y = '1' or X = '0', Y = '0'\n(D) X = '0', Y = '0'\nOpen solution\nQ8.\nGATE ECE 2016 Set 2\nAssume that all the digital gates in the circuit shown in the figure are ideal, the resistor \n and the supply voltage\nis \n. The D flip-flops D1, D2, D3, D4 and D5 are initialized with logic values 0,1,0,1 and 0, respectively. The clock has a\n30% duty cycle.\nThe average power dissipated (in mW) in the resistor  is ________\nOpen solution\nKeep practising on the ExamGOAL app\nChapter-wise PYQs with solutions, full mock tests and analysis for JEE, NEET, GATE and more.\nGoogle Play\nGET IT ON\nGATE ECE Digital Circuits: Sequential Circuits \u00b7 pdf.questions.examgoal.com\nSolutions: questions.examside.com \u00b7 Page 3 / 36\n"
+    },
+    {
+      "page": 4,
+      "text": "ExamGOAL\nP Y Q P D F\nQ9.\nGATE ECE 2015 Set 3\nThe circuit shown consists of J-K flip-flops, each with an active low asynchronous reset (\n input). The counter\ncorresponding to this circuit is\n(A) a modulo-5 binary up counter\n(B) a modulo-6 binary down counter\n(C) a modulo-5 binary down counter\n(D) a modulo-6 binary up counter\nOpen solution\nQ10.\nGATE ECE 2015 Set 2\nA mod- counter using a synchronous binary up-counter with synchronous clear input is shown in the figure. The value\nof  is ________.\nOpen solution\nQ11.\nGATE ECE 2014 Set 1\nFive JK flip-flops are cascaded to form the circuit shown in Figure. Clock pulses at a frequency of 1 MHz are applied as\nshown. The frequency (in kHz) of the waveform at Q3 is __________ .\nOpen solution\nQ12.\nGATE ECE 2014 Set 3\nThe circuit shown in the figure is a\n(A) Toggle Flip Flop\n(B) JK Flip Flop\n(C) SR Latch\n(D) Master-Slave D Flip Flop\nOpen solution\nKeep practising on the ExamGOAL app\nChapter-wise PYQs with solutions, full mock tests and analysis for JEE, NEET, GATE and more.\nGoogle Play\nGET IT ON\nGATE ECE Digital Circuits: Sequential Circuits \u00b7 pdf.questions.examgoal.com\nSolutions: questions.examside.com \u00b7 Page 4 / 36\n"
+    },
+    {
+      "page": 5,
+      "text": "ExamGOAL\nP Y Q P D F\nQ13.\nGATE ECE 2012\nConsider the given circuit.\nIn this circuit, the race around\n(A) does not occur\n(B) occurs when CLK = 0\n(C) occurs when CLK = 1 and A = B = 1\n(D) occurs when CLK = 1 and A = B = 0\nOpen solution\nQ14.\nGATE ECE 2011\nWhen the output Y in the circuit below is \"1\", it implies that data has\n(A) changed from 0 to 1\n(B) changed from 1 to 0\n(C) changed in either direction\n(D) not changed\nOpen solution\nQ15.\nGATE ECE 2005\nThe present output Qn of an edge triggered JK flip-flop is logic 0. If J=1, then Qn+1\n(A) can not be determined\n(B) will be logic 0\n(C) will be logic 1\n(D) will race around\nOpen solution\nQ16.\nGATE ECE 2005\nThe given figure shows a ripple counter using positive edge triggered flip-flops. If the present state of counter is Q2 Q1\nQ0 = 011, then its next state ( Q2 Q1 Q0 ) will be\n(A) 010\n(B) 100\n(C) 111\n(D) 101\nOpen solution\nKeep practising on the ExamGOAL app\nChapter-wise PYQs with solutions, full mock tests and analysis for JEE, NEET, GATE and more.\nGoogle Play\nGET IT ON\nGATE ECE Digital Circuits: Sequential Circuits \u00b7 pdf.questions.examgoal.com\nSolutions: questions.examside.com \u00b7 Page 5 / 36\n"
+    },
+    {
+      "page": 6,
+      "text": "ExamGOAL\nP Y Q P D F\nQ17.\nGATE ECE 2004\nA master slave flip-flop has the characteristic that\n(A) change in the input immediately reflected in the output\n(B) change in the output occurs when the state of the master is affected\n(C) change in the output occurs when the state of the slave is affected\n(D) both the master and the slave states are affected at the same time\nOpen solution\nQ18.\nGATE ECE 2004\nChoose the correct one from among the alternatives A, B, C, D after matching an item from Group 1 with the most\nappropriate item in Group 2.\nGroup1\nP. shift register\nQ. Counter\nR. Decoder\nGroup2\n1. Frequency division\n2. Addressing in memory chips\n3. Serial to parallel data conversion\n(A) P-3, Q-2, R-1\n(B) P-3, Q-1, R-2\n(C) P-2, Q-1, R-3\n(D) P-1, Q-3, R-2\nOpen solution\nQ19.\nGATE ECE 2003\nA 0 to 6 counter consist of 3 flip-flops and a combination circuit of 2 input gate(s). The combination circuit consists of\n(A) one AND gate\n(B) one OR gate\n(C) one AND gate and one OR gate\n(D) two AND gates\nOpen solution\nQ20.\nGATE ECE 1998\nFigure shows a mod-K counter, Here K is equal to\n(A) 1\n(B) 2\n(C) 3\n(D) 4\nOpen solution\nKeep practising on the ExamGOAL app\nChapter-wise PYQs with solutions, full mock tests and analysis for JEE, NEET, GATE and more.\nGoogle Play\nGET IT ON\nGATE ECE Digital Circuits: Sequential Circuits \u00b7 pdf.questions.examgoal.com\nSolutions: questions.examside.com \u00b7 Page 6 / 36\n"
+    },
+    {
+      "page": 7,
+      "text": "ExamGOAL\nP Y Q P D F\nQ21.\nGATE ECE 1997\nIn a J_K flip-flop, we have J=\n and K=1 (see figure). Assuming the flip-flop was intially cleared and then clocked for 6\npulses, the sequence at the Q output will be\n(A) 010000\n(B) 011001\n(C) 010010\n(D) 010101\nOpen solution\nQ22.\nGATE ECE 1995\nA switch-tail ring counter is made by using a single D flip-flop. The resulting circuit is a\n(A) SR flip-flop\n(B) JK flip-flop\n(C) D flip-flop\n(D) T flip-flop\nOpen solution\nQ23.\nGATE ECE 1995\nAn R-S latch is\n(A) Combinational circuit\n(B) Synchronous sequential circuit.\n(C) One bit memory element\n(D) One clock delay element.\nOpen solution\nQ24.\nGATE ECE 1994\nSynchronous counters are _____ than the ripple counters.\nOpen solution\nQ25.\nGATE ECE 1993\nA pulse train with a frequency of 1 MHz is counted using a modulo-1024 ripple-counter built with J-K flip flops. For\nproper operation of the counter, the maximum permissible propagation delay per flip flop stage is ______ n sec.\nOpen solution\nQ26.\nGATE ECE 1992\nThe initial contents of the 4-bit serial-in-parallel-out, right-shift, Shift Register shown in figure is 0110. After three clock\npulses are applied, the contents of the Shift Register will be\n(A) 0000\n(B) 0101\n(C) 1010\n(D) 1111\nOpen solution\nKeep practising on the ExamGOAL app\nChapter-wise PYQs with solutions, full mock tests and analysis for JEE, NEET, GATE and more.\nGoogle Play\nGET IT ON\nGATE ECE Digital Circuits: Sequential Circuits \u00b7 pdf.questions.examgoal.com\nSolutions: questions.examside.com \u00b7 Page 7 / 36\n"
+    },
+    {
+      "page": 8,
+      "text": "ExamGOAL\nP Y Q P D F\nQ27.\nGATE ECE 1991\nA SR FLIP-FLOP can be converted into a T FLIP-FLOP by connecting ___ to Q and ___ to \n.\nOpen solution\nQ28.\nGATE ECE 1990\nA 4 bit modulo-16 ripple counter uses JK flip-flops. If the propagation delay of each FF is 50ns, the maximum clock\nfrequency that can be used is equal to:\n(A) 20 MHz\n(B) 10 MHz\n(C) 5 MHz\n(D) 4 MHz\nOpen solution\nQ29.\nGATE ECE 1988\nThe circuit given below is a\nExamSIDE.com\nA\nB\nQ\nQ-\n(A) J-K Flip-flop\n(B) Johnson's counter\n(C) R-S latch\n(D) None of above\nOpen solution\nKeep practising on the ExamGOAL app\nChapter-wise PYQs with solutions, full mock tests and analysis for JEE, NEET, GATE and more.\nGoogle Play\nGET IT ON\nGATE ECE Digital Circuits: Sequential Circuits \u00b7 pdf.questions.examgoal.com\nSolutions: questions.examside.com \u00b7 Page 8 / 36\n"
+    },
+    {
+      "page": 9,
+      "text": "ExamGOAL\nP Y Q P D F\nQ30.\nGATE ECE 1987\nA ripple counter using negative edge-triggered D-flip flops is shown in Fig.1. The flip-flops are cleared to '0' by a '0' at the\nR input. The feedback logic is to be designed to obtain the count sequence shown in the same figure. The correct\nfeedback logic is:\nExamSIDE.com\nClick\nD0\nQ0\nC0\nQ0\n_\nD1\nD2\nQ1\nQ2\nC1\nC2\nQ1\nQ2\n_\n_\nF\nFeedback\nLogic\n(A)\n(B)\n(C)\n(D)\nOpen solution\nQ31.\nGATE ECE 1987\nChoose the correct statements relating to the circuit of figure\nExamSIDE.com\n+2V\n-1V\nVi\nP\n+\n+\n_\n_\n(A) For Vi = -2V, P=0\n(B) For Vi = +3V, P=0\n(C) For Vi = 0V, P=0 always\n(D) For Vi = 0V, P can be either 0 or 1.\nOpen solution\nKeep practising on the ExamGOAL app\nChapter-wise PYQs with solutions, full mock tests and analysis for JEE, NEET, GATE and more.\nGoogle Play\nGET IT ON\nGATE ECE Digital Circuits: Sequential Circuits \u00b7 pdf.questions.examgoal.com\nSolutions: questions.examside.com \u00b7 Page 9 / 36\n"
+    },
+    {
+      "page": 10,
+      "text": "ExamGOAL\nP Y Q P D F\nMarks 2\n41 questions\nQ32.\nGATE ECE 2026\nA shift-left Shift Register (SR) and a \n flip-flop are connected to a synchronized clock as shown in the Figure. Assume\nthat the SR and D flip-flops are initially cleared and the XOR gate has no propagation delay.\nWhich of the following options gives the correct binary representation \n of the content of the shift\nregister immediately after the \n clock transition (positive edge)?\n(A) 00011111\n(B) 10111111\n(C) 00111111\n(D) 11000011\nOpen solution\nQ33.\nGATE ECE 2025\nA positive-edge-triggered sequential circuit is shown below. There are no timing violations in the circuit. Input \n is set\nto logic ' 0 ' and \n is set to logic ' 1 ' at all times. The timing diagram of the inputs SEL and  are also shown below.\nThe sequence of output  from time \n to \n is \n .\n(A) 1011\n(B) 0100\n(C) 0010\n(D) 1101\nOpen solution\nth\u00a0\nKeep practising on the ExamGOAL app\nChapter-wise PYQs with solutions, full mock tests and analysis for JEE, NEET, GATE and more.\nGoogle Play\nGET IT ON\nGATE ECE Digital Circuits: Sequential Circuits \u00b7 pdf.questions.examgoal.com\nSolutions: questions.examside.com \u00b7 Page 10 / 36\n"
+    },
+    {
+      "page": 11,
+      "text": "ExamGOAL\nP Y Q P D F\nQ34.\nGATE ECE 2025\nIn the circuit shown below, the AND gate has a propagation delay of 1 ns . The edgetriggered flip-flops have a set-up\ntime of 2 ns , a hold-time of 0 ns , and a clock-to-Q delay of 2 ns .\nThe maximum clock frequency (in MHz , rounded off to the nearest integer) such that there are no setup violations\nis___________ .\nOpen solution\nQ35.\nGATE ECE 2024\nThe sequence of states \n of the given synchronous sequential circuit is ________.\n(A) 00 \u2192 10 \u2192 11 \u2192 00\n(B) 11 \u2192 00 \u2192 10 \u2192 01 \u2192 00\n(C) 01 \u2192 10 \u2192 11 \u2192 00 \u2192 01\n(D) 00 \u2192 01 \u2192 10 \u2192 00\nOpen solution\nQ36.\nGATE ECE 2023\nIn a given sequential circuit, initial states are Q = 1 and Q = 0. For a clock frequency of 1 MHz, the frequency of signal\nQ in kHz, is ___________ (rounded off to the nearest integer).\nOpen solution\nKeep practising on the ExamGOAL app\nChapter-wise PYQs with solutions, full mock tests and analysis for JEE, NEET, GATE and more.\nGoogle Play\nGET IT ON\nGATE ECE Digital Circuits: Sequential Circuits \u00b7 pdf.questions.examgoal.com\nSolutions: questions.examside.com \u00b7 Page 11 / 36\n"
+    },
+    {
+      "page": 12,
+      "text": "ExamGOAL\nP Y Q P D F\nQ37.\nGATE ECE 2022\nfor the circuit shown, the clock frequency is f0 and the duty cycle is 25%. For the signal at the Q output of the Flip-Flop,\n___________.\n(A) frequency is f0/4 and duty cycle is 50%\n(B) frequency is f0/4 and duty cycle is 25%\n(C) frequency is f0/2 and duty cycle is 50%\n(D) frequency is f0 and duty cycle is 25%\nOpen solution\nQ38.\nGATE ECE 2022\nA state transition diagram with states A, B, and C, and transition probabilities p1, p2, ....., p7 is shown in the figure (e.g., p1\ndenotes the probability of transition from state A to B). For this state diagram, select the statements which is/are\nuniversally true.\n(A) p2 + p3 = p5 + p6\n(B) p1 + p3 = p4 + p6\n(C) p1 + p4 + p7 = 1\n(D) p2 + p5 + p7 = 1\nOpen solution\nQ39.\nGATE ECE 2021\nThe propagation delay of the exclusive-OR (XOR) gate in the circuit in the figure is 3 ns . The propagation delay of all the\nflip-flops is assumed to be Zero. The clock (Clk) frequency provided to the circuit is 500 MHz .\nStarting from the initial value of the flip-flop outputs \n with \n, the minimum number of triggering\nclock edges after which the flip-flop outputs \n becomes 100 (in integer) is \nOpen solution\nKeep practising on the ExamGOAL app\nChapter-wise PYQs with solutions, full mock tests and analysis for JEE, NEET, GATE and more.\nGoogle Play\nGET IT ON\nGATE ECE Digital Circuits: Sequential Circuits \u00b7 pdf.questions.examgoal.com\nSolutions: questions.examside.com \u00b7 Page 12 / 36\n"
+    },
+    {
+      "page": 13,
+      "text": "ExamGOAL\nP Y Q P D F\nQ40.\nGATE ECE 2020\nFor the components in the sequential circuit shown below, \n is the propagation delay, \n is the setup time and \n is\nthe hold time. The maximum clock frequency (rounded off to the nearest integer), at which the given circuit can operate\nreliably, is \n MHz.\nOpen solution\nQ41.\nGATE ECE 2020\nThe state diagram of a sequence detector is shown below. State \n is the initial state of the sequence detector. If the\noutput is 1 , then\n(A) the sequence 01110 is detected.\n(B) the sequence 01001 is detected.\n(C) the sequence 01011 is detected.\n(D) the sequence 01010 is detected.\nOpen solution\nsecup\u00a0\nhold\u00a0\nKeep practising on the ExamGOAL app\nChapter-wise PYQs with solutions, full mock tests and analysis for JEE, NEET, GATE and more.\nGoogle Play\nGET IT ON\nGATE ECE Digital Circuits: Sequential Circuits \u00b7 pdf.questions.examgoal.com\nSolutions: questions.examside.com \u00b7 Page 13 / 36\n"
+    },
+    {
+      "page": 14,
+      "text": "ExamGOAL\nP Y Q P D F\nQ42.\nGATE ECE 2019\nThe state transition diagram for the circuit shown is\n(A)\n(B)\n(C)\n(D)\nOpen solution\nKeep practising on the ExamGOAL app\nChapter-wise PYQs with solutions, full mock tests and analysis for JEE, NEET, GATE and more.\nGoogle Play\nGET IT ON\nGATE ECE Digital Circuits: Sequential Circuits \u00b7 pdf.questions.examgoal.com\nSolutions: questions.examside.com \u00b7 Page 14 / 36\n"
+    },
+    {
+      "page": 15,
+      "text": "ExamGOAL\nP Y Q P D F\nQ43.\nGATE ECE 2018\nIn the circuit shown below, a positive edge-triggered D Flip-Flop is used for sampling input data Din using clock CK. The\nXOR gate outputs 3.3 volts for logic HIGH and 0 volts for logic LOW levels. The data bit and clock periods are equal and\nthe value of \n = 0.15, where the parameters \n and TCK are shown in the figure. Assume that the Flip-Flop and the\nXOR gate are ideal.\nIf the probability of input data bit (Din) transition in each clock period is 0.3, the average value (in volts, accurate to two\ndecimal places) of the voltage at node X, is _______.\nOpen solution\nQ44.\nGATE ECE 2017 Set 1\nA 4-bit shift register circuit configured for right-shift operation, i.e. \n, is shown. If the\npresent state of the shift register is \n, the number of clock cycles required to reach the state\n is __________.\nOpen solution\nKeep practising on the ExamGOAL app\nChapter-wise PYQs with solutions, full mock tests and analysis for JEE, NEET, GATE and more.\nGoogle Play\nGET IT ON\nGATE ECE Digital Circuits: Sequential Circuits \u00b7 pdf.questions.examgoal.com\nSolutions: questions.examside.com \u00b7 Page 15 / 36\n"
+    },
+    {
+      "page": 16,
+      "text": "ExamGOAL\nP Y Q P D F\nQ45.\nGATE ECE 2017 Set 1\nA finite state machine (FSM) is implemented using the D flip-flops A and B and logic gates, as shown in the figure below.\nThe four possible states of the FSM are QA QB = 00, 01, 10, and 11.\nAssume that XIN is held at a constant logic level throughout the operation of the FSM. When the FSM is initialized to the\nstate QA QB = 00 and clocked, after a few clock cycles, it starts cycling through\n(A) all of the four possible states if XIN = 1\n(B) three of the four possible states if XIN = 0\n(C) only two of the four possible states if XIN =1\n(D) only two of the four possible states if XIN = 0\nOpen solution\nQ46.\nGATE ECE 2017 Set 2\nThe state diagram of a finite state machine (FSM) designed to detect an overlapping sequence of three bits is shown in\nthe figure. The FSM has an input \u2018In\u2019 and an output \u2018Out\u2019. The initial state of the FSM is S0.\nIf the input sequence is 10101101001101, starting with the left-most bit, then the number of times \u2018Out\u2019 will be 1 is\n________\nOpen solution\nKeep practising on the ExamGOAL app\nChapter-wise PYQs with solutions, full mock tests and analysis for JEE, NEET, GATE and more.\nGoogle Play\nGET IT ON\nGATE ECE Digital Circuits: Sequential Circuits \u00b7 pdf.questions.examgoal.com\nSolutions: questions.examside.com \u00b7 Page 16 / 36\n"
+    },
+    {
+      "page": 17,
+      "text": "ExamGOAL\nP Y Q P D F\nQ47.\nGATE ECE 2016 Set 2\nThe state transition diagram for a finite state machine with states A, B and C, and binary inputs X, Y and Z, is shown in\nthe figure.\nWhich one of the following statements is correct?\n(A) Transitions from State A are ambiguously defined.\n(B) Transitions from State B are ambiguously defined.\n(C) Transitions from State C are ambiguously defined.\n(D) All of the state transitions are defined unambiguously.\nOpen solution\nQ48.\nGATE ECE 2016 Set 3\nFor the circuit shown in the figure, the delay of the bubbled NAND gate is 2 ns and that of the counter is assumed to be\nzero.\nIf the clock (Clk) frequency is 1 GHz, then the counter behaves as a\n(A) mod-5 counter\n(B) mod-6 counter\n(C) mod-7 counter\n(D) mod-8 counter\nOpen solution\nKeep practising on the ExamGOAL app\nChapter-wise PYQs with solutions, full mock tests and analysis for JEE, NEET, GATE and more.\nGoogle Play\nGET IT ON\nGATE ECE Digital Circuits: Sequential Circuits \u00b7 pdf.questions.examgoal.com\nSolutions: questions.examside.com \u00b7 Page 17 / 36\n"
+    },
+    {
+      "page": 18,
+      "text": "ExamGOAL\nP Y Q P D F\nQ49.\nGATE ECE 2015 Set 3\nA three bit pseudo random number generator is shown. Initially the value of output \n is set to 111. The value\nof output  after three clock cycles is\n(A) 000\n(B) 001\n(C) 010\n(D) 100\nOpen solution\nQ50.\nGATE ECE 2015 Set 3\nAn SR latch is implemented using TTL gates as shown in the figure. The set and reset pulse inputs are provided using\nthe push-button switches. It is observed that the circuit fails to work as desired. The SR latch can be made functional by\nchanging\n(A) NOR gates to NAND gates\n(B) inverters to buffers\n(C) NOR gates to NAND gates and inverters to buffers\n(D) 5 V to ground\nOpen solution\nQ51.\nGATE ECE 2015 Set 2\nThe figure shows a binary counter with synchronous clear input. With the decoding logic shown, the counter works as a\n(A) mod - 2 counter\n(B) mod - 4 counter\n(C) mod - 5 counter\n(D) mod - 6 counter\nOpen solution\nKeep practising on the ExamGOAL app\nChapter-wise PYQs with solutions, full mock tests and analysis for JEE, NEET, GATE and more.\nGoogle Play\nGET IT ON\nGATE ECE Digital Circuits: Sequential Circuits \u00b7 pdf.questions.examgoal.com\nSolutions: questions.examside.com \u00b7 Page 18 / 36\n"
+    },
+    {
+      "page": 19,
+      "text": "ExamGOAL\nP Y Q P D F\nQ52.\nGATE ECE 2014 Set 1\nThe digital logic shown in the figure satisfies the given state diagram when Q1 is connected to input A of the XOR gate.\nSuppose the XOR gate is replaced by an XNOR gate. Which one of the following options preserves the state diagram?\n(A) Input A is connected to \n(B) Input A is connected to \n(C) Input A is connected to \n and S is complemented\n(D) Input A is connected to \nOpen solution\nQ53.\nGATE ECE 2014 Set 2\nIn the circuit shown, choose the correct timing diagram of the output (y) from the given waveforms W1, W2, W3 and W4.\n(A) W1\n(B) W2\n(C) W3\n(D) W4\nOpen solution\nKeep practising on the ExamGOAL app\nChapter-wise PYQs with solutions, full mock tests and analysis for JEE, NEET, GATE and more.\nGoogle Play\nGET IT ON\nGATE ECE Digital Circuits: Sequential Circuits \u00b7 pdf.questions.examgoal.com\nSolutions: questions.examside.com \u00b7 Page 19 / 36\n"
+    },
+    {
+      "page": 20,
+      "text": "ExamGOAL\nP Y Q P D F\nQ54.\nGATE ECE 2014 Set 2\nThe outputs of the two flip-flops Q1, Q2 in the figure shown are initialized to 0, 0. The sequence generated at Q1 upon\napplication of clock signal is\n(A) 01110\u2026\n(B) 01010\u2026\n(C) 00110\u2026\n(D) 01100\u2026\nOpen solution\nKeep practising on the ExamGOAL app\nChapter-wise PYQs with solutions, full mock tests and analysis for JEE, NEET, GATE and more.\nGoogle Play\nGET IT ON\nGATE ECE Digital Circuits: Sequential Circuits \u00b7 pdf.questions.examgoal.com\nSolutions: questions.examside.com \u00b7 Page 20 / 36\n"
+    },
+    {
+      "page": 21,
+      "text": "ExamGOAL\nP Y Q P D F\nQ55.\nGATE ECE 2012\nThe state transition diagram for the logic circuit shown is\n(A)\n(B)\n(C)\n(D)\nOpen solution\nKeep practising on the ExamGOAL app\nChapter-wise PYQs with solutions, full mock tests and analysis for JEE, NEET, GATE and more.\nGoogle Play\nGET IT ON\nGATE ECE Digital Circuits: Sequential Circuits \u00b7 pdf.questions.examgoal.com\nSolutions: questions.examside.com \u00b7 Page 21 / 36\n"
+    },
+    {
+      "page": 22,
+      "text": "ExamGOAL\nP Y Q P D F\nQ56.\nGATE ECE 2011\nTwo D flip-flops are connected as a synchronous counter that goes through the following QB QA sequence\n(A)\n(B)\n(C)\n(D)\nOpen solution\nKeep practising on the ExamGOAL app\nChapter-wise PYQs with solutions, full mock tests and analysis for JEE, NEET, GATE and more.\nGoogle Play\nGET IT ON\nGATE ECE Digital Circuits: Sequential Circuits \u00b7 pdf.questions.examgoal.com\nSolutions: questions.examside.com \u00b7 Page 22 / 36\n"
+    },
+    {
+      "page": 23,
+      "text": "ExamGOAL\nP Y Q P D F\nQ57.\nGATE ECE 2011\nThe output of a 3-stage Johnson (twisted-ring) counter is fed to a digital-to-analog (D/A) converter as shown in the\nfigure below. Assume all the states of the counter to be unset initially. The waveform which represents the D/A converter\noutput Vo is\n(A)\n(B)\n(C)\n(D)\nOpen solution\nKeep practising on the ExamGOAL app\nChapter-wise PYQs with solutions, full mock tests and analysis for JEE, NEET, GATE and more.\nGoogle Play\nGET IT ON\nGATE ECE Digital Circuits: Sequential Circuits \u00b7 pdf.questions.examgoal.com\nSolutions: questions.examside.com \u00b7 Page 23 / 36\n"
+    },
+    {
+      "page": 24,
+      "text": "ExamGOAL\nP Y Q P D F\nQ58.\nGATE ECE 2010\nAssuming that all flip-flops are in reset condition initially, the count sequence observed at \n in the circuit shown is\n(A) 0010111...\n(B) 0001011...\n(C) 0101111...\n(D) 0110100...\nOpen solution\nQ59.\nGATE ECE 2009\nWhat are the counting states \n for the counter shown in the figure below?\n(A) 11, 10, 00, 11, 10,......\n(B) 01, 10, 11, 00, 01, ....\n(C) 00,11,01,10,00........\n(D) 01,10,00,01,10........\nOpen solution\nQ60.\nGATE ECE 2009\nRefer to the NAND and NOR latches shown in the figure. The inputs \n for both the latches are first made \n and\nthen, after a few seconds, made \n. The corresponding stable outputs \n are\n(A) NAND: first \n then \n; NOR: first \n then \n(B) NAND: first \n then \n; NOR: first \n then \n(C) NAND: first \n then \n; NOR: first \n then \n(D) NAND: first \n then \n; NOR: first \n then \nOpen solution\nKeep practising on the ExamGOAL app\nChapter-wise PYQs with solutions, full mock tests and analysis for JEE, NEET, GATE and more.\nGoogle Play\nGET IT ON\nGATE ECE Digital Circuits: Sequential Circuits \u00b7 pdf.questions.examgoal.com\nSolutions: questions.examside.com \u00b7 Page 24 / 36\n"
+    },
+    {
+      "page": 25,
+      "text": "ExamGOAL\nP Y Q P D F\nQ61.\nGATE ECE 2008\nFor each of the positive edge-triggered J-K flip flop used in the following figure, the propagation delay is \n.\nWhich of the following waveforms correctly represents the output at \n?\n(A)\n(B)\n(C)\n(D)\nOpen solution\nKeep practising on the ExamGOAL app\nChapter-wise PYQs with solutions, full mock tests and analysis for JEE, NEET, GATE and more.\nGoogle Play\nGET IT ON\nGATE ECE Digital Circuits: Sequential Circuits \u00b7 pdf.questions.examgoal.com\nSolutions: questions.examside.com \u00b7 Page 25 / 36\n"
+    },
+    {
+      "page": 26,
+      "text": "ExamGOAL\nP Y Q P D F\nQ62.\nGATE ECE 2008\nFor the circuit shown in the figure, D has a transition from 0 to 1 after CLK changes from 1 to 0. Assume gate delays to\nbe negligible.\nWhich of the following statements is true?\n(A) Q goes to 1 at the CLK transition and stays at 1.\n(B) Q goes to 0 at the CLK transition and stays at 0.\n(C) Q goes to 1 at the CLK transition and goes to 0 when D goes to 1.\n(D) Q goes to 0 at the CLK transition and goes to 1 when D goes to 1.\nOpen solution\nQ63.\nGATE ECE 2007\nFor the circuit shown, the counter state \n follows the sequence\n(A) 00,01,10,11,00......\n(B) 00,01,10,00,01.......\n(C) 00,01,11,00,01.....\n(D) 00,10,11,00,10......\nOpen solution\nKeep practising on the ExamGOAL app\nChapter-wise PYQs with solutions, full mock tests and analysis for JEE, NEET, GATE and more.\nGoogle Play\nGET IT ON\nGATE ECE Digital Circuits: Sequential Circuits \u00b7 pdf.questions.examgoal.com\nSolutions: questions.examside.com \u00b7 Page 26 / 36\n"
+    },
+    {
+      "page": 27,
+      "text": "ExamGOAL\nP Y Q P D F\nQ64.\nGATE ECE 2007\nThe following binary values were applied to the X and Y inputs of the NAND latch shown in the figure in the sequence\nindicated below:\nX = 0, Y = 1; \u00a0 X = 0, Y = 0; \u00a0 X = 1, Y = 1.\nThe corresponding stable P, Q outputs will be\n(A) P = 1, Q = 0; P = 1, Q = 0; P = 1, Q = 0 or P = 0, Q = 1\n(B) P = 1, Q = 0; P = 0, Q = 1 or P = 0, Q = 1; P = 0, Q = 1\n(C) P = 1, Q = 0; P = 1, Q = 1; P = 1, Q = 0 or P = 0, Q = 1\n(D) P = 1, Q = 0; P = 1, Q = 1; P = 1, Q = 1\nOpen solution\nQ65.\nGATE ECE 2006\nTwo D-flip-flops, as shown below, are to be connected as a synchronous counter that goes through the following Q1Q0\nsequence \nThe inputs D0 and D1 respectively should be connected as\n(A)\n(B)\n(C)\n(D)\nOpen solution\nKeep practising on the ExamGOAL app\nChapter-wise PYQs with solutions, full mock tests and analysis for JEE, NEET, GATE and more.\nGoogle Play\nGET IT ON\nGATE ECE Digital Circuits: Sequential Circuits \u00b7 pdf.questions.examgoal.com\nSolutions: questions.examside.com \u00b7 Page 27 / 36\n"
+    },
+    {
+      "page": 28,
+      "text": "ExamGOAL\nP Y Q P D F\nQ66.\nGATE ECE 2004\nIn the modulo-6 ripple counter shown in the figure, the output of the 2-input gate is used to clear the J-K flip-flops. The 2-\ninput gate is\n(A) a NAND gate\n(B) a NOR gate\n(C) an OR gate\n(D) an AND gate\nOpen solution\nQ67.\nGATE ECE 2003\nA 4 bit ripple counter and a 4 bit synchronous counter are made using flip-flops having a propagation delay of 10 ns\neach. If the worst case delay in the ripple counter and the synchronous counter be R and S respectively, then\n(A) R = 10ns, S = 40ns\n(B) R = 40ns, S = 10ns\n(C) R = 10ns, S = 30ns\n(D) R = 30ns, S = 10ns\nOpen solution\nKeep practising on the ExamGOAL app\nChapter-wise PYQs with solutions, full mock tests and analysis for JEE, NEET, GATE and more.\nGoogle Play\nGET IT ON\nGATE ECE Digital Circuits: Sequential Circuits \u00b7 pdf.questions.examgoal.com\nSolutions: questions.examside.com \u00b7 Page 28 / 36\n"
+    },
+    {
+      "page": 29,
+      "text": "ExamGOAL\nP Y Q P D F\nQ68.\nGATE ECE 2001\nThe digital block in the figure is realized using two positive edge triggered D flip-flops. Assume that for t < t0, Q1 = Q2 =0.\nThe circuit in the digital block is given by\n(A)\n(B)\n(C)\n(D)\nOpen solution\nKeep practising on the ExamGOAL app\nChapter-wise PYQs with solutions, full mock tests and analysis for JEE, NEET, GATE and more.\nGoogle Play\nGET IT ON\nGATE ECE Digital Circuits: Sequential Circuits \u00b7 pdf.questions.examgoal.com\nSolutions: questions.examside.com \u00b7 Page 29 / 36\n"
+    },
+    {
+      "page": 30,
+      "text": "ExamGOAL\nP Y Q P D F\nQ69.\nGATE ECE 2000\nA sequential circuit using D flip-flop and logic gates is shown in the figure, where X and Y are the inputs and Z is the\noutput. The circuit is\n(A) S\u2013R Flip-Flop with inputs X = R and Y = S\n(B) S\u2013R Flip-Flop with inputs X = S and Y = R\n(C) J\u2013K Flip-Flop with inputs X = J and Y = K\n(D) J\u2013K Flip-Flop with inputs X = K and Y = J\nOpen solution\nQ70.\nGATE ECE 2000\nIn the figure, the J and K inputs of all the four Flip-Flops are made high. The frequency of the signal at output Y is\n(A) 0.833 KHz\n(B) 1.0 KHz\n(C) 0.91 KHz\n(D) 0.77 KHZ\nOpen solution\nQ71.\nGATE ECE 1999\nThe ripple counter shown in the figure works as a\n(A) mod \u2013 3 up counter\n(B) mod \u2013 5 up counter\n(C) mod \u2013 3 down counter\n(D) mod \u2013 5 down counter\nOpen solution\nKeep practising on the ExamGOAL app\nChapter-wise PYQs with solutions, full mock tests and analysis for JEE, NEET, GATE and more.\nGoogle Play\nGET IT ON\nGATE ECE Digital Circuits: Sequential Circuits \u00b7 pdf.questions.examgoal.com\nSolutions: questions.examside.com \u00b7 Page 30 / 36\n"
+    },
+    {
+      "page": 31,
+      "text": "ExamGOAL\nP Y Q P D F\nQ72.\nGATE ECE 1998\nIn figure, A = 1 and B = 1. The input B is now replaced by a sequence 101010 ___, the outputs x and y will be\n(A) fixed at 0 and 1, respectively\n(B) x = 1010 ------while y = 0101 ------\n(C) x = 1010 ----and y = 1010 ----\n(D) fixed at 1 and 0, respectively\nOpen solution\nMarks 5\n6 questions\nQ73.\nGATE ECE 2002\nIt is required to design a binary mod-5 synchronus counter using AB flip-flops such that the output Q2Q1Q0 changes as\n ........and so on. The excitation table for the AB flip-flops is given in the table\n(a) Write down the state table for the mod-5 counter.\n(b)Obtain simplified SOP expressions for the inputs A2, B2, A1, B1, A0 and B0 in terms of Q2, Q1, Q and their\ncomplements.\n(c) Hence, complete the circuit diagram for the mod-5 counter given in the figure using minimum number of 2-input\nNAND-gate only.\nOpen solution\nQ74.\nGATE ECE 1999\nThe circuit diagram of a synchronous counter is shown in the figure. Determine the sequence of states of the counter\nassuming that the initial state is \u2018000\u2019. Give your answer in a tabular form showing the present state QA(n), QB(n), QC(n), J-\nK inputs ( JA, KA, JB, KB, JC, KC) and the next state \n From the table, determine the modulus of\nthe counter.\nOpen solution\nKeep practising on the ExamGOAL app\nChapter-wise PYQs with solutions, full mock tests and analysis for JEE, NEET, GATE and more.\nGoogle Play\nGET IT ON\nGATE ECE Digital Circuits: Sequential Circuits \u00b7 pdf.questions.examgoal.com\nSolutions: questions.examside.com \u00b7 Page 31 / 36\n"
+    },
+    {
+      "page": 32,
+      "text": "ExamGOAL\nP Y Q P D F\nQ75.\nGATE ECE 1998\nThe mod-5 counter shown in figure counts through states Q2 Q1 Q0 = 000, 001, 010, 011 and 100.\n(a) Will the counter lockout if it happens to be in any one of the unused states?\n(b) Find the maximum rate at which the counter will operate satisfactorily. Assume the propagation delays of flip-flop\nand AND gate to be tF and tA\nOpen solution\nQ76.\nGATE ECE 1997\nA sequence generator is shown in figure. The counter status (Q0 Q1 Q3) is intialized to 010 using preset/clear inputs.\nThe Clock has a period of 50ns and transitions take place at the rising clock edge.\n(a) Give the sequence generated at Q0 till it repeats.\n(b) What is the repetition rate for the generated sequence?\nOpen solution\nQ77.\nGATE ECE 1996\nA 4-bit shift register, which shifts 1 bit to the right at every clock pulse, is intialized to values (1000) for (Q0Q1Q2Q3). The\nD input is derived from Q0, Q2 and Q3 through two XOR gates as shown in figure.\n(a) Write the 4-bit values (Q0Q1Q2Q3) after each clock pulse till the pattern (1000) reappears on (Q0Q1Q2Q3).\n(b) To what values should the shift register be intialized so that the pattern (1001) occurs after the first clock pulse?\nOpen solution\nKeep practising on the ExamGOAL app\nChapter-wise PYQs with solutions, full mock tests and analysis for JEE, NEET, GATE and more.\nGoogle Play\nGET IT ON\nGATE ECE Digital Circuits: Sequential Circuits \u00b7 pdf.questions.examgoal.com\nSolutions: questions.examside.com \u00b7 Page 32 / 36\n"
+    },
+    {
+      "page": 33,
+      "text": "ExamGOAL\nP Y Q P D F\nQ78.\nGATE ECE 1996\nA state machine is required to cycle through the following sequence of states:\nOne possible implementation of the state machine is shown figure. Specify what signals should be applied to each of\nthe multiplexer inputs\nOpen solution\nMarks 8\n4 questions\nQ79.\nGATE ECE 1992\nA new clocked \"X-Y\" flip-flop is defined with two inputs, X and Y in addition to the clock input. The flip-flop functions as\nfollows:\nIf XY=00, the flip-flop changes state with each clock pulse.\nIf XY=01, the flip-flop state Q becomes 1 with the next clock pulse.\nIf XY=10, the flip-flop state Q becomes 0 with the next clock pulse.\nIf XY=11, no change of state occurs with the clock pulse.\n(a) Write the Truth table for the X-Y flip flop\n(b) Write the Excitation table for the X-Y flip flop\n(c) It is desired to convert a J-K flip flop into the X-Y flip flop by adding some external gates, if necessary. Draw a circuit\nto show how you will implement the X-Y flip-flop using a J-K flip-flop.\nOpen solution\nKeep practising on the ExamGOAL app\nChapter-wise PYQs with solutions, full mock tests and analysis for JEE, NEET, GATE and more.\nGoogle Play\nGET IT ON\nGATE ECE Digital Circuits: Sequential Circuits \u00b7 pdf.questions.examgoal.com\nSolutions: questions.examside.com \u00b7 Page 33 / 36\n"
+    },
+    {
+      "page": 34,
+      "text": "ExamGOAL\nP Y Q P D F\nQ80.\nGATE ECE 1988\nThe circuit shown below uses TTL flip-flops. The flip-flops are triggered at the negative transitions of the clock. It is\ndesired that when M = 1 the circuit should function as an up-counter (in 8421 BCD) and when M=0, as a down-counter.\nDesign the combinational circuit interposed between the flip-flops so that the circuit works as desired. (i.e. find F as a\nfunction of Q,\n, M, \n).\nExamSIDE.com\nClock\nLogic \nCircuit\nF\nJ\nJ\nK\nK\nQ\nQ\nQ\nQ\nLogic \nCircuit\nJ\nQ\nK\nQ\nF\nM\nOpen solution\nQ81.\nGATE ECE 1988\nFor the circuit shown in the figure below, sketch V0 against time. Assume that all flip-flops are reset to zero before the\nclock is applied.\nExamSIDE.com\nR\nR\nR\nR\n+\n-\nV0\nJ0\nQ0\nJ1\nJ2\nQ1\nQ2\nK0\nK1\nK2\nQ\nQ0\nQ1\nOpen solution\nQ82.\nGATE ECE 1987\nA 2-input up/down synchrconous counter using two toggle flip-flops is shown in Fig.1. The counter's sequence is to be\ncontrolled by the input M as follows:\nFor M=1, sequence of Q1, Q0 is ..00, 01, 10, 11, 00, 01.......\nFor M=0, sequence of Q1, Q0 is ..00, 11, 10, 01, 00, 11......\n(a)Design the necessary feedback logic for T1 and T0.\n(b)Realize the feesback logic using inverters and 4-input multiplexers only. Use Q1 and Q0 as the control inputs of the\nmultiplexer with Q1 as the MSB.\nExamSIDE.com\nClock\nFeedback\nLogic\nM\nFig.1\nT0\nT1\nQ0\nQ1\nC\nC\nOpen solution\nKeep practising on the ExamGOAL app\nChapter-wise PYQs with solutions, full mock tests and analysis for JEE, NEET, GATE and more.\nGoogle Play\nGET IT ON\nGATE ECE Digital Circuits: Sequential Circuits \u00b7 pdf.questions.examgoal.com\nSolutions: questions.examside.com \u00b7 Page 34 / 36\n"
+    },
+    {
+      "page": 35,
+      "text": "ExamGOAL\nP Y Q P D F\nAnswer Key\nMarks 1\n1. B\n2. (5) (4.90 to 5.10)\n3. A\n4. 4\n5. 5\n6. 29.9 to 30.1\n7. B\n8. 1.45 to 1.55\n9. A\n10. 7\n11. 62.4 to 62.6\n12. D\n13. A\n14. A\n15. C\n16. B\n17. C\n18. B\n19. D\n20. C\n21. D\n22. D\n23. C\n24. faster\n25. 100\n26. C\n27. R, S\n28. C\n29. C\n30. A\n31. B\nMarks 2\n32. A\n33. A\n34. 200\n35. B\n36. 250\n37. A\n38. A, C\n39. 4\n40. 77\n41. D\n42. C\n43. 0.82 to 0.86\n44. 10\n45. D\n46. 4\n47. C\n48. D\n49. D\n50. D\n51. C\n52. D\n53. C\n54. D\n55. D\n56. D\n57. A\n58. D\n59. A\n60. C\n61. B\n62. C\n63. B\n64. C\n65. A\n66. C\n67. B\n68. C\n69. D\n70. A\n71. D\n72. A\nMarks 5\n73. (b)\n74. It is mod 6 counter\n75. (a) Counter is lockout\nfree\n(b) Maximum clock\nrate = \n76. (a) Sequence\ngenerated at Q0 is\n(b) 4MHz\n77. (b) Shift register\nshould intialized to\n1100\n78. Solve it.\nMarks 8\n79. Solve it.\n80. Solve it.\n81. Solve it.\n82. Solve it.\nFor numerical answers given as a range, any value within the range is correct. Full solutions: scan the QR code next to each question, or visit questions.examside.com.\nKeep practising on the ExamGOAL app\nChapter-wise PYQs with solutions, full mock tests and analysis for JEE, NEET, GATE and more.\nGoogle Play\nGET IT ON\nGATE ECE Digital Circuits: Sequential Circuits \u00b7 pdf.questions.examgoal.com\nSolutions: questions.examside.com \u00b7 Page 35 / 36\n"
+    },
+    {
+      "page": 36,
+      "text": "Keep practising on the ExamGOAL app\nChapter-wise PYQs with solutions, full mock tests and analysis for JEE, NEET, GATE and more.\nGoogle Play\nGET IT ON\nExamGOAL\nP Y Q P D F\nYour Exam. Our Responsibility.\nFrom first chapter\nto exam day.\nPractise with the questions your exam has already asked, then test yourself\nunder real exam conditions.\nPAST YEAR QUESTIONS\nEvery past paper, chapter-wise.\nPrevious year questions sorted the way you study, each with a\nfull solution.\nMOCK TESTS\nMock tests with a real exam feel.\nPractise under the same pressure as the real paper, on your\nphone or on the big screen.\nANALYSIS\nKnow your score. Know your rank.\nA full report after every test, so you know exactly where you\nstand.\nPRACTICE\nSolve. Check. Understand.\nLearn from every question, not just the ones you get right.\nChapter-wise and year-wise\nWeightage and topic tags on every chapter\nYour progress on each one, at a glance\nTimed sections, just like exam day\nMark questions for review and come back\nYour percentile among everyone who took it\nPredicted real-exam percentile and All India Rank\nSubject breakdown and time analysis\nInstant answers as you practise\nStep-by-step explanations\nSee how everyone else answered\nNCERT Exemplar\nWith full solutions\nExam syllabus\nSubject and chapter-wise\nBookmarks\nOrganised in groups\nYour notes\nOn any question\nExamGOAL: Exam Preparation App\nOne app for every exam. Free trial for new users, on Android and the web.\nGoogle Play\nScan to get the app\nGET IT ON\nwww.examgoal.com\nPractice and mock tests\nquestions.examside.com\nFree solutions\npdf.questions.examgoal.com\nFree PYQ PDFs\n"
+    }
+  ]
+}

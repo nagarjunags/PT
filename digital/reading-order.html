@@ -1,0 +1,954 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>GATE Digital Electronics: Master Reading & Study Order Guide</title>
+
+  <!-- Typography -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Crimson+Pro:ital,wght@0,400;0,600;0,700;1,400;1,600&family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600;700&display=swap" rel="stylesheet">
+
+  <style>
+    :root {
+      --bg-page: #f8fafc;
+      --bg-card: #ffffff;
+      --bg-card-subtle: #f1f5f9;
+      --bg-elevated: #e2e8f0;
+      --bg-code: #0f172a;
+      
+      --text-main: #0f172a;
+      --text-secondary: #334155;
+      --text-muted: #64748b;
+      
+      --border-color: #e2e8f0;
+      --border-strong: #cbd5e1;
+      
+      --accent: #2563eb;
+      --accent-soft: #eff6ff;
+      --accent-dark: #1d4ed8;
+      
+      --success: #16a34a;
+      --success-soft: #f0fdf4;
+      --warning: #d97706;
+      --warning-soft: #fffbeb;
+      --danger: #dc2626;
+      --danger-soft: #fef2f2;
+      --purple: #7c3aed;
+      --purple-soft: #f5f3ff;
+      --cyan: #0891b2;
+      --cyan-soft: #ecfeff;
+      
+      --font-body: 'Crimson Pro', Georgia, serif;
+      --font-ui: 'Inter', -apple-system, sans-serif;
+      --font-mono: 'JetBrains Mono', monospace;
+      
+      --shadow-sm: 0 1px 2px 0 rgba(0, 0, 0, 0.05);
+      --shadow-md: 0 4px 6px -1px rgba(0, 0, 0, 0.08), 0 2px 4px -2px rgba(0, 0, 0, 0.06);
+      --shadow-lg: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -4px rgba(0, 0, 0, 0.08);
+    }
+
+    [data-theme="dark"] {
+      --bg-page: #0b0f19;
+      --bg-card: #111827;
+      --bg-card-subtle: #1f2937;
+      --bg-elevated: #283344;
+      --bg-code: #030712;
+      
+      --text-main: #f9fafb;
+      --text-secondary: #e5e7eb;
+      --text-muted: #9ca3af;
+      
+      --border-color: #1f2937;
+      --border-strong: #374151;
+      
+      --accent: #3b82f6;
+      --accent-soft: #172554;
+      --accent-dark: #60a5fa;
+      
+      --success: #22c55e;
+      --success-soft: #052e16;
+      --warning: #f59e0b;
+      --warning-soft: #451a03;
+      --danger: #ef4444;
+      --danger-soft: #450a0a;
+      --purple: #a855f7;
+      --purple-soft: #2e1065;
+      --cyan: #22d3ee;
+      --cyan-soft: #083344;
+      
+      --shadow-sm: 0 1px 2px 0 rgba(0, 0, 0, 0.5);
+      --shadow-md: 0 4px 6px -1px rgba(0, 0, 0, 0.5);
+      --shadow-lg: 0 10px 15px -3px rgba(0, 0, 0, 0.5);
+    }
+
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+
+    body {
+      font-family: var(--font-body);
+      font-size: 1.18rem;
+      line-height: 1.8;
+      color: var(--text-main);
+      background-color: var(--bg-page);
+      transition: background-color 0.2s ease, color 0.2s ease;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    .container {
+      max-width: 1100px;
+      margin: 0 auto;
+      padding: 40px 24px 80px 24px;
+    }
+
+    /* Header Bar */
+    .top-bar {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      margin-bottom: 32px;
+      padding-bottom: 16px;
+      border-bottom: 1px solid var(--border-color);
+      flex-wrap: wrap;
+      gap: 16px;
+    }
+
+    .back-link {
+      font-family: var(--font-ui);
+      font-size: 0.88rem;
+      font-weight: 600;
+      color: var(--accent);
+      text-decoration: none;
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      padding: 6px 12px;
+      border-radius: 6px;
+      background: var(--accent-soft);
+      transition: background 0.15s ease;
+    }
+    .back-link:hover { background: var(--accent); color: #ffffff; }
+
+    .theme-btn {
+      font-family: var(--font-ui);
+      font-size: 0.85rem;
+      font-weight: 600;
+      padding: 7px 14px;
+      border-radius: 8px;
+      border: 1px solid var(--border-color);
+      background: var(--bg-card);
+      color: var(--text-secondary);
+      cursor: pointer;
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      transition: all 0.15s ease;
+    }
+    .theme-btn:hover { background: var(--bg-card-subtle); color: var(--text-main); }
+
+    /* Hero Section */
+    .hero-header {
+      background: linear-gradient(135deg, var(--bg-card) 0%, var(--bg-card-subtle) 100%);
+      border: 1px solid var(--border-color);
+      border-radius: 20px;
+      padding: 44px 40px;
+      margin-bottom: 48px;
+      box-shadow: var(--shadow-sm);
+    }
+
+    .pill-badge {
+      font-family: var(--font-ui);
+      font-size: 0.78rem;
+      font-weight: 700;
+      padding: 4px 12px;
+      border-radius: 999px;
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      letter-spacing: 0.03em;
+      margin-bottom: 16px;
+    }
+    .pill-blue { background: var(--accent-soft); color: var(--accent-dark); border: 1px solid var(--accent); }
+
+    .hero-header h1 {
+      font-family: var(--font-ui);
+      font-size: 2.35rem;
+      font-weight: 800;
+      letter-spacing: -0.03em;
+      line-height: 1.25;
+      color: var(--text-main);
+      margin-bottom: 14px;
+    }
+
+    .hero-header p {
+      font-size: 1.25rem;
+      color: var(--text-secondary);
+      max-width: 860px;
+      line-height: 1.65;
+    }
+
+    .stats-bar {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+      gap: 16px;
+      margin-top: 28px;
+      padding-top: 24px;
+      border-top: 1px solid var(--border-color);
+    }
+    .stat-item { font-family: var(--font-ui); }
+    .stat-val { font-size: 1.7rem; font-weight: 800; color: var(--accent); }
+    .stat-lbl { font-size: 0.76rem; color: var(--text-muted); text-transform: uppercase; font-weight: 700; letter-spacing: 0.05em; }
+
+    /* Visual Roadmap Flowchart */
+    .roadmap-container {
+      background: var(--bg-card);
+      border: 1px solid var(--border-color);
+      border-radius: 16px;
+      padding: 32px;
+      margin-bottom: 48px;
+      box-shadow: var(--shadow-sm);
+    }
+
+    .section-title {
+      font-family: var(--font-ui);
+      font-size: 1.55rem;
+      font-weight: 800;
+      letter-spacing: -0.02em;
+      color: var(--text-main);
+      margin-bottom: 8px;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .section-desc {
+      font-size: 1.08rem;
+      color: var(--text-muted);
+      margin-bottom: 24px;
+      line-height: 1.6;
+    }
+
+    /* Flow Graphic */
+    .flow-steps {
+      display: flex;
+      flex-direction: column;
+      gap: 20px;
+      position: relative;
+    }
+
+    .step-card {
+      background: var(--bg-card-subtle);
+      border: 1px solid var(--border-color);
+      border-radius: 14px;
+      padding: 24px 28px;
+      display: flex;
+      gap: 24px;
+      align-items: flex-start;
+      transition: all 0.2s ease;
+      position: relative;
+    }
+
+    .step-card:hover {
+      border-color: var(--accent);
+      transform: translateY(-2px);
+      box-shadow: var(--shadow-md);
+    }
+
+    .step-badge-col {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 6px;
+      flex-shrink: 0;
+    }
+
+    .step-number {
+      width: 44px;
+      height: 44px;
+      border-radius: 12px;
+      background: var(--accent);
+      color: #ffffff;
+      font-family: var(--font-ui);
+      font-size: 1.25rem;
+      font-weight: 800;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      box-shadow: 0 4px 10px rgba(37, 99, 235, 0.3);
+    }
+
+    .phase-tag {
+      font-family: var(--font-ui);
+      font-size: 0.68rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+      color: var(--text-muted);
+      background: var(--bg-card);
+      padding: 2px 8px;
+      border-radius: 999px;
+      border: 1px solid var(--border-strong);
+      white-space: nowrap;
+    }
+
+    .step-content {
+      flex: 1;
+    }
+
+    .step-header {
+      display: flex;
+      align-items: baseline;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      gap: 10px;
+      margin-bottom: 6px;
+    }
+
+    .step-title {
+      font-family: var(--font-ui);
+      font-size: 1.25rem;
+      font-weight: 800;
+      color: var(--text-main);
+    }
+
+    .step-title a {
+      color: inherit;
+      text-decoration: none;
+      transition: color 0.15s ease;
+    }
+    .step-title a:hover { color: var(--accent); }
+
+    .step-meta {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      font-family: var(--font-ui);
+      font-size: 0.8rem;
+      font-weight: 600;
+    }
+
+    .weight-tag {
+      background: var(--warning-soft);
+      color: var(--warning);
+      padding: 2px 8px;
+      border-radius: 6px;
+      border: 1px solid var(--warning);
+    }
+
+    .time-tag {
+      background: var(--purple-soft);
+      color: var(--purple);
+      padding: 2px 8px;
+      border-radius: 6px;
+      border: 1px solid var(--purple);
+    }
+
+    .step-summary {
+      font-size: 1.05rem;
+      color: var(--text-secondary);
+      margin-bottom: 12px;
+      line-height: 1.6;
+    }
+
+    .why-first-box {
+      background: var(--bg-card);
+      border-left: 3px solid var(--accent);
+      padding: 10px 14px;
+      border-radius: 0 8px 8px 0;
+      font-size: 0.95rem;
+      color: var(--text-secondary);
+      margin-bottom: 12px;
+      line-height: 1.55;
+    }
+
+    .why-title {
+      font-family: var(--font-ui);
+      font-weight: 700;
+      font-size: 0.82rem;
+      color: var(--accent);
+      text-transform: uppercase;
+      letter-spacing: 0.04em;
+      margin-bottom: 4px;
+    }
+
+    .key-topics {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 6px;
+    }
+
+    .topic-pill {
+      font-family: var(--font-ui);
+      font-size: 0.74rem;
+      font-weight: 600;
+      color: var(--text-muted);
+      background: var(--bg-card);
+      padding: 3px 8px;
+      border-radius: 6px;
+      border: 1px solid var(--border-color);
+    }
+
+    .open-notes-btn {
+      font-family: var(--font-ui);
+      font-size: 0.8rem;
+      font-weight: 700;
+      padding: 6px 14px;
+      border-radius: 7px;
+      background: var(--accent);
+      color: #ffffff;
+      text-decoration: none;
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      margin-top: 10px;
+      transition: all 0.15s ease;
+    }
+    .open-notes-btn:hover { background: var(--accent-dark); transform: translateX(2px); }
+
+    /* Comparison & Strategy Table */
+    .table-card {
+      background: var(--bg-card);
+      border: 1px solid var(--border-color);
+      border-radius: 16px;
+      padding: 32px;
+      margin-bottom: 48px;
+      box-shadow: var(--shadow-sm);
+    }
+
+    table.academic-table {
+      width: 100%;
+      border-collapse: collapse;
+      font-family: var(--font-ui);
+      font-size: 0.92rem;
+      margin-top: 16px;
+    }
+
+    table.academic-table th {
+      background: var(--bg-card-subtle);
+      color: var(--text-main);
+      font-weight: 700;
+      padding: 12px 16px;
+      border-bottom: 1px solid var(--border-color);
+      text-align: left;
+    }
+
+    table.academic-table td {
+      padding: 12px 16px;
+      border-bottom: 1px solid var(--border-color);
+      color: var(--text-secondary);
+      line-height: 1.6;
+    }
+
+    table.academic-table tr:hover td { background: rgba(37, 99, 235, 0.03); }
+
+    /* Study Plan Advice */
+    .strategy-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 20px;
+      margin-top: 24px;
+    }
+
+    .strategy-card {
+      background: var(--bg-card-subtle);
+      border: 1px solid var(--border-color);
+      border-radius: 12px;
+      padding: 22px;
+      line-height: 1.6;
+    }
+
+    .strategy-title {
+      font-family: var(--font-ui);
+      font-size: 1rem;
+      font-weight: 700;
+      color: var(--text-main);
+      margin-bottom: 8px;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    @media (max-width: 768px) {
+      .hero-header { padding: 28px 20px; }
+      .step-card { flex-direction: column; gap: 14px; }
+      .roadmap-container, .table-card { padding: 20px 16px; }
+    }
+  </style>
+</head>
+<body>
+
+<div class="container">
+  
+  <div class="top-bar">
+    <a href="../index.html" class="back-link">
+      <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="15 18 9 12 15 6"/></svg>
+      Hierarchy Explorer
+    </a>
+    <button id="themeToggleBtn" class="theme-btn" title="Toggle Light/Dark Theme">
+      <span id="themeIcon">🌙</span> Toggle Theme
+    </button>
+  </div>
+
+  <header class="hero-header">
+    <span class="pill-badge pill-blue">GATE ECE • EE • CS / IT</span>
+    <h1>Digital Electronics: Master Reading & Study Order Guide</h1>
+    <p>
+      A strategic, prerequisite-driven pedagogical roadmap detailing exactly which chapter to read first, which one to tackle next, and why following this dependency sequence guarantees 100% mastery of all GATE Digital Circuits questions.
+    </p>
+
+    <div class="stats-bar">
+      <div class="stat-item">
+        <div class="stat-val">8 Modules</div>
+        <div class="stat-lbl">Complete GATE Coverage</div>
+      </div>
+      <div class="stat-item">
+        <div class="stat-val">291+ PYQs</div>
+        <div class="stat-lbl">Fully Worked Solutions</div>
+      </div>
+      <div class="stat-item">
+        <div class="stat-val">10–12 Marks</div>
+        <div class="stat-lbl">Average GATE Weightage</div>
+      </div>
+      <div class="stat-item">
+        <div class="stat-val">4 Phases</div>
+        <div class="stat-lbl">Logical Study Progression</div>
+      </div>
+    </div>
+  </header>
+
+  <!-- ======================================================== -->
+  <!-- STEP-BY-STEP READING ROADMAP                             -->
+  <!-- ======================================================== -->
+  <section class="roadmap-container">
+    <h2 class="section-title">
+      <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="9 11 12 14 22 4"/><path d="M21 12v7a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11"/></svg>
+      The Recommended Reading Sequence (Step 1 to Step 8)
+    </h2>
+    <p class="section-desc">
+      Digital electronics is strictly hierarchical: every concept builds upon the mathematical rules and circuit primitives of preceding chapters. Follow this linear order to prevent gaps in understanding.
+    </p>
+
+    <div class="flow-steps">
+
+      <!-- STEP 1 -->
+      <div class="step-card">
+        <div class="step-badge-col">
+          <div class="step-number">1</div>
+          <span class="phase-tag">Phase 1: Foundations</span>
+        </div>
+        <div class="step-content">
+          <div class="step-header">
+            <h3 class="step-title"><a href="number-system/notes.html">Number Systems & Code Conversions</a></h3>
+            <div class="step-meta">
+              <span class="weight-tag">GATE: 1–2 Marks</span>
+              <span class="time-tag">Est: 3–4 Hours</span>
+            </div>
+          </div>
+          <p class="step-summary">
+            Radix conversions, base-$r$ polynomial equations, signed representations (Sign-Mag, 1's Comp, 2's Comp), negative MSB weight, ALU overflow ($V = C_n \oplus C_{n-1}$), BCD, Gray code, and (7,4) Hamming error codes.
+          </p>
+          <div class="why-first-box">
+            <div class="why-title">Why Read This FIRST?</div>
+            Before you can manipulate binary logic, you must understand how numbers are represented and calculated in machine hardware. 2's complement arithmetic, sign extension, and overflow flags are used constantly in ALUs, counters, and CPU instruction words.
+          </div>
+          <div class="key-topics">
+            <span class="topic-pill">Radix Constraint $r > \max(d_i)$</span>
+            <span class="topic-pill">2's Complement Weight $-b_{n-1}2^{n-1}$</span>
+            <span class="topic-pill">Overflow $V = C_n \oplus C_{n-1}$</span>
+            <span class="topic-pill">Packed BCD</span>
+            <span class="topic-pill">Hamming Codes</span>
+          </div>
+          <a href="number-system/notes.html" class="open-notes-btn">Open Number Systems Notes →</a>
+        </div>
+      </div>
+
+      <!-- STEP 2 -->
+      <div class="step-card">
+        <div class="step-badge-col">
+          <div class="step-number">2</div>
+          <span class="phase-tag">Phase 1: Foundations</span>
+        </div>
+        <div class="step-content">
+          <div class="step-header">
+            <h3 class="step-title"><a href="boolean-algebra/notes.html">Boolean Algebra & Logic Minimization</a></h3>
+            <div class="step-meta">
+              <span class="weight-tag">GATE: 2–3 Marks</span>
+              <span class="time-tag">Est: 5–6 Hours</span>
+            </div>
+          </div>
+          <p class="step-summary">
+            Huntington's postulates, De Morgan's laws, duality, SOP/POS canonical forms, minterms/maxterms, Karnaugh Maps (2 to 5 variables), Prime Implicants (PI), Essential Prime Implicants (EPI), and Don't Cares.
+          </p>
+          <div class="why-first-box">
+            <div class="why-title">Why Read This SECOND?</div>
+            Boolean Algebra is the algebraic language of switching circuits. You cannot design or optimize any digital logic gate or combinational block without mastering K-map groupings and Prime Implicant extraction.
+          </div>
+          <div class="key-topics">
+            <span class="topic-pill">De Morgan's Theorem</span>
+            <span class="topic-pill">Self-Dual Functions ($2^{2^{n-1}}$)</span>
+            <span class="topic-pill">K-Map Minimization</span>
+            <span class="topic-pill">Essential Prime Implicants</span>
+            <span class="topic-pill">Redundant Groups</span>
+          </div>
+          <a href="boolean-algebra/notes.html" class="open-notes-btn">Open Boolean Algebra Notes →</a>
+        </div>
+      </div>
+
+      <!-- STEP 3 -->
+      <div class="step-card">
+        <div class="step-badge-col">
+          <div class="step-number">3</div>
+          <span class="phase-tag">Phase 1: Foundations</span>
+        </div>
+        <div class="step-content">
+          <div class="step-header">
+            <h3 class="step-title"><a href="logic-gates/notes.html">Logic Gates & Gate Minimization</a></h3>
+            <div class="step-meta">
+              <span class="weight-tag">GATE: 1–2 Marks</span>
+              <span class="time-tag">Est: 4 Hours</span>
+            </div>
+          </div>
+          <p class="step-summary">
+            Basic gates (AND, OR, NOT), Universal gates (NAND, NOR implementation formulas), XOR/XNOR arithmetic parity properties, Tri-state buffers, Open-Collector wired logic, and Gate propagation delays.
+          </p>
+          <div class="why-first-box">
+            <div class="why-title">Why Read This THIRD?</div>
+            Bridges abstract Boolean algebra equations to physical semiconductor gates. You must master the minimum NAND/NOR counts and XOR properties before assembling adders, multiplexers, and flip-flops.
+          </div>
+          <div class="key-topics">
+            <span class="topic-pill">Universal NAND/NOR Counts</span>
+            <span class="topic-pill">XOR as Controlled Inverter</span>
+            <span class="topic-pill">Wired-AND / Wired-OR</span>
+            <span class="topic-pill">Tri-State Logic</span>
+            <span class="topic-pill">Propagation Delay</span>
+          </div>
+          <a href="logic-gates/notes.html" class="open-notes-btn">Open Logic Gates Notes →</a>
+        </div>
+      </div>
+
+      <!-- STEP 4 -->
+      <div class="step-card">
+        <div class="step-badge-col">
+          <div class="step-number">4</div>
+          <span class="phase-tag">Phase 2: Core Circuits</span>
+        </div>
+        <div class="step-content">
+          <div class="step-header">
+            <h3 class="step-title"><a href="combinational-circuits/notes.html">Combinational Logic Circuits</a></h3>
+            <div class="step-meta">
+              <span class="weight-tag">GATE: 3–4 Marks</span>
+              <span class="time-tag">Est: 8–10 Hours</span>
+            </div>
+          </div>
+          <p class="step-summary">
+            Adders (Half, Full, Ripple Carry delay, Carry Lookahead $C_i = G_i + P_i C_{i-1}$), Subtractors, Multiplexers ($2^n:1$ Universal Function Generators), Demultiplexers, Decoders (active-LOW enable, memory expansion), Encoders, Priority Encoders, and Comparators.
+          </p>
+          <div class="why-first-box">
+            <div class="why-title">Why Read This FOURTH?</div>
+            Combinational circuits are memoryless systems whose outputs depend solely on present inputs. Mastering multiplexers and decoders is strictly required because they form the steering logic and address decoders in sequential circuits and memories.
+          </div>
+          <div class="key-topics">
+            <span class="topic-pill">Carry Lookahead Adder</span>
+            <span class="topic-pill">MUX Universal Logic Synthesis</span>
+            <span class="topic-pill">Decoder Cascade Expansion</span>
+            <span class="topic-pill">Priority Encoder Logic</span>
+            <span class="topic-pill">Comparator Cascading</span>
+          </div>
+          <a href="combinational-circuits/notes.html" class="open-notes-btn">Open Combinational Circuits Notes →</a>
+        </div>
+      </div>
+
+      <!-- STEP 5 -->
+      <div class="step-card">
+        <div class="step-badge-col">
+          <div class="step-number">5</div>
+          <span class="phase-tag">Phase 2: Core Circuits (High-Yield!)</span>
+        </div>
+        <div class="step-content">
+          <div class="step-header">
+            <h3 class="step-title"><a href="sequential-circuits/notes.html">Sequential Logic Circuits & FSMs</a></h3>
+            <div class="step-meta">
+              <span class="weight-tag" style="background:var(--danger-soft); color:var(--danger); border-color:var(--danger);">GATE: 4–6 Marks (Highest!)</span>
+              <span class="time-tag">Est: 14–16 Hours</span>
+            </div>
+          </div>
+          <p class="step-summary">
+            Latches (SR, D), Flip-Flops (JK, T, Master-Slave pulse triggered), Setup time ($t_{su}$) and Hold time ($t_h$) timing closure, Clock Skew ($\delta$) and Jitter, Shift Registers (SISO, SIPO, PISO, PIPO, Ring Counter $N$, Johnson Counter $2N$), Synchronous & Asynchronous Counters (MOD-$N$, ripple propagation delay, lockout elimination), and Mealy vs Moore Finite State Machines.
+          </p>
+          <div class="why-first-box">
+            <div class="why-title">Why Read This FIFTH?</div>
+            Sequential circuits introduce memory and clocking. Because sequential circuits consist of Flip-Flops wrapped in Combinational feedback networks, you <em>cannot</em> solve counter excitation tables or FSM state diagrams without mastering Chapters 2, 3, and 4 first!
+          </div>
+          <div class="key-topics">
+            <span class="topic-pill">Setup & Hold Slack Equations</span>
+            <span class="topic-pill">Clock Skew Impact on $T_{clk}$</span>
+            <span class="topic-pill">Characteristic Equations ($Q_{next}$)</span>
+            <span class="topic-pill">Excitation Tables</span>
+            <span class="topic-pill">MOD-$N$ Truncated Counters</span>
+            <span class="topic-pill">Mealy vs Moore FSMs</span>
+          </div>
+          <a href="sequential-circuits/notes.html" class="open-notes-btn">Open Sequential Circuits Notes →</a>
+        </div>
+      </div>
+
+      <!-- STEP 6 -->
+      <div class="step-card">
+        <div class="step-badge-col">
+          <div class="step-number">6</div>
+          <span class="phase-tag">Phase 3: Hardware & Physics</span>
+        </div>
+        <div class="step-content">
+          <div class="step-header">
+            <h3 class="step-title"><a href="logic-families/notes.html">Digital Logic Families (TTL, CMOS, ECL)</a></h3>
+            <div class="step-meta">
+              <span class="weight-tag">GATE: 1–2 Marks</span>
+              <span class="time-tag">Est: 5–6 Hours</span>
+            </div>
+          </div>
+          <p class="step-summary">
+            Transistor-level digital IC physics. Bipolar logic (TTL multi-emitter transistor, totem-pole output, ECL non-saturating current-mode logic) vs Unipolar logic (CMOS complementary PMOS/NMOS network). Fan-in, Fan-out, Noise Margins ($NM_H, NM_L$), Dynamic Power ($P_{dyn} = C_L V_{DD}^2 f$), Power-Delay Product (PDP), and Interfacing.
+          </p>
+          <div class="why-first-box">
+            <div class="why-title">Why Read This SIXTH?</div>
+            Moves from idealized logical 1s and 0s to physical voltages, currents, and transit times. Having mastered gates and flip-flops, you can now evaluate real-world parameters like floating input behavior, pull-up sizing, and CMOS transmission gates.
+          </div>
+          <div class="key-topics">
+            <span class="topic-pill">Noise Margins $V_{OH}-V_{IH}$</span>
+            <span class="topic-pill">TTL Totem-Pole & Open-Collector</span>
+            <span class="topic-pill">ECL Fastest Logic (Current-Steering)</span>
+            <span class="topic-pill">CMOS Inverter Sizing ($\mu_n \approx 2.5\mu_p$)</span>
+            <span class="topic-pill">Dynamic Power $f C V^2$</span>
+          </div>
+          <a href="logic-families/notes.html" class="open-notes-btn">Open Logic Families Notes →</a>
+        </div>
+      </div>
+
+      <!-- STEP 7 -->
+      <div class="step-card">
+        <div class="step-badge-col">
+          <div class="step-number">7</div>
+          <span class="phase-tag">Phase 3: Mixed-Signal Interfacing</span>
+        </div>
+        <div class="step-content">
+          <div class="step-header">
+            <h3 class="step-title"><a href="adc-dac/notes.html">Analog-to-Digital (ADC) & Digital-to-Analog (DAC) Converters</a></h3>
+            <div class="step-meta">
+              <span class="weight-tag">GATE: 2–3 Marks</span>
+              <span class="time-tag">Est: 6–8 Hours</span>
+            </div>
+          </div>
+          <p class="step-summary">
+            DAC architectures (Weighted Resistor DAC, R-2R Inverted Ladder DAC), Full-Scale Voltage ($V_{FS}$), Resolution, Settling Time. ADC architectures (Flash ADC with $2^N-1$ comparators, SAR ADC with binary search in $N$ clock periods, Dual-Slope Integrating ADC with noise cancellation, Counter-ramp ADC), Quantization Error ($\pm \frac{1}{2}\text{LSB}$), and SNR ($6.02N + 1.76\text{ dB}$).
+          </p>
+          <div class="why-first-box">
+            <div class="why-title">Why Read This SEVENTH?</div>
+            Data converters bridge continuous physical signals to digital processing. Because ADCs incorporate internal DACs, binary registers, and SAR state machines, mastering Chapters 1, 4, and 5 is an absolute prerequisite.
+          </div>
+          <div class="key-topics">
+            <span class="topic-pill">R-2R Ladder Equivalence</span>
+            <span class="topic-pill">Resolution $\frac{V_{FS}}{2^N-1}$</span>
+            <span class="topic-pill">SAR ADC Conversion Time ($N \cdot T_{clk}$)</span>
+            <span class="topic-pill">Dual-Slope Clock Independence</span>
+            <span class="topic-pill">Flash ADC Priority Encoder</span>
+          </div>
+          <a href="adc-dac/notes.html" class="open-notes-btn">Open ADC & DAC Notes →</a>
+        </div>
+      </div>
+
+      <!-- STEP 8 -->
+      <div class="step-card">
+        <div class="step-badge-col">
+          <div class="step-number">8</div>
+          <span class="phase-tag">Phase 4: Architecture & Memory</span>
+        </div>
+        <div class="step-content">
+          <div class="step-header">
+            <h3 class="step-title"><a href="semiconductor-memories/notes.html">Semiconductor Memories & Programmable Logic (PLDs)</a></h3>
+            <div class="step-meta">
+              <span class="weight-tag">GATE: 1–2 Marks</span>
+              <span class="time-tag">Est: 4–5 Hours</span>
+            </div>
+          </div>
+          <p class="step-summary">
+            Memory architecture ($2^k \times m$), SRAM (6T cross-coupled latch cell, fast cache) vs DRAM (1T-1C dynamic capacitor charge, refresh cycles), ROM, PROM, EPROM, EEPROM, Flash. Programmable Logic: PROM (fixed AND, programmable OR), PLA (programmable AND, programmable OR), PAL (programmable AND, fixed OR), and Memory Interfacing / Bank Expansion.
+          </p>
+          <div class="why-first-box">
+            <div class="why-title">Why Read This LAST?</div>
+            Semiconductor memories and PLDs combine every single preceding topic into high-density computer architecture: address decoding from Chapter 4, bistable storage from Chapter 5, and transistor cells from Chapter 6. This serves as the bridge directly into Microprocessors and Computer Architecture.
+          </div>
+          <div class="key-topics">
+            <span class="topic-pill">Address & Data Line Calculations</span>
+            <span class="topic-pill">6T SRAM vs 1T DRAM Cell</span>
+            <span class="topic-pill">PROM vs PLA vs PAL Matrix</span>
+            <span class="topic-pill">Word Length & Capacity Cascading</span>
+            <span class="topic-pill">Coincident 2D Address Decoding</span>
+          </div>
+          <a href="semiconductor-memories/notes.html" class="open-notes-btn">Open Semiconductor Memories Notes →</a>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- ======================================================== -->
+  <!-- COMPLETE SUMMARY COMPARISON TABLE                        -->
+  <!-- ======================================================== -->
+  <section class="table-card">
+    <h2 class="section-title">
+      <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><rect x="3" y="3" width="18" height="18" rx="2" ry="2"/><line x1="3" y1="9" x2="21" y2="9"/><line x1="9" y1="21" x2="9" y2="9"/></svg>
+      Curriculum Overview & Preparation Matrix
+    </h2>
+    <p class="section-desc">
+      A quick reference table summarizing the exact study order, prerequisites, GATE weightage, and direct links to all study modules.
+    </p>
+
+    <div style="overflow-x: auto;">
+      <table class="academic-table">
+        <thead>
+          <tr>
+            <th>Order</th>
+            <th>Chapter Title</th>
+            <th>Prerequisites</th>
+            <th>GATE Marks</th>
+            <th>Est. Study Time</th>
+            <th>Study Material Link</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td><strong>1 (Start)</strong></td>
+            <td>Number Systems & Code Conversions</td>
+            <td>None (High-School Math)</td>
+            <td>1–2 Marks</td>
+            <td>3–4 Hours</td>
+            <td><a href="number-system/notes.html" style="color:var(--accent); font-weight:700;">Open Notes</a></td>
+          </tr>
+          <tr>
+            <td><strong>2</strong></td>
+            <td>Boolean Algebra & Minimization</td>
+            <td>Number Systems (Binary)</td>
+            <td>2–3 Marks</td>
+            <td>5–6 Hours</td>
+            <td><a href="boolean-algebra/notes.html" style="color:var(--accent); font-weight:700;">Open Notes</a></td>
+          </tr>
+          <tr>
+            <td><strong>3</strong></td>
+            <td>Logic Gates & Parity Circuits</td>
+            <td>Boolean Algebra</td>
+            <td>1–2 Marks</td>
+            <td>4 Hours</td>
+            <td><a href="logic-gates/notes.html" style="color:var(--accent); font-weight:700;">Open Notes</a></td>
+          </tr>
+          <tr>
+            <td><strong>4</strong></td>
+            <td>Combinational Logic Circuits</td>
+            <td>Logic Gates, K-Maps</td>
+            <td>3–4 Marks</td>
+            <td>8–10 Hours</td>
+            <td><a href="combinational-circuits/notes.html" style="color:var(--accent); font-weight:700;">Open Notes</a></td>
+          </tr>
+          <tr>
+            <td><strong>5</strong></td>
+            <td>Sequential Logic Circuits & FSMs</td>
+            <td>Combinational Circuits, Gates</td>
+            <td><strong>4–6 Marks</strong></td>
+            <td>14–16 Hours</td>
+            <td><a href="sequential-circuits/notes.html" style="color:var(--accent); font-weight:700;">Open Notes</a></td>
+          </tr>
+          <tr>
+            <td><strong>6</strong></td>
+            <td>Digital Logic Families</td>
+            <td>Basic Semiconductor Gates</td>
+            <td>1–2 Marks</td>
+            <td>5–6 Hours</td>
+            <td><a href="logic-families/notes.html" style="color:var(--accent); font-weight:700;">Open Notes</a></td>
+          </tr>
+          <tr>
+            <td><strong>7</strong></td>
+            <td>Analog-to-Digital & DAC Converters</td>
+            <td>Registers, Op-Amps, Binary</td>
+            <td>2–3 Marks</td>
+            <td>6–8 Hours</td>
+            <td><a href="adc-dac/notes.html" style="color:var(--accent); font-weight:700;">Open Notes</a></td>
+          </tr>
+          <tr>
+            <td><strong>8 (Final)</strong></td>
+            <td>Semiconductor Memories & PLDs</td>
+            <td>Decoders, Latches, Logic Arrays</td>
+            <td>1–2 Marks</td>
+            <td>4–5 Hours</td>
+            <td><a href="semiconductor-memories/notes.html" style="color:var(--accent); font-weight:700;">Open Notes</a></td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </section>
+
+  <!-- ======================================================== -->
+  <!-- TOPPER STRATEGY & EXAM PREPARATION TIPS                  -->
+  <!-- ======================================================== -->
+  <section class="table-card">
+    <h2 class="section-title">
+      <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+      GATE Topper Study Protocol (The 4 Rules for 100% Score)
+    </h2>
+    <div class="strategy-grid">
+      <div class="strategy-card">
+        <div class="strategy-title">
+          <span>1. Attempt Before Revealing</span>
+        </div>
+        <p>
+          Every chapter notes file includes collapsible solution drawers. <strong>Never</strong> read the solution first. Spend at least 3–4 minutes writing out the characteristic equation or K-map manually before clicking <em>"Show Solution"</em>.
+        </p>
+      </div>
+
+      <div class="strategy-card">
+        <div class="strategy-title">
+          <span>2. Master Sequential Timing Closure</span>
+        </div>
+        <p>
+          More than 40% of all GATE digital questions originate in <strong>Sequential Circuits</strong>. Focus intensely on clock skew ($\delta$), hold time violations (which are clock-frequency independent!), and counter lockout conditions.
+        </p>
+      </div>
+
+      <div class="strategy-card">
+        <div class="strategy-title">
+          <span>3. Memorize Universal Gate Formulas</span>
+        </div>
+        <p>
+          Do not derive minimum NAND/NOR counts in the exam room. Know by heart: NOT=1, AND=2, OR=3, NOR=4/1, NAND=1/4, XOR=4, XNOR=5 (using NAND gates).
+        </p>
+      </div>
+
+      <div class="strategy-card">
+        <div class="strategy-title">
+          <span>4. Watch Out for Radix & Code Bounds</span>
+        </div>
+        <p>
+          In Number Systems and Base-$r$ equations, always discard quadratic roots where $r \le \text{any digit symbol present}$ in the problem statement.
+        </p>
+      </div>
+    </div>
+  </section>
+
+</div>
+
+<script>
+  // Theme Switching
+  const themeToggleBtn = document.getElementById('themeToggleBtn');
+  const themeIcon = document.getElementById('themeIcon');
+  const currentTheme = localStorage.getItem('gate_notes_theme') || 'light';
+  document.documentElement.setAttribute('data-theme', currentTheme);
+  themeIcon.innerText = currentTheme === 'dark' ? '☀️' : '🌙';
+
+  themeToggleBtn.addEventListener('click', () => {
+    const isDark = document.documentElement.getAttribute('data-theme') === 'dark';
+    const nextTheme = isDark ? 'light' : 'dark';
+    document.documentElement.setAttribute('data-theme', nextTheme);
+    localStorage.setItem('gate_notes_theme', nextTheme);
+    themeIcon.innerText = nextTheme === 'dark' ? '☀️' : '🌙';
+  });
+</script>
+
+</body>
+</html>

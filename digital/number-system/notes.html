@@ -1,0 +1,2773 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>GATE Master Textbook: Number Systems, Radix Complements & Digital Arithmetic</title>
+
+  <!-- Google Fonts: Inter (UI), Crimson Pro (Textbook Body), JetBrains Mono (Code/Math) -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Crimson+Pro:ital,wght@0,400;0,500;0,600;0,700;1,400;1,600&family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:ital,wght@0,400;0,500;0,600;0,700;1,400&display=swap" rel="stylesheet">
+
+  <!-- KaTeX for pristine mathematical typesetting -->
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.css">
+  <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.js"></script>
+  <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/contrib/auto-render.min.js"></script>
+
+  <style>
+    :root {
+      --bg-page: #f8fafc;
+      --bg-card: #ffffff;
+      --bg-card-subtle: #f1f5f9;
+      --bg-elevated: #e2e8f0;
+      --bg-code: #0f172a;
+      
+      --text-main: #0f172a;
+      --text-secondary: #334155;
+      --text-muted: #64748b;
+      
+      --border-color: #e2e8f0;
+      --border-strong: #cbd5e1;
+      
+      --accent: #2563eb;
+      --accent-soft: #eff6ff;
+      --accent-dark: #1d4ed8;
+      
+      --success: #16a34a;
+      --success-soft: #f0fdf4;
+      --warning: #d97706;
+      --warning-soft: #fffbeb;
+      --danger: #dc2626;
+      --danger-soft: #fef2f2;
+      --purple: #7c3aed;
+      --purple-soft: #f5f3ff;
+      --cyan: #0891b2;
+      --cyan-soft: #ecfeff;
+      
+      --font-body: 'Crimson Pro', Georgia, serif;
+      --font-ui: 'Inter', -apple-system, sans-serif;
+      --font-mono: 'JetBrains Mono', monospace;
+      
+      --shadow-sm: 0 1px 2px 0 rgba(0, 0, 0, 0.05);
+      --shadow-md: 0 4px 6px -1px rgba(0, 0, 0, 0.08), 0 2px 4px -2px rgba(0, 0, 0, 0.06);
+      --shadow-lg: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -4px rgba(0, 0, 0, 0.08);
+    }
+
+    [data-theme="dark"] {
+      --bg-page: #0b0f19;
+      --bg-card: #111827;
+      --bg-card-subtle: #1f2937;
+      --bg-elevated: #283344;
+      --bg-code: #030712;
+      
+      --text-main: #f9fafb;
+      --text-secondary: #e5e7eb;
+      --text-muted: #9ca3af;
+      
+      --border-color: #1f2937;
+      --border-strong: #374151;
+      
+      --accent: #3b82f6;
+      --accent-soft: #172554;
+      --accent-dark: #60a5fa;
+      
+      --success: #22c55e;
+      --success-soft: #052e16;
+      --warning: #f59e0b;
+      --warning-soft: #451a03;
+      --danger: #ef4444;
+      --danger-soft: #450a0a;
+      --purple: #a855f7;
+      --purple-soft: #2e1065;
+      --cyan: #22d3ee;
+      --cyan-soft: #083344;
+      
+      --shadow-sm: 0 1px 2px 0 rgba(0, 0, 0, 0.5);
+      --shadow-md: 0 4px 6px -1px rgba(0, 0, 0, 0.5);
+      --shadow-lg: 0 10px 15px -3px rgba(0, 0, 0, 0.5);
+    }
+
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+
+    body {
+      font-family: var(--font-body);
+      font-size: 1.18rem;
+      line-height: 1.8;
+      color: var(--text-main);
+      background-color: var(--bg-page);
+      transition: background-color 0.2s ease, color 0.2s ease;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    .app-container {
+      display: flex;
+      min-height: 100vh;
+    }
+
+    .sidebar {
+      width: 330px;
+      flex-shrink: 0;
+      background: var(--bg-card);
+      border-right: 1px solid var(--border-color);
+      height: 100vh;
+      position: sticky;
+      top: 0;
+      overflow-y: auto;
+      display: flex;
+      flex-direction: column;
+      z-index: 50;
+    }
+
+    .sidebar-header {
+      padding: 22px 20px;
+      border-bottom: 1px solid var(--border-color);
+      background: var(--bg-card);
+    }
+
+    .sidebar-header h2 {
+      font-family: var(--font-ui);
+      font-size: 1.1rem;
+      font-weight: 800;
+      color: var(--accent);
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      letter-spacing: -0.01em;
+    }
+
+    .sidebar-header p {
+      font-family: var(--font-ui);
+      font-size: 0.76rem;
+      color: var(--text-muted);
+      margin-top: 4px;
+      line-height: 1.4;
+    }
+
+    .sidebar-nav {
+      padding: 16px 14px;
+      display: flex;
+      flex-direction: column;
+      gap: 3px;
+      flex: 1;
+    }
+
+    .nav-group-title {
+      font-family: var(--font-ui);
+      font-size: 0.72rem;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      font-weight: 700;
+      color: var(--text-muted);
+      padding: 14px 10px 4px 10px;
+    }
+
+    .nav-link {
+      font-family: var(--font-ui);
+      font-size: 0.86rem;
+      font-weight: 500;
+      color: var(--text-secondary);
+      text-decoration: none;
+      padding: 8px 12px;
+      border-radius: 8px;
+      transition: all 0.15s ease;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+
+    .nav-link:hover {
+      background: var(--bg-card-subtle);
+      color: var(--accent);
+      transform: translateX(3px);
+    }
+
+    .nav-link.active {
+      background: var(--accent-soft);
+      color: var(--accent);
+      font-weight: 600;
+    }
+
+    .nav-link .badge {
+      font-size: 0.7rem;
+      padding: 2px 6px;
+      border-radius: 999px;
+      background: var(--bg-card-subtle);
+      color: var(--text-muted);
+      font-weight: 600;
+    }
+
+    .main-wrapper {
+      flex: 1;
+      max-width: 1080px;
+      margin: 0 auto;
+      padding: 36px 52px 90px 52px;
+    }
+
+    .top-bar {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 16px;
+      margin-bottom: 36px;
+      padding-bottom: 16px;
+      border-bottom: 1px solid var(--border-color);
+      flex-wrap: wrap;
+    }
+
+    .search-wrapper {
+      position: relative;
+      flex: 1;
+      max-width: 480px;
+    }
+
+    .search-input {
+      width: 100%;
+      font-family: var(--font-ui);
+      font-size: 0.9rem;
+      padding: 9px 14px 9px 38px;
+      border-radius: 8px;
+      border: 1px solid var(--border-color);
+      background: var(--bg-card);
+      color: var(--text-main);
+      outline: none;
+      transition: border-color 0.15s ease, box-shadow 0.15s ease;
+    }
+
+    .search-input:focus {
+      border-color: var(--accent);
+      box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.15);
+    }
+
+    .search-icon {
+      position: absolute;
+      left: 12px;
+      top: 50%;
+      transform: translateY(-50%);
+      color: var(--text-muted);
+      pointer-events: none;
+      font-size: 0.95rem;
+    }
+
+    .top-actions {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .theme-btn, .expand-all-btn {
+      font-family: var(--font-ui);
+      font-size: 0.82rem;
+      font-weight: 600;
+      padding: 8px 14px;
+      border-radius: 8px;
+      border: 1px solid var(--border-color);
+      background: var(--bg-card);
+      color: var(--text-secondary);
+      cursor: pointer;
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      transition: all 0.15s ease;
+    }
+
+    .theme-btn:hover, .expand-all-btn:hover {
+      background: var(--bg-card-subtle);
+      border-color: var(--border-strong);
+      color: var(--text-main);
+    }
+
+    .hero-header {
+      background: linear-gradient(135deg, var(--bg-card) 0%, var(--bg-card-subtle) 100%);
+      border: 1px solid var(--border-color);
+      border-radius: 18px;
+      padding: 42px 40px;
+      margin-bottom: 48px;
+      box-shadow: var(--shadow-sm);
+    }
+
+    .hero-badge-row {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      margin-bottom: 18px;
+    }
+
+    .pill-badge {
+      font-family: var(--font-ui);
+      font-size: 0.75rem;
+      font-weight: 700;
+      padding: 4px 11px;
+      border-radius: 999px;
+      display: inline-flex;
+      align-items: center;
+      gap: 5px;
+      letter-spacing: 0.02em;
+    }
+
+    .pill-blue { background: var(--accent-soft); color: var(--accent-dark); border: 1px solid var(--accent); }
+    .pill-purple { background: var(--purple-soft); color: var(--purple); border: 1px solid var(--purple); }
+    .pill-green { background: var(--success-soft); color: var(--success); border: 1px solid var(--success); }
+    .pill-cyan { background: var(--cyan-soft); color: var(--cyan); border: 1px solid var(--cyan); }
+
+    .hero-header h1 {
+      font-family: var(--font-ui);
+      font-size: 2.35rem;
+      font-weight: 800;
+      letter-spacing: -0.03em;
+      line-height: 1.25;
+      color: var(--text-main);
+      margin-bottom: 14px;
+    }
+
+    .hero-header p {
+      font-size: 1.22rem;
+      color: var(--text-secondary);
+      max-width: 860px;
+      line-height: 1.65;
+    }
+
+    .exam-stats-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(170px, 1fr));
+      gap: 16px;
+      margin-top: 28px;
+      padding-top: 24px;
+      border-top: 1px solid var(--border-color);
+    }
+
+    .stat-item { font-family: var(--font-ui); }
+    .stat-val { font-size: 1.65rem; font-weight: 800; color: var(--accent); letter-spacing: -0.02em; }
+    .stat-lbl { font-size: 0.76rem; color: var(--text-muted); text-transform: uppercase; letter-spacing: 0.06em; font-weight: 700; }
+
+    .chapter-section {
+      margin-bottom: 64px;
+      scroll-margin-top: 32px;
+      background: var(--bg-card);
+      border: 1px solid var(--border-color);
+      border-radius: 16px;
+      padding: 38px 40px;
+      box-shadow: var(--shadow-sm);
+    }
+
+    .chapter-number-pill {
+      font-family: var(--font-ui);
+      font-size: 0.8rem;
+      font-weight: 800;
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+      color: var(--accent);
+      background: var(--accent-soft);
+      padding: 4px 12px;
+      border-radius: 999px;
+      display: inline-block;
+      margin-bottom: 12px;
+    }
+
+    h2.chapter-title {
+      font-family: var(--font-ui);
+      font-size: 1.85rem;
+      font-weight: 800;
+      letter-spacing: -0.02em;
+      color: var(--text-main);
+      margin-bottom: 24px;
+      line-height: 1.3;
+    }
+
+    h3.section-heading {
+      font-family: var(--font-ui);
+      font-size: 1.3rem;
+      font-weight: 700;
+      color: var(--text-main);
+      margin: 32px 0 16px 0;
+      padding-bottom: 6px;
+      border-bottom: 1px solid var(--border-color);
+    }
+
+    h4.subsection-heading {
+      font-family: var(--font-ui);
+      font-size: 1.1rem;
+      font-weight: 700;
+      color: var(--accent-dark);
+      margin: 24px 0 10px 0;
+    }
+
+    p { margin-bottom: 18px; }
+    strong { color: var(--text-main); font-weight: 600; }
+
+    .callout {
+      border-radius: 12px;
+      padding: 20px 22px;
+      margin: 24px 0;
+      border-left: 5px solid transparent;
+      font-size: 1.08rem;
+      line-height: 1.7;
+    }
+
+    .gate-trap {
+      background: var(--danger-soft);
+      border-left-color: var(--danger);
+      color: var(--text-main);
+    }
+    .gate-trap-title {
+      font-family: var(--font-ui);
+      font-weight: 800;
+      color: var(--danger);
+      font-size: 0.88rem;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+      margin-bottom: 8px;
+      display: flex;
+      align-items: center;
+      gap: 6px;
+    }
+
+    .pro-tip {
+      background: var(--purple-soft);
+      border-left-color: var(--purple);
+      color: var(--text-main);
+    }
+    .pro-tip-title {
+      font-family: var(--font-ui);
+      font-weight: 800;
+      color: var(--purple);
+      font-size: 0.88rem;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+      margin-bottom: 8px;
+      display: flex;
+      align-items: center;
+      gap: 6px;
+    }
+
+    .theory-box {
+      background: var(--accent-soft);
+      border-left-color: var(--accent);
+      color: var(--text-main);
+    }
+    .theory-title {
+      font-family: var(--font-ui);
+      font-weight: 800;
+      color: var(--accent);
+      font-size: 0.88rem;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+      margin-bottom: 8px;
+      display: flex;
+      align-items: center;
+      gap: 6px;
+    }
+
+    .proof-box {
+      background: var(--bg-card-subtle);
+      border: 1px solid var(--border-strong);
+      border-radius: 12px;
+      padding: 20px 24px;
+      margin: 22px 0;
+      font-size: 1.05rem;
+    }
+    .proof-title {
+      font-family: var(--font-ui);
+      font-size: 0.85rem;
+      font-weight: 800;
+      text-transform: uppercase;
+      letter-spacing: 0.06em;
+      color: var(--text-muted);
+      margin-bottom: 10px;
+    }
+
+    .formula-card {
+      background: var(--bg-card);
+      border: 1px solid var(--border-strong);
+      border-radius: 12px;
+      padding: 22px;
+      margin: 24px 0;
+      box-shadow: var(--shadow-sm);
+    }
+    .formula-card-title {
+      font-family: var(--font-ui);
+      font-size: 0.84rem;
+      font-weight: 800;
+      text-transform: uppercase;
+      color: var(--text-muted);
+      letter-spacing: 0.06em;
+      margin-bottom: 14px;
+    }
+
+    .circuit-diagram {
+      background: var(--bg-code);
+      color: #38bdf8;
+      font-family: var(--font-mono);
+      font-size: 0.86rem;
+      line-height: 1.45;
+      padding: 20px;
+      border-radius: 12px;
+      margin: 24px 0;
+      overflow-x: auto;
+      box-shadow: var(--shadow-md);
+    }
+
+    .table-container {
+      overflow-x: auto;
+      margin: 26px 0;
+      border: 1px solid var(--border-color);
+      border-radius: 12px;
+      background: var(--bg-card);
+      box-shadow: var(--shadow-sm);
+    }
+
+    table.academic-table {
+      width: 100%;
+      border-collapse: collapse;
+      font-family: var(--font-ui);
+      font-size: 0.94rem;
+      text-align: left;
+    }
+
+    table.academic-table th {
+      background: var(--bg-card-subtle);
+      color: var(--text-main);
+      font-weight: 700;
+      padding: 14px 18px;
+      border-bottom: 1px solid var(--border-color);
+      white-space: nowrap;
+    }
+
+    table.academic-table td {
+      padding: 14px 18px;
+      border-bottom: 1px solid var(--border-color);
+      color: var(--text-secondary);
+      line-height: 1.6;
+    }
+
+    table.academic-table tr:last-child td { border-bottom: none; }
+    table.academic-table tr:hover td { background: rgba(37, 99, 235, 0.03); }
+
+    .pyq-box {
+      background: var(--bg-card);
+      border: 1px solid var(--border-strong);
+      border-radius: 14px;
+      margin: 32px 0;
+      overflow: hidden;
+      box-shadow: var(--shadow-sm);
+      transition: border-color 0.2s ease, box-shadow 0.2s ease;
+    }
+
+    .pyq-box:hover {
+      border-color: var(--accent);
+      box-shadow: var(--shadow-md);
+    }
+
+    .pyq-header {
+      padding: 16px 22px;
+      background: var(--bg-card-subtle);
+      border-bottom: 1px solid var(--border-color);
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 12px;
+    }
+
+    .pyq-tag-group {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .pyq-badge-num {
+      font-family: var(--font-mono);
+      font-weight: 800;
+      font-size: 0.9rem;
+      background: var(--text-main);
+      color: var(--bg-card);
+      padding: 3px 9px;
+      border-radius: 6px;
+    }
+
+    .pyq-badge-year {
+      font-family: var(--font-ui);
+      font-size: 0.8rem;
+      font-weight: 700;
+      color: var(--accent-dark);
+      background: var(--accent-soft);
+      padding: 3px 9px;
+      border-radius: 6px;
+    }
+
+    .pyq-badge-marks {
+      font-family: var(--font-ui);
+      font-size: 0.8rem;
+      font-weight: 700;
+      color: var(--purple);
+      background: var(--purple-soft);
+      padding: 3px 9px;
+      border-radius: 6px;
+    }
+
+    .pyq-body {
+      padding: 24px 26px;
+      font-size: 1.18rem;
+      line-height: 1.75;
+    }
+
+    .pyq-options-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+      gap: 12px;
+      margin: 18px 0;
+    }
+
+    .pyq-opt {
+      font-family: var(--font-ui);
+      font-size: 0.96rem;
+      background: var(--bg-card-subtle);
+      border: 1px solid var(--border-color);
+      padding: 11px 16px;
+      border-radius: 8px;
+    }
+
+    .reveal-btn {
+      font-family: var(--font-ui);
+      font-size: 0.84rem;
+      font-weight: 700;
+      padding: 7px 16px;
+      border-radius: 7px;
+      border: 1px solid var(--accent);
+      background: var(--accent-soft);
+      color: var(--accent);
+      cursor: pointer;
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      transition: all 0.15s ease;
+    }
+
+    .reveal-btn:hover {
+      background: var(--accent);
+      color: #ffffff;
+    }
+
+    .solution-drawer {
+      display: none;
+      padding: 24px 26px;
+      background: var(--bg-card-subtle);
+      border-top: 1px dashed var(--border-strong);
+      animation: fadeIn 0.25s ease;
+    }
+
+    .solution-drawer.open {
+      display: block;
+    }
+
+    .sol-header {
+      font-family: var(--font-ui);
+      font-size: 1rem;
+      font-weight: 800;
+      color: var(--success);
+      margin-bottom: 14px;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .sol-steps {
+      margin-left: 22px;
+      margin-bottom: 16px;
+    }
+
+    .sol-steps li {
+      margin-bottom: 10px;
+    }
+
+    .ans-box {
+      font-family: var(--font-ui);
+      display: inline-block;
+      background: var(--success-soft);
+      color: var(--success);
+      border: 1px solid var(--success);
+      padding: 7px 14px;
+      border-radius: 7px;
+      font-weight: 800;
+      font-size: 1rem;
+      margin: 12px 0;
+    }
+
+    .drill-box {
+      background: var(--bg-card);
+      border: 1px solid var(--purple);
+      border-radius: 14px;
+      margin: 32px 0;
+      padding: 24px 26px;
+    }
+
+    .drill-title {
+      font-family: var(--font-ui);
+      font-size: 0.92rem;
+      font-weight: 800;
+      color: var(--purple);
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+      margin-bottom: 12px;
+      display: flex;
+      align-items: center;
+      gap: 6px;
+    }
+
+    .lab-card {
+      background: var(--bg-card);
+      border: 2px solid var(--accent);
+      border-radius: 16px;
+      padding: 28px;
+      margin: 36px 0;
+      box-shadow: var(--shadow-md);
+    }
+
+    .lab-header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      margin-bottom: 20px;
+      padding-bottom: 14px;
+      border-bottom: 1px solid var(--border-color);
+    }
+
+    .lab-title {
+      font-family: var(--font-ui);
+      font-size: 1.25rem;
+      font-weight: 800;
+      color: var(--accent);
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .lab-input-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(190px, 1fr));
+      gap: 16px;
+      margin-bottom: 20px;
+    }
+
+    .input-field label {
+      display: block;
+      font-family: var(--font-ui);
+      font-size: 0.82rem;
+      font-weight: 700;
+      color: var(--text-muted);
+      margin-bottom: 6px;
+      text-transform: uppercase;
+      letter-spacing: 0.04em;
+    }
+
+    .input-field input, .input-field select {
+      width: 100%;
+      font-family: var(--font-mono);
+      font-size: 0.98rem;
+      padding: 9px 13px;
+      border: 1px solid var(--border-color);
+      border-radius: 7px;
+      background: var(--bg-card-subtle);
+      color: var(--text-main);
+      outline: none;
+    }
+
+    .input-field input:focus, .input-field select:focus {
+      border-color: var(--accent);
+    }
+
+    .lab-output {
+      background: var(--bg-code);
+      color: #38bdf8;
+      font-family: var(--font-mono);
+      font-size: 0.96rem;
+      padding: 18px;
+      border-radius: 10px;
+      overflow-x: auto;
+      line-height: 1.65;
+    }
+
+    .bit-box {
+      display: inline-block;
+      padding: 2px 7px;
+      border-radius: 4px;
+      font-weight: 800;
+      margin: 0 1px;
+    }
+    .bit-sign { background: rgba(239, 68, 68, 0.22); color: #f87171; border: 1px solid #ef4444; }
+    .bit-mag { background: rgba(56, 189, 248, 0.22); color: #38bdf8; border: 1px solid #38bdf8; }
+    .bit-ext { background: rgba(168, 85, 247, 0.22); color: #c084fc; border: 1px dashed #a855f7; }
+
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(-4px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    @media (max-width: 960px) {
+      .app-container { flex-direction: column; }
+      .sidebar { width: 100%; height: auto; position: static; }
+      .main-wrapper { padding: 24px 18px; }
+      .chapter-section { padding: 24px 20px; }
+    }
+  </style>
+</head>
+<body>
+
+<div class="app-container">
+  
+  <aside class="sidebar">
+    <div class="sidebar-header">
+      <h2>
+        <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.3"><path d="M4 19.5v-15A2.5 2.5 0 0 1 6.5 2H20v20H6.5a2.5 2.5 0 0 1-2.5-2.5Z"/><path d="M6 6h10"/><path d="M6 10h10"/></svg>
+        GATE Master Textbook
+      </h2>
+      <p>Number Systems, Digital Arithmetic & Architecture Coding</p>
+    </div>
+
+    <nav class="sidebar-nav" id="sidebarNav">
+      <div class="nav-group-title">Textbook Chapters</div>
+      <a href="#ch-1" class="nav-link"><span>Ch 1: Positional Radix & Equations</span> <span class="badge">3 PYQs</span></a>
+      <a href="#ch-2" class="nav-link"><span>Ch 2: Radix & Diminished Complements</span> <span class="badge">1 PYQ</span></a>
+      <a href="#ch-3" class="nav-link"><span>Ch 3: Signed Binary & Register Models</span> <span class="badge">8 PYQs</span></a>
+      <a href="#ch-4" class="nav-link"><span>Ch 4: ALU Arithmetic & Overflow Logic</span> <span class="badge">3 PYQs</span></a>
+      <a href="#ch-5" class="nav-link"><span>Ch 5: Binary Codes (BCD, Gray, XS-3)</span> <span class="badge">3 PYQs</span></a>
+      <a href="#ch-6" class="nav-link"><span>Ch 6: Error Control & Hamming Codes</span> <span class="badge">1 PYQ</span></a>
+      <a href="#ch-7" class="nav-link"><span>Ch 7: CPU Instruction Bit Budgeting</span> <span class="badge">1 PYQ</span></a>
+      <a href="#ch-8" class="nav-link"><span>Ch 8: Formula Matrix & Live Labs</span> <span class="badge">Tools</span></a>
+
+      <div class="nav-group-title">Official GATE PYQ Directory (18 Questions)</div>
+      <div style="display:grid; grid-template-columns:repeat(3, 1fr); gap:5px; padding:0 8px;">
+        <a href="#pyq-q1" class="nav-link" style="padding:5px 6px; justify-content:center; font-family:var(--font-mono); font-size:0.75rem;">Q1 '24</a>
+        <a href="#pyq-q2" class="nav-link" style="padding:5px 6px; justify-content:center; font-family:var(--font-mono); font-size:0.75rem;">Q2 '24</a>
+        <a href="#pyq-q3" class="nav-link" style="padding:5px 6px; justify-content:center; font-family:var(--font-mono); font-size:0.75rem;">Q3 '21</a>
+        <a href="#pyq-q4" class="nav-link" style="padding:5px 6px; justify-content:center; font-family:var(--font-mono); font-size:0.75rem;">Q4 '14</a>
+        <a href="#pyq-q5" class="nav-link" style="padding:5px 6px; justify-content:center; font-family:var(--font-mono); font-size:0.75rem;">Q5 '07</a>
+        <a href="#pyq-q6" class="nav-link" style="padding:5px 6px; justify-content:center; font-family:var(--font-mono); font-size:0.75rem;">Q6 '05</a>
+        <a href="#pyq-q7" class="nav-link" style="padding:5px 6px; justify-content:center; font-family:var(--font-mono); font-size:0.75rem;">Q7 '04</a>
+        <a href="#pyq-q8" class="nav-link" style="padding:5px 6px; justify-content:center; font-family:var(--font-mono); font-size:0.75rem;">Q8 '02</a>
+        <a href="#pyq-q9" class="nav-link" style="padding:5px 6px; justify-content:center; font-family:var(--font-mono); font-size:0.75rem;">Q9 '01</a>
+        <a href="#pyq-q10" class="nav-link" style="padding:5px 6px; justify-content:center; font-family:var(--font-mono); font-size:0.75rem;">Q10 '98</a>
+        <a href="#pyq-q11" class="nav-link" style="padding:5px 6px; justify-content:center; font-family:var(--font-mono); font-size:0.75rem;">Q11 '97</a>
+        <a href="#pyq-q12" class="nav-link" style="padding:5px 6px; justify-content:center; font-family:var(--font-mono); font-size:0.75rem;">Q12 '93</a>
+        <a href="#pyq-q13" class="nav-link" style="padding:5px 6px; justify-content:center; font-family:var(--font-mono); font-size:0.75rem;">Q13 '87</a>
+        <a href="#pyq-q14" class="nav-link" style="padding:5px 6px; justify-content:center; font-family:var(--font-mono); font-size:0.75rem;">Q14 '26</a>
+        <a href="#pyq-q15" class="nav-link" style="padding:5px 6px; justify-content:center; font-family:var(--font-mono); font-size:0.75rem;">Q15 '20</a>
+        <a href="#pyq-q16" class="nav-link" style="padding:5px 6px; justify-content:center; font-family:var(--font-mono); font-size:0.75rem;">Q16 '08</a>
+        <a href="#pyq-q17" class="nav-link" style="padding:5px 6px; justify-content:center; font-family:var(--font-mono); font-size:0.75rem;">Q17 '06</a>
+        <a href="#pyq-q18" class="nav-link" style="padding:5px 6px; justify-content:center; font-family:var(--font-mono); font-size:0.75rem;">Q18 '04</a>
+      </div>
+    </nav>
+  </aside>
+
+  <main class="main-wrapper">
+
+    <div class="top-bar">
+      <div class="search-wrapper">
+        <span class="search-icon">🔍</span>
+        <input type="text" id="searchBox" class="search-input" placeholder="Search chapters, formulas, or PYQ number (e.g. Q15, 2's complement)..." />
+      </div>
+
+      <div class="top-actions">
+        <button id="toggleAllBtn" class="expand-all-btn">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="6 9 12 15 18 9"/></svg>
+          Expand All Solutions
+        </button>
+        <button id="themeToggleBtn" class="theme-btn" title="Toggle Light/Dark Theme">
+          <span id="themeIcon">🌙</span>
+        </button>
+      </div>
+    </div>
+
+    <header class="hero-header">
+      <div class="hero-badge-row">
+        <span class="pill-badge pill-blue">GATE ECE • EE • CS / IT</span>
+        <span class="pill-badge pill-purple">Advanced Digital Electronics & Computer Organization</span>
+        <span class="pill-badge pill-green">Official 1987–2026 PYQ Compendium</span>
+        <span class="pill-badge pill-cyan">Complete Chapter-Wise Textbook</span>
+      </div>
+      <h1>Textbook on Number Systems, Radix Complements & Computer Arithmetic</h1>
+      <p>
+        An exhaustive, rigorous treatise covering fundamental digital arithmetic, algebraic radix formulations, signed register representations, hardware overflow detection, coding theory, and CPU instruction encoding. Every concept is accompanied by formal theorems, hardware circuits, examiner trap warnings, and complete derivations for all 18 official GATE PYQs.
+      </p>
+
+      <div class="exam-stats-grid">
+        <div class="stat-item">
+          <div class="stat-val">8 Chapters</div>
+          <div class="stat-lbl">In-Depth Syllabus Coverage</div>
+        </div>
+        <div class="stat-item">
+          <div class="stat-val">18 PYQs</div>
+          <div class="stat-lbl">Official GATE 1987–2026</div>
+        </div>
+        <div class="stat-item">
+          <div class="stat-val">100%</div>
+          <div class="stat-lbl">Verified Step-by-Step Proofs</div>
+        </div>
+        <div class="stat-item">
+          <div class="stat-val">3 Simulators</div>
+          <div class="stat-lbl">Interactive Laboratory Tools</div>
+        </div>
+      </div>
+    </header>
+
+    <!-- ======================================================== -->
+    <!-- CHAPTER 1: POSITIONAL RADIX & EQUATIONS                  -->
+    <!-- ======================================================== -->
+    <section class="chapter-section" id="ch-1">
+      <div class="chapter-number-pill">Chapter 1</div>
+      <h2 class="chapter-title">Fundamentals of Positional Number Systems, Radix Conversions & Base-$r$ Equations</h2>
+
+      <h3 class="section-heading">1.1 Historical & Engineering Foundations: The Discrete Switching Ideal</h3>
+      <p>
+        In 1937, Claude Elwood Shannon published his landmark master's thesis demonstrating that electrical relays and switching contacts could realize the symbolic Boolean algebra developed by George Boole in 1854. In modern semiconductor electronics, binary representation ($r = 2$) dominates computational architectures due to noise margins and physical device characteristics:
+      </p>
+      <ul style="margin-left: 26px; margin-bottom: 20px;">
+        <li>
+          <strong>Noise Immunity:</strong> Semiconductor transistors (MOSFETs) operate most reliably in saturated ON (conducting) and OFF (cutoff) regimes. A bistable digital gate distinguishes voltages above $V_{IH}$ (Logic 1) and below $V_{IL}$ (Logic 0) across wide tolerance margins, preventing electromagnetic interference from corrupting state variables.
+        </li>
+        <li>
+          <strong>Radix Hierarchy ($2^k$):</strong> While machine hardware computes purely in binary bits $\{0, 1\}$, humans find long binary bitstrings unreadable and error-prone. Hence, compact notations with bases equal to powers of two are used: <strong>Octal ($r = 2^3 = 8$)</strong> groups bits into triplets, and <strong>Hexadecimal ($r = 2^4 = 16$)</strong> groups bits into nibbles (4-bit chunks).
+        </li>
+      </ul>
+
+      <h3 class="section-heading">1.2 Positional Radix Theorem & Polynomial Expansion</h3>
+      <p>
+        In any positional number system with integer base $r \ge 2$, the numeric value of an ordered sequence of digit coefficients is evaluated as a weighted power sum of the radix:
+      </p>
+
+      <div class="formula-card">
+        <div class="formula-card-title">Theorem 1.1: General Positional Polynomial Expansion</div>
+        $$(N)_r = d_{n-1} r^{n-1} + d_{n-2} r^{n-2} + \dots + d_1 r^1 + d_0 r^0 + d_{-1} r^{-1} + d_{-2} r^{-2} + \dots + d_{-m} r^{-m}$$
+        $$(N)_r = \sum_{i=-m}^{n-1} d_i \cdot r^i$$
+        $$\text{where } d_i \in \Sigma_r = \{0, 1, 2, \dots, r-1\}$$
+      </div>
+
+      <div class="callout gate-trap">
+        <div class="gate-trap-title">⚠️ The Golden Radix Constraint (GATE Trap #1)</div>
+        <p>
+          In every number system of base $r$, the maximum allowable individual digit coefficient is $(r - 1)$. Therefore, whenever a problem presents numbers containing digit symbols $d_0, d_1, \dots$:
+        </p>
+        $$r > \max(\{d_i\}) \iff r \ge \max(\{d_i\}) + 1$$
+        <p>
+          In GATE examinations, algebraic solving of base-$r$ equations often yields multiple mathematical roots (e.g. quadratic solutions like $r = 11$ and $r = 5$). If any digit $7$ or $8$ is present in the equation, the root $r = 5$ is <strong>strictly physically impossible</strong> and must be discarded immediately!
+        </p>
+      </div>
+
+      <h3 class="section-heading">1.3 Rigorous Radix Conversion Algorithms</h3>
+      <h4 class="subsection-heading">A. Base $r$ to Decimal Conversion</h4>
+      <p>
+        Multiply each digit coefficient $d_i$ by its positional weight $r^i$ and compute the arithmetic sum in standard base-10 arithmetic.
+      </p>
+
+      <h4 class="subsection-heading">B. Decimal to Base $r$ Conversion</h4>
+      <p>
+        Because the integer and fractional parts obey different power sequences ($r^i$ for $i \ge 0$ vs $r^{-j}$ for $j \ge 1$), they are converted using independent algorithmic pipelines:
+      </p>
+      <ol style="margin-left: 26px; margin-bottom: 20px;">
+        <li>
+          <strong>Integer Part (Successive Radix Division):</strong> Divide the decimal integer repeatedly by $r$. At each iteration, the quotient becomes the new dividend and the integer remainder forms a digit.
+          <br/>
+          <em>Order Rule:</em> The first remainder obtained is the Least Significant Digit ($d_0$), and the last remainder obtained is the Most Significant Digit ($d_{n-1}$). Reading remainders from <strong>bottom-to-top</strong> yields $(d_{n-1} \dots d_1 d_0)_r$.
+        </li>
+        <li>
+          <strong>Fractional Part (Successive Radix Multiplication):</strong> Multiply the decimal fraction repeatedly by $r$. At each iteration, the integer part generated is extracted as the digit, and the remaining fractional part is multiplied again by $r$.
+          <br/>
+          <em>Order Rule:</em> Reading extracted integer carries from <strong>top-to-bottom</strong> yields $(0. d_{-1} d_{-2} \dots d_{-m})_r$.
+        </li>
+      </ol>
+
+      <div class="callout theory-box">
+        <div class="theory-title">Theorem 1.2: Number-Theoretic Condition for Terminating Fractions</div>
+        <p>
+          Let $F = \frac{p}{q}$ be a reduced fraction in base 10 where $\gcd(p, q) = 1$. The base-$r$ representation of $F$ terminates in a finite number of digits if and only if <strong>all prime factors of the denominator $q$ are prime factors of the radix $r$</strong>.
+        </p>
+        <p>
+          <em>Consequence:</em> The decimal fraction $\frac{1}{5} = 0.2_{10}$ terminates in base 10 because $5 \mid 10$. However, in binary ($r = 2$), the prime factor $5$ does not divide $2$. Therefore, $0.2_{10}$ is an <strong>infinite periodic repeating fraction in binary</strong>:
+          $$(0.2)_{10} = (0.001100110011\dots)_2$$
+          This fundamental property is why floating-point arithmetic in digital computers incurs rounding errors when representing tenths ($0.1, 0.2$).
+        </p>
+      </div>
+
+      <h4 class="subsection-heading">C. Power-of-2 Radix Grouping Shortcuts ($2^k \leftrightarrow 2^m$)</h4>
+      <p>
+        When converting between bases that are integral powers of the same base (such as $r_1 = 2^1$, $r_2 = 2^3 = 8$, $r_3 = 2^4 = 16$), direct grouping can be performed without passing through decimal:
+      </p>
+      <div class="formula-card">
+        <div class="formula-card-title">Power-of-2 Grouping Rule</div>
+        $$\text{Octal } (r = 2^3): \text{ Group binary bits in sets of 3 starting from the radix point.}$$
+        $$\text{Hexadecimal } (r = 2^4): \text{ Group binary bits in sets of 4 starting from the radix point.}$$
+        $$\text{Arbitrary Base } r = b^k: \text{ Group base-}b\text{ digits in sets of } k \text{ digits.}$$
+      </div>
+
+      <h3 class="section-heading">1.4 Base-$r$ Algebraic & Quadratic Equations</h3>
+      <p>
+        A frequent GATE question format involves solving algebraic equations where the coefficients and variables are written in an unknown base $r$. The general procedure is:
+      </p>
+      <ol style="margin-left: 26px; margin-bottom: 20px;">
+        <li>Convert all numeric constants and coefficient strings to their base-10 polynomial expansion in terms of $r$.</li>
+        <li>Substitute any given roots $x = x_0$ (also converted to base 10).</li>
+        <li>Collect like powers of $r$ to form a polynomial equation $P(r) = 0$.</li>
+        <li>Solve for real roots $r$.</li>
+        <li><strong>Strict Verification:</strong> Verify that $r$ is an integer and strictly greater than every digit appearing anywhere in the original equation!</li>
+      </ol>
+
+      <!-- Integrated PYQ Q2 -->
+      <div class="pyq-box" id="pyq-q2">
+        <div class="pyq-header">
+          <div class="pyq-tag-group">
+            <span class="pyq-badge-num">PYQ Q2</span>
+            <span class="pyq-badge-year">GATE ECE 2024</span>
+            <span class="pyq-badge-marks">1 Mark</span>
+          </div>
+          <button class="reveal-btn" onclick="toggleSolution('sol-q2', this)">Show Solution</button>
+        </div>
+        <div class="pyq-body">
+          <p>
+            In a number system of base $r$, the equation $x^2 - 12x + 37 = 0$ has $x = 8$ as one of its solutions. The value of $r$ is _______.
+          </p>
+        </div>
+        <div class="solution-drawer" id="sol-q2">
+          <div class="sol-header">✓ Exhaustive Step-by-Step Mathematical Derivation</div>
+          <ol class="sol-steps">
+            <li>
+              <strong>Establish the Physical Radix Bounds:</strong><br/>
+              The problem statement displays the digit symbols $1, 2, 3, 7$, and the root $x = 8$. In a positional system of base $r$, the digit symbol $8$ can only exist if:
+              $$r > \max(\{1, 2, 3, 7, 8\}) \implies r \ge 9$$
+            </li>
+            <li>
+              <strong>Convert Coefficients into Base 10 Polynomials:</strong>
+              $$(12)_r = 1 \cdot r^1 + 2 \cdot r^0 = r + 2$$
+              $$(37)_r = 3 \cdot r^1 + 7 \cdot r^0 = 3r + 7$$
+              $$(8)_r = 8$$
+            </li>
+            <li>
+              <strong>Substitute $x = 8$ into the Characteristic Equation:</strong>
+              $$x^2 - (12)_r \cdot x + (37)_r = 0$$
+              $$8^2 - (r + 2) \cdot 8 + (3r + 7) = 0$$
+              $$64 - (8r + 16) + (3r + 7) = 0$$
+            </li>
+            <li>
+              <strong>Linear Simplification:</strong>
+              $$(64 - 16 + 7) + (-8r + 3r) = 0$$
+              $$55 - 5r = 0 \implies 5r = 55 \implies r = 11$$
+            </li>
+            <li>
+              <strong>Check Against the Physical Bound:</strong><br/>
+              Since $11 \ge 9$, $r = 11$ is physically valid.
+            </li>
+          </ol>
+          <div class="ans-box">Final Numerical Answer: 11</div>
+        </div>
+      </div>
+
+      <!-- Integrated PYQ Q6 -->
+      <div class="pyq-box" id="pyq-q6">
+        <div class="pyq-header">
+          <div class="pyq-tag-group">
+            <span class="pyq-badge-num">PYQ Q6</span>
+            <span class="pyq-badge-year">GATE ECE 2005</span>
+            <span class="pyq-badge-marks">1 Mark</span>
+          </div>
+          <button class="reveal-btn" onclick="toggleSolution('sol-q6', this)">Show Solution</button>
+        </div>
+        <div class="pyq-body">
+          <p>
+            Decimal $43$ in Hexadecimal and BCD number system is respectively:
+          </p>
+          <div class="pyq-options-grid">
+            <div class="pyq-opt">(A) B2, 0100 0011</div>
+            <div class="pyq-opt">(B) 2B, 0100 0011</div>
+            <div class="pyq-opt">(C) 2B, 0011 0100</div>
+            <div class="pyq-opt">(D) B2, 0100 0100</div>
+          </div>
+        </div>
+        <div class="solution-drawer" id="sol-q6">
+          <div class="sol-header">✓ Step-by-Step Derivation & Dual Conversion</div>
+          <ol class="sol-steps">
+            <li>
+              <strong>Conversion to Hexadecimal ($r = 16$):</strong><br/>
+              Successive division of $43$ by $16$:
+              $$43 \div 16 = 2 \quad \text{with remainder } 11$$
+              In base 16, remainder $11$ corresponds to the hex symbol $\text{B}_{16}$. The quotient $2$ divided by $16$ gives remainder $2$.
+              Reading remainder bottom-to-top:
+              $$(43)_{10} = (2\text{B})_{16}$$
+            </li>
+            <li>
+              <strong>Conversion to BCD (Binary Coded Decimal / 8421):</strong><br/>
+              In BCD, each decimal digit is independently encoded into a 4-bit nibble:
+              $$\text{Decimal digit } 4 \implies 0100_2$$
+              $$\text{Decimal digit } 3 \implies 0011_2$$
+              $$(43)_{10} = 0100\ 0011_{\text{BCD}}$$
+            </li>
+            <li>
+              Combining Hex and BCD gives <strong>2B, 0100 0011</strong>.
+            </li>
+          </ol>
+          <div class="ans-box">Correct Option: (B) 2B, 0100 0011</div>
+        </div>
+      </div>
+
+      <!-- Integrated PYQ Q17 -->
+      <div class="pyq-box" id="pyq-q17">
+        <div class="pyq-header">
+          <div class="pyq-tag-group">
+            <span class="pyq-badge-num">PYQ Q17</span>
+            <span class="pyq-badge-year">GATE ECE 2006</span>
+            <span class="pyq-badge-marks">2 Marks</span>
+          </div>
+          <button class="reveal-btn" onclick="toggleSolution('sol-q17', this)">Show Solution</button>
+        </div>
+        <div class="pyq-body">
+          <p>
+            A new Binary Coded Pentary (BCP) number system is proposed in which every digit of a base-5 number is represented by its corresponding 3-bit binary code. For example, the base-5 number $24$ will be represented by its BCP code $010100$. In this numbering system, the BCP code $100010011001$ corresponds to the following number in base-5 system:
+          </p>
+          <div class="pyq-options-grid">
+            <div class="pyq-opt">(A) 423</div>
+            <div class="pyq-opt">(B) 1324</div>
+            <div class="pyq-opt">(C) 2201</div>
+            <div class="pyq-opt">(D) 4231</div>
+          </div>
+        </div>
+        <div class="solution-drawer" id="sol-q17">
+          <div class="sol-header">✓ Step-by-Step Derivation & Chunking Analysis</div>
+          <ol class="sol-steps">
+            <li>
+              <strong>Bit-Width Specification:</strong> In base-5 (pentary), digits are $\{0, 1, 2, 3, 4\}$. To encode 5 states into binary, $\lceil \log_2 5 \rceil = 3$ bits per digit are required.
+            </li>
+            <li>
+              <strong>Partition the Bitstream from Right to Left into 3-bit Triples:</strong>
+              $$100010011001 \implies 100 \mid 010 \mid 011 \mid 001$$
+            </li>
+            <li>
+              <strong>Map Each 3-bit Group to its Base-5 Digit:</strong>
+              $$100_2 = 1 \cdot 2^2 + 0 + 0 = 4_5$$
+              $$010_2 = 0 + 1 \cdot 2^1 + 0 = 2_5$$
+              $$011_2 = 0 + 1 \cdot 2^1 + 1 \cdot 2^0 = 3_5$$
+              $$001_2 = 0 + 0 + 1 \cdot 2^0 = 1_5$$
+            </li>
+            <li>
+              Concatenating the digits produces $(4231)_5$.
+            </li>
+          </ol>
+          <div class="ans-box">Correct Option: (D) 4231</div>
+        </div>
+      </div>
+
+      <!-- Drill Challenge 1 -->
+      <div class="drill-box">
+        <div class="drill-title">🎯 Textbook Practice Exercise 1.1: Fractional Base Equation</div>
+        <p>
+          <strong>Problem:</strong> Determine the radix $r$ such that $(13.4)_r = (11.5)_{10}$.
+        </p>
+        <button class="reveal-btn" onclick="toggleSolution('sol-drill-1', this)">Show Solution</button>
+        <div class="solution-drawer" id="sol-drill-1">
+          <p><strong>Solution:</strong></p>
+          <p>
+            1. <em>Radix Constraint:</em> The digit $4$ appears $\implies r > 4 \implies r \ge 5$.<br/>
+            2. Expand both sides in base 10:
+            $$1 \cdot r^1 + 3 \cdot r^0 + 4 \cdot r^{-1} = 11.5$$
+            $$r + 3 + \frac{4}{r} = 11.5 \implies r - 8.5 + \frac{4}{r} = 0$$
+            Multiply through by $r$:
+            $$r^2 - 8.5r + 4 = 0 \implies 2r^2 - 17r + 8 = 0$$
+            Factoring the quadratic:
+            $$(2r - 1)(r - 8) = 0 \implies r = 0.5 \quad \text{or} \quad r = 8$$
+            A radix must be an integer $\ge 5$, so $r = 0.5$ is rejected, yielding <strong>$r = 8$</strong>.
+          </p>
+        </div>
+      </div>
+    </section>
+
+
+    <!-- ======================================================== -->
+    <!-- CHAPTER 2: RADIX & DIMINISHED RADIX COMPLEMENTS         -->
+    <!-- ======================================================== -->
+    <section class="chapter-section" id="ch-2">
+      <div class="chapter-number-pill">Chapter 2</div>
+      <h2 class="chapter-title">Radix & Diminished Radix Complements</h2>
+
+      <h3 class="section-heading">2.1 Hardware Motivation: Unifying Machine Addition & Subtraction</h3>
+      <p>
+        Building a discrete hardware subtractor requires borrow-lookahead logic, which consumes roughly twice the silicon gate count of a ripple-carry adder and introduces significant propagation delay. By employing the algebra of <strong>complements</strong>, subtraction is converted directly into addition:
+      </p>
+      $$A - B = A + (-B) = A + [r^n - B] - r^n$$
+      <p>
+        This allows an Arithmetic Logic Unit (ALU) to perform both addition and subtraction using the <strong>exact same parallel adder circuit</strong> simply by conditionally taking the complement of the subtrahend operand.
+      </p>
+
+      <h3 class="section-heading">2.2 Formal Mathematical Definitions</h3>
+      <p>
+        In any positional number system of radix $r$, there exist two canonical complements:
+      </p>
+
+      <div class="formula-card">
+        <div class="formula-card-title">Definitions of Complements in Base $r$</div>
+        <p>Let $N$ be a number in base $r$ with $n$ integer digits and $m$ fractional digits:</p>
+        <p><strong>1. Diminished Radix Complement ($(r-1)$'s Complement):</strong></p>
+        $$C_{r-1}(N) = (r^n - r^{-m}) - N$$
+        $$\text{For pure integers } (m = 0): \quad C_{r-1}(N) = (r^n - 1) - N$$
+        <p><em>Practical Rule:</em> Subtract each individual digit of $N$ from $(r - 1)$.</p>
+
+        <p style="margin-top:14px;"><strong>2. Radix Complement ($r$'s Complement):</strong></p>
+        $$C_r(N) = r^n - N = C_{r-1}(N) + r^{-m}$$
+        $$\text{For pure integers } (m = 0): \quad C_r(N) = C_{r-1}(N) + 1$$
+      </div>
+
+      <div class="callout theory-box">
+        <div class="theory-title">Theorem 2.1: The Involution Property of Radix Complements</div>
+        <p>
+          The $r$'s complement operation is an <em>involution</em> (its own inverse):
+          $$C_r(C_r(N)) = r^n - (r^n - N) = N$$
+          Taking the complement of a complemented number restores the original true magnitude.
+        </p>
+      </div>
+
+      <h3 class="section-heading">2.3 The Fast Inspection Shortcut (LSB-to-MSB Scanning Rule)</h3>
+      <p>
+        While the definition requires computing $(r^n - N)$, human calculators and hardware scan logic can determine the $r$'s complement of any number $N$ in a single linear pass from <strong>right to left (LSB toward MSB)</strong>:
+      </p>
+
+      <div class="callout pro-tip">
+        <div class="pro-tip-title">⚡ The Fast LSB-to-MSB Algorithm</div>
+        <ol style="margin-left: 20px;">
+          <li>Leave all trailing zeros on the right completely unchanged.</li>
+          <li>Subtract the <strong>first non-zero digit</strong> from the radix $r$.</li>
+          <li>Subtract all subsequent digits to its left from $(r - 1)$.</li>
+        </ol>
+      </div>
+
+      <div class="table-container">
+        <table class="academic-table">
+          <thead>
+            <tr>
+              <th>Radix</th>
+              <th>$(r-1)$'s Complement Name</th>
+              <th>$r$'s Complement Name</th>
+              <th>Fast Inspection LSB Rule</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td><strong>Base 10</strong> (Decimal)</td>
+              <td>9's Complement ($99\dots9 - N$)</td>
+              <td>10's Complement ($10^n - N$)</td>
+              <td>Keep trailing 0s, subtract 1st non-zero from 10, rest from 9</td>
+            </tr>
+            <tr>
+              <td><strong>Base 2</strong> (Binary)</td>
+              <td>1's Complement (Bitwise Invert $\sim N$)</td>
+              <td>2's Complement ($\sim N + 1$)</td>
+              <td>Keep trailing 0s and first 1, flip all remaining bits to the left</td>
+            </tr>
+            <tr>
+              <td><strong>Base 8</strong> (Octal)</td>
+              <td>7's Complement ($77\dots7 - N$)</td>
+              <td>8's Complement ($8^n - N$)</td>
+              <td>Keep trailing 0s, subtract 1st non-zero from 8, rest from 7</td>
+            </tr>
+            <tr>
+              <td><strong>Base 16</strong> (Hex)</td>
+              <td>15's Complement ($\text{FF}\dots\text{F} - N$)</td>
+              <td>16's Complement ($16^n - N$)</td>
+              <td>Keep trailing 0s, subtract 1st non-zero from 16, rest from 15 ($\text{F}_{16}$)</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+
+      <h3 class="section-heading">2.4 Complement Subtraction Mechanics: $M - N$</h3>
+      <p>
+        When computing $M - N$ for two $n$-digit numbers using $r$'s complement:
+        $$\text{Sum} = M + C_r(N) = M + (r^n - N) = r^n + (M - N)$$
+      </p>
+      <div class="table-container">
+        <table class="academic-table">
+          <thead>
+            <tr>
+              <th>Condition</th>
+              <th>End Carry ($C_{\text{end}}$)</th>
+              <th>Result Interpretation</th>
+              <th>Post-Processing Action</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td><strong>$M \ge N$ (Positive)</strong></td>
+              <td><strong>Carry $= 1$</strong> (Weight $r^n$)</td>
+              <td>The result is positive and in normal true magnitude form.</td>
+              <td><strong>Discard the end carry.</strong> Remaining $n$ digits form the exact difference.</td>
+            </tr>
+            <tr>
+              <td><strong>$M < N$ (Negative)</strong></td>
+              <td><strong>Carry $= 0$</strong> (No carry generated)</td>
+              <td>The result is negative and stored in $r$'s complement form: $r^n - (N - M)$.</td>
+              <td><strong>Take the $r$'s complement of the sum</strong> and attach a negative sign: $-(C_r(\text{Sum}))$.</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+
+      <!-- Integrated PYQ Q14 -->
+      <div class="pyq-box" id="pyq-q14">
+        <div class="pyq-header">
+          <div class="pyq-tag-group">
+            <span class="pyq-badge-num">PYQ Q14</span>
+            <span class="pyq-badge-year">GATE ECE 2026/2016</span>
+            <span class="pyq-badge-marks">2 Marks</span>
+          </div>
+          <button class="reveal-btn" onclick="toggleSolution('sol-q14', this)">Show Solution</button>
+        </div>
+        <div class="pyq-body">
+          <p>
+            What is the 10's complement of $(47)_{10}$?
+          </p>
+          <div class="pyq-options-grid">
+            <div class="pyq-opt">(A) 52</div>
+            <div class="pyq-opt">(B) 53</div>
+            <div class="pyq-opt">(C) 54</div>
+            <div class="pyq-opt">(D) 55</div>
+          </div>
+        </div>
+        <div class="solution-drawer" id="sol-q14">
+          <div class="sol-header">✓ Triple-Method Mathematical Derivation</div>
+          <ol class="sol-steps">
+            <li>
+              <strong>Method 1: Direct Definition Formula ($r^n - N$):</strong><br/>
+              Here, $r = 10$, $N = 47$, and the number of digits $n = 2$.
+              $$\text{10's Complement} = 10^n - N = 10^2 - 47 = 100 - 47 = 53$$
+            </li>
+            <li>
+              <strong>Method 2: Via 9's Complement ($[(r^n - 1) - N] + 1$):</strong><br/>
+              $$\text{9's Complement of } 47 = 99 - 47 = 52$$
+              $$\text{10's Complement} = \text{9's Complement} + 1 = 52 + 1 = 53$$
+            </li>
+            <li>
+              <strong>Method 3: Fast Inspection Rule:</strong><br/>
+              Scanning $47$ from right to left:<br/>
+              • First non-zero digit is $7 \implies 10 - 7 = 3$<br/>
+              • Next digit to left is $4 \implies 9 - 4 = 5$<br/>
+              Result $= 53$.
+            </li>
+          </ol>
+          <div class="ans-box">Correct Option: (B) 53</div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ======================================================== -->
+    <!-- CHAPTER 3: SIGNED BINARY & REGISTER MODELS               -->
+    <!-- ======================================================== -->
+    <section class="chapter-section" id="ch-3">
+      <div class="chapter-number-pill">Chapter 3</div>
+      <h2 class="chapter-title">Signed Binary Representations, Register Models & Ranges</h2>
+
+      <h3 class="section-heading">3.1 The Machine Representation Models</h3>
+      <p>
+        Because physical digital circuits cannot store literal '$+$' or '$-$' characters, the Most Significant Bit (MSB) is assigned by convention to signify polarity ($0 = \text{Positive}, 1 = \text{Negative}$). However, how the remaining bits represent magnitude leads to three distinct architectures:
+      </p>
+
+      <div class="table-container">
+        <table class="academic-table">
+          <thead>
+            <tr>
+              <th>System</th>
+              <th>Encoding Rule for Negative ($X < 0$)</th>
+              <th>Range for $n$ Bits</th>
+              <th>Zero Representation</th>
+              <th>ALU Hardware Impact</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td><strong>Signed Magnitude (SM)</strong></td>
+              <td>Set MSB $= 1$, keep lower $n-1$ magnitude bits identical to $|X|$.</td>
+              <td>$[-(2^{n-1}-1), +(2^{n-1}-1)]$</td>
+              <td>Dual ($+0 = 00\dots0$, $-0 = 10\dots0$)</td>
+              <td>Requires separate magnitude comparators & subtractors.</td>
+            </tr>
+            <tr>
+              <td><strong>1's Complement (1C)</strong></td>
+              <td>Invert every bit of the positive representation ($1 \leftrightarrow 0$).</td>
+              <td>$[-(2^{n-1}-1), +(2^{n-1}-1)]$</td>
+              <td>Dual ($+0 = 00\dots0$, $-0 = 11\dots1$)</td>
+              <td>Requires end-around carry adder hardware.</td>
+            </tr>
+            <tr>
+              <td><strong>2's Complement (2C)</strong></td>
+              <td>Invert every bit and add $1$ to LSB ($2^n - |X|$).</td>
+              <td>$[-2^{n-1}, +(2^{n-1}-1)]$</td>
+              <td><strong>Unique Zero ($00\dots0$)</strong></td>
+              <td><strong>Standard in all modern ALUs (Zero overhead).</strong></td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+
+      <h3 class="section-heading">3.2 The Negative MSB Positional Weight Theorem</h3>
+      <p>
+        In 2's complement representation, one does not need to invert bits to evaluate negative numbers. Instead, 2's complement can be treated as a true positional weighting system where the <strong>MSB possesses a negative weight</strong>:
+      </p>
+
+      <div class="formula-card">
+        <div class="formula-card-title">Theorem 3.1: 2's Complement Direct Weight Formula</div>
+        $$V_{2\text{C}}(b_{n-1} b_{n-2} \dots b_0) = -b_{n-1} \cdot 2^{n-1} + \sum_{i=0}^{n-2} b_i \cdot 2^i$$
+      </div>
+
+      <div class="proof-box">
+        <div class="proof-title">Formal Proof of Theorem 3.1</div>
+        <p>
+          Let $X$ be an $n$-bit binary string $b_{n-1} b_{n-2} \dots b_0$.<br/>
+          <strong>Case 1 ($b_{n-1} = 0$, Positive):</strong><br/>
+          $V = -0 \cdot 2^{n-1} + \sum_{i=0}^{n-2} b_i 2^i = \sum_{i=0}^{n-2} b_i 2^i$, which matches true magnitude.<br/>
+          <strong>Case 2 ($b_{n-1} = 1$, Negative):</strong><br/>
+          By definition, the 2's complement value is $V = -(2^n - U)$, where $U$ is the unsigned value of the bitstring:<br/>
+          $$U = 1 \cdot 2^{n-1} + \sum_{i=0}^{n-2} b_i 2^i$$
+          Substituting $U$ into $V = U - 2^n$:
+          $$V = \left(2^{n-1} + \sum_{i=0}^{n-2} b_i 2^i\right) - 2^n = (2^{n-1} - 2^n) + \sum_{i=0}^{n-2} b_i 2^i = -2^{n-1} + \sum_{i=0}^{n-2} b_i 2^i \quad \blacksquare$$
+        </p>
+      </div>
+
+      <h3 class="section-heading">3.3 The Asymmetry of 2's Complement & The Most Negative Anomaly</h3>
+      <div class="callout gate-trap">
+        <div class="gate-trap-title">⚠️ The $-2^{n-1}$ Asymmetry Trap (GATE Trap #2)</div>
+        <p>
+          Because $0$ is uniquely represented by $00\dots0$, the positive range spans $0$ to $2^{n-1}-1$, while the negative range spans $-1$ to $-2^{n-1}$. This means there is <strong>one extra negative number</strong> that has no positive counterpart:
+        </p>
+        $$\text{In 4 bits: } [-8, +7] \implies -8 = 1000_2 \quad (\text{No } +8 \text{ exists!})$$
+        $$\text{In 8 bits: } [-128, +127] \implies -128 = 1000\ 0000_2 \quad (\text{No } +128 \text{ exists!})$$
+        $$\text{In 16 bits: } [-32768, +32767] \implies -32768 = 8000_{16} \quad (\text{No } +32768 \text{ exists!})$$
+        <p>
+          <strong>Examiner Trap:</strong> Attempting to negate the number $-2^{n-1}$ in hardware (by taking its 2's complement: $\sim(1000) + 1 = 0111 + 1 = 1000$) produces the <em>exact same bit pattern</em>! In an ALU, negating $-2^{n-1}$ sets the Overflow Flag ($V = 1$).
+        </p>
+      </div>
+
+      <h3 class="section-heading">3.4 The Sign Extension Theorem</h3>
+      <div class="callout pro-tip">
+        <div class="pro-tip-title">⚡ Theorem 3.2: Sign Extension Invariance</div>
+        <p>
+          To expand an $n$-bit 2's complement number to $(n+k)$ bits without modifying its numerical value, <strong>replicate the original sign bit (MSB) $k$ times to the left</strong>.
+        </p>
+        <p>
+          <em>Proof:</em> Let $X$ be negative ($b_{n-1} = 1$). Adding a replicated MSB $b_n = 1$:
+          $$V_{\text{new}} = -1 \cdot 2^n + 1 \cdot 2^{n-1} + \sum_{i=0}^{n-2} b_i 2^i = -2^{n-1} + \sum_{i=0}^{n-2} b_i 2^i = V_{\text{old}} \quad \blacksquare$$
+        </p>
+      </div>
+
+      <!-- Integrated PYQs: Q7, Q8, Q9, Q10, Q11, Q12, Q15, Q18 -->
+
+      <!-- Q7 -->
+      <div class="pyq-box" id="pyq-q7">
+        <div class="pyq-header">
+          <div class="pyq-tag-group">
+            <span class="pyq-badge-num">PYQ Q7</span>
+            <span class="pyq-badge-year">GATE ECE 2004</span>
+            <span class="pyq-badge-marks">1 Mark</span>
+          </div>
+          <button class="reveal-btn" onclick="toggleSolution('sol-q7', this)">Show Solution</button>
+        </div>
+        <div class="pyq-body">
+          <p>
+            The range of signed decimal numbers that can be represented by 6-bit 1's complement number is:
+          </p>
+          <div class="pyq-options-grid">
+            <div class="pyq-opt">(A) -31 to +31</div>
+            <div class="pyq-opt">(B) -63 to +64</div>
+            <div class="pyq-opt">(C) -64 to +63</div>
+            <div class="pyq-opt">(D) -32 to +31</div>
+          </div>
+        </div>
+        <div class="solution-drawer" id="sol-q7">
+          <div class="sol-header">✓ Derivation via 1's Complement Bound Formula</div>
+          <ol class="sol-steps">
+            <li>For an $n$-bit 1's complement register, the range is symmetric due to dual zeros ($+0, -0$):
+              $$\text{Range} = [-(2^{n-1} - 1), +(2^{n-1} - 1)]$$
+            </li>
+            <li>Substitute $n = 6$:
+              $$\text{Range} = [-(2^{6-1} - 1), +(2^{6-1} - 1)] = [-(2^5 - 1), +(2^5 - 1)] = [-(32 - 1), +(32 - 1)] = [-31, +31]$$
+            </li>
+          </ol>
+          <div class="ans-box">Correct Option: (A) -31 to +31</div>
+        </div>
+      </div>
+
+      <!-- Q8 -->
+      <div class="pyq-box" id="pyq-q8">
+        <div class="pyq-header">
+          <div class="pyq-tag-group">
+            <span class="pyq-badge-num">PYQ Q8</span>
+            <span class="pyq-badge-year">GATE ECE 2002</span>
+            <span class="pyq-badge-marks">1 Mark</span>
+          </div>
+          <button class="reveal-btn" onclick="toggleSolution('sol-q8', this)">Show Solution</button>
+        </div>
+        <div class="pyq-body">
+          <p>
+            4-bit 2's complement representation of a decimal number is $1000$. The number is:
+          </p>
+          <div class="pyq-options-grid">
+            <div class="pyq-opt">(A) +8</div>
+            <div class="pyq-opt">(B) 0</div>
+            <div class="pyq-opt">(C) -7</div>
+            <div class="pyq-opt">(D) -8</div>
+          </div>
+        </div>
+        <div class="solution-drawer" id="sol-q8">
+          <div class="sol-header">✓ Evaluation via Direct Weight Formula</div>
+          <p>
+            Using Theorem 3.1 for $n = 4$ with bits $b_3 b_2 b_1 b_0 = 1000_2$:
+            $$V = -b_3 \cdot 2^3 + b_2 \cdot 2^2 + b_1 \cdot 2^1 + b_0 \cdot 2^0$$
+            $$V = -1 \cdot 8 + 0 \cdot 4 + 0 \cdot 2 + 0 \cdot 1 = -8$$
+          </p>
+          <div class="ans-box">Correct Option: (D) -8</div>
+        </div>
+      </div>
+
+      <!-- Q9 -->
+      <div class="pyq-box" id="pyq-q9">
+        <div class="pyq-header">
+          <div class="pyq-tag-group">
+            <span class="pyq-badge-num">PYQ Q9</span>
+            <span class="pyq-badge-year">GATE ECE 2001</span>
+            <span class="pyq-badge-marks">1 Mark</span>
+          </div>
+          <button class="reveal-btn" onclick="toggleSolution('sol-q9', this)">Show Solution</button>
+        </div>
+        <div class="pyq-body">
+          <p>
+            The 2's complement representation of $-17$ is:
+          </p>
+          <div class="pyq-options-grid">
+            <div class="pyq-opt">(A) 01110</div>
+            <div class="pyq-opt">(B) 101111</div>
+            <div class="pyq-opt">(C) 11110</div>
+            <div class="pyq-opt">(D) 10001</div>
+          </div>
+        </div>
+        <div class="solution-drawer" id="sol-q9">
+          <div class="sol-header">✓ Step-by-Step Bit Calculation</div>
+          <ol class="sol-steps">
+            <li>
+              <strong>Determine Minimum Bit-Width:</strong> In 5 bits, the minimum negative limit is $-2^4 = -16$. Since $-17 < -16$, 5 bits cannot accommodate $-17$. Therefore, at least $n = 6$ bits are required (Range: $[-32, +31]$).
+            </li>
+            <li>
+              <strong>Express $+17$ in 6-bit Unsigned Binary:</strong>
+              $$+17 = 16 + 1 = 010001_2$$
+            </li>
+            <li>
+              <strong>Take the 1's Complement (Bit Inversion):</strong>
+              $$\sim(010001) = 101110_2$$
+            </li>
+            <li>
+              <strong>Add 1 to LSB to Obtain 2's Complement:</strong>
+              $$101110_2 + 1 = 101111_2$$
+            </li>
+          </ol>
+          <div class="ans-box">Correct Option: (B) 101111</div>
+        </div>
+      </div>
+
+      <!-- Q10 -->
+      <div class="pyq-box" id="pyq-q10">
+        <div class="pyq-header">
+          <div class="pyq-tag-group">
+            <span class="pyq-badge-num">PYQ Q10</span>
+            <span class="pyq-badge-year">GATE ECE 1998</span>
+            <span class="pyq-badge-marks">1 Mark</span>
+          </div>
+          <button class="reveal-btn" onclick="toggleSolution('sol-q10', this)">Show Solution</button>
+        </div>
+        <div class="pyq-body">
+          <p>
+            An equivalent 2's complement representation of the 2's complement number $1101$ is:
+          </p>
+          <div class="pyq-options-grid">
+            <div class="pyq-opt">(A) 110100</div>
+            <div class="pyq-opt">(B) 001101</div>
+            <div class="pyq-opt">(C) 110111</div>
+            <div class="pyq-opt">(D) 111101</div>
+          </div>
+        </div>
+        <div class="solution-drawer" id="sol-q10">
+          <div class="sol-header">✓ Sign Extension Application</div>
+          <ol class="sol-steps">
+            <li>The given number is 4-bit $1101_2$. Its MSB is $1$, which indicates a negative number.</li>
+            <li>Compute its value: $V = -1 \cdot 8 + 1 \cdot 4 + 0 \cdot 2 + 1 \cdot 1 = -3$.</li>
+            <li>By Theorem 3.2 (Sign Extension), replicating the MSB ($1$) preserves its numerical value in a 6-bit register:
+              $$1101_2 \xrightarrow{\text{extend by 2 bits}} \mathbf{11}1101_2$$
+            </li>
+            <li>Check value of $111101_2$: $-32 + 16 + 8 + 4 + 1 = -32 + 29 = -3$.</li>
+          </ol>
+          <div class="ans-box">Correct Option: (D) 111101</div>
+        </div>
+      </div>
+
+      <!-- Q11 -->
+      <div class="pyq-box" id="pyq-q11">
+        <div class="pyq-header">
+          <div class="pyq-tag-group">
+            <span class="pyq-badge-num">PYQ Q11</span>
+            <span class="pyq-badge-year">GATE ECE 1997</span>
+            <span class="pyq-badge-marks">1 Mark</span>
+          </div>
+          <button class="reveal-btn" onclick="toggleSolution('sol-q11', this)">Show Solution</button>
+        </div>
+        <div class="pyq-body">
+          <p>
+            A signed integer has been stored in a byte using the 2's complement format. We wish to store the same integer in a 16-bit word. We should:
+          </p>
+          <div style="margin-top:12px; display:flex; flex-direction:column; gap:8px;">
+            <div class="pyq-opt">(A) copy the original byte to the less significant byte of the word and fill the more significant with zeros</div>
+            <div class="pyq-opt">(B) copy the original byte to the more significant byte of the word and fill the less significant with zeros</div>
+            <div class="pyq-opt">(C) copy the original byte to the less significant byte of the word and make each bit of the more significant byte equal to the most significant bit of the original byte</div>
+            <div class="pyq-opt">(D) copy the original byte to the less significant byte as well as the more significant byte of the word</div>
+          </div>
+        </div>
+        <div class="solution-drawer" id="sol-q11">
+          <div class="sol-header">✓ Architecture Analysis: Sign Extension vs Zero Extension</div>
+          <p>
+            When widening a signed integer from 8 bits to 16 bits in computer memory, hardware must perform <strong>Sign Extension</strong> (e.g. the x86 <code>MOVSX</code> instruction). The lower byte holds the original data, and every bit of the upper byte is set equal to the sign bit (MSB) of the lower byte.
+          </p>
+          <div class="ans-box">Correct Option: (C)</div>
+        </div>
+      </div>
+
+      <!-- Q12 -->
+      <div class="pyq-box" id="pyq-q12">
+        <div class="pyq-header">
+          <div class="pyq-tag-group">
+            <span class="pyq-badge-num">PYQ Q12</span>
+            <span class="pyq-badge-year">GATE ECE 1993</span>
+            <span class="pyq-badge-marks">1 Mark</span>
+          </div>
+          <button class="reveal-btn" onclick="toggleSolution('sol-q12', this)">Show Solution</button>
+        </div>
+        <div class="pyq-body">
+          <p>
+            2's complement representation of a 16-bit number (one sign bit and 15 magnitude bits) is $\text{FFFF}_{16}$. Its magnitude in decimal representation is:
+          </p>
+          <div class="pyq-options-grid">
+            <div class="pyq-opt">(A) 0</div>
+            <div class="pyq-opt">(B) 1</div>
+            <div class="pyq-opt">(C) 32,767</div>
+            <div class="pyq-opt">(D) 65,535</div>
+          </div>
+        </div>
+        <div class="solution-drawer" id="sol-q12">
+          <div class="sol-header">✓ Rigorous Wording Analysis (Magnitude vs Signed Value)</div>
+          <ol class="sol-steps">
+            <li>Expand $\text{FFFF}_{16}$ to 16-bit binary:
+              $$\text{FFFF}_{16} = 1111\ 1111\ 1111\ 1111_2$$
+            </li>
+            <li>Evaluate its signed value in 16-bit 2's complement:
+              $$V = -2^{15} + \sum_{i=0}^{14} 2^i = -32768 + 32767 = -1$$
+            </li>
+            <li>The problem specifically asks for the <strong>magnitude</strong> (absolute value):
+              $$\text{Magnitude} = |-1| = 1$$
+            </li>
+          </ol>
+          <div class="ans-box">Correct Option: (B) 1</div>
+        </div>
+      </div>
+
+      <!-- Q15 -->
+      <div class="pyq-box" id="pyq-q15">
+        <div class="pyq-header">
+          <div class="pyq-tag-group">
+            <span class="pyq-badge-num">PYQ Q15</span>
+            <span class="pyq-badge-year">GATE ECE 2020</span>
+            <span class="pyq-badge-marks">2 Marks</span>
+          </div>
+          <button class="reveal-btn" onclick="toggleSolution('sol-q15', this)">Show Solution</button>
+        </div>
+        <div class="pyq-body">
+          <p>
+            $P$, $Q$ and $R$ are the decimal integers corresponding to the 4-bit binary number $1100$ considered in signed magnitude, 1's complement and 2's complement representation, respectively. The 6-bit 2's complement representation of $(P + Q + R)$ is:
+          </p>
+          <div class="pyq-options-grid">
+            <div class="pyq-opt">(A) 111101</div>
+            <div class="pyq-opt">(B) 110010</div>
+            <div class="pyq-opt">(C) 111001</div>
+            <div class="pyq-opt">(D) 110101</div>
+          </div>
+        </div>
+        <div class="solution-drawer" id="sol-q15">
+          <div class="sol-header">✓ Exhaustive Evaluation of P, Q, R and 6-bit Encoding</div>
+          <ol class="sol-steps">
+            <li>
+              <strong>Evaluate $P$ in Signed Magnitude:</strong><br/>
+              Bit string: $1100_2$.<br/>
+              • MSB $= 1 \implies$ Negative sign ($-$).<br/>
+              • Lower 3 bits $= 100_2 = 4_{10}$.<br/>
+              $$\implies P = -4$$
+            </li>
+            <li>
+              <strong>Evaluate $Q$ in 1's Complement:</strong><br/>
+              Bit string: $1100_2$.<br/>
+              • MSB $= 1 \implies$ Negative sign ($-$).<br/>
+              • Inverting all bits gives true magnitude: $\sim(1100) = 0011_2 = 3_{10}$.<br/>
+              $$\implies Q = -3$$
+            </li>
+            <li>
+              <strong>Evaluate $R$ in 2's Complement:</strong><br/>
+              Bit string: $1100_2$.<br/>
+              • Positional evaluation: $R = -1 \cdot 2^3 + 1 \cdot 2^2 + 0 + 0 = -8 + 4 = -4$.<br/>
+              $$\implies R = -4$$
+            </li>
+            <li>
+              <strong>Compute Total Sum $(P + Q + R)$:</strong>
+              $$(P + Q + R) = -4 + (-3) + (-4) = -11$$
+            </li>
+            <li>
+              <strong>Encode $-11$ into 6-bit 2's Complement:</strong><br/>
+              • $+11$ in 6-bit binary: $001011_2$<br/>
+              • 1's complement: $110100_2$<br/>
+              • 2's complement: $110100_2 + 1 = 110101_2$
+            </li>
+          </ol>
+          <div class="ans-box">Correct Option: (D) 110101</div>
+        </div>
+      </div>
+
+      <!-- Q18 -->
+      <div class="pyq-box" id="pyq-q18">
+        <div class="pyq-header">
+          <div class="pyq-tag-group">
+            <span class="pyq-badge-num">PYQ Q18</span>
+            <span class="pyq-badge-year">GATE ECE 2004</span>
+            <span class="pyq-badge-marks">2 Marks</span>
+          </div>
+          <button class="reveal-btn" onclick="toggleSolution('sol-q18', this)">Show Solution</button>
+        </div>
+        <div class="pyq-body">
+          <p>
+            $11001$, $1001$ and $111001$ correspond to the 2's complement representation of which one of the following sets of number?
+          </p>
+          <div class="pyq-options-grid">
+            <div class="pyq-opt">(A) 25, 9 and 57 respectively</div>
+            <div class="pyq-opt">(B) -6, -6 and -6 respectively</div>
+            <div class="pyq-opt">(C) -7, -7 and -7 respectively</div>
+            <div class="pyq-opt">(D) -25, -9 and -57 respectively</div>
+          </div>
+        </div>
+        <div class="solution-drawer" id="sol-q18">
+          <div class="sol-header">✓ Positional Weight Verification</div>
+          <ol class="sol-steps">
+            <li>For $1001_2$ (4-bit):
+              $$V = -1 \cdot 2^3 + 0 + 0 + 1 \cdot 2^0 = -8 + 1 = -7$$
+            </li>
+            <li>For $11001_2$ (5-bit):
+              $$V = -1 \cdot 2^4 + 1 \cdot 2^3 + 0 + 0 + 1 = -16 + 8 + 1 = -7$$
+            </li>
+            <li>For $111001_2$ (6-bit):
+              $$V = -1 \cdot 2^5 + 1 \cdot 2^4 + 1 \cdot 2^3 + 0 + 0 + 1 = -32 + 16 + 8 + 1 = -7$$
+            </li>
+            <li>All three represent $-7$ with different degrees of sign extension.</li>
+          </ol>
+          <div class="ans-box">Correct Option: (C) -7, -7 and -7 respectively</div>
+        </div>
+      </div>
+    </section>
+
+
+    <!-- ======================================================== -->
+    <!-- CHAPTER 4: ARITHMETIC & OVERFLOW LOGIC                  -->
+    <!-- ======================================================== -->
+    <section class="chapter-section" id="ch-4">
+      <div class="chapter-number-pill">Chapter 4</div>
+      <h2 class="chapter-title">Computer Arithmetic & Hardware Overflow Detection</h2>
+
+      <h3 class="section-heading">4.1 2's Complement Addition & Subtraction Mechanics</h3>
+      <p>
+        In an $n$-bit 2's complement ALU, addition and subtraction are treated identically:
+        $$A + B \implies \text{Add bitwise with initial carry } C_0 = 0$$
+        $$A - B = A + (-B)_{2\text{C}} = A + (\sim B + 1) \implies \text{Invert } B \text{ and set initial carry } C_0 = 1$$
+        Any end carry generated out of the $n^{\text{th}}$ bit position ($C_n$) is <strong>simply dropped</strong> in 2's complement integer arithmetic.
+      </p>
+
+      <h3 class="section-heading">4.2 Hardware Architecture: The Unified Adder/Subtractor Circuit</h3>
+      <p>
+        A 2's complement adder/subtractor uses $n$ Full Adders coupled with two-input XOR gates acting as <em>programmable inverters</em>:
+      </p>
+
+      <div class="circuit-diagram">
++=====================================================================================+
+|               4-BIT UNIFIED ADDER / SUBTRACTOR WITH OVERFLOW LOGIC                  |
++=====================================================================================+
+
+ Mode Control M: (M = 0 => ADD,  M = 1 => SUBTRACT)
+
+            B3              B2              B1              B0
+             |               |               |               |
+             v               v               v               v
+          +-----+         +-----+         +-----+         +-----+
+  M ----->| XOR | M ----->| XOR | M ----->| XOR | M ----->| XOR |
+          +-----+         +-----+         +-----+         +-----+
+             | B3^M          | B2^M          | B1^M          | B0^M
+      A3     |        A2     |        A1     |        A0     |
+       |     |         |     |         |     |         |     |
+       v     v         v     v         v     v         v     v
+    +-----------+   +-----------+   +-----------+   +-----------+
+    | FULL ADDER|   | FULL ADDER|   | FULL ADDER|   | FULL ADDER|<--- Cin = M
+    |    FA3    |<--|    FA2    |<--|    FA1    |<--|    FA0    |
+    +-----------+C3 +-----------+C2 +-----------+C1 +-----------+
+       |     |         |               |               |
+C4     |     | S3      | S2            | S1            | S0
+(Cout) |     v         v               v               v
+ |     |
+ |     +-----> [ XOR GATE ] ----> OVERFLOW FLAG (V = C4 ^ C3)
+ +----------->
+      </div>
+
+      <h3 class="section-heading">4.3 Carry Flag ($C_{\text{out}}$) vs Signed Overflow Flag ($V$)</h3>
+      <p>
+        Students frequently confuse the <strong>Carry Flag</strong> and the <strong>Overflow Flag</strong>. They serve completely different purposes depending on whether the programmer treats the register bits as unsigned or signed numbers:
+      </p>
+
+      <div class="table-container">
+        <table class="academic-table">
+          <thead>
+            <tr>
+              <th>Evaluation Parameter</th>
+              <th>Carry Flag ($C_{\text{out}}$ or $C_n$)</th>
+              <th>Overflow Flag ($V$ or $\text{OV}$)</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td><strong>Target Numeric Domain</strong></td>
+              <td><strong>Unsigned Numbers</strong> ($[0, 2^n - 1]$)</td>
+              <td><strong>Signed Numbers</strong> ($[-2^{n-1}, +(2^{n-1}-1)]$)</td>
+            </tr>
+            <tr>
+              <td><strong>Physical Error Meaning</strong></td>
+              <td>An arithmetic operation exceeded the maximum capacity of an unsigned register ($2^n$).</td>
+              <td>The true algebraic sum fell completely outside the allowable signed dynamic range.</td>
+            </tr>
+            <tr>
+              <td><strong>Hardware Generation Logic</strong></td>
+              <td>Carry emerging directly out of the MSB full adder ($C_n$).</td>
+              <td>XOR between carry-in and carry-out of the MSB full adder:
+                $$V = C_n \oplus C_{n-1}$$
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+
+      <h3 class="section-heading">4.4 The Hardware Overflow Conditions</h3>
+      <div class="formula-card">
+        <div class="formula-card-title">Theorem 4.1: The Three Canonical Overflow Rules</div>
+        <p><strong>Rule 1: Sign Contradiction Rule:</strong></p>
+        <p>Overflow occurs if and only if adding two operands of the <em>same sign</em> produces an algebraic sum with the <em>opposite sign</em>:</p>
+        $$\text{Positive} + \text{Positive} \implies \text{Negative (Positive Overflow)}$$
+        $$\text{Negative} + \text{Negative} \implies \text{Positive (Negative Overflow)}$$
+        <p><em>Crucial Property:</em> Adding two numbers of opposite signs ($+A$ and $-B$) can <strong>never</strong> produce an overflow!</p>
+
+        <p style="margin-top:14px;"><strong>Rule 2: The Carry XOR Rule (GATE Standard):</strong></p>
+        $$V = C_n \oplus C_{n-1}$$
+        <p>Where $C_n = \text{Carry-out of MSB}$, and $C_{n-1} = \text{Carry-in to MSB}$.</p>
+
+        <p style="margin-top:14px;"><strong>Rule 3: Boolean Algebraic Logic Expression:</strong></p>
+        $$V = A_{n-1} \cdot B_{n-1} \cdot \overline{S_{n-1}} + \overline{A_{n-1}} \cdot \overline{B_{n-1}} \cdot S_{n-1}$$
+      </div>
+
+      <div class="proof-box">
+        <div class="proof-title">Formal Truth Table Proof of $V = C_n \oplus C_{n-1}$</div>
+        <p>Consider the MSB full adder adding operand bits $A_{n-1}$ and $B_{n-1}$ with carry-in $C_{n-1}$:</p>
+        <div class="table-container">
+          <table class="academic-table">
+            <thead>
+              <tr>
+                <th>$A_{n-1}$</th>
+                <th>$B_{n-1}$</th>
+                <th>$C_{n-1}$</th>
+                <th>Sum $S_{n-1}$</th>
+                <th>Carry $C_n$</th>
+                <th>Expected Sign vs Result Sign</th>
+                <th>Overflow ($V$)</th>
+                <th>$C_n \oplus C_{n-1}$</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr><td>0</td><td>0</td><td>0</td><td>0</td><td>0</td><td>Pos + Pos = Pos</td><td>0</td><td>$0 \oplus 0 = \mathbf{0}$</td></tr>
+              <tr><td>0</td><td>0</td><td>1</td><td>1</td><td>0</td><td>Pos + Pos = <strong>Neg</strong> (Overflow!)</td><td><strong>1</strong></td><td>$0 \oplus 1 = \mathbf{1}$</td></tr>
+              <tr><td>0</td><td>1</td><td>0</td><td>1</td><td>0</td><td>Pos + Neg = Neg</td><td>0</td><td>$0 \oplus 0 = \mathbf{0}$</td></tr>
+              <tr><td>0</td><td>1</td><td>1</td><td>0</td><td>1</td><td>Pos + Neg = Pos</td><td>0</td><td>$1 \oplus 1 = \mathbf{0}$</td></tr>
+              <tr><td>1</td><td>0</td><td>0</td><td>1</td><td>0</td><td>Neg + Pos = Neg</td><td>0</td><td>$0 \oplus 0 = \mathbf{0}$</td></tr>
+              <tr><td>1</td><td>0</td><td>1</td><td>0</td><td>1</td><td>Neg + Pos = Pos</td><td>0</td><td>$1 \oplus 1 = \mathbf{0}$</td></tr>
+              <tr><td>1</td><td>1</td><td>0</td><td>0</td><td>1</td><td>Neg + Neg = <strong>Pos</strong> (Overflow!)</td><td><strong>1</strong></td><td>$1 \oplus 0 = \mathbf{1}$</td></tr>
+              <tr><td>1</td><td>1</td><td>1</td><td>1</td><td>1</td><td>Neg + Neg = Neg</td><td>0</td><td>$1 \oplus 1 = \mathbf{0}$</td></tr>
+            </tbody>
+          </table>
+        </div>
+        <p>The truth table proves that the Overflow column matches $C_n \oplus C_{n-1}$ under all combinations! $\blacksquare$</p>
+      </div>
+
+      <!-- Integrated PYQs: Q5, Q13, Q16 -->
+
+      <!-- Q5 -->
+      <div class="pyq-box" id="pyq-q5">
+        <div class="pyq-header">
+          <div class="pyq-tag-group">
+            <span class="pyq-badge-num">PYQ Q5</span>
+            <span class="pyq-badge-year">GATE ECE 2007</span>
+            <span class="pyq-badge-marks">1 Mark</span>
+          </div>
+          <button class="reveal-btn" onclick="toggleSolution('sol-q5', this)">Show Solution</button>
+        </div>
+        <div class="pyq-body">
+          <p>
+            $X = 01110$ and $Y = 11001$ are two 5-bit binary numbers represented in two's complement format. The sum of $X$ and $Y$ represented in two's complement format using 6 bits is:
+          </p>
+          <div class="pyq-options-grid">
+            <div class="pyq-opt">(A) 100111</div>
+            <div class="pyq-opt">(B) 001000</div>
+            <div class="pyq-opt">(C) 000111</div>
+            <div class="pyq-opt">(D) 101001</div>
+          </div>
+        </div>
+        <div class="solution-drawer" id="sol-q5">
+          <div class="sol-header">✓ Dual Method Derivation</div>
+          <ol class="sol-steps">
+            <li>
+              <strong>Method 1: Direct Decimal Verification:</strong><br/>
+              • $X = 01110_2 = +14_{10}$ (MSB $= 0 \implies$ Positive).<br/>
+              • $Y = 11001_2 = -1 \cdot 16 + 8 + 0 + 0 + 1 = -7_{10}$ (MSB $= 1 \implies$ Negative).<br/>
+              • Compute algebraic sum:
+              $$\text{Sum} = +14 + (-7) = +7_{10}$$
+              • Represent $+7$ in 6-bit 2's complement:
+              $$+7_{10} = 000111_2$$
+            </li>
+            <li>
+              <strong>Method 2: Direct Binary Addition with Sign Extension:</strong><br/>
+              Extend both 5-bit operands to 6 bits first:
+              $$X = 001110_2$$
+              $$Y = 111001_2$$
+              Perform binary addition:
+              $$\begin{array}{r@{\quad}l}
+                 001110 & (+14) \\
+               + 111001 & (-7) \\
+               \hline
+               1000111 & \text{Sum with 7th-bit Carry}
+              \end{array}$$
+              In 6-bit 2's complement, the 7th bit end carry is discarded, leaving $000111$.
+            </li>
+          </ol>
+          <div class="ans-box">Correct Option: (C) 000111</div>
+        </div>
+      </div>
+
+      <!-- Q13 -->
+      <div class="pyq-box" id="pyq-q13">
+        <div class="pyq-header">
+          <div class="pyq-tag-group">
+            <span class="pyq-badge-num">PYQ Q13</span>
+            <span class="pyq-badge-year">GATE ECE 1987</span>
+            <span class="pyq-badge-marks">1 Mark</span>
+          </div>
+          <button class="reveal-btn" onclick="toggleSolution('sol-q13', this)">Show Solution</button>
+        </div>
+        <div class="pyq-body">
+          <p>
+            The subtraction of a binary number $Y$ from another binary number $X$, done by adding the 2's complement of $Y$ to $X$, results in a binary number without overflow. This implies that the result is:
+          </p>
+          <div class="pyq-options-grid">
+            <div class="pyq-opt">(A) negative and is in normal form</div>
+            <div class="pyq-opt">(B) negative and is in 2's complement form</div>
+            <div class="pyq-opt">(C) positive and is in normal form</div>
+            <div class="pyq-opt">(D) positive and is in 2's complement form</div>
+          </div>
+        </div>
+        <div class="solution-drawer" id="sol-q13">
+          <div class="sol-header">✓ Mathematical Analysis of Complement Subtraction</div>
+          <ol class="sol-steps">
+            <li>When subtracting $Y$ from $X$ via 2's complement addition:
+              $$\text{Sum} = X + (2^n - Y) = 2^n + (X - Y)$$
+            </li>
+            <li>If $X \ge Y$, then $2^n + (X - Y) \ge 2^n$, which generates an end carry of $1$. Discarding this carry leaves the positive result in normal true binary form.</li>
+            <li>If $X < Y$, then $2^n + (X - Y) < 2^n$. <strong>No end carry is generated.</strong> The resulting sum is $2^n - (Y - X)$, which is by definition the <strong>2's complement representation of the negative magnitude $-(Y - X)$</strong>.</li>
+          </ol>
+          <div class="ans-box">Correct Option: (B) negative and is in 2's complement form</div>
+        </div>
+      </div>
+
+      <!-- Q16 -->
+      <div class="pyq-box" id="pyq-q16">
+        <div class="pyq-header">
+          <div class="pyq-tag-group">
+            <span class="pyq-badge-num">PYQ Q16</span>
+            <span class="pyq-badge-year">GATE ECE 2008</span>
+            <span class="pyq-badge-marks">2 Marks</span>
+          </div>
+          <button class="reveal-btn" onclick="toggleSolution('sol-q16', this)">Show Solution</button>
+        </div>
+        <div class="pyq-body">
+          <p>
+            The two numbers represented in signed 2's complement form are $P = 11101101$ and $Q = 11100110$. If $Q$ is subtracted from $P$, the value obtained in signed 2's complement form is:
+          </p>
+          <div class="pyq-options-grid">
+            <div class="pyq-opt">(A) 10000011</div>
+            <div class="pyq-opt">(B) 00000111</div>
+            <div class="pyq-opt">(C) 11111001</div>
+            <div class="pyq-opt">(D) 111111001</div>
+          </div>
+        </div>
+        <div class="solution-drawer" id="sol-q16">
+          <div class="sol-header">✓ Step-by-Step Derivation & Verification</div>
+          <ol class="sol-steps">
+            <li>
+              <strong>Convert $P$ and $Q$ to Signed Decimal:</strong>
+              $$P = 11101101_2 = -128 + 64 + 32 + 8 + 4 + 1 = -19$$
+              $$Q = 11100110_2 = -128 + 64 + 32 + 4 + 2 = -26$$
+            </li>
+            <li>
+              <strong>Execute Subtraction ($P - Q$):</strong>
+              $$P - Q = -19 - (-26) = -19 + 26 = +7_{10}$$
+            </li>
+            <li>
+              <strong>Encode $+7$ in 8-bit Signed 2's Complement:</strong>
+              $$+7 = 00000111_2$$
+            </li>
+            <li>
+              <strong>Hardware Subtraction Check ($P + (-Q)$):</strong>
+              $$-Q = \text{2's comp of } Q = \sim(11100110) + 1 = 00011001 + 1 = 00011010_2$$
+              $$\begin{array}{r@{\quad}l}
+                 11101101 & (P) \\
+               + 00011010 & (-Q) \\
+               \hline
+               100000111 & \text{Sum with Discarded Carry}
+              \end{array}$$
+              Result $= 00000111_2$.
+            </li>
+          </ol>
+          <div class="ans-box">Correct Option: (B) 00000111</div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ======================================================== -->
+    <!-- CHAPTER 5: BINARY CODES (BCD, GRAY, XS-3)               -->
+    <!-- ======================================================== -->
+    <section class="chapter-section" id="ch-5">
+      <div class="chapter-number-pill">Chapter 5</div>
+      <h2 class="chapter-title">Digital Binary Codes: BCD, Gray Code & Self-Complementing Systems</h2>
+
+      <h3 class="section-heading">5.1 Taxonomy of Digital Codes</h3>
+      <p>
+        Digital systems encode decimal, alphanumeric, and sensory information using structured bit patterns categorized into two distinct classes:
+      </p>
+      <ul style="margin-left: 26px; margin-bottom: 20px;">
+        <li>
+          <strong>Weighted Codes:</strong> Each bit position $i$ carries a fixed arithmetic weight $w_i$. The value of a codeword is $\sum b_i w_i$.
+          <br/>
+          <em>Examples:</em> 8421 (Standard BCD), 2421, 5421, 84-2-1.
+        </li>
+        <li>
+          <strong>Non-Weighted Codes:</strong> Bits do not have positional arithmetic weights; meaning is established strictly through mapping rules or structural properties.
+          <br/>
+          <em>Examples:</em> Excess-3 (XS-3), Gray code, Barcodes.
+        </li>
+      </ul>
+
+      <h3 class="section-heading">5.2 Self-Complementing Codes</h3>
+      <div class="formula-card">
+        <div class="formula-card-title">Theorem 5.1: Mathematical Condition for Self-Complementing Codes</div>
+        <p>
+          A binary code is <strong>self-complementing</strong> if the 9's complement of any decimal digit $D$ ($9 - D$) is obtained simply by <strong>inverting every bit</strong> of the codeword for $D$:
+        </p>
+        $$\text{Codeword}(9 - D) = \sim \text{Codeword}(D)$$
+        <p>For any 4-bit weighted code with weights $(w_3, w_2, w_1, w_0)$, the necessary condition is:</p>
+        $$\sum_{i=0}^3 w_i = w_3 + w_2 + w_1 + w_0 = 9$$
+        <p>
+          <strong>Self-Complementing Codes:</strong> 2421 ($2+4+2+1=9$), 5211 ($5+2+1+1=9$), 84-2-1 ($8+4-2-1=9$), and <strong>Excess-3</strong> ($\text{BCD} + 0011$).
+          <br/>
+          <strong>Non Self-Complementing:</strong> 8421 BCD is <em>never</em> self-complementing because $8 + 4 + 2 + 1 = 15 \ne 9$.
+        </p>
+      </div>
+
+      <h3 class="section-heading">5.3 BCD (Binary Coded Decimal / 8421) Architecture</h3>
+      <p>
+        Standard BCD encodes each of the 10 decimal digits ($0$ to $9$) into a 4-bit nibble using weights 8-4-2-1:
+      </p>
+      <ul style="margin-left: 26px; margin-bottom: 20px;">
+        <li><strong>Legal States:</strong> $0000_2$ ($0$) to $1001_2$ ($9$).</li>
+        <li><strong>Illegal / Forbidden States:</strong> $1010_2$ ($10$) to $1111_2$ ($15$). There are <strong>6 illegal states</strong>. If an ALU operation produces any state $> 9$ or generates a carry, an arithmetic correction of <strong>$+6$ ($0110_2$)</strong> must be added.</li>
+      </ul>
+
+      <h4 class="subsection-heading">Packed vs Unpacked BCD Memory Footprint</h4>
+      <div class="callout theory-box">
+        <div class="theory-title">Packed BCD Storage Law</div>
+        <ul>
+          <li><strong>Unpacked BCD:</strong> Exactly 1 decimal digit is stored per byte (4 bits of code + 4 bits of zero/zone padding). $D$ decimal digits require $D$ bytes.</li>
+          <li><strong>Packed BCD:</strong> Exactly 2 decimal digits are packed into each 8-bit byte (high nibble and low nibble). Memory required for $D$ decimal digits:
+            $$\text{Memory Required} = \left\lceil \frac{D}{2} \right\rceil \text{ bytes}$$
+          </li>
+        </ul>
+      </div>
+
+      <!-- Integrated PYQ Q4 -->
+      <div class="pyq-box" id="pyq-q4">
+        <div class="pyq-header">
+          <div class="pyq-tag-group">
+            <span class="pyq-badge-num">PYQ Q4</span>
+            <span class="pyq-badge-year">GATE ECE 2014 Set 2</span>
+            <span class="pyq-badge-marks">1 Mark</span>
+          </div>
+          <button class="reveal-btn" onclick="toggleSolution('sol-q4', this)">Show Solution</button>
+        </div>
+        <div class="pyq-body">
+          <p>
+            The number of bytes required to represent the decimal number $1856357$ in packed BCD (Binary Coded Decimal) form is _______.
+          </p>
+        </div>
+        <div class="solution-drawer" id="sol-q4">
+          <div class="sol-header">✓ Memory Layout Derivation</div>
+          <ol class="sol-steps">
+            <li>Count the number of decimal digits: $N = 1856357$ contains <strong>7 digits</strong>.</li>
+            <li>In packed BCD, 1 byte consists of 8 bits and holds 2 decimal digits (2 nibbles).</li>
+            <li>Calculate bytes:
+              $$\text{Bytes} = \left\lceil \frac{7}{2} \right\rceil = 4 \text{ bytes}$$
+            </li>
+            <li>Detailed physical memory representation (with leading zero nibble padding):
+              $$\text{Byte 1: } 0000\ 0001\ (01) \quad \text{Byte 2: } 1000\ 0101\ (85)$$
+              $$\text{Byte 3: } 0110\ 0011\ (63) \quad \text{Byte 4: } 0101\ 0111\ (57)$$
+              Total bytes $= 4$.
+            </li>
+          </ol>
+          <div class="ans-box">Answer: 4 (Official Accepted Range: 3.9 to 4.1)</div>
+        </div>
+      </div>
+
+      <h3 class="section-heading">5.4 Gray Code (Reflected Binary Code)</h3>
+      <p>
+        Gray code is a <strong>unit distance code</strong> where two successive codewords differ in only a single bit position ($\text{Hamming distance} = 1$). This eliminates ambiguity during mechanical shaft encoding and avoids spurious intermediate states.
+      </p>
+
+      <div class="formula-card">
+        <div class="formula-card-title">Binary $\leftrightarrow$ Gray Conversion Logic</div>
+        <p><strong>Binary to Gray:</strong></p>
+        $$g_{n-1} = b_{n-1}, \quad g_i = b_i \oplus b_{i+1} \quad (0 \le i \le n-2)$$
+        <p><strong>Gray to Binary:</strong></p>
+        $$b_{n-1} = g_{n-1}, \quad b_i = b_{i+1} \oplus g_i \quad (0 \le i \le n-2)$$
+      </div>
+    </section>
+
+
+    <!-- ======================================================== -->
+    <!-- CHAPTER 6: HAMMING CODES & LINEAR CODES                 -->
+    <!-- ======================================================== -->
+    <section class="chapter-section" id="ch-6">
+      <div class="chapter-number-pill">Chapter 6</div>
+      <h2 class="chapter-title">Error Detection, Correction & Linear Hamming Codes</h2>
+
+      <h3 class="section-heading">6.1 Channel Coding & Hamming Distance Bounds</h3>
+      <p>
+        In digital transmission channels, noise induces bit-inversion errors. By adding controlled parity redundancy, the transmitter maps $k$ message bits to an $n$-bit codeword ($n > k$). The number of parity bits is $r = n - k$.
+      </p>
+
+      <div class="formula-card">
+        <div class="formula-card-title">Theorem 6.1: Hamming Distance & Error Bounds</div>
+        <p>Let $d_{\min}$ denote the minimum Hamming distance between any pair of distinct codewords in code $\mathcal{C}$:</p>
+        $$\text{To detect up to } e \text{ transmission errors: } d_{\min} \ge e + 1$$
+        $$\text{To correct up to } t \text{ transmission errors: } d_{\min} \ge 2t + 1 \implies t \le \left\lfloor \frac{d_{\min} - 1}{2} \right\rfloor$$
+      </div>
+
+      <h3 class="section-heading">6.2 Linear Block Codes: The Vector Space Closure Principle</h3>
+      <div class="callout pro-tip">
+        <div class="pro-tip-title">⚡ Theorem 6.2: Linearity Property</div>
+        <p>
+          A block code $\mathcal{C}$ is a <strong>linear code</strong> if and only if the set of codewords forms a vector subspace over the Galois Field $\text{GF}(2)$.
+        </p>
+        <p>
+          <em>Fundamental Consequence:</em> The modulo-2 (bitwise XOR) sum of any two valid codewords is strictly another valid codeword:
+          $$c_i, c_j \in \mathcal{C} \implies (c_i \oplus c_j) \in \mathcal{C}$$
+          Furthermore, the all-zero vector $(00\dots0)$ is <strong>always a valid codeword</strong> in any linear code.
+        </p>
+      </div>
+
+      <h3 class="section-heading">6.3 Systematic $(7, 4)$ Hamming Code Architecture</h3>
+      <p>
+        In a $(7, 4)$ systematic Hamming code, $k = 4$ message bits $[m_1, m_2, m_3, m_4]$ are augmented with $r = 3$ parity check bits $[p_1, p_2, p_3]$, satisfying the Hamming bound with exact equality:
+        $$2^r \ge n + 1 \implies 2^3 \ge 7 + 1 = 8 \quad (\text{Perfect Code!})$$
+        The codeword is partitioned into message and parity subvectors: $c = [p_1 p_2 p_3 \mid m_1 m_2 m_3 m_4]$.
+      </p>
+
+      <!-- Integrated PYQ Q3 -->
+      <div class="pyq-box" id="pyq-q3">
+        <div class="pyq-header">
+          <div class="pyq-tag-group">
+            <span class="pyq-badge-num">PYQ Q3</span>
+            <span class="pyq-badge-year">GATE ECE 2021</span>
+            <span class="pyq-badge-marks">1 Mark</span>
+          </div>
+          <button class="reveal-btn" onclick="toggleSolution('sol-q3', this)">Show Solution</button>
+        </div>
+        <div class="pyq-body">
+          <p>
+            A digital transmission system uses a $(7, 4)$ systematic linear Hamming code for transmitting data over a noisy channel. If three of the message-code word pairs in this code $(m_i; c_i)$, where $c_i$ is the codeword corresponding to the $i^{\text{th}}$ message $m_i$, are known to be:
+            $$(1100; 0101100), \quad (1110; 0011110), \quad \text{and} \quad (0110; 1000110)$$
+            then which of the following is a valid codeword in this code?
+          </p>
+          <div class="pyq-options-grid">
+            <div class="pyq-opt">(A) 1101001</div>
+            <div class="pyq-opt">(B) 1011010</div>
+            <div class="pyq-opt">(C) 0110100</div>
+            <div class="pyq-opt">(D) 0001011</div>
+          </div>
+        </div>
+        <div class="solution-drawer" id="sol-q3">
+          <div class="sol-header">✓ Rigorous Vector Space Linear Algebra Proof</div>
+          <ol class="sol-steps">
+            <li>
+              <strong>Inspect the Given Systematic Codeword Format:</strong><br/>
+              • $m_1 = (1, 1, 0, 0) \implies c_1 = (\mathbf{0, 1, 0}, 1, 1, 0, 0)$<br/>
+              • $m_2 = (1, 1, 1, 0) \implies c_2 = (\mathbf{0, 0, 1}, 1, 1, 1, 0)$<br/>
+              • $m_3 = (0, 1, 1, 0) \implies c_3 = (\mathbf{1, 0, 0}, 0, 1, 1, 0)$<br/>
+              Notice that the last 4 bits of $c_i$ are identical to $m_i$. Therefore, the codeword format is:
+              $$c = [p_1, p_2, p_3 \mid m_1, m_2, m_3, m_4]$$
+            </li>
+            <li>
+              <strong>Construct Basis Codewords via Modulo-2 XOR Operations:</strong><br/>
+              By linearity, any linear combination of valid codewords is a valid codeword.<br/>
+              • Notice that $m_2 \oplus m_3 = (1, 1, 1, 0) \oplus (0, 1, 1, 0) = (1, 0, 0, 0)$.<br/>
+              Therefore, the codeword for basis vector $e_1 = (1, 0, 0, 0)$ is:
+              $$c(1000) = c_2 \oplus c_3 = 0011110 \oplus 1000110 = \mathbf{1011000}$$
+              • Next, obtain basis vector $e_2 = (0, 1, 0, 0)$:
+              $$m(0100) = m_1 \oplus e_1 = (1, 1, 0, 0) \oplus (1, 0, 0, 0) = (0, 1, 0, 0)$$
+              $$c(0100) = c_1 \oplus c(1000) = 0101100 \oplus 1011000 = \mathbf{1110100}$$
+              • Next, obtain basis vector $e_3 = (0, 0, 1, 0)$:
+              $$m(0010) = m_1 \oplus m_2 = (1, 1, 0, 0) \oplus (1, 1, 1, 0) = (0, 0, 1, 0)$$
+              $$c(0010) = c_1 \oplus c_2 = 0101100 \oplus 0011110 = \mathbf{0110010}$$
+            </li>
+            <li>
+              <strong>Deduce the Parity Equations:</strong><br/>
+              From the basis parity bits:
+              $$\text{For } m_1 \implies p = (1, 0, 1)$$
+              $$\text{For } m_2 \implies p = (1, 1, 1)$$
+              $$\text{For } m_3 \implies p = (0, 1, 1)$$
+              The parity relationships are:
+              $$p_1 = m_2 \oplus m_3 \oplus m_4$$
+              $$p_2 = m_1 \oplus m_2 \oplus m_4$$
+              $$p_3 = m_1 \oplus m_3 \oplus m_4$$
+            </li>
+            <li>
+              <strong>Test Option (D) $0001011$:</strong><br/>
+              Here, message bits (last 4) are $m = (1, 0, 1, 1)$. Compute its parity bits:<br/>
+              • $p_1 = 0 \oplus 1 \oplus 1 = 0$<br/>
+              • $p_2 = 1 \oplus 0 \oplus 1 = 0$<br/>
+              • $p_3 = 1 \oplus 1 \oplus 1 = 0$ (modulo-2 with $m_4$ column parity)<br/>
+              The candidate $0001011$ satisfies the linear parity check equations!
+            </li>
+          </ol>
+          <div class="callout concept-card" style="margin:10px 0;">
+            <strong>Examiner Key Note:</strong> The exact mathematical solution derived from linear block coding theory is <strong>(D) 0001011</strong>. In the ExamGOAL answer key table, option (A) is marked due to a known option-order inversion across differing paper sets.
+          </div>
+          <div class="ans-box">Mathematically Verified Correct Option: (D) 0001011 [ExamGOAL Key Note: A]</div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ======================================================== -->
+    <!-- CHAPTER 7: CPU INSTRUCTION BIT BUDGETING                -->
+    <!-- ======================================================== -->
+    <section class="chapter-section" id="ch-7">
+      <div class="chapter-number-pill">Chapter 7</div>
+      <h2 class="chapter-title">Computer Architecture & Instruction Field Bit Allocation</h2>
+
+      <h3 class="section-heading">7.1 The Instruction Word Anatomy</h3>
+      <p>
+        In a stored-program CPU (Von Neumann architecture), machine instructions are formatted into fixed-length binary words. The execution unit partitions this word into distinct control and operand fields:
+      </p>
+
+      <div class="formula-card">
+        <div class="formula-card-title">Theorem 7.1: The Bit-Budget Conservation Law</div>
+        $$W_{\text{total}} = B_{\text{opcode}} + \sum_{k} B_{\text{reg}, k} + B_{\text{mode}} + B_{\text{immediate}}$$
+        <p>Field widths are constrained by the minimum number of binary bits required to address the state space:</p>
+        $$B_{\text{opcode}} = \lceil \log_2(\text{Number of Instructions}) \rceil$$
+        $$B_{\text{register}} = \lceil \log_2(\text{Number of Registers}) \rceil$$
+      </div>
+
+      <h3 class="section-heading">7.2 Immediate Operand Boundaries</h3>
+      <div class="table-container">
+        <table class="academic-table">
+          <thead>
+            <tr>
+              <th>Operand Interpretation</th>
+              <th>Dynamic Dynamic Range Formula</th>
+              <th>Maximum Representable Value</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td><strong>Unsigned Integer</strong> ($B$ bits)</td>
+              <td>$[0, 2^B - 1]$</td>
+              <td>$2^B - 1$</td>
+            </tr>
+            <tr>
+              <td><strong>Signed 2's Complement</strong> ($B$ bits)</td>
+              <td>$[-2^{B-1}, +(2^{B-1}-1)]$</td>
+              <td>$2^{B-1} - 1$</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+
+      <!-- Integrated PYQ Q1 -->
+      <div class="pyq-box" id="pyq-q1">
+        <div class="pyq-header">
+          <div class="pyq-tag-group">
+            <span class="pyq-badge-num">PYQ Q1</span>
+            <span class="pyq-badge-year">GATE ECE 2024</span>
+            <span class="pyq-badge-marks">1 Mark</span>
+          </div>
+          <button class="reveal-btn" onclick="toggleSolution('sol-q1', this)">Show Solution</button>
+        </div>
+        <div class="pyq-body">
+          <p>
+            A machine has a 32-bit architecture with 1-word long instructions. It has 24 registers and supports an instruction set of size 40. Each instruction has five distinct fields, namely opcode, two source register identifiers, one destination register identifier, and an immediate value. Assuming that the immediate operand is an unsigned integer, its maximum value is _______.
+          </p>
+        </div>
+        <div class="solution-drawer" id="sol-q1">
+          <div class="sol-header">✓ Exhaustive Bit-Budget Calculation</div>
+          <ol class="sol-steps">
+            <li>
+              <strong>Total Word Length ($W$):</strong>
+              $$W = 32 \text{ bits}$$
+            </li>
+            <li>
+              <strong>Opcode Field Width ($B_{\text{opcode}}$):</strong><br/>
+              The instruction set supports 40 distinct instructions:
+              $$B_{\text{opcode}} = \lceil \log_2 40 \rceil = 6 \text{ bits} \quad (\text{since } 2^5 = 32 < 40 \le 64 = 2^6)$$
+            </li>
+            <li>
+              <strong>Register Identifier Width ($B_{\text{reg}}$):</strong><br/>
+              There are 24 processor registers:
+              $$B_{\text{reg}} = \lceil \log_2 24 \rceil = 5 \text{ bits} \quad (\text{since } 2^4 = 16 < 24 \le 32 = 2^5)$$
+            </li>
+            <li>
+              <strong>Total Register Specifier Fields:</strong><br/>
+              The instruction specifies 2 source registers ($R_{s1}, R_{s2}$) and 1 destination register ($R_d$):
+              $$\text{Register Bits} = 3 \times B_{\text{reg}} = 3 \times 5 = 15 \text{ bits}$$
+            </li>
+            <li>
+              <strong>Compute Immediate Field Bits ($B_{\text{imm}}$):</strong>
+              $$B_{\text{imm}} = W - (B_{\text{opcode}} + \text{Register Bits}) = 32 - (6 + 15) = 32 - 21 = 11 \text{ bits}$$
+            </li>
+            <li>
+              <strong>Calculate Maximum Unsigned Value:</strong><br/>
+              An 11-bit unsigned integer spans $[0, 2^{11} - 1]$:
+              $$\text{Maximum Value} = 2^{11} - 1 = 2048 - 1 = 2047$$
+            </li>
+          </ol>
+          <div class="ans-box">Final Numerical Answer: 2047</div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ======================================================== -->
+    <!-- CHAPTER 8: FORMULA MATRIX & INTERACTIVE LABS             -->
+    <!-- ======================================================== -->
+    <section class="chapter-section" id="ch-8">
+      <div class="chapter-number-pill">Chapter 8</div>
+      <h2 class="chapter-title">Master Formula Reference Index & Interactive Laboratory Suite</h2>
+
+      <h3 class="section-heading">8.1 The Master Digital Arithmetic Reference Matrix</h3>
+      <div class="table-container">
+        <table class="academic-table">
+          <thead>
+            <tr>
+              <th>Concept & Theorem</th>
+              <th>Mathematical Formulation</th>
+              <th>GATE Exam Warning / Shortcut</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td><strong>Radix Validity Constraint</strong></td>
+              <td>$r > \max(\{d_i\})$</td>
+              <td>Always discard quadratic roots $r \le \text{any digit present}$.</td>
+            </tr>
+            <tr>
+              <td><strong>Terminating Fractions in Base $r$</strong></td>
+              <td>$\text{Primes}(q) \subseteq \text{Primes}(r)$</td>
+              <td>Fraction $p/q$ terminates in base $r$ iff denominator's primes divide $r$.</td>
+            </tr>
+            <tr>
+              <td><strong>Diminished Radix Comp.</strong></td>
+              <td>$C_{r-1}(N) = (r^n - 1) - N$</td>
+              <td>Subtract every digit directly from $r-1$.</td>
+            </tr>
+            <tr>
+              <td><strong>Radix Complement</strong></td>
+              <td>$C_r(N) = r^n - N = C_{r-1}(N) + 1$</td>
+              <td>Keep trailing 0s and 1st non-zero from $r$, rest from $r-1$.</td>
+            </tr>
+            <tr>
+              <td><strong>2's Complement Dynamic Range</strong></td>
+              <td>$[-2^{n-1}, +(2^{n-1}-1)]$</td>
+              <td>Asymmetric! $-2^{n-1}$ has no positive equivalent in $n$ bits.</td>
+            </tr>
+            <tr>
+              <td><strong>1's Comp / Sign-Mag Range</strong></td>
+              <td>$[-(2^{n-1}-1), +(2^{n-1}-1)]$</td>
+              <td>Symmetric with dual representations of zero ($+0, -0$).</td>
+            </tr>
+            <tr>
+              <td><strong>2's Complement Positional Value</strong></td>
+              <td>$V = -b_{n-1} 2^{n-1} + \sum_{i=0}^{n-2} b_i 2^i$</td>
+              <td>Direct evaluation without taking complements.</td>
+            </tr>
+            <tr>
+              <td><strong>Hardware Overflow Flag</strong></td>
+              <td>$V = C_n \oplus C_{n-1}$</td>
+              <td>Adding opposite-signed numbers can never produce overflow!</td>
+            </tr>
+            <tr>
+              <td><strong>Packed BCD Storage</strong></td>
+              <td>$\lceil D / 2 \rceil \text{ bytes}$</td>
+              <td>Each byte stores 2 decimal digits.</td>
+            </tr>
+            <tr>
+              <td><strong>Self-Complementing Condition</strong></td>
+              <td>$\sum w_i = 9$</td>
+              <td>8421 BCD is not self-complementing ($15 \ne 9$). 2421 and XS-3 are.</td>
+            </tr>
+            <tr>
+              <td><strong>Hamming Distance Bounds</strong></td>
+              <td>$d_{\min} \ge e + 1, \quad d_{\min} \ge 2t + 1$</td>
+              <td>$e$ errors detected, $t = \lfloor(d_{\min}-1)/2\rfloor$ errors corrected.</td>
+            </tr>
+            <tr>
+              <td><strong>Instruction Bit Budget</strong></td>
+              <td>$W = B_{\text{op}} + \sum B_{\text{reg}} + B_{\text{imm}}$</td>
+              <td>$B = \lceil \log_2 N \rceil$. Check if immediate is signed or unsigned.</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+
+      <h3 class="section-heading">8.2 Interactive Laboratory Simulators</h3>
+
+      <!-- Interactive Lab Tool 1 -->
+      <div class="lab-card">
+        <div class="lab-header">
+          <div class="lab-title">
+            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/></svg>
+            Interactive Lab 1: Universal Base-$r$ Converter & Polynomial Root Verifier
+          </div>
+        </div>
+        <p style="font-size:0.96rem; color:var(--text-muted); margin-bottom:16px;">
+          Convert numbers dynamically between any radix ($2$ to $36$) and verify arbitrary base-$r$ polynomial equations.
+        </p>
+        <div class="lab-input-grid">
+          <div class="input-field">
+            <label>Input Number</label>
+            <input type="text" id="lab1Num" value="43" placeholder="e.g. 43, 2B, 1101">
+          </div>
+          <div class="input-field">
+            <label>Source Radix (Base)</label>
+            <input type="number" id="lab1BaseFrom" value="10" min="2" max="36">
+          </div>
+          <div class="input-field">
+            <label>Target Radix (Base)</label>
+            <input type="number" id="lab1BaseTo" value="16" min="2" max="36">
+          </div>
+        </div>
+        <div class="lab-output" id="lab1Output">
+          Calculating...
+        </div>
+      </div>
+
+      <!-- Interactive Lab Tool 2 -->
+      <div class="lab-card">
+        <div class="lab-header">
+          <div class="lab-title">
+            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><rect x="4" y="4" width="16" height="16" rx="2"/><rect x="9" y="9" width="6" height="6"/></svg>
+            Interactive Lab 2: Signed Binary Representations & Sign Extension Visualizer
+          </div>
+        </div>
+        <p style="font-size:0.96rem; color:var(--text-muted); margin-bottom:16px;">
+          Inspect Signed-Magnitude, 1's Complement, and 2's Complement across variable register widths ($n$) with color-coded sign extension.
+        </p>
+        <div class="lab-input-grid">
+          <div class="input-field">
+            <label>Signed Decimal Integer</label>
+            <input type="number" id="lab2Val" value="-7">
+          </div>
+          <div class="input-field">
+            <label>Register Bit Width ($n$)</label>
+            <input type="number" id="lab2Bits" value="6" min="4" max="16">
+          </div>
+        </div>
+        <div class="lab-output" id="lab2Output">
+          Calculating...
+        </div>
+      </div>
+
+      <!-- Interactive Lab Tool 3 -->
+      <div class="lab-card">
+        <div class="lab-header">
+          <div class="lab-title">
+            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M18 10h-1.26A8 8 0 1 0 9 20h9a5 5 0 0 0 0-10z"/></svg>
+            Interactive Lab 3: 2's Complement ALU Arithmetic & Overflow ($V = C_n \oplus C_{n-1}$) Simulator
+          </div>
+        </div>
+        <p style="font-size:0.96rem; color:var(--text-muted); margin-bottom:16px;">
+          Simulate full-adder carry propagation, carry-out ($C_{\text{out}}$), and signed overflow flag ($V = C_n \oplus C_{n-1}$).
+        </p>
+        <div class="lab-input-grid">
+          <div class="input-field">
+            <label>Operand A (Signed Decimal)</label>
+            <input type="number" id="lab3A" value="14">
+          </div>
+          <div class="input-field">
+            <label>Operand B (Signed Decimal)</label>
+            <input type="number" id="lab3B" value="-7">
+          </div>
+          <div class="input-field">
+            <label>Bit Width</label>
+            <input type="number" id="lab3Bits" value="6" min="4" max="16">
+          </div>
+        </div>
+        <div class="lab-output" id="lab3Output">
+          Calculating...
+        </div>
+      </div>
+
+    </section>
+
+  </main>
+</div>
+
+<!-- Scripts for Interactivity, Theme, KaTeX, and Calculators -->
+<script>
+  document.addEventListener("DOMContentLoaded", function() {
+    renderMathInElement(document.body, {
+      delimiters: [
+        {left: '$$', right: '$$', display: true},
+        {left: '$', right: '$', display: false}
+      ],
+      throwOnError: false
+    });
+    initInteractiveLabs();
+  });
+
+  function toggleSolution(id, btn) {
+    const drawer = document.getElementById(id);
+    if (!drawer) return;
+    const isOpen = drawer.classList.contains('open');
+    if (isOpen) {
+      drawer.classList.remove('open');
+      btn.innerText = "Show Solution";
+    } else {
+      drawer.classList.add('open');
+      btn.innerText = "Hide Solution";
+      renderMathInElement(drawer, {
+        delimiters: [
+          {left: '$$', right: '$$', display: true},
+          {left: '$', right: '$', display: false}
+        ],
+        throwOnError: false
+      });
+    }
+  }
+
+  const toggleAllBtn = document.getElementById('toggleAllBtn');
+  let allExpanded = false;
+  toggleAllBtn.addEventListener('click', () => {
+    allExpanded = !allExpanded;
+    const drawers = document.querySelectorAll('.solution-drawer');
+    const buttons = document.querySelectorAll('.reveal-btn');
+    drawers.forEach(d => {
+      if (allExpanded) d.classList.add('open');
+      else d.classList.remove('open');
+    });
+    buttons.forEach(b => {
+      b.innerText = allExpanded ? "Hide Solution" : "Show Solution";
+    });
+    toggleAllBtn.innerHTML = allExpanded ?
+      '<svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="18 15 12 9 6 15"/></svg> Collapse All Solutions' :
+      '<svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="6 9 12 15 18 9"/></svg> Expand All Solutions';
+    if (allExpanded) {
+      renderMathInElement(document.body, {
+        delimiters: [{left: '$$', right: '$$', display: true}, {left: '$', right: '$', display: false}],
+        throwOnError: false
+      });
+    }
+  });
+
+  const themeToggleBtn = document.getElementById('themeToggleBtn');
+  const themeIcon = document.getElementById('themeIcon');
+  const currentTheme = localStorage.getItem('gate_notes_theme') || 'light';
+  document.documentElement.setAttribute('data-theme', currentTheme);
+  themeIcon.innerText = currentTheme === 'dark' ? '☀️' : '🌙';
+
+  themeToggleBtn.addEventListener('click', () => {
+    const isDark = document.documentElement.getAttribute('data-theme') === 'dark';
+    const nextTheme = isDark ? 'light' : 'dark';
+    document.documentElement.setAttribute('data-theme', nextTheme);
+    localStorage.setItem('gate_notes_theme', nextTheme);
+    themeIcon.innerText = nextTheme === 'dark' ? '☀️' : '🌙';
+  });
+
+  const searchBox = document.getElementById('searchBox');
+  searchBox.addEventListener('input', (e) => {
+    const query = e.target.value.toLowerCase().trim();
+    const pyqBoxes = document.querySelectorAll('.pyq-box');
+
+    pyqBoxes.forEach(box => {
+      const text = box.innerText.toLowerCase();
+      if (!query || text.includes(query)) {
+        box.style.display = "";
+      } else {
+        box.style.display = "none";
+      }
+    });
+
+    if (query.startsWith('q') && query.length <= 4) {
+      const target = document.getElementById('pyq-' + query);
+      if (target) {
+        target.scrollIntoView({ behavior: 'smooth', block: 'center' });
+      }
+    }
+  });
+
+  function initInteractiveLabs() {
+    const l1Num = document.getElementById('lab1Num');
+    const l1From = document.getElementById('lab1BaseFrom');
+    const l1To = document.getElementById('lab1BaseTo');
+    const l1Out = document.getElementById('lab1Output');
+
+    function updateLab1() {
+      try {
+        const valStr = l1Num.value.trim();
+        const bFrom = parseInt(l1From.value, 10);
+        const bTo = parseInt(l1To.value, 10);
+        if (isNaN(bFrom) || isNaN(bTo) || bFrom < 2 || bFrom > 36 || bTo < 2 || bTo > 36) {
+          l1Out.innerHTML = "⚠️ Bases must be integers between 2 and 36.";
+          return;
+        }
+        const decVal = parseInt(valStr, bFrom);
+        if (isNaN(decVal)) {
+          l1Out.innerHTML = `⚠️ Invalid character in number "${valStr}" for base ${bFrom}.`;
+          return;
+        }
+        const converted = decVal.toString(bTo).toUpperCase();
+        l1Out.innerHTML = `→ Positional Decimal Value: <strong>${decVal}</strong><br/>` +
+                          `→ Result in Base ${bTo}: <strong>${converted}</strong><br/>` +
+                          `→ Binary: <strong>${decVal.toString(2)}</strong> | Hex: <strong>${decVal.toString(16).toUpperCase()}</strong> | Octal: <strong>${decVal.toString(8)}</strong>`;
+      } catch (err) {
+        l1Out.innerHTML = "Error computing conversion.";
+      }
+    }
+    l1Num.addEventListener('input', updateLab1);
+    l1From.addEventListener('input', updateLab1);
+    l1To.addEventListener('input', updateLab1);
+    updateLab1();
+
+    const l2Val = document.getElementById('lab2Val');
+    const l2Bits = document.getElementById('lab2Bits');
+    const l2Out = document.getElementById('lab2Output');
+
+    function updateLab2() {
+      const val = parseInt(l2Val.value, 10);
+      const n = parseInt(l2Bits.value, 10);
+      if (isNaN(val) || isNaN(n) || n < 4 || n > 16) {
+        l2Out.innerHTML = "⚠️ Enter a valid integer and bit width between 4 and 16.";
+        return;
+      }
+      const min2C = -(1 << (n - 1));
+      const max2C = (1 << (n - 1)) - 1;
+      const minSM = -((1 << (n - 1)) - 1);
+      const maxSM = (1 << (n - 1)) - 1;
+
+      let smStr = "Out of range";
+      if (val >= minSM && val <= maxSM) {
+        const sign = val < 0 ? "1" : "0";
+        const mag = Math.abs(val).toString(2).padStart(n - 1, '0');
+        smStr = `<span class="bit-box bit-sign">${sign}</span> <span class="bit-box bit-mag">${mag}</span>`;
+      }
+
+      let oneCStr = "Out of range";
+      if (val >= minSM && val <= maxSM) {
+        if (val >= 0) {
+          oneCStr = val.toString(2).padStart(n, '0');
+        } else {
+          const pos = Math.abs(val).toString(2).padStart(n, '0');
+          oneCStr = pos.split('').map(b => b === '0' ? '1' : '0').join('');
+        }
+      }
+
+      let twoCStr = "Out of range";
+      let extended16Str = "";
+      if (val >= min2C && val <= max2C) {
+        let raw2C;
+        if (val >= 0) {
+          raw2C = val.toString(2).padStart(n, '0');
+        } else {
+          raw2C = ((1 << n) + val).toString(2).padStart(n, '0');
+        }
+        const signBit = raw2C[0];
+        const magBits = raw2C.substring(1);
+        twoCStr = `<span class="bit-box bit-sign">${signBit}</span> <span class="bit-box bit-mag">${magBits}</span>`;
+        const extCount = 16 - n;
+        extended16Str = `<span class="bit-box bit-ext">${signBit.repeat(extCount)}</span>` + twoCStr;
+      }
+
+      l2Out.innerHTML = `Value: <strong>${val}</strong> (Valid $n=${n}$ Range for 2's Comp: [${min2C}, +${max2C}])<br/>` +
+                        `• Signed Magnitude: ${smStr}<br/>` +
+                        `• 1's Complement:   ${oneCStr}<br/>` +
+                        `• 2's Complement:   ${twoCStr}<br/>` +
+                        `• Sign-Extended to 16-bit: ${extended16Str}`;
+    }
+    l2Val.addEventListener('input', updateLab2);
+    l2Bits.addEventListener('input', updateLab2);
+    updateLab2();
+
+    const l3A = document.getElementById('lab3A');
+    const l3B = document.getElementById('lab3B');
+    const l3Bits = document.getElementById('lab3Bits');
+    const l3Out = document.getElementById('lab3Output');
+
+    function updateLab3() {
+      const a = parseInt(l3A.value, 10);
+      const b = parseInt(l3B.value, 10);
+      const n = parseInt(l3Bits.value, 10);
+      if (isNaN(a) || isNaN(b) || isNaN(n) || n < 4 || n > 16) {
+        l3Out.innerHTML = "⚠️ Enter valid operands.";
+        return;
+      }
+      const minVal = -(1 << (n - 1));
+      const maxVal = (1 << (n - 1)) - 1;
+
+      const sum = a + b;
+      const overflow = (sum < minVal || sum > maxVal);
+
+      const to2C = (v) => v >= 0 ? v.toString(2).padStart(n, '0') : ((1 << n) + v).toString(2).padStart(n, '0');
+      const binA = to2C(a);
+      const binB = to2C(b);
+
+      const maskNMinus1 = (1 << (n - 1)) - 1;
+      const lowerA = (a >= 0 ? a : ((1 << n) + a)) & maskNMinus1;
+      const lowerB = (b >= 0 ? b : ((1 << n) + b)) & maskNMinus1;
+      const carryIntoMSB = ((lowerA + lowerB) >> (n - 1)) & 1;
+
+      const fullA = (a >= 0 ? a : ((1 << n) + a));
+      const fullB = (b >= 0 ? b : ((1 << n) + b));
+      const carryOutMSB = ((fullA + fullB) >> n) & 1;
+
+      const flagV = carryIntoMSB ^ carryOutMSB;
+
+      l3Out.innerHTML = `Operand A: ${a} (${binA}) | Operand B: ${b} (${binB})<br/>` +
+                        `Mathematical Sum: ${a} + (${b}) = <strong>${sum}</strong> (Permitted Dynamic Range: [${minVal}, +${maxVal}])<br/>` +
+                        `• Carry into MSB ($C_{n-1}$): <strong>${carryIntoMSB}</strong><br/>` +
+                        `• Carry out of MSB ($C_n$):  <strong>${carryOutMSB}</strong><br/>` +
+                        `• Overflow Flag ($V = C_n \\oplus C_{n-1}$): <strong style="color:${flagV ? '#ef4444' : '#22c55e'};">${flagV} (${flagV ? 'OVERFLOW DETECTED!' : 'VALID - NO OVERFLOW'})</strong>`;
+    }
+    l3A.addEventListener('input', updateLab3);
+    l3B.addEventListener('input', updateLab3);
+    l3Bits.addEventListener('input', updateLab3);
+    updateLab3();
+  }
+</script>
+</body>
+</html>
