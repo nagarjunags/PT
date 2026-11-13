@@ -55,6 +55,7 @@ for ch in chapters:
         page = doc[pno]
         for idx, img in enumerate(page.get_images()):
             xref = img[0]
+            smask = img[1]
             base = doc.extract_image(xref)
             # Filter out tiny icons, ExamGOAL logo (120x120 or small barcodes)
             if base["width"] > 140 and base["height"] > 60:
@@ -63,8 +64,15 @@ for ch in chapters:
                     continue
                 fname = f"p{pno+1}_img{idx}_{xref}.{base['ext']}"
                 fpath = os.path.join(img_dir, fname)
-                with open(fpath, "wb") as f:
-                    f.write(base["image"])
+                smask_xref = smask if smask > 0 else base.get("smask", 0)
+                if smask_xref > 0:
+                    pix = pymupdf.Pixmap(doc, xref)
+                    mask = pymupdf.Pixmap(doc, smask_xref)
+                    comb = pymupdf.Pixmap(pix, mask)
+                    comb.save(fpath)
+                else:
+                    with open(fpath, "wb") as f:
+                        f.write(base["image"])
                 if pno+1 not in img_map:
                     img_map[pno+1] = []
                 img_map[pno+1].append({
