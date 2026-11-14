@@ -6,6 +6,7 @@ window.HTML_CATALOG = [
   "components/nested/modal-demo.html",
   "digital/adc-dac/notes.html",
   "digital/boolean-algebra/notes.html",
+  "digital/boolean-algebra/reduction-guide.html",
   "digital/combinational-circuits/notes.html",
   "digital/logic-families/notes.html",
   "digital/logic-gates/notes.html",

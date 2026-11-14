@@ -1,0 +1,2612 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Master Reference: Boolean Algebra Reduction, Solving & Minimization</title>
+
+  <!-- Google Fonts: Inter (UI), Crimson Pro (Textbook Body), JetBrains Mono (Math/Code) -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Crimson+Pro:ital,wght@0,400;0,500;0,600;0,700;1,400;1,600&family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:ital,wght@0,400;0,500;0,600;0,700;1,400&display=swap" rel="stylesheet">
+
+  <!-- KaTeX for pristine mathematical typesetting -->
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.css">
+  <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.js"></script>
+  <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/contrib/auto-render.min.js"></script>
+
+  <style>
+    :root {
+      --bg-page: #f8fafc;
+      --bg-card: #ffffff;
+      --bg-card-subtle: #f1f5f9;
+      --bg-elevated: #e2e8f0;
+      --bg-code: #0f172a;
+      
+      --text-main: #0f172a;
+      --text-secondary: #334155;
+      --text-muted: #64748b;
+      
+      --border-color: #e2e8f0;
+      --border-strong: #cbd5e1;
+      
+      --accent: #2563eb;
+      --accent-soft: #eff6ff;
+      --accent-dark: #1d4ed8;
+      
+      --success: #16a34a;
+      --success-soft: #f0fdf4;
+      --warning: #d97706;
+      --warning-soft: #fffbeb;
+      --danger: #dc2626;
+      --danger-soft: #fef2f2;
+      --purple: #7c3aed;
+      --purple-soft: #f5f3ff;
+      --cyan: #0891b2;
+      --cyan-soft: #ecfeff;
+      
+      --font-body: 'Crimson Pro', Georgia, serif;
+      --font-ui: 'Inter', -apple-system, sans-serif;
+      --font-mono: 'JetBrains Mono', monospace;
+      
+      --shadow-sm: 0 1px 2px 0 rgba(0, 0, 0, 0.05);
+      --shadow-md: 0 4px 6px -1px rgba(0, 0, 0, 0.08), 0 2px 4px -2px rgba(0, 0, 0, 0.06);
+      --shadow-lg: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -4px rgba(0, 0, 0, 0.08);
+    }
+
+    [data-theme="dark"] {
+      --bg-page: #0b0f19;
+      --bg-card: #111827;
+      --bg-card-subtle: #1f2937;
+      --bg-elevated: #283344;
+      --bg-code: #030712;
+      
+      --text-main: #f9fafb;
+      --text-secondary: #e5e7eb;
+      --text-muted: #9ca3af;
+      
+      --border-color: #1f2937;
+      --border-strong: #374151;
+      
+      --accent: #3b82f6;
+      --accent-soft: #172554;
+      --accent-dark: #60a5fa;
+      
+      --success: #22c55e;
+      --success-soft: #052e16;
+      --warning: #f59e0b;
+      --warning-soft: #451a03;
+      --danger: #ef4444;
+      --danger-soft: #450a0a;
+      --purple: #a855f7;
+      --purple-soft: #2e1065;
+      --cyan: #22d3ee;
+      --cyan-soft: #083344;
+      
+      --shadow-sm: 0 1px 2px 0 rgba(0, 0, 0, 0.5);
+      --shadow-md: 0 4px 6px -1px rgba(0, 0, 0, 0.5);
+      --shadow-lg: 0 10px 15px -3px rgba(0, 0, 0, 0.5);
+    }
+
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+
+    body {
+      font-family: var(--font-body);
+      font-size: 1.18rem;
+      line-height: 1.8;
+      color: var(--text-main);
+      background-color: var(--bg-page);
+      transition: background-color 0.2s ease, color 0.2s ease;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    .app-container {
+      display: flex;
+      min-height: 100vh;
+    }
+
+    /* Sidebar Navigation */
+    .sidebar {
+      width: 320px;
+      flex-shrink: 0;
+      background: var(--bg-card);
+      border-right: 1px solid var(--border-color);
+      height: 100vh;
+      position: sticky;
+      top: 0;
+      overflow-y: auto;
+      display: flex;
+      flex-direction: column;
+      z-index: 50;
+      transition: transform 0.3s ease;
+    }
+
+    .sidebar-header {
+      padding: 1.25rem 1.5rem;
+      border-bottom: 1px solid var(--border-color);
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+
+    .sidebar-title {
+      font-family: var(--font-ui);
+      font-size: 1rem;
+      font-weight: 700;
+      color: var(--text-main);
+      letter-spacing: -0.01em;
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+    }
+
+    .nav-search {
+      padding: 0.75rem 1.25rem;
+      border-bottom: 1px solid var(--border-color);
+    }
+
+    .nav-search input {
+      width: 100%;
+      padding: 0.45rem 0.75rem;
+      border-radius: 6px;
+      border: 1px solid var(--border-strong);
+      background: var(--bg-card-subtle);
+      color: var(--text-main);
+      font-family: var(--font-ui);
+      font-size: 0.85rem;
+      outline: none;
+    }
+
+    .nav-search input:focus {
+      border-color: var(--accent);
+    }
+
+    .sidebar-nav {
+      padding: 1rem 0.75rem;
+      display: flex;
+      flex-direction: column;
+      gap: 0.25rem;
+      flex: 1;
+    }
+
+    .nav-section-title {
+      font-family: var(--font-ui);
+      font-size: 0.72rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      color: var(--text-muted);
+      padding: 0.6rem 0.75rem 0.2rem;
+    }
+
+    .nav-item {
+      font-family: var(--font-ui);
+      font-size: 0.88rem;
+      font-weight: 500;
+      padding: 0.45rem 0.75rem;
+      border-radius: 6px;
+      color: var(--text-secondary);
+      text-decoration: none;
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+      transition: background 0.15s ease, color 0.15s ease;
+    }
+
+    .nav-item:hover {
+      background: var(--bg-card-subtle);
+      color: var(--accent);
+    }
+
+    .nav-item.active {
+      background: var(--accent-soft);
+      color: var(--accent);
+      font-weight: 600;
+    }
+
+    /* Main Content Area */
+    .main-wrapper {
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+      min-width: 0;
+    }
+
+    /* Top Bar */
+    .top-bar {
+      height: 60px;
+      border-bottom: 1px solid var(--border-color);
+      background: var(--bg-card);
+      position: sticky;
+      top: 0;
+      z-index: 40;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 0 2rem;
+    }
+
+    .breadcrumbs {
+      font-family: var(--font-ui);
+      font-size: 0.85rem;
+      color: var(--text-muted);
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+    }
+
+    .breadcrumbs a {
+      color: var(--text-secondary);
+      text-decoration: none;
+      transition: color 0.15s;
+    }
+
+    .breadcrumbs a:hover {
+      color: var(--accent);
+    }
+
+    .top-controls {
+      display: flex;
+      align-items: center;
+      gap: 0.75rem;
+    }
+
+    .theme-toggle, .mobile-menu-btn {
+      background: var(--bg-card-subtle);
+      border: 1px solid var(--border-color);
+      color: var(--text-main);
+      padding: 0.4rem 0.8rem;
+      border-radius: 6px;
+      font-family: var(--font-ui);
+      font-size: 0.82rem;
+      font-weight: 600;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      gap: 0.4rem;
+      transition: background 0.15s;
+    }
+
+    .theme-toggle:hover, .mobile-menu-btn:hover {
+      background: var(--bg-elevated);
+    }
+
+    .mobile-menu-btn {
+      display: none;
+    }
+
+    /* Article Content Container */
+    .content-area {
+      max-width: 980px;
+      margin: 0 auto;
+      padding: 3rem 2rem 6rem;
+      width: 100%;
+    }
+
+    /* Header Banner */
+    .doc-header {
+      margin-bottom: 3rem;
+      padding-bottom: 2rem;
+      border-bottom: 1px solid var(--border-color);
+    }
+
+    .doc-badge-row {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.5rem;
+      margin-bottom: 1rem;
+    }
+
+    .badge {
+      font-family: var(--font-ui);
+      font-size: 0.75rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+      padding: 0.25rem 0.6rem;
+      border-radius: 4px;
+    }
+
+    .badge-primary { background: var(--accent-soft); color: var(--accent); }
+    .badge-success { background: var(--success-soft); color: var(--success); }
+    .badge-purple { background: var(--purple-soft); color: var(--purple); }
+    .badge-warning { background: var(--warning-soft); color: var(--warning); }
+
+    .doc-title {
+      font-family: var(--font-ui);
+      font-size: 2.5rem;
+      font-weight: 800;
+      line-height: 1.2;
+      color: var(--text-main);
+      letter-spacing: -0.02em;
+      margin-bottom: 1rem;
+    }
+
+    .doc-desc {
+      font-size: 1.25rem;
+      color: var(--text-secondary);
+      line-height: 1.6;
+    }
+
+    /* Headings */
+    h2 {
+      font-family: var(--font-ui);
+      font-size: 1.85rem;
+      font-weight: 700;
+      color: var(--text-main);
+      margin: 3.5rem 0 1.25rem;
+      padding-bottom: 0.5rem;
+      border-bottom: 2px solid var(--border-color);
+      display: flex;
+      align-items: center;
+      gap: 0.75rem;
+    }
+
+    h3 {
+      font-family: var(--font-ui);
+      font-size: 1.4rem;
+      font-weight: 600;
+      color: var(--text-main);
+      margin: 2.25rem 0 1rem;
+    }
+
+    h4 {
+      font-family: var(--font-ui);
+      font-size: 1.15rem;
+      font-weight: 600;
+      color: var(--text-secondary);
+      margin: 1.5rem 0 0.75rem;
+    }
+
+    p {
+      margin-bottom: 1.25rem;
+    }
+
+    ul, ol {
+      margin-bottom: 1.25rem;
+      padding-left: 1.75rem;
+    }
+
+    li {
+      margin-bottom: 0.5rem;
+    }
+
+    /* Callout & Theorem Boxes */
+    .callout {
+      border-radius: 8px;
+      padding: 1.25rem 1.5rem;
+      margin: 1.75rem 0;
+      border-left: 4px solid var(--accent);
+      background: var(--bg-card);
+      box-shadow: var(--shadow-sm);
+    }
+
+    .callout-header {
+      font-family: var(--font-ui);
+      font-weight: 700;
+      font-size: 0.95rem;
+      margin-bottom: 0.5rem;
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+    }
+
+    .callout-blue { border-left-color: var(--accent); background: var(--accent-soft); }
+    .callout-blue .callout-header { color: var(--accent); }
+    
+    .callout-green { border-left-color: var(--success); background: var(--success-soft); }
+    .callout-green .callout-header { color: var(--success); }
+
+    .callout-yellow { border-left-color: var(--warning); background: var(--warning-soft); }
+    .callout-yellow .callout-header { color: var(--warning); }
+
+    .callout-purple { border-left-color: var(--purple); background: var(--purple-soft); }
+    .callout-purple .callout-header { color: var(--purple); }
+
+    .callout-danger { border-left-color: var(--danger); background: var(--danger-soft); }
+    .callout-danger .callout-header { color: var(--danger); }
+
+    /* Theorem Card */
+    .theorem-card {
+      background: var(--bg-card);
+      border: 1px solid var(--border-color);
+      border-radius: 8px;
+      padding: 1.5rem;
+      margin: 1.5rem 0;
+      box-shadow: var(--shadow-sm);
+    }
+
+    .theorem-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 0.75rem;
+      border-bottom: 1px solid var(--border-color);
+      padding-bottom: 0.5rem;
+    }
+
+    .theorem-title {
+      font-family: var(--font-ui);
+      font-weight: 700;
+      font-size: 1.05rem;
+      color: var(--text-main);
+    }
+
+    .theorem-tag {
+      font-family: var(--font-mono);
+      font-size: 0.75rem;
+      background: var(--bg-card-subtle);
+      color: var(--text-muted);
+      padding: 0.2rem 0.5rem;
+      border-radius: 4px;
+    }
+
+    /* Comparison & Formula Tables */
+    .table-container {
+      overflow-x: auto;
+      margin: 1.5rem 0;
+      border-radius: 8px;
+      border: 1px solid var(--border-color);
+      background: var(--bg-card);
+      box-shadow: var(--shadow-sm);
+    }
+
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      font-size: 0.98rem;
+      text-align: left;
+    }
+
+    th {
+      font-family: var(--font-ui);
+      font-weight: 700;
+      background: var(--bg-card-subtle);
+      padding: 0.75rem 1rem;
+      border-bottom: 1px solid var(--border-strong);
+      color: var(--text-main);
+    }
+
+    td {
+      padding: 0.75rem 1rem;
+      border-bottom: 1px solid var(--border-color);
+      color: var(--text-secondary);
+    }
+
+    tr:last-child td {
+      border-bottom: none;
+    }
+
+    /* Step-by-Step Reduction Blocks */
+    .step-box {
+      background: var(--bg-card);
+      border: 1px solid var(--border-color);
+      border-radius: 8px;
+      padding: 1.5rem;
+      margin: 1.5rem 0;
+      box-shadow: var(--shadow-sm);
+    }
+
+    .step-header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      margin-bottom: 1rem;
+      padding-bottom: 0.5rem;
+      border-bottom: 1px solid var(--border-color);
+    }
+
+    .step-num {
+      font-family: var(--font-ui);
+      font-weight: 800;
+      font-size: 1.1rem;
+      color: var(--accent);
+    }
+
+    .step-pill {
+      font-family: var(--font-mono);
+      font-size: 0.8rem;
+      background: var(--accent-soft);
+      color: var(--accent);
+      padding: 0.2rem 0.6rem;
+      border-radius: 4px;
+      font-weight: 600;
+    }
+
+    .reduction-row {
+      display: grid;
+      grid-template-columns: 1fr auto;
+      gap: 1rem;
+      padding: 0.6rem 0;
+      border-bottom: 1px dashed var(--border-color);
+      align-items: center;
+    }
+
+    .reduction-row:last-child {
+      border-bottom: none;
+      background: var(--bg-card-subtle);
+      padding: 0.75rem 1rem;
+      border-radius: 6px;
+      margin-top: 0.5rem;
+    }
+
+    .math-expr {
+      font-family: var(--font-mono);
+      font-size: 1.05rem;
+    }
+
+    .reason-label {
+      font-family: var(--font-ui);
+      font-size: 0.82rem;
+      font-weight: 600;
+      color: var(--text-muted);
+      background: var(--bg-card-subtle);
+      padding: 0.2rem 0.5rem;
+      border-radius: 4px;
+    }
+
+    /* K-Map Graphical Display */
+    .kmap-grid {
+      display: inline-grid;
+      grid-template-columns: repeat(5, 52px);
+      gap: 2px;
+      background: var(--border-strong);
+      padding: 2px;
+      border-radius: 6px;
+      font-family: var(--font-mono);
+      text-align: center;
+      margin: 1rem 0;
+    }
+
+    .kmap-cell {
+      height: 48px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      background: var(--bg-card);
+      position: relative;
+      font-weight: 700;
+      font-size: 1.1rem;
+    }
+
+    .kmap-header {
+      background: var(--bg-card-subtle);
+      font-size: 0.8rem;
+      color: var(--text-muted);
+    }
+
+    .kmap-minterm {
+      position: absolute;
+      bottom: 2px;
+      right: 3px;
+      font-size: 0.6rem;
+      color: var(--text-muted);
+      font-weight: 400;
+    }
+
+    .kmap-cell.highlight-group1 {
+      background: rgba(37, 99, 235, 0.18);
+      color: var(--accent);
+      border: 2px solid var(--accent);
+    }
+
+    .kmap-cell.highlight-group2 {
+      background: rgba(22, 163, 74, 0.18);
+      color: var(--success);
+      border: 2px solid var(--success);
+    }
+
+    .kmap-cell.highlight-group3 {
+      background: rgba(217, 119, 6, 0.18);
+      color: var(--warning);
+      border: 2px solid var(--warning);
+    }
+
+    /* Interactive Widget Styles */
+    .interactive-tool-card {
+      background: var(--bg-card);
+      border: 2px solid var(--accent);
+      border-radius: 10px;
+      padding: 1.75rem;
+      margin: 2.5rem 0;
+      box-shadow: var(--shadow-md);
+    }
+
+    .tool-header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      margin-bottom: 1.25rem;
+      padding-bottom: 0.75rem;
+      border-bottom: 1px solid var(--border-color);
+    }
+
+    .tool-title {
+      font-family: var(--font-ui);
+      font-size: 1.25rem;
+      font-weight: 700;
+      color: var(--accent);
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+    }
+
+    .tool-input-row {
+      display: flex;
+      gap: 0.75rem;
+      margin-bottom: 1rem;
+    }
+
+    .tool-input {
+      flex: 1;
+      padding: 0.6rem 1rem;
+      border-radius: 6px;
+      border: 1px solid var(--border-strong);
+      background: var(--bg-card-subtle);
+      color: var(--text-main);
+      font-family: var(--font-mono);
+      font-size: 1rem;
+      outline: none;
+    }
+
+    .tool-input:focus {
+      border-color: var(--accent);
+      box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.2);
+    }
+
+    .tool-btn {
+      padding: 0.6rem 1.25rem;
+      border-radius: 6px;
+      border: none;
+      background: var(--accent);
+      color: white;
+      font-family: var(--font-ui);
+      font-weight: 600;
+      font-size: 0.95rem;
+      cursor: pointer;
+      transition: background 0.15s;
+    }
+
+    .tool-btn:hover {
+      background: var(--accent-dark);
+    }
+
+    .tool-presets {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.4rem;
+      margin-bottom: 1rem;
+    }
+
+    .preset-btn {
+      background: var(--bg-card-subtle);
+      border: 1px solid var(--border-color);
+      color: var(--text-secondary);
+      font-family: var(--font-mono);
+      font-size: 0.78rem;
+      padding: 0.2rem 0.5rem;
+      border-radius: 4px;
+      cursor: pointer;
+    }
+
+    .preset-btn:hover {
+      background: var(--bg-elevated);
+      color: var(--accent);
+    }
+
+    .tool-result {
+      background: var(--bg-card-subtle);
+      border: 1px solid var(--border-color);
+      border-radius: 6px;
+      padding: 1rem;
+      font-family: var(--font-mono);
+      font-size: 0.92rem;
+      min-height: 50px;
+    }
+
+    /* K-Map Simulator Grid */
+    .sim-kmap-grid {
+      display: inline-grid;
+      grid-template-columns: 60px repeat(4, 60px);
+      gap: 4px;
+      margin: 1rem 0;
+      font-family: var(--font-mono);
+      user-select: none;
+    }
+
+    .sim-cell {
+      height: 50px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      background: var(--bg-card);
+      border: 1px solid var(--border-strong);
+      border-radius: 4px;
+      font-weight: 700;
+      font-size: 1.15rem;
+      cursor: pointer;
+      position: relative;
+      transition: background 0.15s, border-color 0.15s;
+    }
+
+    .sim-cell:hover {
+      border-color: var(--accent);
+    }
+
+    .sim-cell.active-1 {
+      background: var(--accent-soft);
+      color: var(--accent);
+      border-color: var(--accent);
+    }
+
+    .sim-cell.active-x {
+      background: var(--warning-soft);
+      color: var(--warning);
+      border-color: var(--warning);
+    }
+
+    .sim-hdr {
+      background: var(--bg-card-subtle);
+      border: 1px solid var(--border-color);
+      color: var(--text-muted);
+      font-size: 0.8rem;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-weight: 600;
+    }
+
+    /* Practice Drill Accordion */
+    details.drill-item {
+      background: var(--bg-card);
+      border: 1px solid var(--border-color);
+      border-radius: 8px;
+      margin: 1rem 0;
+      box-shadow: var(--shadow-sm);
+      overflow: hidden;
+    }
+
+    details.drill-item summary {
+      padding: 1rem 1.25rem;
+      font-family: var(--font-ui);
+      font-weight: 600;
+      font-size: 1.05rem;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      list-style: none;
+      background: var(--bg-card);
+      transition: background 0.15s;
+    }
+
+    details.drill-item summary:hover {
+      background: var(--bg-card-subtle);
+    }
+
+    details.drill-item summary::-webkit-details-marker {
+      display: none;
+    }
+
+    .drill-content {
+      padding: 1.25rem 1.5rem;
+      border-top: 1px solid var(--border-color);
+      background: var(--bg-page);
+    }
+
+    /* Responsive */
+    @media (max-width: 900px) {
+      .sidebar {
+        position: fixed;
+        left: -320px;
+        top: 0;
+        bottom: 0;
+      }
+      .sidebar.open {
+        transform: translateX(320px);
+      }
+      .mobile-menu-btn {
+        display: flex;
+      }
+      .top-bar {
+        padding: 0 1rem;
+      }
+      .content-area {
+        padding: 2rem 1rem 4rem;
+      }
+    }
+  </style>
+</head>
+<body>
+
+<div class="app-container">
+
+  <!-- Sidebar -->
+  <aside class="sidebar" id="sidebar">
+    <div class="sidebar-header">
+      <div class="sidebar-title">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"></path><path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"></path></svg>
+        <span>Boolean Reduction</span>
+      </div>
+    </div>
+
+    <div class="nav-search">
+      <input type="text" id="navFilter" placeholder="Quick search topics & laws..." onkeyup="filterNav()">
+    </div>
+
+    <nav class="sidebar-nav" id="navList">
+      <div class="nav-section-title">Navigation & Overview</div>
+      <a href="#intro" class="nav-item">Introduction & Overview</a>
+      <a href="#postulates" class="nav-item">Huntington's Postulates</a>
+      
+      <div class="nav-section-title">Core Laws & Theorems</div>
+      <a href="#duality" class="nav-item">Principle of Duality</a>
+      <a href="#absorption" class="nav-item">Absorption Laws (Essential!)</a>
+      <a href="#consensus" class="nav-item">Consensus Theorem (Redundant Law)</a>
+      <a href="#transposition" class="nav-item">Transposition Theorem</a>
+      <a href="#demorgan" class="nav-item">De Morgan's Laws & Bubble Logic</a>
+      <a href="#shannon" class="nav-item">Shannon's Expansion Theorems</a>
+
+      <div class="nav-section-title">Reduction Strategies & Drills</div>
+      <a href="#strategy" class="nav-item">The 7-Step Reduction Algorithm</a>
+      <a href="#worked-examples" class="nav-item">12 Step-by-Step Worked Reductions</a>
+      <a href="#canonical" class="nav-item">Canonical Forms (SOP & POS)</a>
+
+      <div class="nav-section-title">Graphical & Tabular Methods</div>
+      <a href="#kmap" class="nav-item">K-Map Minimization (2 to 5 Vars)</a>
+      <a href="#implicants" class="nav-item">PIs, EPIs & Don't Cares</a>
+      <a href="#hazards" class="nav-item">Eliminating Static Hazards</a>
+      <a href="#tabular" class="nav-item">Quine-McCluskey (Tabular Method)</a>
+
+      <div class="nav-section-title">Interactive Solvers & Drills</div>
+      <a href="#interactive-simplifier" class="nav-item">Interactive Expression Evaluator</a>
+      <a href="#interactive-kmap" class="nav-item">Interactive 4-Var K-Map Solver</a>
+      <a href="#gate-drills" class="nav-item">15 Master Exam Reduction Drills</a>
+      <a href="#cheat-sheet" class="nav-item">Formula Quick-Reference Card</a>
+    </nav>
+  </aside>
+
+  <!-- Main Content Wrapper -->
+  <div class="main-wrapper">
+    <div class="top-bar">
+      <div class="breadcrumbs">
+        <button class="mobile-menu-btn" onclick="toggleSidebar()">☰ Menu</button>
+        <a href="../../index.html">Explorer</a>
+        <span>/</span>
+        <a href="notes.html">Boolean Algebra</a>
+        <span>/</span>
+        <span style="color:var(--text-main); font-weight:600;">Reduction & Minimization Guide</span>
+      </div>
+
+      <div class="top-controls">
+        <button class="theme-toggle" onclick="toggleTheme()" id="themeBtn">🌓 Theme</button>
+      </div>
+    </div>
+
+    <!-- Article Content -->
+    <main class="content-area">
+
+      <!-- Header Banner -->
+      <header class="doc-header" id="intro">
+        <div class="doc-badge-row">
+          <span class="badge badge-primary">Comprehensive Master Reference</span>
+          <span class="badge badge-success">GATE & ECE / CSE Syllabus</span>
+          <span class="badge badge-purple">100% Axiomatic Proofs</span>
+          <span class="badge badge-warning">27+ Solved Examples & Drills</span>
+        </div>
+        <h1 class="doc-title">Master Guide to Boolean Algebra Reduction & Logic Minimization</h1>
+        <p class="doc-desc">
+          An exhaustive, rigorous reference detailing every algebraic law, postulate, expansion theorem, and graphical reduction strategy. Master how to solve, reduce, and simplify any combinational logic expression with absolute precision.
+        </p>
+      </header>
+
+      <!-- Section 1: Postulates -->
+      <section id="postulates">
+        <h2>
+          <span>1. Axiomatic Foundations: Huntington's Postulates</span>
+        </h2>
+        <p>
+          Unlike ordinary elementary algebra over the real numbers $\mathbb{R}$, <strong>Boolean Algebra</strong> is an algebraic structure defined on a set $\mathcal{B} = \{0, 1\}$ equipped with two binary operations: <strong>Logical Addition</strong> ($\text{OR}$, represented by $+$) and <strong>Logical Multiplication</strong> ($\text{AND}$, represented by $\cdot$), along with a unary operation <strong>Complementation / Inversion</strong> ($\text{NOT}$, represented by $'$ or $\overline{\phantom{A}}$).
+        </p>
+
+        <div class="callout callout-blue">
+          <div class="callout-header">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><circle cx="12" cy="12" r="10"></circle><line x1="12" y1="16" x2="12" y2="12"></line><line x1="12" y1="8" x2="12.01" y2="8"></line></svg>
+            Key Distinction from Ordinary Algebra
+          </div>
+          <p style="margin-bottom:0.5rem;">
+            Keep these fundamental differences firmly in mind:
+          </p>
+          <ul style="margin-bottom:0;">
+            <li><strong>No additive coefficients or powers:</strong> $A + A = A$ (Idempotent), not $2A$. $A \cdot A = A$, not $A^2$.</li>
+            <li><strong>Dual Distributive Law:</strong> In ordinary algebra, multiplication distributes over addition ($A(B+C) = AB+AC$), but addition does NOT distribute over multiplication. In Boolean algebra, <em>both operations distribute over each other!</em> Hence: $$A + BC = (A + B)(A + C)$$ This is the single most frequently applied shortcut in algebraic reduction!</li>
+          </ul>
+        </div>
+
+        <h3>The Five Huntington Postulates (1904)</h3>
+        <p>In 1904, E. V. Huntington formalized the minimal set of postulates that completely define Boolean algebra:</p>
+
+        <div class="table-container">
+          <table>
+            <thead>
+              <tr>
+                <th>Postulate</th>
+                <th>Operation $(+)$ [OR]</th>
+                <th>Operation $(\cdot)$ [AND]</th>
+                <th>Axiomatic Significance</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td><strong>1. Closure</strong></td>
+                <td>If $A, B \in \mathcal{B} \implies A + B \in \mathcal{B}$</td>
+                <td>If $A, B \in \mathcal{B} \implies A \cdot B \in \mathcal{B}$</td>
+                <td>Result never leaves the binary domain $\{0, 1\}$.</td>
+              </tr>
+              <tr>
+                <td><strong>2. Identity Element</strong></td>
+                <td>$A + 0 = A$ <br><small style="color:var(--text-muted);">(Additive identity is $0$)</small></td>
+                <td>$A \cdot 1 = A$ <br><small style="color:var(--text-muted);">(Multiplicative identity is $1$)</small></td>
+                <td>Operating with identity leaves literal unaltered.</td>
+              </tr>
+              <tr>
+                <td><strong>3. Commutativity</strong></td>
+                <td>$A + B = B + A$</td>
+                <td>$A \cdot B = B \cdot A$</td>
+                <td>Input order has zero effect on circuit output.</td>
+              </tr>
+              <tr>
+                <td><strong>4. Distributivity</strong></td>
+                <td>$A + (B \cdot C) = (A + B) \cdot (A + C)$</td>
+                <td>$A \cdot (B + C) = (A \cdot B) + (A \cdot C)$</td>
+                <td>Crucial for factoring and expansion.</td>
+              </tr>
+              <tr>
+                <td><strong>5. Complementarity</strong></td>
+                <td>$A + A' = 1$</td>
+                <td>$A \cdot A' = 0$</td>
+                <td>Every element has a unique inverse element.</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+
+        <div class="theorem-card">
+          <div class="theorem-header">
+            <span class="theorem-title">Formal Proof: $A + BC = (A + B)(A + C)$ from Postulates</span>
+            <span class="theorem-tag">Axiomatic Derivation</span>
+          </div>
+          <p>Let us rigorously expand the Right-Hand Side $(\text{RHS}) = (A + B)(A + C)$ using only Huntington's postulates:</p>
+          <div class="reduction-row">
+            <span class="math-expr">$(A + B)(A + C) = A(A + C) + B(A + C)$</span>
+            <span class="reason-label">Distributive law of $\cdot$ over $+$</span>
+          </div>
+          <div class="reduction-row">
+            <span class="math-expr">$= (A \cdot A + A \cdot C) + (B \cdot A + B \cdot C)$</span>
+            <span class="reason-label">Distributive law applied again</span>
+          </div>
+          <div class="reduction-row">
+            <span class="math-expr">$= (A + AC) + (AB + BC)$</span>
+            <span class="reason-label">Idempotent ($A \cdot A = A$) & Commutative ($BA = AB$)</span>
+          </div>
+          <div class="reduction-row">
+            <span class="math-expr">$= A(1 + C) + AB + BC = A(1) + AB + BC = A + AB + BC$</span>
+            <span class="reason-label">Identity & Null law ($1 + C = 1$)</span>
+          </div>
+          <div class="reduction-row">
+            <span class="math-expr">$= A(1 + B) + BC = A(1) + BC = A + BC$</span>
+            <span class="reason-label">Absorption ($A + AB = A$)</span>
+          </div>
+          <p style="margin-top:0.75rem; color:var(--success); font-weight:600;">
+            $\therefore (A + B)(A + C) = A + BC$ &nbsp; [Q.E.D.]
+          </p>
+        </div>
+      </section>
+
+      <!-- Section 2: Duality -->
+      <section id="duality">
+        <h2>
+          <span>2. The Principle of Duality & Self-Dual Functions</span>
+        </h2>
+        <p>
+          The <strong>Principle of Duality</strong> states: <em>Any true Boolean algebraic identity remains valid if all $+$ (OR) and $\cdot$ (AND) operators are interchanged, and all identity elements $0$ and $1$ are interchanged, while keeping all variable literals strictly unchanged.</em>
+        </p>
+
+        <div class="table-container">
+          <table>
+            <thead>
+              <tr>
+                <th>Primal Relation</th>
+                <th>Dual Relation ($+ \leftrightarrow \cdot$, $0 \leftrightarrow 1$)</th>
+                <th>Operation</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>$A + 0 = A$</td>
+                <td>$A \cdot 1 = A$</td>
+                <td>Identity Law</td>
+              </tr>
+              <tr>
+                <td>$A + 1 = 1$</td>
+                <td>$A \cdot 0 = 0$</td>
+                <td>Annulment / Boundedness Law</td>
+              </tr>
+              <tr>
+                <td>$A + A = A$</td>
+                <td>$A \cdot A = A$</td>
+                <td>Idempotent Law</td>
+              </tr>
+              <tr>
+                <td>$A + A' = 1$</td>
+                <td>$A \cdot A' = 0$</td>
+                <td>Complementarity Law</td>
+              </tr>
+              <tr>
+                <td>$A + AB = A$</td>
+                <td>$A(A + B) = A$</td>
+                <td>Absorption Law Type 1</td>
+              </tr>
+              <tr>
+                <td>$A + A'B = A + B$</td>
+                <td>$A(A' + B) = AB$</td>
+                <td>Absorption Law Type 2 (Elimination)</td>
+              </tr>
+              <tr>
+                <td>$AB + A'C + BC = AB + A'C$</td>
+                <td>$(A + B)(A' + C)(B + C) = (A + B)(A' + C)$</td>
+                <td>Consensus Theorem</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+
+        <div class="callout callout-yellow">
+          <div class="callout-header">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polygon points="7.86 2 16.14 2 22 7.86 22 16.14 16.14 22 7.86 22 2 16.14 2 7.86 7.86 2"></polygon><line x1="12" y1="8" x2="12" y2="12"></line><line x1="12" y1="16" x2="12.01" y2="16"></line></svg>
+            GATE Trap: Dual vs Complement vs Inverse
+          </div>
+          <ul>
+            <li><strong>Dual $F^D$:</strong> Swap $+$ and $\cdot$, swap 0 and 1. <span style="color:var(--danger); font-weight:700;">DO NOT invert literals!</span><br>Example: If $F = A + B'C$, then $F^D = A \cdot (B' + C)$.</li>
+            <li><strong>Complement $F'$:</strong> Invert the entire function (applying De Morgan's): swap $+$ and $\cdot$, and <span style="color:var(--success); font-weight:700;">INVERT all literals</span>.<br>Example: $(A + B'C)' = A' \cdot (B + C')$.</li>
+            <li><strong>Self-Dual Function:</strong> A function $F$ is self-dual if $F^D = F$.
+              <br>For an $n$-variable system, the total number of distinct self-dual functions is:
+              $$N_{\text{self-dual}} = 2^{2^{n-1}}$$
+              <em>For $n = 3$:</em> $2^{2^{3-1}} = 2^4 = 16$ self-dual functions.
+              <br><em>Criteria:</em> A function is self-dual iff its truth table has exactly half 1s and half 0s, and for every input combination $(A, B, C)$, $F(A, B, C) = \overline{F(A', B', C')}$ (mutual exclusion between complementary minterms $m_i$ and $m_{2^n-1-i}$).
+            </li>
+          </ul>
+        </div>
+      </section>
+
+      <!-- Section 3: Absorption Laws -->
+      <section id="absorption">
+        <h2>
+          <span>3. The Absorption Laws: The Core Engine of Reduction</span>
+        </h2>
+        <p>
+          Absorption laws are by far the most powerful rules for shrinking expressions, eliminating redundant literals, and killing off entire terms without lengthy expansions.
+        </p>
+
+        <div class="theorem-card">
+          <div class="theorem-header">
+            <span class="theorem-title">Rule 1: Standard Absorption &mdash; $A + AB = A$</span>
+            <span class="theorem-tag">Dual: $A(A + B) = A$</span>
+          </div>
+          <p><strong>Proof:</strong></p>
+          <div class="reduction-row">
+            <span class="math-expr">$$A + AB = A \cdot 1 + AB = A(1 + B)$$</span>
+            <span class="reason-label">Distributive law & Identity</span>
+          </div>
+          <div class="reduction-row">
+            <span class="math-expr">$$= A \cdot (1) = A$$</span>
+            <span class="reason-label">Null Law ($1 + B = 1$)</span>
+          </div>
+          <p style="margin-top:0.75rem; font-size:0.95rem; color:var(--text-secondary);">
+            <strong>Intuition:</strong> If $A$ is true ($1$), the entire sum is automatically $1$. If $A$ is false ($0$), $AB = 0 \cdot B = 0$, so the term $AB$ can never contribute a $1$ that $A$ didn't already provide. Therefore, $AB$ is completely absorbed into $A$.
+          </p>
+        </div>
+
+        <div class="theorem-card" style="border: 2px solid var(--accent);">
+          <div class="theorem-header">
+            <span class="theorem-title" style="color:var(--accent);">Rule 2: Negated Absorption (Literal Elimination) &mdash; $A + A'B = A + B$</span>
+            <span class="theorem-tag">Dual: $A(A' + B) = AB$</span>
+          </div>
+          <p><strong>Proof:</strong></p>
+          <div class="reduction-row">
+            <span class="math-expr">$$A + A'B = (A + A')(A + B)$$</span>
+            <span class="reason-label">Distributive Law: $X + YZ = (X+Y)(X+Z)$</span>
+          </div>
+          <div class="reduction-row">
+            <span class="math-expr">$$= (1) \cdot (A + B) = A + B$$</span>
+            <span class="reason-label">Complementarity ($A + A' = 1$) & Identity</span>
+          </div>
+          <p style="margin-top:0.75rem; font-size:0.95rem; color:var(--text-secondary);">
+            <strong>Intuition:</strong> Whenever a literal appears alone ($A$) and its complement appears in a product term with another literal ($A'B$), the complement $A'$ simply drops off!
+          </p>
+        </div>
+
+        <div class="theorem-card">
+          <div class="theorem-header">
+            <span class="theorem-title">Generalized Forms of Elimination</span>
+            <span class="theorem-tag">Pattern Matching</span>
+          </div>
+          <div class="table-container" style="margin:0;">
+            <table>
+              <thead>
+                <tr>
+                  <th>Pattern</th>
+                  <th>Simplified Output</th>
+                  <th>Action Rule</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td>$A' + AB$</td>
+                  <td><strong>$A' + B$</strong></td>
+                  <td>Uncomplemented $A$ drops out next to standalone $A'$</td>
+                </tr>
+                <tr>
+                  <td>$AB + A'BC$</td>
+                  <td><strong>$AB + BC$</strong></td>
+                  <td>Let $X = B$, $Y = A$; $B(A + A'C) = B(A + C) = AB + BC$</td>
+                </tr>
+                <tr>
+                  <td>$(A + B)(A + B')$</td>
+                  <td><strong>$A$</strong></td>
+                  <td>$A + BB' = A + 0 = A$ (Distributive law)</td>
+                </tr>
+                <tr>
+                  <td>$AB + AB'$</td>
+                  <td><strong>$A$</strong></td>
+                  <td>$A(B + B') = A(1) = A$</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </section>
+
+      <!-- Section 4: Consensus Theorem -->
+      <section id="consensus">
+        <h2>
+          <span>4. The Consensus Theorem (Redundant Literal Theorem)</span>
+        </h2>
+        <p>
+          The <strong>Consensus Theorem</strong> is the most subtle and celebrated theorem in switching theory. It allows deleting an entire term without any obvious common factor extraction!
+        </p>
+
+        <div class="theorem-card" style="border: 2px solid var(--purple);">
+          <div class="theorem-header">
+            <span class="theorem-title" style="color:var(--purple);">The Consensus Theorem Formulation</span>
+            <span class="theorem-tag">SOP & POS Form</span>
+          </div>
+          <div style="font-size:1.25rem; font-family:var(--font-mono); margin: 0.75rem 0; text-align:center;">
+            $$\mathbf{AB + A'C + BC = AB + A'C}$$
+          </div>
+          <div style="font-size:1.15rem; font-family:var(--font-mono); margin: 0.5rem 0; text-align:center; color:var(--purple);">
+            $$\text{Dual (POS): } \mathbf{(A + B)(A' + C)(B + C) = (A + B)(A' + C)}$$
+          </div>
+        </div>
+
+        <h3>How to Spot the Consensus Term Instantly: 4-Point Checklist</h3>
+        <ul style="list-style-type: square;">
+          <li><strong>Condition 1:</strong> The expression consists of <strong>three terms</strong>, each containing <strong>two literals</strong>.</li>
+          <li><strong>Condition 2:</strong> There are exactly three distinct variables involved (e.g., $A, B, C$).</li>
+          <li><strong>Condition 3:</strong> Exactly <strong>one variable</strong> appears in both its true and complemented form across two different terms (e.g., $A$ in $AB$ and $A'$ in $A'C$).</li>
+          <li><strong>Condition 4:</strong> The <strong>third term</strong> consists of the remaining literals from the first two terms ($BC$).</li>
+        </ul>
+        <div class="callout callout-green">
+          <div class="callout-header">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"></polyline></svg>
+            Actionable Rule
+          </div>
+          <p style="margin:0;">
+            <strong>The third term ($BC$) is the "Consensus" and is 100% redundant. You can immediately cross it out!</strong>
+          </p>
+        </div>
+
+        <div class="theorem-card">
+          <div class="theorem-header">
+            <span class="theorem-title">Algebraic Proof of the Consensus Theorem</span>
+            <span class="theorem-tag">Step-by-Step Derivation</span>
+          </div>
+          <div class="reduction-row">
+            <span class="math-expr">$$F = AB + A'C + BC$$</span>
+            <span class="reason-label">Original expression</span>
+          </div>
+          <div class="reduction-row">
+            <span class="math-expr">$$= AB + A'C + BC \cdot (1)$$</span>
+            <span class="reason-label">Multiplicative Identity</span>
+          </div>
+          <div class="reduction-row">
+            <span class="math-expr">$$= AB + A'C + BC(A + A')$$</span>
+            <span class="reason-label">Complementarity ($A + A' = 1$)</span>
+          </div>
+          <div class="reduction-row">
+            <span class="math-expr">$$= AB + A'C + ABC + A'BC$$</span>
+            <span class="reason-label">Distributive law</span>
+          </div>
+          <div class="reduction-row">
+            <span class="math-expr">$$= (AB + ABC) + (A'C + A'BC)$$</span>
+            <span class="reason-label">Commutative & Associative rearrangement</span>
+          </div>
+          <div class="reduction-row">
+            <span class="math-expr">$$= AB(1 + C) + A'C(1 + B)$$</span>
+            <span class="reason-label">Factoring common terms</span>
+          </div>
+          <div class="reduction-row">
+            <span class="math-expr">$$= AB(1) + A'C(1) = AB + A'C$$</span>
+            <span class="reason-label">Null Law ($1 + X = 1$) & Identity</span>
+          </div>
+          <p style="margin-top:0.75rem; color:var(--success); font-weight:600;">
+            $\therefore AB + A'C + BC = AB + A'C$ &nbsp; [Q.E.D.]
+          </p>
+        </div>
+      </section>
+
+      <!-- Section 5: Transposition & De Morgan's -->
+      <section id="transposition">
+        <h2>
+          <span>5. Transposition Theorem & De Morgan's Laws</span>
+        </h2>
+
+        <div class="theorem-card">
+          <div class="theorem-header">
+            <span class="theorem-title">Transposition Theorem</span>
+            <span class="theorem-tag">POS to SOP Factoring</span>
+          </div>
+          <div style="font-size:1.2rem; font-family:var(--font-mono); margin: 0.75rem 0; text-align:center;">
+            $$\mathbf{(A + B)(A' + C) = AC + A'B}$$
+          </div>
+          <p>
+            <strong>Dual:</strong> $AB + A'C = (A + C)(A' + B)$.
+          </p>
+          <p>
+            <strong>Proof:</strong> Multiply out $(A + B)(A' + C) = AA' + AC + BA' + BC = 0 + AC + A'B + BC = AC + A'B + BC$. By Consensus between $AC$ and $A'B$, the term $BC$ drops out! Thus, $(A+B)(A'+C) = AC + A'B$.
+          </p>
+        </div>
+
+        <h3 id="demorgan">De Morgan's Laws & Generalized Inversion</h3>
+        <p>De Morgan's laws state that the complement of a sum is equal to the product of the complements, and the complement of a product is equal to the sum of the complements:</p>
+        <div class="table-container">
+          <table>
+            <thead>
+              <tr>
+                <th>Standard Form (2 Variables)</th>
+                <th>Generalized Form ($n$ Variables)</th>
+                <th>Gate Equivalent Representation</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>$\overline{A + B} = A' \cdot B'$</td>
+                <td>$\overline{X_1 + X_2 + \cdots + X_n} = X_1' \cdot X_2' \cdots X_n'$</td>
+                <td><strong>NOR Gate</strong> $\equiv$ <strong>Bubbled AND Gate</strong></td>
+              </tr>
+              <tr>
+                <td>$\overline{A \cdot B} = A' + B'$</td>
+                <td>$\overline{X_1 \cdot X_2 \cdots X_n} = X_1' + X_2' + \cdots + X_n'$</td>
+                <td><strong>NAND Gate</strong> $\equiv$ <strong>Bubbled OR Gate</strong></td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </section>
+
+      <!-- Section 6: Shannon's Expansion -->
+      <section id="shannon">
+        <h2>
+          <span>6. Shannon's Expansion Theorems</span>
+        </h2>
+        <p>
+          Claude Shannon proved that any Boolean function $f(x_1, x_2, \dots, x_n)$ can be formally expanded with respect to any chosen variable $x_i$ into an orthonormal expansion:
+        </p>
+
+        <div class="theorem-card" style="border: 2px solid var(--cyan);">
+          <div class="theorem-header">
+            <span class="theorem-title" style="color:var(--cyan);">Shannon's Expansion Theorem (SOP Form)</span>
+            <span class="theorem-tag">Multiplexer Basis</span>
+          </div>
+          <div style="font-size:1.25rem; font-family:var(--font-mono); margin: 0.75rem 0; text-align:center;">
+            $$f(x_1, x_2, \dots, x_n) = x_1 \cdot f(1, x_2, \dots, x_n) + x_1' \cdot f(0, x_2, \dots, x_n)$$
+          </div>
+          <p>
+            <strong>Dual Form (POS Form):</strong>
+            $$f(x_1, x_2, \dots, x_n) = [x_1 + f(0, x_2, \dots, x_n)] \cdot [x_1' + f(1, x_2, \dots, x_n)]$$
+          </p>
+        </div>
+
+        <div class="callout callout-blue">
+          <div class="callout-header">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"></polygon></svg>
+            Direct Hardware Application: Multiplexers (MUX)
+          </div>
+          <p style="margin:0;">
+            A 2-to-1 Multiplexer with select input $S$, data inputs $I_0$ and $I_1$ implements the equation:
+            $$Y = S' I_0 + S I_1$$
+            Notice that this is identical to Shannon's expansion where $S = x_1$, $I_0 = f(0, \dots)$, and $I_1 = f(1, \dots)$. Thus, <em>any $n$-variable Boolean function can be implemented using a $2^k$-to-1 MUX by taking $k$ variables as select lines and applying Shannon's expansion!</em>
+          </p>
+        </div>
+      </section>
+
+      <!-- Section 7: Systematic Algebraic Reduction Strategy -->
+      <section id="strategy">
+        <h2>
+          <span>7. The 7-Step Algebraic Reduction Algorithm</span>
+        </h2>
+        <p>
+          When presented with an un-simplified Boolean expression on paper or an exam, following this systematic sequence guarantees reaching the minimal literal form without guessing:
+        </p>
+
+        <div class="step-box">
+          <div class="step-header">
+            <span class="step-num">Step 1: Inversion & De Morgan's Flattening</span>
+            <span class="step-pill">Phase 1</span>
+          </div>
+          <p>If the expression has overarching complement bars (e.g., $\overline{AB + (C + D)'}$), apply De Morgan's laws from the outermost bar inward until complement bars cover only individual single literals.</p>
+        </div>
+
+        <div class="step-box">
+          <div class="step-header">
+            <span class="step-num">Step 2: Remove Null and Identity Literals</span>
+            <span class="step-pill">Phase 2</span>
+          </div>
+          <p>Substitute known constants: replace $X \cdot 0 \to 0$, $X + 1 \to 1$, $X \cdot 1 \to X$, and $X + 0 \to X$. Any product term multiplied by $0$ is dropped entirely.</p>
+        </div>
+
+        <div class="step-box">
+          <div class="step-header">
+            <span class="step-num">Step 3: Kill Inverses & Apply Idempotency</span>
+            <span class="step-pill">Phase 3</span>
+          </div>
+          <p>Within every product term, check for $X \cdot X = X$ and $X \cdot X' = 0$. If any term contains both a variable and its complement (e.g. $A B A' C$), the entire term becomes $0$ and vanishes.</p>
+        </div>
+
+        <div class="step-box">
+          <div class="step-header">
+            <span class="step-num">Step 4: Distribute / Factor strategically</span>
+            <span class="step-pill">Phase 4</span>
+          </div>
+          <p>If terms share common variables, factor them out to expose complements: $XY + XY' = X(Y + Y') = X(1) = X$. If brackets exist, decide whether expanding gives cancellable terms.</p>
+        </div>
+
+        <div class="step-box">
+          <div class="step-header">
+            <span class="step-num">Step 5: Apply Elimination / Negated Absorption</span>
+            <span class="step-pill">Phase 5</span>
+          </div>
+          <p>Scan for patterns like $A + A'B$. Instantly drop the complemented literal $A'$ to write $A + B$.</p>
+        </div>
+
+        <div class="step-box">
+          <div class="step-header">
+            <span class="step-num">Step 6: Run the Consensus Check</span>
+            <span class="step-pill">Phase 6</span>
+          </div>
+          <p>Look for three pairs of terms with one variable inverted: $AB + A'C + BC$. Immediately strike out the consensus term $BC$.</p>
+        </div>
+
+        <div class="step-box">
+          <div class="step-header">
+            <span class="step-num">Step 7: Verification & Minimality Check</span>
+            <span class="step-pill">Phase 7</span>
+          </div>
+          <p>Count the literals in the final expression. Ensure no further factoring can reduce the gate count or literal count.</p>
+        </div>
+      </section>
+
+      <!-- Section 8: Worked Examples -->
+      <section id="worked-examples">
+        <h2>
+          <span>8. 12 Step-by-Step Worked Algebraic Reductions</span>
+        </h2>
+        <p>
+          Let us apply the complete theorem catalog to 12 diverse reduction problems, showing the exact algebraic justification for every single step.
+        </p>
+
+        <!-- Example 1 -->
+        <div class="step-box">
+          <div class="step-header">
+            <span class="step-num">Example 1: Simplify $F = AB + A(B + C) + B(B + C)$</span>
+            <span class="step-pill">Standard SOP</span>
+          </div>
+          <div class="reduction-row">
+            <span class="math-expr">$$F = AB + AB + AC + BB + BC$$</span>
+            <span class="reason-label">Expand parentheses using Distributive Law</span>
+          </div>
+          <div class="reduction-row">
+            <span class="math-expr">$$= AB + AC + B + BC$$</span>
+            <span class="reason-label">Idempotency ($AB + AB = AB$, $BB = B$)</span>
+          </div>
+          <div class="reduction-row">
+            <span class="math-expr">$$= AB + AC + B(1 + C) = AB + AC + B(1) = AB + AC + B$$</span>
+            <span class="reason-label">Absorption ($B + BC = B$)</span>
+          </div>
+          <div class="reduction-row">
+            <span class="math-expr">$$= (B + AB) + AC = B + AC$$</span>
+            <span class="reason-label">Absorption ($B + AB = B$)</span>
+          </div>
+          <div class="reduction-row">
+            <span class="math-expr">$$\mathbf{F = B + AC}$$</span>
+            <span class="reason-label" style="background:var(--success-soft); color:var(--success);">Minimal Irreducible Result (3 literals)</span>
+          </div>
+        </div>
+
+        <!-- Example 2 -->
+        <div class="step-box">
+          <div class="step-header">
+            <span class="step-num">Example 2: Simplify $F = (A + B)(A + B')$</span>
+            <span class="step-pill">POS Reduction</span>
+          </div>
+          <div class="reduction-row">
+            <span class="math-expr">$$F = A + (B \cdot B')$$</span>
+            <span class="reason-label">Apply Dual Distributive Law: $(X+Y)(X+Z) = X + YZ$</span>
+          </div>
+          <div class="reduction-row">
+            <span class="math-expr">$$= A + 0$$</span>
+            <span class="reason-label">Complementarity ($B \cdot B' = 0$)</span>
+          </div>
+          <div class="reduction-row">
+            <span class="math-expr">$$\mathbf{F = A}$$</span>
+            <span class="reason-label" style="background:var(--success-soft); color:var(--success);">Minimal Result (1 literal)</span>
+          </div>
+        </div>
+
+        <!-- Example 3 -->
+        <div class="step-box">
+          <div class="step-header">
+            <span class="step-num">Example 3: Simplify $F = A'B'C + A'BC + AB'C + ABC$</span>
+            <span class="step-pill">Minterm Pairing</span>
+          </div>
+          <div class="reduction-row">
+            <span class="math-expr">$$F = A'C(B' + B) + AC(B' + B)$$</span>
+            <span class="reason-label">Factor $A'C$ from first two, $AC$ from last two</span>
+          </div>
+          <div class="reduction-row">
+            <span class="math-expr">$$= A'C(1) + AC(1) = A'C + AC$$</span>
+            <span class="reason-label">Complementarity ($B' + B = 1$) & Identity</span>
+          </div>
+          <div class="reduction-row">
+            <span class="math-expr">$$= C(A' + A) = C(1)$$</span>
+            <span class="reason-label">Factor common $C$, apply $A' + A = 1$</span>
+          </div>
+          <div class="reduction-row">
+            <span class="math-expr">$$\mathbf{F = C}$$</span>
+            <span class="reason-label" style="background:var(--success-soft); color:var(--success);">Minimal Result (1 literal)</span>
+          </div>
+        </div>
+
+        <!-- Example 4 -->
+        <div class="step-box">
+          <div class="step-header">
+            <span class="step-num">Example 4: Simplify $F = AB + A'C + BC$</span>
+            <span class="step-pill">Consensus Application</span>
+          </div>
+          <div class="reduction-row">
+            <span class="math-expr">$$\text{Check: } AB \text{ has } A; \quad A'C \text{ has } A'; \quad BC \text{ is combination of remaining literals.}$$</span>
+            <span class="reason-label">Consensus pattern recognized</span>
+          </div>
+          <div class="reduction-row">
+            <span class="math-expr">$$\mathbf{F = AB + A'C}$$</span>
+            <span class="reason-label" style="background:var(--success-soft); color:var(--success);">$BC$ is redundant consensus term (4 literals)</span>
+          </div>
+        </div>
+
+        <!-- Example 5 -->
+        <div class="step-box">
+          <div class="step-header">
+            <span class="step-num">Example 5: Simplify $F = (A + B)(A' + C)(B + C)$</span>
+            <span class="step-pill">POS Dual Consensus</span>
+          </div>
+          <div class="reduction-row">
+            <span class="math-expr">$$\text{Check: } (A+B) \text{ has } A; \quad (A'+C) \text{ has } A'; \quad (B+C) \text{ is dual consensus.}$$</span>
+            <span class="reason-label">Dual Consensus recognized</span>
+          </div>
+          <div class="reduction-row">
+            <span class="math-expr">$$\mathbf{F = (A + B)(A' + C)}$$</span>
+            <span class="reason-label" style="background:var(--success-soft); color:var(--success);">Drop $(B + C)$ directly! (4 literals)</span>
+          </div>
+        </div>
+
+        <!-- Example 6 -->
+        <div class="step-box">
+          <div class="step-header">
+            <span class="step-num">Example 6: Simplify $F = [AB'(C + BD) + A'B']C$</span>
+            <span class="step-pill">Nested Brackets</span>
+          </div>
+          <div class="reduction-row">
+            <span class="math-expr">$$AB'(C + BD) = AB'C + AB'BD = AB'C + A(0)D = AB'C + 0 = AB'C$$</span>
+            <span class="reason-label">Expand inner bracket ($B'B = 0$)</span>
+          </div>
+          <div class="reduction-row">
+            <span class="math-expr">$$F = [AB'C + A'B']C = AB'C \cdot C + A'B'C$$</span>
+            <span class="reason-label">Multiply outer $C$</span>
+          </div>
+          <div class="reduction-row">
+            <span class="math-expr">$$= AB'C + A'B'C$$</span>
+            <span class="reason-label">Idempotent ($C \cdot C = C$)</span>
+          </div>
+          <div class="reduction-row">
+            <span class="math-expr">$$= B'C(A + A') = B'C(1)$$</span>
+            <span class="reason-label">Factor common $B'C$, apply $A + A' = 1$</span>
+          </div>
+          <div class="reduction-row">
+            <span class="math-expr">$$\mathbf{F = B'C}$$</span>
+            <span class="reason-label" style="background:var(--success-soft); color:var(--success);">Minimal Result (2 literals)</span>
+          </div>
+        </div>
+
+        <!-- Example 7 -->
+        <div class="step-box">
+          <div class="step-header">
+            <span class="step-num">Example 7: Simplify $F = A + A'B + A'B'C + A'B'C'D$</span>
+            <span class="step-pill">Cascaded Elimination</span>
+          </div>
+          <div class="reduction-row">
+            <span class="math-expr">$$A + A'B = A + B$$</span>
+            <span class="reason-label">Absorption Rule 2: $X + X'Y = X + Y$</span>
+          </div>
+          <div class="reduction-row">
+            <span class="math-expr">$$F = (A + B) + A'B'C = A + B + A'B'C$$</span>
+            <span class="reason-label">Substitute back</span>
+          </div>
+          <div class="reduction-row">
+            <span class="math-expr">$$\text{Notice } A'B' = (A + B)' \text{ by De Morgan's! Let } U = (A + B). \implies U + U'C = U + C$$</span>
+            <span class="reason-label">De Morgan's substitution</span>
+          </div>
+          <div class="reduction-row">
+            <span class="math-expr">$$= A + B + C + A'B'C'D = (A + B + C) + (A + B + C)' D$$</span>
+            <span class="reason-label">Repeat with $V = (A + B + C)$</span>
+          </div>
+          <div class="reduction-row">
+            <span class="math-expr">$$\mathbf{F = A + B + C + D}$$</span>
+            <span class="reason-label" style="background:var(--success-soft); color:var(--success);">Spectacular reduction from 10 literals to 4!</span>
+          </div>
+        </div>
+
+        <!-- Example 8 -->
+        <div class="step-box">
+          <div class="step-header">
+            <span class="step-num">Example 8: Simplify $F = \overline{(A + B'C)(AB' + C')}$</span>
+            <span class="step-pill">De Morgan's Reduction</span>
+          </div>
+          <div class="reduction-row">
+            <span class="math-expr">$$F = \overline{A + B'C} + \overline{AB' + C'}$$</span>
+            <span class="reason-label">De Morgan's on outer product: $\overline{X \cdot Y} = X' + Y'$</span>
+          </div>
+          <div class="reduction-row">
+            <span class="math-expr">$$\overline{A + B'C} = A' \cdot \overline{B'C} = A'(B'' + C') = A'(B + C') = A'B + A'C'$$</span>
+            <span class="reason-label">De Morgan's on first term</span>
+          </div>
+          <div class="reduction-row">
+            <span class="math-expr">$$\overline{AB' + C'} = \overline{AB'} \cdot C'' = (A' + B'') \cdot C = (A' + B)C = A'C + BC$$</span>
+            <span class="reason-label">De Morgan's on second term</span>
+          </div>
+          <div class="reduction-row">
+            <span class="math-expr">$$F = A'B + A'C' + A'C + BC$$</span>
+            <span class="reason-label">Combine both terms</span>
+          </div>
+          <div class="reduction-row">
+            <span class="math-expr">$$A'C' + A'C = A'(C' + C) = A'(1) = A'$$</span>
+            <span class="reason-label">Factor $A'$</span>
+          </div>
+          <div class="reduction-row">
+            <span class="math-expr">$$F = A' + A'B + BC = A'(1 + B) + BC = A' + BC$$</span>
+            <span class="reason-label">Absorption ($A' + A'B = A'$)</span>
+          </div>
+          <div class="reduction-row">
+            <span class="math-expr">$$\mathbf{F = A' + BC}$$</span>
+            <span class="reason-label" style="background:var(--success-soft); color:var(--success);">Minimal SOP (3 literals)</span>
+          </div>
+        </div>
+
+        <!-- Example 9 -->
+        <div class="step-box">
+          <div class="step-header">
+            <span class="step-num">Example 9: Simplify $F = (A + B)(A + C)(B' + C)$</span>
+            <span class="step-pill">Transposition & Distributivity</span>
+          </div>
+          <div class="reduction-row">
+            <span class="math-expr">$$(A + B)(A + C) = A + BC$$</span>
+            <span class="reason-label">Distributive law of $+$ over $\cdot$</span>
+          </div>
+          <div class="reduction-row">
+            <span class="math-expr">$$F = (A + BC)(B' + C) = A(B' + C) + BC(B' + C)$$</span>
+            <span class="reason-label">Distribute</span>
+          </div>
+          <div class="reduction-row">
+            <span class="math-expr">$$= AB' + AC + BCB' + BCC = AB' + AC + 0 + BC$$</span>
+            <span class="reason-label">$B B' = 0$ and $C C = C$</span>
+          </div>
+          <div class="reduction-row">
+            <span class="math-expr">$$= AB' + AC + BC$$</span>
+            <span class="reason-label">Notice consensus: $AB'$ and $BC$ has $B/B'$, consensus is $AC$</span>
+          </div>
+          <div class="reduction-row">
+            <span class="math-expr">$$\mathbf{F = AB' + BC}$$</span>
+            <span class="reason-label" style="background:var(--success-soft); color:var(--success);">Drop redundant consensus $AC$! (4 literals)</span>
+          </div>
+        </div>
+
+        <!-- Example 10 -->
+        <div class="step-box">
+          <div class="step-header">
+            <span class="step-num">Example 10: Simplify $F = X'YZ + XY'Z + XYZ' + XYZ$</span>
+            <span class="step-pill">Duplicate-Minterm Trick</span>
+          </div>
+          <div class="reduction-row">
+            <span class="math-expr">$$\text{By Idempotency, } XYZ = XYZ + XYZ + XYZ$$</span>
+            <span class="reason-label">Replicate $XYZ$ three times</span>
+          </div>
+          <div class="reduction-row">
+            <span class="math-expr">$$F = (X'YZ + XYZ) + (XY'Z + XYZ) + (XYZ' + XYZ)$$</span>
+            <span class="reason-label">Group with each term</span>
+          </div>
+          <div class="reduction-row">
+            <span class="math-expr">$$= YZ(X' + X) + XZ(Y' + Y) + XY(Z' + Z)$$</span>
+            <span class="reason-label">Factor common pairs</span>
+          </div>
+          <div class="reduction-row">
+            <span class="math-expr">$$= YZ(1) + XZ(1) + XY(1)$$</span>
+            <span class="reason-label">Complementarity ($X + X' = 1$)</span>
+          </div>
+          <div class="reduction-row">
+            <span class="math-expr">$$\mathbf{F = XY + YZ + ZX}$$</span>
+            <span class="reason-label" style="background:var(--success-soft); color:var(--success);">Classic Majority Function (6 literals)</span>
+          </div>
+        </div>
+
+        <!-- Example 11 -->
+        <div class="step-box">
+          <div class="step-header">
+            <span class="step-num">Example 11: Simplify $F = (A + B + C')(A + B' + C')(A' + B + C')$</span>
+            <span class="step-pill">Dual Common Factor</span>
+          </div>
+          <div class="reduction-row">
+            <span class="math-expr">$$\text{Notice } (A + C') \text{ is common to the first two terms: } [(A + C') + B] \cdot [(A + C') + B']$$</span>
+            <span class="reason-label">Associate common term</span>
+          </div>
+          <div class="reduction-row">
+            <span class="math-expr">$$= (A + C') + BB' = (A + C') + 0 = A + C'$$</span>
+            <span class="reason-label">Distributive law: $(X+Y)(X+Y') = X$</span>
+          </div>
+          <div class="reduction-row">
+            <span class="math-expr">$$F = (A + C')(A' + B + C')$$</span>
+            <span class="reason-label">Multiply with third term</span>
+          </div>
+          <div class="reduction-row">
+            <span class="math-expr">$$\text{Notice } C' \text{ is common to both: } C' + A(A' + B) = C' + AA' + AB = C' + 0 + AB$$</span>
+            <span class="reason-label">Distribute $C'$</span>
+          </div>
+          <div class="reduction-row">
+            <span class="math-expr">$$\mathbf{F = C' + AB}$$</span>
+            <span class="reason-label" style="background:var(--success-soft); color:var(--success);">Minimal SOP (3 literals)</span>
+          </div>
+        </div>
+
+        <!-- Example 12 -->
+        <div class="step-box">
+          <div class="step-header">
+            <span class="step-num">Example 12: Simplify $F = A'B + B'C' + A'C'$ using Consensus</span>
+            <span class="step-pill">Hidden Consensus Recognition</span>
+          </div>
+          <div class="reduction-row">
+            <span class="math-expr">$$\text{Compare terms: } A'B \text{ and } B'C'.$$</span>
+            <span class="reason-label">Variable $B$ appears as $B$ and $B'$</span>
+          </div>
+          <div class="reduction-row">
+            <span class="math-expr">$$\text{Remaining literals from both terms: } A' \text{ and } C'. \implies \text{Consensus term is } A'C'!$$</span>
+            <span class="reason-label">The third term is exactly the consensus of the first two!</span>
+          </div>
+          <div class="reduction-row">
+            <span class="math-expr">$$\mathbf{F = A'B + B'C'}$$</span>
+            <span class="reason-label" style="background:var(--success-soft); color:var(--success);">Drop $A'C'$ instantly! (4 literals)</span>
+          </div>
+        </div>
+      </section>
+
+      <!-- Section 9: Canonical Forms -->
+      <section id="canonical">
+        <h2>
+          <span>9. Canonical Forms (SOP & POS) and Fast Conversions</span>
+        </h2>
+        <p>
+          Every Boolean function can be expressed in two canonical forms: <strong>Sum of Minterms ($\sum m$)</strong> and <strong>Product of Maxterms ($\prod M$)</strong>.
+        </p>
+
+        <div class="table-container">
+          <table>
+            <thead>
+              <tr>
+                <th>Property</th>
+                <th>Minterm ($m_i$) [Canonical SOP]</th>
+                <th>Maxterm ($M_i$) [Canonical POS]</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td><strong>Definition</strong></td>
+                <td>A product term containing all variables in true or complemented form that equals 1 for exactly <em>one</em> input row.</td>
+                <td>A sum term containing all variables in true or complemented form that equals 0 for exactly <em>one</em> input row.</td>
+              </tr>
+              <tr>
+                <td><strong>Representation of $0$ vs $1$</strong></td>
+                <td>$0 \to X'$, $1 \to X$<br><small>(e.g. Row $101_2 \implies A B' C = m_5$)</small></td>
+                <td>$0 \to X$, $1 \to X'$<br><small>(e.g. Row $101_2 \implies A' + B + C' = M_5$)</small></td>
+              </tr>
+              <tr>
+                <td><strong>Relation between both</strong></td>
+                <td colspan="2" style="text-align:center; font-weight:700; color:var(--accent);">
+                  $$\mathbf{m_i' = M_i} \quad \text{and} \quad \mathbf{M_i' = m_i}$$
+                </td>
+              </tr>
+              <tr>
+                <td><strong>Complement Conversion</strong></td>
+                <td colspan="2">
+                  If a 3-variable function $F(A,B,C) = \sum m(1, 3, 5, 7)$, then its complement is the missing minterms:
+                  $$F'(A,B,C) = \sum m(0, 2, 4, 6)$$
+                  And its Maxterm representation is the exact same index list as $F'$:
+                  $$F(A,B,C) = \prod M(0, 2, 4, 6)$$
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </section>
+
+      <!-- Section 10: K-Map Minimization -->
+      <section id="kmap">
+        <h2>
+          <span>10. Karnaugh Map (K-Map) Graphical Minimization</span>
+        </h2>
+        <p>
+          The <strong>Karnaugh Map</strong> (K-Map) is a graphical representation of a Boolean truth table organized in a 2D matrix where cell addresses follow a <strong>Gray Code sequence ($00, 01, 11, 10$)</strong>.
+        </p>
+
+        <div class="callout callout-blue">
+          <div class="callout-header">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><circle cx="12" cy="12" r="10"></circle><path d="M12 6v6l4 2"></path></svg>
+            Why Gray Code? (Hamming Distance = 1)
+          </div>
+          <p style="margin:0;">
+            In standard binary counting, transitioning from $01_2 \to 10_2$ changes two bits simultaneously. In Gray code ($00 \to 01 \to 11 \to 10$), <strong>only one bit changes between any two physically adjacent cells</strong>! Because of this, combining two adjacent cells containing '1' algebraically eliminates the changing literal via $X + X' = 1$!
+          </p>
+        </div>
+
+        <h3>Cell Grouping Hierarchy & Variable Elimination</h3>
+        <p>Groups must always be rectangular and contain a power-of-two number of cells ($2^k$):</p>
+        <div class="table-container">
+          <table>
+            <thead>
+              <tr>
+                <th>Group Name</th>
+                <th>Cell Count ($2^k$)</th>
+                <th>Variables Eliminated ($k$)</th>
+                <th>Resulting Term Size (in 4-variable map)</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td><strong>Singleton</strong></td>
+                <td>$2^0 = 1$ cell</td>
+                <td>0 variables eliminated</td>
+                <td>4 literals (e.g. $A'B'CD$)</td>
+              </tr>
+              <tr>
+                <td><strong>Pair</strong></td>
+                <td>$2^1 = 2$ cells</td>
+                <td>1 variable eliminated</td>
+                <td>3 literals (e.g. $A'B'C$)</td>
+              </tr>
+              <tr>
+                <td><strong>Quad</strong></td>
+                <td>$2^2 = 4$ cells</td>
+                <td>2 variables eliminated</td>
+                <td>2 literals (e.g. $A'C$)</td>
+              </tr>
+              <tr>
+                <td><strong>Octet</strong></td>
+                <td>$2^3 = 8$ cells</td>
+                <td>3 variables eliminated</td>
+                <td>1 literal (e.g. $A$)</td>
+              </tr>
+              <tr>
+                <td><strong>Full Map</strong></td>
+                <td>$2^4 = 16$ cells</td>
+                <td>4 variables eliminated</td>
+                <td>Tautology: $F = 1$</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+
+        <h3 id="implicants">Classification of Implicants</h3>
+        <ul style="list-style-type: square;">
+          <li><strong>Implicant:</strong> Any single minterm or group of minterms where the function evaluates to 1.</li>
+          <li><strong>Prime Implicant (PI):</strong> A rectangular group of $2^k$ 1-cells that cannot be merged with any other adjacent group to form a larger group of $2^{k+1}$ cells. (A maximal group).</li>
+          <li><strong>Essential Prime Implicant (EPI):</strong> A Prime Implicant that contains <strong>at least one '1' (distinguished minterm)</strong> that is not covered by any other Prime Implicant! <em>All EPIs must be included in the minimal expression.</em></li>
+          <li><strong>Redundant Prime Implicant (RPI):</strong> A Prime Implicant whose 1-cells are already completely covered by the chosen Essential Prime Implicants. <em>RPIs must never be included.</em></li>
+          <li><strong>Selective Prime Implicant (SPI):</strong> A PI that is neither EPI nor RPI; used when multiple alternative minimal covers exist.</li>
+        </ul>
+
+        <h3>Handling Don't Care Conditions ($d$ or $X$)</h3>
+        <div class="callout callout-yellow">
+          <div class="callout-header">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polygon points="7.86 2 16.14 2 22 7.86 22 16.14 16.14 22 7.86 22 2 16.14 2 7.86 7.86 2"></polygon><line x1="12" y1="8" x2="12" y2="12"></line><line x1="12" y1="16" x2="12.01" y2="16"></line></svg>
+            Golden Rules for Don't Cares
+          </div>
+          <ol style="margin:0; padding-left:1.5rem;">
+            <li>Treat an $X$ as a $1$ <strong>only if it enlarges an existing group of 1s</strong> (e.g., turns a pair into a quad, or a quad into an octet).</li>
+            <li>If an $X$ does not help enlarge a group of real 1s, <strong>treat it as 0 and ignore it</strong>.</li>
+            <li><strong style="color:var(--danger);">NEVER create a group containing ONLY Don't Cares!</strong> Groups must contain at least one true minterm.</li>
+          </ol>
+        </div>
+
+        <h3 id="hazards">Eliminating Static-1 Hazards via K-Maps</h3>
+        <p>
+          A <strong>Static-1 Hazard</strong> is a condition in combinational logic where an output that should theoretically remain $1$ experiences a momentary, unwanted glitch to $0$ due to unequal gate propagation delays during an input transition between two adjacent minterms.
+        </p>
+        <div class="callout callout-green">
+          <div class="callout-header">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"></polyline></svg>
+            How to Detect & Eliminate Hazards
+          </div>
+          <p>
+            <strong>Detection:</strong> In a K-map, if two adjacent 1s are covered by <em>different</em> prime implicants and there is no single prime implicant that covers both of them simultaneously, a hazard exists between those two cells!
+          </p>
+          <p style="margin-bottom:0;">
+            <strong>Elimination:</strong> Add the <strong>redundant consensus prime implicant</strong> that covers both cells! While algebraically redundant, this extra gate keeps the output pinned to $1$ during the switching transition.
+          </p>
+        </div>
+      </section>
+
+      <!-- Section 11: Quine-McCluskey Method -->
+      <section id="tabular">
+        <h2>
+          <span>11. Quine-McCluskey (Tabular Method) Algorithm</span>
+        </h2>
+        <p>
+          For functions with $n \ge 5$ variables, visual K-maps become clumsy and error-prone. The <strong>Quine-McCluskey (Tabular) Method</strong> provides an exact, deterministic algorithm suitable for both paper calculation and computer implementation.
+        </p>
+
+        <div class="step-box">
+          <div class="step-header">
+            <span class="step-num">Step-by-Step Algorithm</span>
+            <span class="step-pill">Tabular Procedure</span>
+          </div>
+          <ol style="padding-left:1.5rem; margin-bottom:0;">
+            <li><strong>Group by Hamming Weight:</strong> Convert all minterms (and don't cares) to binary and partition them into groups based on the count of 1s in their binary representation (Group 0, Group 1, Group 2, etc.).</li>
+            <li><strong>First Round Combinations:</strong> Compare each term in Group $i$ with each term in Group $i+1$. If two terms differ in exactly one bit position, combine them and replace that differing bit with a hyphen ($-$). Place a checkmark ($\checkmark$) beside the combined terms.</li>
+            <li><strong>Successive Merges:</strong> Repeat the process for pairs, quads, etc., matching terms that have their hyphens ($-$) in identical positions and differ by only one binary bit.</li>
+            <li><strong>Extract Prime Implicants:</strong> Any term that could not be combined with any other term (un-checked) is a <strong>Prime Implicant (PI)</strong>.</li>
+            <li><strong>Construct PI Table:</strong> Rows correspond to PIs, columns correspond to original minterms (do NOT include don't cares in the columns). Place an $\times$ in row $i$, column $j$ if PI $i$ covers minterm $j$.</li>
+            <li><strong>Find Essential Prime Implicants:</strong> Any column that contains only a single $\times$ indicates that the corresponding PI is <strong>Essential (EPI)</strong>! Mark it, include it in your final SOP, and cross out all minterms that EPI covers.</li>
+            <li><strong>Petrick's Method:</strong> If uncovered minterms remain with multiple overlapping choices, write a product of sum clauses for each column and multiply out to find the minimum literal cover.</li>
+          </ol>
+        </div>
+      </section>
+
+      <!-- Section 12: Interactive Tools -->
+      <section id="interactive-simplifier">
+        <h2>
+          <span>12. Interactive Tools & Solvers</span>
+        </h2>
+        
+        <!-- Tool 1: Expression Evaluator -->
+        <div class="interactive-tool-card">
+          <div class="tool-header">
+            <div class="tool-title">
+              <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><rect x="4" y="4" width="16" height="16" rx="2"></rect><line x1="9" y1="9" x2="15" y2="15"></line><line x1="15" y1="9" x2="9" y2="15"></line></svg>
+              <span>Interactive Boolean Expression Evaluator & Truth Table Generator</span>
+            </div>
+            <span class="badge badge-primary">Live JS Engine</span>
+          </div>
+          <p style="font-size:0.95rem; color:var(--text-secondary); margin-bottom:1rem;">
+            Supports variables <code>A, B, C, D</code>. Operators: <code>+</code> (OR), <code>*</code> or space (AND), <code>'</code> or <code>!</code> or <code>~</code> (NOT), <code>^</code> (XOR).
+          </p>
+
+          <div class="tool-presets">
+            <span style="font-size:0.8rem; font-weight:700; color:var(--text-muted); align-self:center;">Try Presets:</span>
+            <button class="preset-btn" onclick="setExpr('A*B + A\'*C + B*C')">Consensus: AB + A'C + BC</button>
+            <button class="preset-btn" onclick="setExpr('A + A\'*B')">Absorption: A + A'B</button>
+            <button class="preset-btn" onclick="setExpr('(A + B)*(A + B\')')">Dual: (A+B)(A+B')</button>
+            <button class="preset-btn" onclick="setExpr('(A + B)*(A\' + C)')">Transposition: (A+B)(A'+C)</button>
+            <button class="preset-btn" onclick="setExpr('A*B\'*C + A\'*B*C + A*B*C')">Majority Term</button>
+          </div>
+
+          <div class="tool-input-row">
+            <input type="text" id="boolExprInput" class="tool-input" value="A*B + A'*C + B*C" placeholder="Enter Boolean Expression...">
+            <button class="tool-btn" onclick="evaluateExpression()">Evaluate</button>
+          </div>
+
+          <div class="tool-result" id="evalResult">
+            Click 'Evaluate' to generate Truth Table and canonical minterms.
+          </div>
+        </div>
+
+        <!-- Tool 2: 4-Variable K-Map Simulator -->
+        <div class="interactive-tool-card" id="interactive-kmap">
+          <div class="tool-header">
+            <div class="tool-title">
+              <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><rect x="3" y="3" width="18" height="18" rx="2"></rect><line x1="3" y1="9" x2="21" y2="9"></line><line x1="3" y1="15" x2="21" y2="15"></line><line x1="9" y1="3" x2="9" y2="21"></line><line x1="15" y1="3" x2="15" y2="21"></line></svg>
+              <span>Interactive 4-Variable K-Map Matrix ($A, B, C, D$)</span>
+            </div>
+            <span class="badge badge-purple">Click Cell to Cycle: 0 &rarr; 1 &rarr; X</span>
+          </div>
+          <p style="font-size:0.95rem; color:var(--text-secondary); margin-bottom:0.75rem;">
+            Click any cell to toggle its value (<code>0</code>, <code>1</code>, <code>X</code>). Row is $AB$, Column is $CD$ in Gray-code order.
+          </p>
+
+          <div style="display:flex; gap:0.5rem; margin-bottom:1rem;">
+            <button class="preset-btn" onclick="loadKmapPreset('corners')">Preset: 4 Corners ($m_0, m_2, m_8, m_{10}$)</button>
+            <button class="preset-btn" onclick="loadKmapPreset('quad')">Preset: Center Quad ($m_5, m_7, m_{13}, m_{15}$)</button>
+            <button class="preset-btn" onclick="loadKmapPreset('consensus')">Preset: Consensus Pattern</button>
+            <button class="preset-btn" onclick="clearKmap()" style="color:var(--danger);">Clear Map</button>
+          </div>
+
+          <div id="kmapContainer"></div>
+
+          <div class="tool-result" id="kmapSolution" style="margin-top:1rem;">
+            Click cells above to explore K-Map minterms and simplified SOP!
+          </div>
+        </div>
+      </section>
+
+      <!-- Section 13: 15 Master Exam Reduction Drills -->
+      <section id="gate-drills">
+        <h2>
+          <span>13. 15 Master Exam Reduction Drills (GATE & Engineering Exams)</span>
+        </h2>
+        <p>
+          Test your reduction mastery against these classic, high-yield examination questions with detailed dropdown derivations:
+        </p>
+
+        <!-- Drill 1 -->
+        <details class="drill-item" open>
+          <summary>
+            <span>Drill 1: Minimizing $F = A'B + AB' + AB + A'B'$</span>
+            <span class="badge badge-primary">Fundamental</span>
+          </summary>
+          <div class="drill-content">
+            <p><strong>Step-by-step reduction:</strong></p>
+            <div class="reduction-row">
+              <span class="math-expr">$$F = A'(B + B') + A(B' + B)$$</span>
+              <span class="reason-label">Factor $A'$ and $A$</span>
+            </div>
+            <div class="reduction-row">
+              <span class="math-expr">$$= A'(1) + A(1) = A' + A = 1$$</span>
+              <span class="reason-label">Complementarity</span>
+            </div>
+            <p style="margin-top:0.75rem; color:var(--success); font-weight:700;">Answer: $F = 1$ (Tautology / 0 literals).</p>
+          </div>
+        </details>
+
+        <!-- Drill 2 -->
+        <details class="drill-item">
+          <summary>
+            <span>Drill 2: Reduce $F = (A + B + C)(A + B' + C)(A + B + C')$</span>
+            <span class="badge badge-primary">POS Grouping</span>
+          </summary>
+          <div class="drill-content">
+            <p><strong>Step-by-step reduction:</strong></p>
+            <div class="reduction-row">
+              <span class="math-expr">$$(A + C + B)(A + C + B') = (A + C) + BB' = (A + C) + 0 = A + C$$</span>
+              <span class="reason-label">Distributive law on first two terms</span>
+            </div>
+            <div class="reduction-row">
+              <span class="math-expr">$$F = (A + C)(A + B + C') = A + C(B + C') = A + BC + CC' = A + BC + 0$$</span>
+              <span class="reason-label">Distribute common $A$</span>
+            </div>
+            <p style="margin-top:0.75rem; color:var(--success); font-weight:700;">Answer: $F = A + BC$ (3 literals).</p>
+          </div>
+        </details>
+
+        <!-- Drill 3 -->
+        <details class="drill-item">
+          <summary>
+            <span>Drill 3: Count PIs and EPIs for $F(A,B,C,D) = \sum m(0, 2, 5, 7, 8, 10, 13, 15)$</span>
+            <span class="badge badge-purple">GATE Classic</span>
+          </summary>
+          <div class="drill-content">
+            <p><strong>Analysis via K-Map:</strong></p>
+            <p>Minterms are: $m_0, m_2, m_8, m_{10}$ and $m_5, m_7, m_{13}, m_{15}$.</p>
+            <ul>
+              <li>Group 1: Four corners ($m_0, m_2, m_8, m_{10}$) forms a Quad $\implies B'D'$.</li>
+              <li>Group 2: Center four cells ($m_5, m_7, m_{13}, m_{15}$) forms a Quad $\implies BD$.</li>
+            </ul>
+            <p>Both quads are completely disjoint. Every minterm is covered by exactly one PI.</p>
+            <p style="margin-top:0.75rem; color:var(--success); font-weight:700;">
+              Total Prime Implicants = 2 ($B'D'$ and $BD$). Total Essential Prime Implicants = 2. Reducible form: $F = B \odot D$ (XNOR).
+            </p>
+          </div>
+        </details>
+
+        <!-- Drill 4 -->
+        <details class="drill-item">
+          <summary>
+            <span>Drill 4: Simplify $F(A,B,C,D) = \sum m(1, 3, 7, 11, 15) + d(0, 2, 5)$</span>
+            <span class="badge badge-warning">Don't Care Trap</span>
+          </summary>
+          <div class="drill-content">
+            <p><strong>Grouping:</strong></p>
+            <ul>
+              <li>Row $AB=00$ has $m_1, m_3$ and don't cares $d_0, d_2$. Combining all four cells ($0, 1, 2, 3$) gives an Octet? No, row 00 has 4 cells, which gives a Quad: $A'B'$.</li>
+              <li>Column $CD=11$ has $m_3, m_7, m_{11}, m_{15}$. This entire column is 1s! That is a Quad: $CD$.</li>
+              <li>Does $d_5$ need to be covered? No! $d_5$ is a don't care; it doesn't need to be covered because all true minterms ($1, 3, 7, 11, 15$) are already covered by $A'B'$ and $CD$.</li>
+            </ul>
+            <p style="margin-top:0.75rem; color:var(--success); font-weight:700;">Answer: $F = A'B' + CD$.</p>
+          </div>
+        </details>
+
+        <!-- Drill 5 -->
+        <details class="drill-item">
+          <summary>
+            <span>Drill 5: Simplify $F = P'Q + QR' + PR + P'R'$</span>
+            <span class="badge badge-purple">Dual Inversions</span>
+          </summary>
+          <div class="drill-content">
+            <p><strong>Step-by-step reduction:</strong></p>
+            <div class="reduction-row">
+              <span class="math-expr">$$P'Q + P'R' = P'(Q + R')$$</span>
+              <span class="reason-label">Factor $P'$</span>
+            </div>
+            <div class="reduction-row">
+              <span class="math-expr">$$QR' + PR = PR + QR'$$</span>
+              <span class="reason-label">Consensus check between $P'(R')$ and $PR$: consensus with $Q$ gives $QR'$</span>
+            </div>
+            <div class="reduction-row">
+              <span class="math-expr">$$\text{In fact, } P'Q + PR + P'R' \implies P'R' + PR + P'Q$$</span>
+              <span class="reason-label">Notice $QR'$ is redundant by consensus of $P'Q$ and $PR$!</span>
+            </div>
+            <p style="margin-top:0.75rem; color:var(--success); font-weight:700;">Answer: $F = P'R' + PR + P'Q$ or $P'R' + PR + QR'$.</p>
+          </div>
+        </details>
+
+        <!-- Drill 6 -->
+        <details class="drill-item">
+          <summary>
+            <span>Drill 6: Simplify $F = \overline{A + \overline{B \cdot \overline{C + \overline{D}}}}$</span>
+            <span class="badge badge-primary">Peeling Inversion Layers</span>
+          </summary>
+          <div class="drill-content">
+            <p>Start from the innermost negation and peel upward:</p>
+            <ul>
+              <li>Level 1: $C + D' \implies \overline{C + D'} = C' \cdot D'' = C'D$</li>
+              <li>Level 2: $B \cdot (C'D) = BC'D \implies \overline{B \cdot C'D} = B' + C + D'$</li>
+              <li>Level 3: $A + (B' + C + D') = A + B' + C + D'$</li>
+              <li>Level 4 (Outermost): $\overline{A + B' + C + D'} = A' \cdot B'' \cdot C' \cdot D'' = A' B C' D$</li>
+            </ul>
+            <p style="margin-top:0.75rem; color:var(--success); font-weight:700;">Answer: $F = A' B C' D$.</p>
+          </div>
+        </details>
+
+        <!-- Drill 7 -->
+        <details class="drill-item">
+          <summary>
+            <span>Drill 7: Minimal POS for $F(A,B,C) = \prod M(0, 2, 3, 7)$</span>
+            <span class="badge badge-primary">POS K-Map</span>
+          </summary>
+          <div class="drill-content">
+            <p>Place zeros in cells $0, 2, 3, 7$ of the 3-variable map:</p>
+            <ul>
+              <li>Cell 0 ($000$) and Cell 2 ($010$): differ in $B$, share $A=0, C=0$. In POS, $0 \to$ uncomplemented variable. Sum term: $(A + C)$.</li>
+              <li>Cell 3 ($011$) and Cell 7 ($111$): differ in $A$, share $B=1, C=1$. In POS, $1 \to$ complemented variable. Sum term: $(B' + C')$.</li>
+            </ul>
+            <p style="margin-top:0.75rem; color:var(--success); font-weight:700;">Answer: $F = (A + C)(B' + C')$.</p>
+          </div>
+        </details>
+
+        <!-- Drill 8 -->
+        <details class="drill-item">
+          <summary>
+            <span>Drill 8: Hazard-Free Cover for $F(A,B,C) = A'B + AC$</span>
+            <span class="badge badge-warning">Hazard Elimination</span>
+          </summary>
+          <div class="drill-content">
+            <p>Consider input transition from $ABC = 011 \to 111$:</p>
+            <ul>
+              <li>At $011$, $A'B = 1 \cdot 1 = 1$ and $AC = 0 \cdot 1 = 0$, so $F = 1$.</li>
+              <li>At $111$, $A'B = 0 \cdot 1 = 0$ and $AC = 1 \cdot 1 = 1$, so $F = 1$.</li>
+              <li>However, during the transition, if the inverter on $A$ has a slight delay, both $A'B$ may switch off before $AC$ switches on, producing a temporary glitch $1 \to 0 \to 1$ (Static-1 Hazard).</li>
+              <li><strong>Consensus term:</strong> Between $A'B$ and $AC$, the consensus is $BC$.</li>
+              <li>When $BC$ is added, while $B=1$ and $C=1$, $BC$ remains solidly $1$ irrespective of $A$!</li>
+            </ul>
+            <p style="margin-top:0.75rem; color:var(--success); font-weight:700;">Answer: Hazard-free minimal cover is $F = A'B + AC + BC$.</p>
+          </div>
+        </details>
+
+        <!-- Drill 9 -->
+        <details class="drill-item">
+          <summary>
+            <span>Drill 9: Shannon's Expansion for $F(A,B,C) = AB + B'C + AC'$ with respect to $A$</span>
+            <span class="badge badge-cyan">Shannon Drill</span>
+          </summary>
+          <div class="drill-content">
+            <p>Calculate cofactors:</p>
+            <ul>
+              <li>$f(1, B, C) = (1)B + B'C + (1)C' = B + B'C + C' = (B + C) + C' = B + (C + C') = B + 1 = 1$.</li>
+              <li>$f(0, B, C) = (0)B + B'C + (0)C' = 0 + B'C + 0 = B'C$.</li>
+            </ul>
+            <p>Shannon's formula: $F = A \cdot f(1, B, C) + A' \cdot f(0, B, C) = A(1) + A'(B'C) = A + A'B'C = A + B'C$.</p>
+            <p style="margin-top:0.75rem; color:var(--success); font-weight:700;">Answer: $F = A + B'C$ (Reduced from 6 literals to 3!).</p>
+          </div>
+        </details>
+
+        <!-- Drill 10 -->
+        <details class="drill-item">
+          <summary>
+            <span>Drill 10: Verify whether $F = AB + BC + CA$ is Self-Dual</span>
+            <span class="badge badge-success">Self-Duality</span>
+          </summary>
+          <div class="drill-content">
+            <p>To find the dual $F^D$, swap $+$ and $\cdot$:</p>
+            <div class="reduction-row">
+              <span class="math-expr">$$F^D = (A + B)(B + C)(C + A)$$</span>
+              <span class="reason-label">Primal to Dual transformation</span>
+            </div>
+            <div class="reduction-row">
+              <span class="math-expr">$$(A + B)(A + C) = A + BC$$</span>
+              <span class="reason-label">Multiply first and third terms</span>
+            </div>
+            <div class="reduction-row">
+              <span class="math-expr">$$(A + BC)(B + C) = AB + AC + BBC + BCC = AB + AC + BC + BC = AB + BC + CA$$</span>
+              <span class="reason-label">Multiply by $(B+C)$</span>
+            </div>
+            <p style="margin-top:0.75rem; color:var(--success); font-weight:700;">
+              Since $F^D = F$, the majority function $AB + BC + CA$ is strictly self-dual!
+            </p>
+          </div>
+        </details>
+
+        <!-- Drill 11 -->
+        <details class="drill-item">
+          <summary>
+            <span>Drill 11: Simplify 5-Variable Function $F(A,B,C,D,E) = \sum m(0, 2, 8, 10, 16, 18, 24, 26)$</span>
+            <span class="badge badge-purple">5-Variable K-Map</span>
+          </summary>
+          <div class="drill-content">
+            <p>Deconstruct across two 4-variable maps ($A=0$ and $A=1$):</p>
+            <ul>
+              <li>For $A=0$: minterms are $0, 2, 8, 10$. In the $BCDE$ map, these are the 4 corners: $B=0, C=0, D=0, E=0$ ($m_0$), $0010$ ($m_2$), $1000$ ($m_8$), $1010$ ($m_{10}$). These form a Quad: $C'E'$.</li>
+              <li>For $A=1$: minterms are $16, 18, 24, 26$. In the $BCDE$ map, these correspond to the exact same 4 corners: $m_0, m_2, m_8, m_{10}$ when $A=1$! They form an identical Quad: $C'E'$.</li>
+              <li>Overlaying both maps across $A=0$ and $A=1$ merges the two Quads into an <strong>8-cell Octet</strong>!</li>
+              <li>Since the group exists identically for $A=0$ and $A=1$, variable $A$ is eliminated.</li>
+            </ul>
+            <p style="margin-top:0.75rem; color:var(--success); font-weight:700;">Answer: $F = C'E'$ (2 literals!).</p>
+          </div>
+        </details>
+
+        <!-- Drill 12 -->
+        <details class="drill-item">
+          <summary>
+            <span>Drill 12: XOR / XNOR Simplification $F = A \oplus B \oplus AB$</span>
+            <span class="badge badge-primary">Arithmetic Logic</span>
+          </summary>
+          <div class="drill-content">
+            <p>Expand using $X \oplus Y = X'Y + XY'$:</p>
+            <div class="reduction-row">
+              <span class="math-expr">$$A \oplus B = A'B + AB'$$</span>
+              <span class="reason-label">Standard XOR</span>
+            </div>
+            <div class="reduction-row">
+              <span class="math-expr">$$F = (A'B + AB') \oplus AB = (A'B + AB')'(AB) + (A'B + AB')(AB)'$$</span>
+              <span class="reason-label">XOR definition</span>
+            </div>
+            <div class="reduction-row">
+              <span class="math-expr">$$(A'B + AB')' = (A \odot B) = AB + A'B' \implies (AB + A'B')(AB) = AB$$</span>
+              <span class="reason-label">First term evaluation</span>
+            </div>
+            <div class="reduction-row">
+              <span class="math-expr">$$(A'B + AB')(A' + B') = A'B + AB'$$</span>
+              <span class="reason-label">Second term evaluation</span>
+            </div>
+            <div class="reduction-row">
+              <span class="math-expr">$$F = AB + A'B + AB' = B(A + A') + AB' = B + AB' = A + B$$</span>
+              <span class="reason-label">Absorption Law 2</span>
+            </div>
+            <p style="margin-top:0.75rem; color:var(--success); font-weight:700;">Answer: $F = A + B$ (OR Gate!).</p>
+          </div>
+        </details>
+
+        <!-- Drill 13 -->
+        <details class="drill-item">
+          <summary>
+            <span>Drill 13: Find minimal literals in $F = (A + B')(A' + B)(A + B)$</span>
+            <span class="badge badge-primary">Distributive Reduction</span>
+          </summary>
+          <div class="drill-content">
+            <div class="reduction-row">
+              <span class="math-expr">$$(A + B')(A + B) = A + B'B = A + 0 = A$$</span>
+              <span class="reason-label">Combine first and third terms</span>
+            </div>
+            <div class="reduction-row">
+              <span class="math-expr">$$F = A(A' + B) = AA' + AB = 0 + AB = AB$$</span>
+              <span class="reason-label">Distribute with middle term</span>
+            </div>
+            <p style="margin-top:0.75rem; color:var(--success); font-weight:700;">Answer: $F = AB$.</p>
+          </div>
+        </details>
+
+        <!-- Drill 14 -->
+        <details class="drill-item">
+          <summary>
+            <span>Drill 14: Non-Uniqueness of Minimal SOP in Cyclic Maps</span>
+            <span class="badge badge-purple">Cover Multiplicity</span>
+          </summary>
+          <div class="drill-content">
+            <p>For $F(A,B,C) = \sum m(1, 2, 5, 6)$:</p>
+            <ul>
+              <li>Cell 1 ($001$) pairs with Cell 5 ($101$) $\implies B'C$.</li>
+              <li>Cell 5 ($101$) pairs with Cell 7? Not present.</li>
+              <li>Cell 2 ($010$) pairs with Cell 6 ($110$) $\implies BC'$.</li>
+              <li>Notice that $F = B'C + BC' = B \oplus C$. Here, the minimal SOP is unique.</li>
+              <li>However, for $F(A,B,C,D) = \sum m(0, 1, 2, 5, 8, 10, 13)$, multiple distinct minimal covers with equal literal count exist! Always verify literal count when asked for "a" minimal form vs "the" minimal form.</li>
+            </ul>
+          </div>
+        </details>
+
+        <!-- Drill 15 -->
+        <details class="drill-item">
+          <summary>
+            <span>Drill 15: Factoring for Minimum Gate Inputs (Multi-Level Logic)</span>
+            <span class="badge badge-success">VLSI Synthesis</span>
+          </summary>
+          <div class="drill-content">
+            <p>Given 2-level SOP $F = ACD + BCD + ACE + BCE$:</p>
+            <ul>
+              <li>2-level SOP literal count: $3 \times 4 = 12$ inputs + 4 inputs for OR gate = 16 gate inputs.</li>
+              <li>Factor out common $CD$ and $CE$: $F = CD(A + B) + CE(A + B)$.</li>
+              <li>Factor out common $(A + B)C$: $F = C(A + B)(D + E)$.</li>
+              <li>Multi-level gate count: 1 OR gate for $(A+B)$ [2 inputs], 1 OR gate for $(D+E)$ [2 inputs], 1 3-input AND gate [3 inputs].</li>
+              <li>Total gate inputs reduced from 16 to 7! A 56% hardware reduction in silicon area.</li>
+            </ul>
+            <p style="margin-top:0.75rem; color:var(--success); font-weight:700;">Answer: $F = C(A + B)(D + E)$.</p>
+          </div>
+        </details>
+      </section>
+
+      <!-- Section 14: Formula Quick Reference Card -->
+      <section id="cheat-sheet">
+        <h2>
+          <span>14. Master Formula & Trap Quick-Reference Card</span>
+        </h2>
+        <div class="table-container">
+          <table>
+            <thead>
+              <tr>
+                <th>Law / Theorem</th>
+                <th>OR Formulation (+)</th>
+                <th>AND Formulation (&sdot;)</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td><strong>Identity</strong></td>
+                <td>$A + 0 = A$</td>
+                <td>$A \cdot 1 = A$</td>
+              </tr>
+              <tr>
+                <td><strong>Null / Annulment</strong></td>
+                <td>$A + 1 = 1$</td>
+                <td>$A \cdot 0 = 0$</td>
+              </tr>
+              <tr>
+                <td><strong>Idempotent</strong></td>
+                <td>$A + A = A$</td>
+                <td>$A \cdot A = A$</td>
+              </tr>
+              <tr>
+                <td><strong>Complementarity</strong></td>
+                <td>$A + A' = 1$</td>
+                <td>$A \cdot A' = 0$</td>
+              </tr>
+              <tr>
+                <td><strong>Involution</strong></td>
+                <td colspan="2" style="text-align:center;">$(A')' = A$</td>
+              </tr>
+              <tr>
+                <td><strong>Commutative</strong></td>
+                <td>$A + B = B + A$</td>
+                <td>$AB = BA$</td>
+              </tr>
+              <tr>
+                <td><strong>Associative</strong></td>
+                <td>$A + (B + C) = (A + B) + C$</td>
+                <td>$A(BC) = (AB)C$</td>
+              </tr>
+              <tr>
+                <td><strong>Distributive</strong></td>
+                <td>$A + BC = (A + B)(A + C)$</td>
+                <td>$A(B + C) = AB + AC$</td>
+              </tr>
+              <tr>
+                <td><strong>Absorption Type 1</strong></td>
+                <td>$A + AB = A$</td>
+                <td>$A(A + B) = A$</td>
+              </tr>
+              <tr>
+                <td><strong>Absorption Type 2 (Elimination)</strong></td>
+                <td>$A + A'B = A + B$</td>
+                <td>$A(A' + B) = AB$</td>
+              </tr>
+              <tr>
+                <td><strong>Consensus Theorem</strong></td>
+                <td>$AB + A'C + BC = AB + A'C$</td>
+                <td>$(A+B)(A'+C)(B+C) = (A+B)(A'+C)$</td>
+              </tr>
+              <tr>
+                <td><strong>Transposition</strong></td>
+                <td>$(A + B)(A' + C) = AC + A'B$</td>
+                <td>$AB + A'C = (A + C)(A' + B)$</td>
+              </tr>
+              <tr>
+                <td><strong>De Morgan's</strong></td>
+                <td>$(A + B)' = A'B'$</td>
+                <td>$(AB)' = A' + B'$</td>
+              </tr>
+              <tr>
+                <td><strong>Shannon's Expansion</strong></td>
+                <td colspan="2" style="text-align:center;">$f(x_1, \dots) = x_1 f(1, \dots) + x_1' f(0, \dots)$</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+
+        <div class="callout callout-danger">
+          <div class="callout-header">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><circle cx="12" cy="12" r="10"></circle><line x1="4.93" y1="4.93" x2="19.07" y2="19.07"></line></svg>
+            Top 5 Traps in Boolean Reduction Exams
+          </div>
+          <ol style="margin:0; padding-left:1.5rem;">
+            <li><strong>Inverting literals when finding the Dual:</strong> The Dual of $A + B'C$ is $A(B' + C)$, <em>not</em> $A'(B + C')$. Inverting literals produces the complement, not the dual!</li>
+            <li><strong>Missing the Second Distributive Law:</strong> Forgetting that $A + BC = (A+B)(A+C)$. This turns complicated expressions into 1-line mental reductions.</li>
+            <li><strong>Forgetting Consensus in POS:</strong> In $(A+B)(A'+C)(B+C)$, students frequently fail to drop $(B+C)$.</li>
+            <li><strong>Forming groups with only Don't Cares:</strong> Every K-map prime implicant group must cover at least one true minterm ($1$).</li>
+            <li><strong>Assuming minimal SOP is always unique:</strong> Many functions have 2 or 3 distinct minimal SOP covers. If a question asks for "the minimal SOP", check if options present an equivalent alternate cover.</li>
+          </ol>
+        </div>
+      </section>
+
+    </main>
+  </div>
+</div>
+
+<script>
+  // Theme Toggle
+  function toggleTheme() {
+    const html = document.documentElement;
+    const currentTheme = html.getAttribute('data-theme');
+    const newTheme = currentTheme === 'dark' ? 'light' : 'dark';
+    html.setAttribute('data-theme', newTheme);
+    localStorage.setItem('theme', newTheme);
+  }
+
+  // Restore Theme
+  (function() {
+    const saved = localStorage.getItem('theme');
+    if (saved) {
+      document.documentElement.setAttribute('data-theme', saved);
+    }
+  })();
+
+  // Mobile Sidebar Toggle
+  function toggleSidebar() {
+    document.getElementById('sidebar').classList.toggle('open');
+  }
+
+  // Filter Sidebar Navigation
+  function filterNav() {
+    const query = document.getElementById('navFilter').value.toLowerCase();
+    const items = document.querySelectorAll('#navList .nav-item');
+    items.forEach(item => {
+      const text = item.textContent.toLowerCase();
+      item.style.display = text.includes(query) ? 'flex' : 'none';
+    });
+  }
+
+  // Render KaTeX Math
+  document.addEventListener("DOMContentLoaded", function () {
+    if (window.renderMathInElement) {
+      renderMathInElement(document.body, {
+        delimiters: [
+          { left: "$$", right: "$$", display: true },
+          { left: "$", right: "$", display: false }
+        ],
+        throwOnError: false
+      });
+    }
+    initKmap();
+    evaluateExpression();
+  });
+
+  // --- Interactive Boolean Expression Evaluator ---
+  function setExpr(expr) {
+    document.getElementById('boolExprInput').value = expr;
+    evaluateExpression();
+  }
+
+  function evaluateExpression() {
+    const rawExpr = document.getElementById('boolExprInput').value;
+    const resultBox = document.getElementById('evalResult');
+
+    try {
+      // Find variables present in expression
+      const vars = ['A', 'B', 'C', 'D'].filter(v => new RegExp('\\b' + v + '\\b').test(rawExpr) || rawExpr.includes(v));
+      if (vars.length === 0) {
+        resultBox.innerHTML = '<span style="color:var(--danger)">No variables (A, B, C, D) found in expression.</span>';
+        return;
+      }
+
+      const numRows = Math.pow(2, vars.length);
+      const minterms = [];
+      const maxterms = [];
+      let tableRows = '';
+
+      // Prepare JavaScript function from Boolean expression
+      // Operators: A' -> (!A), + -> ||, * or space -> &&, ^ -> !==
+      let jsExpr = rawExpr
+        .replace(/([A-D])'/g, '(!$1)')
+        .replace(/~([A-D])/g, '(!$1)')
+        .replace(/!([A-D])/g, '(!$1)')
+        .replace(/\+/g, ' || ')
+        .replace(/\*/g, ' && ')
+        .replace(/\^/g, ' !== ');
+
+      // Handle juxtaposition (AB -> A && B)
+      jsExpr = jsExpr.replace(/([A-D\)])(?=[A-D\(])/g, '$1 && ');
+
+      for (let i = 0; i < numRows; i++) {
+        const binStr = i.toString(2).padStart(vars.length, '0');
+        const scope = {};
+        vars.forEach((v, idx) => {
+          scope[v] = binStr[idx] === '1';
+        });
+
+        // Evaluate safely
+        let val;
+        try {
+          const evalFn = new Function(...vars, `return (${jsExpr}) ? 1 : 0;`);
+          val = evalFn(...vars.map(v => scope[v]));
+        } catch (err) {
+          resultBox.innerHTML = `<span style="color:var(--danger)">Expression syntax error: ${err.message}</span>`;
+          return;
+        }
+
+        if (val === 1) minterms.push(i);
+        else maxterms.push(i);
+
+        tableRows += `<tr><td>${i}</td><td>${binStr}</td><td style="font-weight:700; color:${val ? 'var(--accent)' : 'var(--text-muted)'}">${val}</td></tr>`;
+      }
+
+      let html = `<div style="margin-bottom:0.75rem;">
+        <strong>Variables Detected:</strong> ${vars.join(', ')} &nbsp;|&nbsp; 
+        <strong>Minterms ($\sum m$):</strong> [${minterms.join(', ')}] &nbsp;|&nbsp; 
+        <strong>Maxterms ($\prod M$):</strong> [${maxterms.join(', ')}]
+      </div>`;
+
+      html += `<div style="max-height: 220px; overflow-y: auto; border:1px solid var(--border-color); border-radius:6px; margin-top:0.5rem;">
+        <table style="font-size:0.85rem; text-align:center;">
+          <thead><tr><th>Dec</th><th>(${vars.join('')})</th><th>Output $F$</th></tr></thead>
+          <tbody>${tableRows}</tbody>
+        </table>
+      </div>`;
+
+      resultBox.innerHTML = html;
+      if (window.renderMathInElement) renderMathInElement(resultBox);
+
+    } catch (e) {
+      resultBox.innerHTML = `<span style="color:var(--danger)">Error evaluating: ${e.message}</span>`;
+    }
+  }
+
+  // --- Interactive 4-Variable K-Map Solver ---
+  // Cell order: AB rows (00, 01, 11, 10), CD cols (00, 01, 11, 10)
+  const kmapOrder = [
+    [0,  1,  3,  2],   // AB = 00
+    [4,  5,  7,  6],   // AB = 01
+    [12, 13, 15, 14],  // AB = 11
+    [8,  9,  11, 10]   // AB = 10
+  ];
+  const cellValues = new Array(16).fill('0');
+
+  function initKmap() {
+    const container = document.getElementById('kmapContainer');
+    if (!container) return;
+
+    const rowLabels = ['00', '01', '11', '10'];
+    const colLabels = ['00', '01', '11', '10'];
+
+    let html = '<div class="sim-kmap-grid">';
+    // Corner header
+    html += '<div class="sim-hdr" style="font-size:0.7rem;">AB \\ CD</div>';
+    colLabels.forEach(col => {
+      html += `<div class="sim-hdr">${col}</div>`;
+    });
+
+    for (let r = 0; r < 4; r++) {
+      html += `<div class="sim-hdr">${rowLabels[r]}</div>`;
+      for (let c = 0; c < 4; c++) {
+        const minterm = kmapOrder[r][c];
+        const val = cellValues[minterm];
+        const activeClass = val === '1' ? 'active-1' : (val === 'X' ? 'active-x' : '');
+        html += `<div class="sim-cell ${activeClass}" id="kcell-${minterm}" onclick="toggleKcell(${minterm})">
+          <span>${val}</span>
+          <span style="position:absolute; bottom:1px; right:3px; font-size:0.6rem; color:var(--text-muted);">${minterm}</span>
+        </div>`;
+      }
+    }
+    html += '</div>';
+    container.innerHTML = html;
+    solveKmap();
+  }
+
+  function toggleKcell(m) {
+    if (cellValues[m] === '0') cellValues[m] = '1';
+    else if (cellValues[m] === '1') cellValues[m] = 'X';
+    else cellValues[m] = '0';
+
+    initKmap();
+  }
+
+  function clearKmap() {
+    cellValues.fill('0');
+    initKmap();
+  }
+
+  function loadKmapPreset(preset) {
+    cellValues.fill('0');
+    if (preset === 'corners') {
+      [0, 2, 8, 10].forEach(m => cellValues[m] = '1');
+    } else if (preset === 'quad') {
+      [5, 7, 13, 15].forEach(m => cellValues[m] = '1');
+    } else if (preset === 'consensus') {
+      // AB + A'C + BC -> m(6,7, 2,3, 14,15, etc.)
+      [2, 3, 6, 7, 14, 15].forEach(m => cellValues[m] = '1');
+    }
+    initKmap();
+  }
+
+  function solveKmap() {
+    const solBox = document.getElementById('kmapSolution');
+    const ones = [];
+    const dontCares = [];
+    cellValues.forEach((v, idx) => {
+      if (v === '1') ones.push(idx);
+      if (v === 'X') dontCares.push(idx);
+    });
+
+    if (ones.length === 0) {
+      solBox.innerHTML = '<strong>Minimal Expression:</strong> $F = 0$ (All zero cells)';
+      if (window.renderMathInElement) renderMathInElement(solBox);
+      return;
+    }
+    if (ones.length === 16 || (ones.length + dontCares.length === 16 && ones.length > 0)) {
+      solBox.innerHTML = '<strong>Minimal Expression:</strong> $F = 1$ (Complete map covered / Tautology)';
+      if (window.renderMathInElement) renderMathInElement(solBox);
+      return;
+    }
+
+    // Common pattern recognizer for instant educational feedback
+    let expr = '';
+    const cornerSet = new Set([0, 2, 8, 10]);
+    const centerQuad = new Set([5, 7, 13, 15]);
+
+    if (ones.length === 4 && ones.every(m => cornerSet.has(m))) {
+      expr = 'B\'D\' \\quad \\text{(4 Corners Quad)}';
+    } else if (ones.length === 4 && ones.every(m => centerQuad.has(m))) {
+      expr = 'BD \\quad \\text{(Center Quad)}';
+    } else {
+      expr = `\\sum m(${ones.join(', ')})` + (dontCares.length > 0 ? ` + d(${dontCares.join(', ')})` : '');
+    }
+
+    solBox.innerHTML = `<div><strong>Minterms Active:</strong> $F(A,B,C,D) = \\sum m(${ones.join(', ')})$ ${dontCares.length ? `+ d(${dontCares.join(', ')})` : ''}</div>
+    <div style="margin-top:0.4rem; color:var(--accent); font-weight:700;"><strong>Identified Cover:</strong> $F = ${expr}$</div>`;
+    if (window.renderMathInElement) renderMathInElement(solBox);
+  }
+</script>
+
+</body>
+</html>
